@@ -1,0 +1,31 @@
+<% @title_for_layout = "Login" %>
+
+<%= form_for(@user_session) do |f| %>
+
+<div style="position:static" id="overlayLoginForm">
+	
+	<img alt="" id="overlayLoginFormClose" src="/img/resume/closeOverlay.png">	
+	<div id="overlayLoginFormInner">
+		<h2 id="overlayLoginFormHeader">Login</h2>
+		<div class="clearfloat"></div>
+		<div style="display: none; text-align: right;" id="loginMessage"></div>
+		<div class="form_row">
+			<%= f.label :email %>
+			<%= f.text_field :email, :class => "textbox" %>
+		</div>
+		<div class="form_row">
+			<%= f.label :password %>
+			<%= f.password_field :password, :class => "textbox" %>
+		</div>
+		<div id="overlayLoginFormButtons">
+			<input type="image" src="/images/resume/cancelLoginButton.png" id="cancelLoginForm">
+			<input type="image" src="/images/resume/loginFormGo.png" id="submitLoginForm">
+		</div>
+		<div id="overlayLoginFormBottom">
+			
+			<a id="forgot_password_trigger" href="/">Forgot Password</a> /
+			<a href="/signup">Signup</a>		</div>
+	</div>
+</div>
+
+<% end %>

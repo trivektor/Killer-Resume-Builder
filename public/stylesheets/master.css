@@ -1,0 +1,546 @@
+@font-face {font-family:Junction;src:url(fonts/Junction.ttf);}
+@font-face {font-family:Bergamo;src:url(fonts/Bergamo.ttf);}
+@font-face {font-family:Baskerville Old Face;src:url(fonts/baskerville-old-face.ttf);}
+@font-face {font-family:League Gothic;src:url(fonts/LeagueGothic.ttf);}
+
+* {margin:0; padding:0;}
+
+a {text-decoration:none; outline:none; color:#e26a00; cursor:pointer;}
+
+img {border:0;}
+
+ul {list-style:none;}
+
+iframe {border:0;}
+
+.omega {margin:0 !important}
+
+.clearfloat {clear:both;}
+
+h3, h2 {margin-bottom:10px; font-family:League Gothic,arial; font-weight:normal; text-transform:uppercase;}
+
+h2 {font-size:28px;}
+
+body {font-family:lucida grande, arial; font-size:12px; color:#444; background:#dfe9f4; background:#fff;}
+
+/* Header */ 
+#header_wrapper {
+	/*background:url(../images/main/topbarbg.png) repeat-x*/
+	background:#eb2219 url(../images/resume/headerBg.png) repeat-x;
+}
+#header {width:1019px; margin:0 auto;position:relative; padding:7px 0;}
+#app_logo {text-indent:-9999px; background:url(../images/resume/logo.png) no-repeat; width:238px; height:38px}
+#app_logo a {display:block;}
+#login_link {position:absolute; top:14px; right:70px; cursor:pointer;}
+#overlayLoginForm #fb_login_btn {float:left;}
+#signup_link {position:absolute; top:14px; right:2px;}
+#header_nav {padding:8px 0; width:1019px; margin:0 auto;}
+#header_nav_wrapper {background:#9e211c; border-top:1px solid #3c100e; padding:4px 0 6px;}
+
+/* Top navigation */
+.main_nav {float:left; width:330px; margin-left:-4px; }
+.main_nav li {float:left}
+.main_nav li a {display:block; height:34px; text-indent:-9999px;}
+.site_search {width:1019px; margin:0 auto; color:#fff; text-align:right;}
+.start_search_btn {float:right; margin-left:5px; cursor:pointer}
+.site_search_box {float:right; width:180px !important; padding:5px 7px !important; font-size:11px; background:#fff !important; 
+	-moz-border-radius:2px; -webkit-border-radius:2px; margin-left:5px; border:0; -moz-box-shadow:0 1px 1px #999 inset; -webkit-box-shadow:0 1px 1px #999 inset;}
+.site_search_options {float:right; margin-left:15px; margin-top:5px; color:#fff; font-size:11px; cursor:pointer;}
+#account_links {display:none;background:url(../images/resume/arrowTip.png) no-repeat top center;width:164px; position:absolute; top:18px; left:-65px; 
+font-size:11px; z-index:100; padding-top:9px}
+#account_links .white_region {padding:9px; -moz-box-shadow:0 2px 2px #777; -webkit-box-shadow:0 2px 2px #777;}
+#account_links li {padding:7px; background:#D0DEEC; margin-bottom:7px; -moz-box-shadow:0 1px 1px #96ACB9 inset; -moz-border-radius:5px;}
+#account_links li .profile_control_links {color:#333 !important; padding-left:25px !important; display:block; height:16px;}
+#account_links li a.view_profile {background:url(../images/Basic_set_PNG/user_16.png) no-repeat;}
+#account_links li a.edit_profile_btn {background:url(../images/Basic_set_PNG/pencil_16.png) no-repeat;}
+#account_links li a.edit_account_settings {background:url(../images/Basic_set_PNG/key_16.png) no-repeat;}
+#account_links li a.logout {background:url(../images/Basic_set_PNG/stop_16.png) no-repeat}
+#account_links li a.close {background:url(../images/Basic_set_PNG/delete_16.png) no-repeat}
+#username {position:relative;}
+#username_tab span {cursor:pointer; color:#fff; position:relative;}
+
+#top_panel {position:absolute; top:19px; right:0px; font-size:11px;}
+#top_panel > li {float:right; margin-left:4px;}
+#top_panel > li > a {display:block; color:#fff; padding:0px 8px; border-right:1px solid #fff;}
+#top_panel .last {padding-right:0; border-right:0;}
+
+#content {width:1019px; margin:40px auto}
+#content_inner {padding:20px; background:#fff; position:relative;}
+
+.blue_btn {background:url(../images/resume/blueBtnBg.jpg) repeat-x left bottom #02B6F1; color:#fff; cursor:pointer; padding:4px 7px; font-size:11px;
+-moz-border-radius:25px; -webkit-border-radius:25px;}
+.red_btn {background:url(../images/resume/redBtnBg.jpg) repeat-x; color:#fff; cursor:pointer; padding:4px 7px; font-size:11px;
+-moz-border-radius:25px; -webkit-border-radius:25px;}
+.green_btn {background:url(../images/resume/greenBtnBg.jpg) repeat-x; color:#fff; cursor:pointer; padding:4px 7px; font-size:11px;
+-moz-border-radius:25px; -webkit-border-radius:25px;}
+
+.textbox { width:240px; padding:7px; background:#ffedc0 url(../images/resume/textboxBg.png) repeat-x; border:0;}
+
+.nav {overflow:hidden; background:-moz-linear-gradient(top, #a8ea9c, #62af56);}
+.nav li {float:left;}
+.nav li a {float:left; display:block; color:#fff; text-shadow:1px 1px 1px #555; padding:15px;}
+
+/* Registration form */
+.submit {text-align:right;}
+
+.form {padding:20px; width:400px; margin:40px auto 0; background:#fff; -moz-border-radius:5px; 
+-webkit-border-radius:5px; -moz-box-shadow:0 2px 5px -1px #aaa; -webkit-box-shadow:0 2px 5px #aaa;}
+
+#edit_profile {display:inline-block;}
+
+.profile_details li {margin-bottom:15px; overflow:hidden;}
+
+.profile_field_label {float:left; font-weight:normal; margin-right:20px; color:#70b3ff;}
+
+.profile_field_details {float:left; margin-top:5px;}
+
+.form_row {margin:20px 0; position:relative; overflow:hidden;}
+.form_row label {margin-bottom:7px; display:block}
+.form_row .eg {margin-top:3px; font-size:11px; color:#666}
+
+#resume_edit .form_row label {float:left}
+#resume_edit .form_row .eg {float:right;}
+
+.textbutton {text-align:center; width:154px; font-size:13px; color:#fff; display:block; margin-top:10px; border:0;
+background:url(../images/resume/textbuttonbg.png) no-repeat; height:31px; line-height:29px; text-shadow:0 1px 1px #000;}
+.textheader {text-align:center; width:173px; height:42px; font-size:22px; color:#fff; display:block;
+background:url(../images/resume/textheaderbg.png) no-repeat; height:42px; line-height:38px; text-shadow:0 1px 1px #000;
+font-family:Lucida Grande,arial; text-transform:none;}
+
+.error-message {color:#cd1818; margin-top:10px; font-size:11px; clear:both;}
+
+.message {background:#c3e2a0; color:#55841f; border:1px solid #9bc36b; padding:8px; margin-bottom:20px;}
+
+.blue_region {background:#fbe9c5; background:#d0deec; padding:12px; margin:0 0 40px; -moz-border-radius:4px; -webkit-border-radius:4px; 
+-moz-box-shadow:0 1px 1px #96acb9 inset; border-bottom:1px solid #fff;}
+.white_region {background:#fff; padding:12px; -moz-box-shadow:0 1px 1px #9c9c9c; -webkit-box-shadow:0 1px 1px #9c9c9c; -moz-border-radius:4px;
+-webkit-border-radius:4px; overflow:hidden;}
+
+textarea {display:block; width:600px; height:90px; padding:7px; font-family:Lucida Grande,arial; background:#ffedc0 url(../images/resume/textboxBg.png) repeat-x;
+font-size:12px; border:0;}
+
+.resume_details {float:left;}
+
+.addition_link {display:block; color:#fff; background:#BB1818; padding:3px; position:absolute;top:0; right:15px}
+.section_options {display:block; color:#fff !important; background:#ffa061 url(../images/resume/sectionOptionsBg.jpg) repeat-x left bottom; padding:5px 10px; position:absolute; top:4px; right:30px; 
+	border:1px solid #d75600;}
+.section_options a {color:#fff !important;}
+.section_options .add {display:block; color:#a57822 !important; display:none;}
+.section_options .disable_section, .section_options .enable_section {display:none; cursor:pointer}
+
+.experience_block, .education_block {margin-bottom:20px; position:relative;}
+.position_title {float:left; width:350px;}
+.position_date {float:right; width:170px; text-align:right;}
+.position_details {margin-top:15px; line-height:20px; clear:both;}
+.institution_name {color:#ED6E2A; margin-bottom:8px; font-family:lucida grande; text-transform:none;}
+.organization_name {color:#ED6E2A; margin-bottom:15px; font-family:lucida grande; text-transform:none;}
+
+.resume_section_header {padding:4px 6px; color:#ED6E2A; font-weight:bold; font-size:17px; margin:15px 0;
+background:#F9F9DC; text-transform:uppercase; line-height:17px;}
+
+.paper ul {list-style-type:disc; margin-left:15px;}
+.paper ul li {margin:10px 0;}
+
+.box_top {background:url(../images/resume/editFormBgTop.png) no-repeat center center; width:818px; height:21px; margin:0 auto;}
+.box {width:578px; padding:25px 120px; background:url(../images/resume/editFormBgMiddle.png) repeat-y; position:relative; margin:0 auto;}
+.box_bottom {background:url(../images/resume/editFormBgBottom.png) no-repeat center center; width:818px; height:23px; margin:0 auto 20px;}
+.box .textbox {width:564px; clear:both;}
+
+.delete_link {position:absolute; top:10px; right:15px; display:block; background:url(../images/Basic_set_PNG/delete_16.png) no-repeat; width:16px; height:16px; padding:0;}
+.edit_link {position:absolute; top:10px; right:42px; display:block; background:url(../images/Basic_set_PNG/pencil_16.png) no-repeat; width:16px; height:16px; padding:0;}
+
+.reference_details {list-style:none;}
+.reference_details li {margin:5px 0;}
+
+.sortable .ui-state-default {border:0; position:relative; padding:8px 15px; margin-top:10px; cursor:move; background:#FFFCCC; border:1px solid #CBC78B}
+.sortable .degree {width:80%; line-height:20px;}
+.updated {background:#c3e2a0; color:#55841f; border:1px solid #9bc36b; padding:8px; margin-top:10px;}
+
+.timestamp {color:#666; margin-top:4px; font-size:11px;}
+
+.resume_tip_title {display:block; margin-bottom:10px; font-size:16px; color:#55a1d5}
+.resume_tip_credit {margin-top:11px; font-size:11px;}
+
+.white_region .view_live {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/search_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .delete {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/delete_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .edit {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/pencil_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .analytic {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/statistics_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .left {float:left; width:400px;}
+.white_region .options {float:right; width:161px; text-align:right;}
+.white_region .remove_fav_job {float:right;cursor:pointer;margin-left:15px;}
+.white_region .fav_job, .white_region .fav_job_heart {float:right;cursor:pointer;margin-left:15px;}
+.white_region .applied_job {float:right;}
+.white_region .remove_search_result {cursor:pointer;}
+.white_region .review {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/briefcase_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;}
+.white_region .remove_comment {margin-left:10px; float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/trash_16.png) no-repeat; display:block; cursor:pointer;}
+.white_region .report_comment {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/warning_16.png) no-repeat; display:block; cursor:pointer;}
+.white_region .comment_reported {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/block_16.png) no-repeat; display:block; cursor:pointer;}
+
+.item_list li {margin-bottom:9px;}
+
+.thought_list li {margin-bottom:7px;}
+.thought_list .thought {font-size:16px;}
+
+.user_image {background:#bfbfbf; border:5px solid #fff; -moz-box-shadow:0 1px 3px -1px #000; -webkit-box-shadow:0 1px 3px #222;}
+
+.shout_message {font-size:14px; margin-bottom:5px;}
+
+.featured_resume_snapshot {text-align:center; width:150px; padding:40px; margin:0 auto; background:#fff; -moz-box-shadow:0 1px 1px 1px #bfbfbf; -webkit-box-shadow:0 1px 1px #bfbfbf;}
+.featured_resume_title {display:block; font-size:11px; background:url(../images/resume/resumenametag.png) no-repeat; padding:0 8px; text-align:center; color:#fff; width:136px; height:33px; 
+line-height:29px; margin:10px auto 0; text-shadow:0 1px 1px #222; }
+
+.left_col {float:left; width:615px}
+.right_col {float:right; width:350px}
+
+.search_criteria label {float:left; width:80px;}
+.search_criteria select {float:left; margin-right:30px; width:130px;}
+.search_criteria .textbox {float:left; margin-right:30px; width:280px;}
+.num_search_results {margin:10px 0;}
+.save_search_results, .save_search_results_trigger {cursor:pointer}
+.search_results_list li {margin-bottom:10px;}
+
+.save_search_results_overlay {background:#fff; width:300px; padding:15px; position:fixed; left:50%; top:30%; margin-left:-165px; 
+	-moz-box-shadow:0 2px 2px #555; -webkit-box-shadow:0 2px 2px #555;
+	-moz-border-radius:5px; -webkit-border-radius:5px; z-index:8004;}
+.close_overlay {position:absolute; top:-12px; right:-12px; cursor:pointer;}
+
+.features_list {overflow:hidden; margin:20px 0 50px;}
+.features_list li {float:left; width:339px}
+.features_list li p {font-size:11px; line-height:20px;color:#444;}
+.feature_illustration {float:left; margin-right:14px}
+.feature_details {width:276px;}
+.features_list li h3 {margin-bottom:10px; font-weight:bold; text-transform:none; font-family:lucida grande,arial;}
+li.omega .feature_details p {width:290px;}
+
+.blog_post_title {font-size:15px;}
+.blog_post_date {width:52px; float:left; margin-right:35px; color:#94b735; text-align:center; text-transform:uppercase; font-weight:bold;}
+.blog_post_month {font-size:14px;}
+.blog_post_day {font-size:24px;}
+.blog_post_shadow {background:url(../images/resume/blogPostShadow.png) no-repeat bottom center; padding-bottom:21px;margin-bottom:50px}
+.blog_post {padding:18px 18px 30px; background:url(../images/resume/paperBg.png) repeat}
+.blog_post_content {float:left; width:506px}
+.blog_post_content h3 a {font-size:40px; line-height:40px;}
+.blog_post_author {margin:20px 0; font-style:oblique}
+.blog_post_content .blog_post_summary {margin-bottom:35px; line-height:18px}
+.blog_post_content .blog_post_body {line-height:18px;}
+.comment_box {height:100px; width:450px;}
+.comment_form label {float:left; width:100px;}
+.comment_form .textbox {float:left; width:392px;}
+.blog_archive {margin:20px 0;}
+.blog_archive li {padding:5px 0}
+.comment_form {margin-top:30px;}
+.blog_post_options {margin-top:20px}
+.blog_tags {margin-top:3px;}
+.comment_form .form_row {margin:10px 0;}
+.blog_comments_list {margin-top:20px;}
+.blog_commentator {font-size:15px; font-weight:bold; color:#94B735; float:left;}
+.blog_comments_list li {margin:10px 0; padding-bottom:10px}
+.blog_comment_date {color:#888; font-size:10px; float:right; margin-top:5px;}
+.blog_comment {padding-top:10px; clear:both;}
+.blog_left_col {float:left; width:52px; margin-right:35px;}
+.blog_left_col .blog_post_date {float:none;}
+.social_share {margin-top:40px; clear:both;}
+.social_share li {text-align:center; margin:10px 0}
+
+.job_applicant_details {background:#fff; padding:20px; -moz-border-radius:5px; -webkit-border-radius:5px; -moz-box-shadow:0 6px 15px #444;
+-webkit-box-shadow:0 6px 15px #444; width:466px; position:fixed; top:20%; left:50%; margin-left:-253px; z-index:8005}
+.job_applicant_details label {float:left; width:118px; margin-top:4px;}
+.job_applicant_details .textbox {float:left; width:331px; color:#333;}
+
+.feedback_title {display:block; margin-bottom:7px; font-size:14px; font-weight:bold}
+.feedback_num_votes_wrapper {float:right; color:#111; font-size:25px; background:#efefef; padding:6px 10px;-moz-border-radius:4px; -webkit-border-radius:5px;}
+.feedback_num_votes_wrapper .star {float:left; margin-right:7px;}
+.feedback_num_likes {float:left; font-size:20px}
+.feedback_num_replies {font-size:11px;}
+.feedback_type_icon {float:left; margin-right:5px;}
+.feedback_type {font-size:11px; margin-bottom:10px;}
+.feedback_me_too {padding:10px 20px; font-size:14px; -moz-border-radius:5px; -webkit-border-radius:5px; float:left;}
+.feedback_me_too a {color:#fff;}
+.feedback_reply {display:block; font-size:20px; margin:20px 0;}
+.feedback_bubble_right {float:right; width:893px;}
+.feedback_bubble .white_region {margin-bottom:20px;}
+.feedback_bubble .user_image {float:left; width:80px; margin-right:10px;}
+
+.account_overlay_wrapper {display:none;background:#ececec;width:800px; position:absolute; top:20px; left:50%; margin-left:-400px; -moz-box-shadow:0 6px 46px #444; -webkit-box-shadow:0 6px 46px #444;
+-moz-border-radius:4px; -webkit-border-radius:4px; z-index:8004}
+.account_overlay_left {padding:25px; width:198px; float:left; -moz-border-radius:4px 0 0 4px;}
+.account_overlay_left .user_image {margin:0 auto 10px; max-width:120px; display:block; -moz-box-shadow:0 2px 6px #777; -webkit-box-shadow:0 2px 6px #777;}
+#change_photo_btn {display:block; margin:0 auto; cursor:pointer;}
+.account_overlay_right {background:#fff; padding:8px; width:534px; float:left; border-left:1px solid #dfdfdf; -moz-border-radius:0 4px 4px 0;}
+.account_overlay_right .inner {padding:18px 40px; background:#e4e9d0}
+.account_overlay_right .form_row {padding:12px 16px; margin:8px 0; background:#fff; -moz-border-radius:4px; -webkit-border-radius:4px; -moz-box-shadow:0 1px 1px #999; -webkit-box-shadow:0 1px 1px #999}
+.account_overlay_right .form_row label {float:left; width:85px; margin-right:10px; margin-top:5px; font-size:12px}
+.account_overlay_right .textbox {width:310px}
+.account_overlay_update_btn {float:right; cursor:pointer}
+
+.result_error {color:red; background:#F4ECC6; border:1px solid #ECAA6A; padding:5px; font-size:11px;}
+.result_success {background:#F4ECC6; border:1px solid #ECAA6A; padding:5px; font-size:11px;}
+
+.section_name_editable {cursor:pointer;}
+.section_name_editor_wrapper { margin-bottom:30px}
+.section_name_editor {margin-right:3px;}
+
+.footer_left {float:left; width:580px;}
+.footer_right {float:right; width:420px;}
+.footer_left h3 {font-size:35px;}
+.footer_social {margin-left:10px;display:block;padding:5px 14px 5px 5px; -moz-border-radius:5px; -webkit-border-radius:5px; float:right}
+.footer_social img {float:left; margin-right:10px;}
+.footer_social span {float:left; margin-top:9px; color:#fff; font-size:11px;}
+
+/* Resume */
+#resume_email, #resume_address {margin-bottom:10px;}
+
+#work_experience_list li p {margin:15px 0;}
+
+/* Resume view */
+#like_resume {cursor:pointer; position:absolute; top:10px; left:10px}
+#resume_sheet {width:700px; padding:20px 95px; border:1px solid #bfbfbf; margin:20px auto; background:#fff;}
+#resume_sheet h1 {color:#89C111;}
+
+#overlay {background:#000; opacity:0.4; width:100%; height:100%; position:fixed; top:0; left:0; z-index:8000;}
+
+/* Registration form */
+#signup {background:#c7c7c7;}
+#signup_form {width:800px; margin:30px auto; -moz-box-shadow:0 1px 20px #888; -webkit-box-shadow:0 1px 20px #888;}
+#signup_form #header_wrapper {background-position:0 20px; -moz-border-radius:4px 4px 0 0; -webkit-border-top-left-radius:4px; -webkit-border-top-right-radius:4px;}
+#signup_form #header {padding:17px 15px; width:770px;}
+#signup_form #app_logo {float:left}
+#signup_form #login_link_wrapper {float:right; margin:8px 0 0 0; overflow:hidden;}
+#signup_form #login_link_wrapper * {float:left; margin-right:10px;color:#fff;}
+#signup_form #login_link_wrapper span {display:block; margin-top:3px;}
+#signup_form #login_link_wrapper #login {cursor:pointer;}
+#signup_form_fields_wrapper {padding:50px 15px; background:#fff; -moz-border-radius:0 0 4px 4px; -webkit-border-bottom-right-radius:4px; -webkit-border-bottom-left-radius:5px;}
+#signup_form_fields {width:500px; margin:0 auto}
+#signup_form_fields .textbox {width:480px; padding:8px}
+
+/* Login form */
+#login_form {width:380px;}
+#login_form label {margin-top:10px; width:70px;}
+#login_form .textbox {width:270px; padding:10px; border:0; -moz-box-shadow:0 1px 3px -1px #555 inset}
+#login_form #email {background:#EDE5BB url(../images/resume/email_24.png) no-repeat 5px center; text-indent: 29px;}
+#login_form #password {background:#EDE5BB url(../images/resume/lock_24.png) no-repeat 5px center; text-indent: 29px;}
+#login_form a {font-size:11px;}
+
+
+/* Dashboard */ 
+#dashboard .nav {float:left;}
+#dashboard_activity_feed .user_image {float:left; width:31px; margin-right:9px}
+#thoughtbox {position:relative; float:left;}
+#thoughtbox_message {padding:25px 57px 27px 3px; width:807px; height:15px; color:#444; font-size:15px; line-height:15px; background:url(../images/resume/thoughtboxmiddle.png) repeat-x; border:0;
+	-moz-box-shadow:0 0 0; -webkit-box-shadow:0 0 0;}
+#thoughtbox_left {position:relative; background:url(../images/resume/thoughboxleft.png) no-repeat; width:885px; height:67px; padding-left:31px}
+#thoughtbox_right {background:url(../images/resume/thoughtboxright.png) no-repeat top right; height:67px;}
+#share_thought {position:absolute; top:17px; right:20px; cursor:pointer;}
+#thoughts_chars_count_wrapper {margin-top:4px; margin-left:86px; font-size:10px;}
+#thoughtbox_wrapper .user_image {width:56px; float:left; margin-right:10px;}
+#your_profile_header {float:left; width:222px;}
+#your_profile .user_image {width:60px;float:left; margin-right:10px}
+#your_profile_name {margin-bottom:6px !important; width:130px; background:url(../images/resume/profileNameTag.png) no-repeat; color:#fff; padding:4px 0 6px; text-align:center;}
+#your_profile_name a {color:#fff !important;}
+#your_profile_header li {margin:2px 0; font-size:11px}
+#submit_resume_tip {display:inline-block; margin-top:10px; cursor:pointer;}
+#from_our_blog .latest_blog_content {float:left; width:479px;}
+#from_our_blog .white_region {margin-bottom:10px;}
+#from_our_blog h3 {margin-bottom:10px;}
+#from_our_blog p {line-height:19px;}
+#resume_tips p {line-height:19px;}
+
+/* Resume settings */
+#resume_settings {background:#fff; width:350px; padding:15px; -moz-border-radius:5px; -webkit-border-radius:5px; position:fixed; left:50%; top:200px; 
+margin-left:-190px; z-index:9999; -moz-box-shadow:0 1px 4px #333; -webkit-box-shadow:0 1px 4px #333}
+#resume_settings input, #resume_settings label {margin-right:5px;}
+#resume_settings ul li {margin:15px 0;}
+#resume_updated {float:left;background:#FCF7E3;padding:5px;border:1px solid #DD9B2A}
+
+/* Order sections */
+#order_sections {background:#fff; width:350px; padding:15px; -moz-border-radius:5px; -webkit-border-radius:5px; position:fixed; left:50%; top:200px; 
+margin-left:-190px; z-index:9999; -moz-box-shadow:0 1px 4px #333; -webkit-box-shadow:0 1px 4px #333}
+#order_sections .sections {cursor:pointer;margin:5px 0; padding:7px; background:#f9e4c2; border:2px dashed #b28846; }
+
+/* Theme selector */
+#theme_selector {background:#fff; width:350px; padding:15px; -moz-border-radius:5px; -webkit-border-radius:5px; position:fixed; left:50%; top:200px; 
+margin-left:-190px; z-index:9999; -moz-box-shadow:0 1px 4px #333; -webkit-box-shadow:0 1px 4px #333; overflow:hidden}
+
+/* Graphs */
+.graph_wrapper {background:#fff; border:1px solid #bbb;padding:20px; position:relative; margin-bottom:20px; width:500px;}
+.graph {border-left:1px solid #aaa; border-bottom:1px solid #aaa; height:170px}
+.graph_date {position:absolute; bottom:5px; font-size:11px; color:#333; font-weight:bold;}
+#first_date {left:70px;}
+#second_date {left:200px;}
+#third_date {left:330px;}
+#fourth_date {left:460px;}
+#fifth_date {left:590px;}
+#sixth_date {left:720px;}
+#seventh_date {left:850px;}
+.graph_column {background:#8f1616; border-top:1px solid #111; border-left:1px solid #111; border-right:1px solid #111; width:20px; 
+position:absolute; bottom:20px; text-align:center}
+.graph_column span {position:relative; top: -16px; left:50%; margin-left:-50px; width:100px; font-size:10px; color:#000; display:block;}
+
+/* Home page */
+#home #content {width:auto; margin:0;}
+#home .site_search {display:none;}
+#home_intro_wrapper {background:url(../images/resume/homeIntroBg2.jpg) repeat-x left bottom #f5f5f5; padding:30px 0; margin-bottom:40px;}
+#home_intro {width:1019px; margin:0 auto;}
+#home_intro_image {display:block; margin:0 auto;}
+#home_intro_para {float:left; width:270px; margin-top:40px}
+#home_intro_para h2 {font-size:30px; margin-bottom:10px;}
+#home_intro_para p {margin-bottom:10px; line-height:21px; font-size:11px;}
+#home_intro_header {margin-bottom:10px; text-align:center; font-size:30px;}
+#cta {text-align:center; margin-top:20px; display:block;}
+#cta img {margin:0 5px;}
+
+/* Featured resumes */
+#featured_resumes {background:url(../images/main/featuredresumesbg.jpg) no-repeat; height:228px;padding-top:10px; margin-bottom:60px;}
+#featured_resumes ul {width:100%; overflow:hidden;}
+#featured_resumes li {padding:15px; float:left; width:300px;}
+
+#home_features {overflow:hidden}
+
+/* Login */
+#login #content {height:700px;}
+#login #container {background:url(../images/resume/graygradient.jpg) repeat-x}
+
+/* Overlay login form */
+#overlayLoginForm, #forgotPasswordOverlayForm {background:url(../images/resume/hangingLoginFormOverlay.png) no-repeat; width:460px; padding:20px; 
+height:281px; margin:0 auto;}
+#overlayLoginFormHeader {width:183px; height:44px; text-indent:-9999px; background:url(../images/resume/overlayLoginFormHeader.png) no-repeat;
+float:right; margin-bottom:0; margin-top:13px}
+#overlayLoginFormInner, #overlayForgotPasswordFormInner {width:347px;  margin-left:47px;}
+#overlayLoginFormInner .form_row, #overlayForgotPasswordFormInner .form_row {overflow:hidden; margin:15px 0;}
+#overlayLoginFormInner .form_row label {float:left; width:62px; padding:5px; display:block; 
+margin-right:10px; text-align:right;}
+#overlayLoginFormInner .form_row input.textbox {float:left; display:block; padding:7px; width:250px;}
+#overlayForgotPasswordFormInner .form_row input.textbox {width:333px;}
+#overlayLoginFormButtons {margin-top:15px; text-align:right;}
+#overlayLoginFormRemember {text-align:right;}
+#overlayLoginFormButtons input {margin-left:5px;}
+#overlayLoginFormClose, #overlayForgotPasswordFormClose {position:absolute; top:-10px; right:-10px; cursor:pointer;}
+#overlayLoginFormBottom {text-align:right; margin-top:15px; font-size:11px;}
+#forgotPasswordHeader {width:183px; height:44px; text-indent:-9999px; background:url(../images/resume/forgotPasswordHeader.png) no-repeat;
+float:right; margin-bottom:10px; margin-right:-3px; margin-top:13px;}
+#userEmail {width:340px;}
+#authenticatingMessage {width:400px; background:#fff; padding:15px; position:fixed; top:20%; left:50%; margin-left:-215px; overflow:hidden; z-index:8006;
+-moz-border-radius:5px; -webkit-border-radius:5px; -moz-box-shadow:0 2px 2px #333; -webkit-box-shadow:0 2px 2px #333}
+#authenticatingMessage .ajax_loader {float:left; margin-right:10px;}
+#authenticateMessageContent {float:left; margin-top:5px; display:block;}
+
+/* Edit resume */
+#resume_controls {margin:20px 91px 20px 0; text-align:right; background:#fff; padding:14px; -moz-box-shadow:0 1px 1px #999; -webkit-box-shadow:0 1px 1px #999;
+-moz-border-radius:5px; -webkit-border-radius:5px; float:right}
+#resume_basic_info_section h3 {font-family:lucida grande,arial; font-size:12px; text-transform:none;}
+#resume_basic_info_section .form_row {margin:10px 0;}
+
+/* Footer */ 
+#footer_cta {padding:20px; background:#df3434; text-align:center;}
+#footer {padding:30px 20px 40px; color:#fff; background:#312e2e; border-top:6px solid #ec4646; margin-top:50px;}
+#footer_inner {width:1019px; margin:0 auto;}
+#footer_nav li {float:left;}
+#footer_nav li a {display:block; color:#fff; margin-right:8px; padding-right:8px; border-right:1px solid #fff; font-size:11px}
+#footer_nav_wrapper {margin-top:15px;}
+#copyright_statement {clear:both; float:right; font-size:11px;}
+#footer_twitter {background:#58b5d3 url(../images/resume/footerTwitterBg.jpg) repeat-x left bottom;}
+#footer_facebook { background:#5480ac; }
+
+
+/* Select Theme */
+#select_themes #content {width:1000px;}
+#theme_dropdown_container {width:100px; margin:0 auto; padding:0 20px 20px; background:#fff;}
+
+#updated_status, .updated_status {background:#F4ECC6; padding:5px 10px; text-align:center; position:fixed; left:10px; bottom:10px; border:1px solid #ECAA6A; z-index:9999;}
+
+#photo-uploader {margin-top:20px; display:none;}
+#upload_photo {color:#55a1d5; cursor:pointer; display:block; margin-top:20px;}
+
+.overlay_box {	background:#fff; width:450px; padding:15px; -moz-border-radius:5px; -webkit-border-radius:5px; position:fixed; left:50%; top:200px; 
+	margin-left:-240px; z-index:9999; -moz-box-shadow:0 1px 4px #333; -webkit-box-shadow:0 1px 4px #333; overflow:hidden}
+	
+
+/* Keywords */
+#keywordsMessage {margin:10px 0; color:#E26A00}
+#keywordsList .keyword_wrapper {cursor:pointer;float:left;overflow:hidden;display:block; background:#ff6e00;padding:0 4px 2px; color:#fff; margin:5px 0 5px 5px;
+font-size:13px; -moz-border-radius:3px; -webkit-border-radius:3px}
+#keywordsList .keyword {float:left;margin-right:6px;}
+#keywordsList .keyword_remove {float:left; cursor:pointer; color:#fff;}
+#keywordsList {float:left;}
+#keywordsListWrapper {background:#fff; margin-top:5px; -moz-box-shadow:0 1px 3px -1px #888;}
+#keywordsInput {border:0;float:left; margin:5px; width:120px; background:0; padding:2px 0;-moz-box-shadow:0 0 0; -webkit-box-shadow:0 0 0;}
+
+/* Blog */
+#blog_post_list {float:left; width:650px; margin-right:60px}
+#blog_sidebar {float:left; width:230px;}
+#comment_textarea {width:386px; clear:left;}
+#blog_details .blog_post_body {margin-bottom:40px}
+#dashboard .blog_post_content {width:450px;}
+#dashboard .blog_post_shadow {margin-bottom:20px;}
+
+
+/* Job view */
+#job_view #content {width:1019px; padding:0;}
+#job_view .blue_region {margin-bottom:15px;}
+#job_title {color:#ff6e00; font-size:38px; margin-bottom:2px;}
+#job_poster {margin-bottom:20px;}
+#job_details_wrapper {float:left; width:700px;}
+#job_details_wrapper ul {list-style:disc; margin-left:15px;}
+
+/* Job apply */
+#job_application_form {margin-top:50px;}
+#job_application_form h3 {font-size:25px;}
+
+/* Profile */
+#profile_header {position:relative;}
+#profile_header .user_image {float:left; margin-right:12px; width:58px;}
+#profile_header_info {float:left;}
+#profile_name {line-height:28px;}
+#profile_header {margin-bottom:30px;}
+#profile_left_col {float:left; width:640px;}
+#profile_right_col {float:right; width:350px;}
+#shout_box {width:575px; height:60px; border:0;}
+#shout_options {margin-top:10px;}
+#send_shout {display:inline; float:right}
+#shoutbox_wrapper {margin-bottom:10px;}
+#shouts_list .user_image {float:left; width:50px; margin-right:10px;}
+#shouts_list .white_region {float:left; width:521px;}
+#shouts_list .options {width:100%; float:none; margin-top:5px; overflow:hidden;}
+#edit_profile {position:absolute;top:20px;right:20px;}
+#profile_details_input select {width:190px;}
+
+
+/* Profile & Account Settings overlay */
+#account_settings_lock {display:block; margin:0 auto}
+#account_settings_overlay_wrapper {top:20%}
+
+/* Search jobs */
+#job_keywords {width:860px; margin-right:0;}
+#job_search_results #content {min-height:400px;}
+#search_result_name {width:280px; display:block; margin:10px 0;}
+
+/* Job application details */
+#job_application_review .left_col {width:390px;}
+#job_application_review .right_col {width:640px;}
+#job_application_review .options {width:60px;}
+#job_application_review .left {width:200px;}
+
+/* Feedback */
+.feedback_box {padding:20px; -moz-border-radius:5px; -webkit-border-radius:5px; border:1px solid #bbb}
+#feedback_header {position:relative; left:-27px; margin-bottom:30px;}
+#feedback_search {margin-bottom:20px;}
+#feedback_search label {margin-right:10px;}
+#feedback_search .textbox {width:670px;}
+#feedback_form .textbox {width:942px; padding:15px; font-size:15px}
+#feedback_form textarea {width:942px; padding:15px; font-size:15px; height:100px;}
+#feedback_type {overflow:hidden; padding:2px 0;}
+#feedback_type li {float:left; margin:0 10px 0 0;}
+#feedback_type li span {display:block; padding-left:40px; height:32px; line-height:32px; font-size:15px}
+#feedback_type .radio {margin-top:23px;}
+#feedback_idea {background:url(../images/resume/feedbackIdea.png) no-repeat left top}
+#feedback_question {background:url(../images/resume/feedbackQuestion.png) no-repeat left top}
+#feedback_bug {background:url(../images/resume/feedbackBug.png) no-repeat left top}
+#feedback_praise {background:url(../images/resume/feedbackPraise.png) no-repeat left top}
+#feedback_assistance_request {background:url(../images/Basic_set_PNG/help_32.png) no-repeat left top;}
+#feedbacks_list {margin-top:10px; float:left; width:690px;}
+#feedbacks_list .left {width:500px}
+#feedback_right {float:right; width:265px; margin-top:10px;}
+#feedback_reply_form .form_row {margin-bottom:20px; margin-top:0;}
+#feedback_reply_form .textbox, #feedback_reply_form textarea {width:849px; padding:10px;}
+#feedback_reply_list .user_image {width:40px;}
+#feedback_body {margin:30px 0 10px;}

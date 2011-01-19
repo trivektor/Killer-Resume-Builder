@@ -1,0 +1,66 @@
+<div id="profile_overlay_wrapper" class="account_overlay_wrapper">
+	<div class="account_overlay_left">
+		
+		<%= image_tag "resume/changePhotoBtn.png", :id => "change_photo_btn" %>
+		
+	</div>
+	<div class="account_overlay_right">
+		<div class="inner">
+			<div id="profile_image_cropper" style="display:none">
+				<iframe width="100%" height="400" frameborder="0" style="border:0" src="/profile/upload_photo" id="photouploadiframe"></iframe>
+				<!-- <div id="upload_image_preview" style="overflow-x:auto"></div>
+				<div id="file-uploader">       
+				    <noscript>          
+				        <p>Please enable JavaScript to use file uploader.</p>
+				        
+				    </noscript>         
+				</div> -->
+				
+			</div>
+			<div id="profile_details_input">
+				<h2><%= image_tag "resume/profileDetailsHeader.png", :alt => "Profile" %></h2>
+				<div id="edit_profile_message" style="display:none"></div>
+				<div class="form_row">
+					<label>First Name</label>
+					<input id="profile_first_name" type="text" class="textbox" value="" />
+				</div>
+				<div class="form_row">
+					<label>Last Name</label>
+					<input id="profile_last_name" type="text" class="textbox" value="" />
+				</div>
+				<div class="form_row">
+					<label>City</label>
+					<input id="profile_city" type="text" class="textbox" value="" />
+				</div>
+				<div class="form_row">
+					<label>State/Province</label>
+					<input id="profile_state" type="text" class="textbox" value="" />
+				</div>
+				<div class="form_row">
+					<label>Country</label>
+					
+				</div>
+				<div class="form_row">
+					<label>Postal Code</label>
+					<input id="profile_postal_code" type="text" class="textbox" value="" />
+				</div>
+				<div class="form_row">
+					<label>Job Function</label>
+					
+				</div>
+				<div class="form_row">
+					<label>Industry</label>
+					
+				</div>
+				<div class="form_row">
+					<label>Title</label>
+					<input id="profile_job_title" type="text" class="textbox" value="" />
+				</div>
+				<%= image_tag "resume/updateProfileBtn.png", :alt => "Update", "class" => 'account_overlay_update_btn', :id => "update_profile_btn" %>
+				<div class="clearfloat"></div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfloat"></div>
+	<%= image_tag "resume/closeOverlay.png", :id => "close_profile_overlay", :class => "close_overlay" %>
+</div>

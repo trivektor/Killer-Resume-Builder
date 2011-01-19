@@ -1,0 +1,18 @@
+<% @title_for_layout = "Dashboard" %>
+
+<h2 id="thoughtbox_header">Share your thought</h2>
+
+<div class="blue_region" id="thoughtbox_wrapper">
+	<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">	
+	<div id="thoughtbox">
+		<div id="thoughtbox_left">
+			<div id="thoughtbox_right">
+				<%= text_field_tag "thoughtbox_message", "Type your thought here..." %>
+			</div>
+		</div>
+		<%= image_tag "resume/gobutton.png", :id => "share_thought", :alt => "Share Thought" %>
+	</div>
+	<div class="clearfloat"></div>
+	<div id="thoughts_chars_count_wrapper"><span id="thoughts_chars_count">140</span> characters left</div>
+	<div class="clearfloat"></div>
+</div>
