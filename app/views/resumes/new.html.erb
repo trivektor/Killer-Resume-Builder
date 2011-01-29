@@ -1,0 +1,41 @@
+<% @title_for_layout = "Create Resume" %>
+
+<div class="blue_region">
+
+<div class="box_top"></div>
+
+<div class="box">
+<h2>Create New Resume</h2>
+
+<% form_for @resume do |f| %>
+
+<% if !@resume.errors.empty? %>
+    <div class="result_error">
+
+     	<%= f.error_messages %>
+
+    </div>
+ <% end %>
+
+	<div class="form_row">
+		<%= f.label "Pick a URL" %>
+		<div class="eg">Your resume will be available at http://localhost:8888/resume/yoururl</div>
+		<%= f.text_field :url, :class => "textbox" %>
+	</div>
+
+	<div class="form_row">
+		<%= f.label "Title" %>
+		<%= f.text_field :title, :class => "textbox" %>
+	</div>
+
+	<div style="text-align:right">
+			<input type="image" alt="Submit" src="/images/resume/alrightLetsGoBtn.png" />
+	</div>
+
+<% end %>
+
+</div>
+
+<div class="box_bottom"></div>
+
+</div>

@@ -164,19 +164,19 @@ $(function(){
 	var loginMessage = $("#loginMessage");
 	
 	$("#submitLoginForm").click(function(){
-		var rememberme = $("#rememberMe").is(":checked") ? 1 : 0;
-		$.post(
-			"/ajax/login",
-			{email: $("#loginFormUsername").val(), password: $("#loginFormPassword").val(), rememberme: rememberme},
-			function(response) {
-				if (response == -1) {
-					loginMessage.text('Invalid username or password').css('color', 'red').slideDown();
-					overlayLoginForm.show("shake", {}, 100, function(){});
-				} else {
-					window.location.href = '/dashboard';
-				}
-			}
-		)
+		// var rememberme = $("#rememberMe").is(":checked") ? 1 : 0;
+		// 		$.post(
+		// 			"/ajax/login",
+		// 			{email: $("#loginFormUsername").val(), password: $("#loginFormPassword").val(), rememberme: rememberme},
+		// 			function(response) {
+		// 				if (response == -1) {
+		// 					loginMessage.text('Invalid username or password').css('color', 'red').slideDown();
+		// 					overlayLoginForm.show("shake", {}, 100, function(){});
+		// 				} else {
+		// 					window.location.href = '/dashboard';
+		// 				}
+		// 			}
+		// 		)
 	})
 	
 	//Forgot password form

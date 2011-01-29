@@ -2,7 +2,11 @@
 <html>
 <head>
   <title>Killer Resume Builder - <%= @title_for_layout %></title>
-  <%= stylesheet_link_tag "master.css" %>
+  <%= stylesheet_link_tag [
+	"master.css",
+	"markitup.css",
+	"markitupset.css"
+	] %>
   <%= javascript_include_tag [
 	"jquery-1.4.2.min", 
 	"jquery-ui-1.8.5.custom.min", 
@@ -15,7 +19,7 @@
 	"master"] %>
   <%= csrf_meta_tag %>
 </head>
-<body id="<%=params[:body_id]%>">
+<body id="<%=@body_id%>">
 
 <div id="container">
 <%= render :partial => "shared/header" %>

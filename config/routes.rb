@@ -17,6 +17,16 @@ Krb::Application.routes.draw do
     
     resources :profiles
       match "/profile/:username" => "profiles#index"
+      
+    # scope :path => "/resumes", :controller => :resumes do
+    #       match "new" => :new
+    #       match "edit/:id" => :edit
+    #     end
+    
+    match "/resumes/:url" => "resumes#show"
+    
+    resources :resumes
+      
     
   #end
   

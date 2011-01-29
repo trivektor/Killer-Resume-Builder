@@ -16,3 +16,59 @@
 	<div id="thoughts_chars_count_wrapper"><span id="thoughts_chars_count">140</span> characters left</div>
 	<div class="clearfloat"></div>
 </div>
+
+<div class="clearfloat"></div>
+
+<!-- left col starts -->
+<div class="left_col">
+	<h2>Your resumes</h2>
+	<div id="your_resumes" class="blue_region">
+		<ul class="item_list" id="resumes_list">
+			<% @resumes.each do |r| %>
+			<li class="white_region">
+				<div class="left">
+					<%= link_to(r.title, {:controller => "resumes", :action => "show", :url => r.url}) %>
+					<p class="timestamp">
+						Last updated <%= r.updated_at.strftime("%b %d, %Y %H:%M %p") %>
+					</p>
+				</div>
+				<div class="options">
+					<a title="Delete" class="delete" href="/resumes/delete/1"></a>
+					<a target="_blank" title="View" class="view_live" href="/resumes/view/trivektor"></a>
+					<%= link_to("", {:controller => "resumes", :action => "edit", :id => r.id}, :class => "edit") %>
+					<a title="Analytics" class="analytic" href="/resumes/analytic/1"></a>
+				</div>
+			</li>
+			<% end %>
+		</ul>
+		<%= link_to (image_tag "resume/createAResume.png", :alt => "Create Resume"), {:controller => "resumes", :action => "new"} %>
+	</div>
+</div>
+<!-- left col ends -->
+
+<!-- right col starts -->
+<div class="right_col">
+	<h2>Your profile</h2>
+	<div class="blue_region" id="your_profile">
+		<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">
+			<ul class="white_region" id="your_profile_header">
+					<li id="your_profile_name"><%= @profile.first_name %> <%= @profile.last_name %></li>
+					<li>
+					<% 
+						if @profile.job_title then
+							puts @profile.job_title
+						else %>
+							<a class="edit_profile_btn">Edit your profile</a>
+					<% end %>
+					</li>
+					<li>
+					</li>
+					<li><a class="edit_profile_btn" href="/profile/edit/1">Edit your profile</a></li>
+				</ul>
+				<div class="clearfloat"></div>
+
+		</div>
+</div>
+<!-- right col ends -->
+
+<div class="clearfloat"></div>

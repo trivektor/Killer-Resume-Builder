@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 4, :message => " is too short"
   
   has_one :profile
+  has_many :resumes
   
   acts_as_authentic do |config|
     config.crypto_provider = Authlogic::CryptoProviders::MD5

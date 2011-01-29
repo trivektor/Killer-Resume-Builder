@@ -9,11 +9,7 @@ class UsersController < ApplicationController
   end
   
   def new
-    
-    @user = User.new
-    
-    #params[:body_id] = 'signup' 
-    
+    @user = User.new 
   end
   
   def create

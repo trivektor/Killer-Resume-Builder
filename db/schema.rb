@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110110023108) do
+ActiveRecord::Schema.define(:version => 20110129232555) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -89,6 +89,142 @@ ActiveRecord::Schema.define(:version => 20110110023108) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "resume_educations", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "institution"
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.string   "degree"
+    t.string   "field_of_study"
+    t.string   "gpa"
+    t.string   "location"
+    t.integer  "weight"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_field_works", :force => true do |t|
+    t.integer  "resume_id"
+    t.text     "field_works"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_hidden_fields", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "hidden_field"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_keywords", :force => true do |t|
+    t.integer  "resume_id"
+    t.text     "keywords"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_personal_informations", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "full_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.integer  "country"
+    t.string   "fax_number"
+    t.string   "email"
+    t.string   "website"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "flickr"
+    t.string   "linked_in"
+    t.text     "bio"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_references", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "name"
+    t.string   "title"
+    t.string   "organization"
+    t.string   "department"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "phone_number"
+    t.string   "fax_number"
+    t.string   "email"
+    t.string   "website"
+    t.text     "details"
+    t.integer  "weight"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_section_names", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "section"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_section_orders", :force => true do |t|
+    t.integer  "resume_id"
+    t.text     "orders"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_skills", :force => true do |t|
+    t.integer  "resume_id"
+    t.text     "skills"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_work_experiences", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "organization_name"
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.string   "title"
+    t.text     "details"
+    t.integer  "weight"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resumes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "url"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"
