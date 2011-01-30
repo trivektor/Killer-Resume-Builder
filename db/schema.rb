@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110129232555) do
+ActiveRecord::Schema.define(:version => 20110130193632) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
     t.string   "gpa"
     t.string   "location"
     t.integer  "weight"
-    t.string   "status"
+    t.string   "status",         :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
   create_table "resume_field_works", :force => true do |t|
     t.integer  "resume_id"
     t.text     "field_works"
-    t.string   "status"
+    t.string   "status",      :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
   create_table "resume_keywords", :force => true do |t|
     t.integer  "resume_id"
     t.text     "keywords"
-    t.string   "status"
+    t.string   "status",     :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -144,9 +144,11 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
     t.string   "flickr"
     t.string   "linked_in"
     t.text     "bio"
-    t.string   "status"
+    t.string   "status",       :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone_number"
+    t.string   "linkedin"
   end
 
   create_table "resume_references", :force => true do |t|
@@ -166,7 +168,7 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
     t.string   "website"
     t.text     "details"
     t.integer  "weight"
-    t.string   "status"
+    t.string   "status",       :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -186,10 +188,29 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
     t.datetime "updated_at"
   end
 
+  create_table "resume_settings", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "status",                 :default => "active"
+    t.boolean  "hide_personal_info",     :default => false
+    t.boolean  "alert_copy",             :default => true
+    t.boolean  "email_notification",     :default => true
+    t.boolean  "display_personal_photo", :default => true
+    t.boolean  "show_last_updated",      :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "resume_skills", :force => true do |t|
     t.integer  "resume_id"
     t.text     "skills"
-    t.string   "status"
+    t.string   "status",     :default => "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_themes", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "theme"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -202,7 +223,7 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
     t.string   "title"
     t.text     "details"
     t.integer  "weight"
-    t.string   "status"
+    t.string   "status",            :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -211,7 +232,7 @@ ActiveRecord::Schema.define(:version => 20110129232555) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "url"
-    t.string   "status"
+    t.string   "status",     :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

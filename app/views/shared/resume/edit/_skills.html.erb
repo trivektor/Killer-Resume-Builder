@@ -1,0 +1,23 @@
+<div class="box_top"></div>
+<div class="box">
+	
+<div class="section_options">
+	<div class="options_label">Options</div>
+	<a class="disable_section" rel="skills">Disable this section</a>
+	<a class="enable_section" rel="skills">Enable this section</a>
+	<input type="hidden" class="section_mode" value="" />
+</div>
+
+<%= render :partial => "shared/section_name_editor" %>
+
+<div class="clearfloat"></div>
+<div class="form_row">
+	
+	<%= fields_for @skill do |s| %>
+		<%= s.text_area :skills, :class => :markitup %>
+	<% end %>
+	
+	<div class="clearfloat"></div>
+</div>
+</div>
+<div class="box_bottom"></div>

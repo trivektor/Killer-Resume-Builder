@@ -1,16 +1,18 @@
 class Resume < ActiveRecord::Base
   
-  has_one :resume_personal_information
-  has_one :resume_keyword
-  has_one :resume_section_order
-  has_one :resume_field_work
-  has_one :resume_skills
+  has_one :resume_personal_information, :dependent => :destroy
+  has_one :resume_keyword, :dependent => :destroy
+  has_one :resume_section_order, :dependent => :destroy
+  has_one :resume_field_work, :dependent => :destroy
+  has_one :resume_skill, :dependent => :destroy
+  has_one :resume_theme, :dependent => :destroy
+  has_one :resume_setting, :dependent => :destroy
   
-  has_many :resume_educations 
-  has_many :resume_work_experiences
-  has_many :resume_references
-  has_many :resume_section_names
-  has_many :resume_hidden_fields
+  has_many :resume_educations, :dependent => :destroy
+  has_many :resume_work_experiences, :dependent => :destroy
+  has_many :resume_references, :dependent => :destroy
+  has_many :resume_section_names, :dependent => :destroy
+  has_many :resume_hidden_fields, :dependent => :destroy
   
   belongs_to :user
   

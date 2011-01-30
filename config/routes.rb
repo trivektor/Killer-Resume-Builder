@@ -23,6 +23,8 @@ Krb::Application.routes.draw do
     #       match "edit/:id" => :edit
     #     end
     
+    match "/resumes/new" => "resumes#new"
+    match "/resumes/:id" => "resumes#update"
     match "/resumes/:url" => "resumes#show"
     
     resources :resumes
