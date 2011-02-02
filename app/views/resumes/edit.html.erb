@@ -4,6 +4,10 @@
 
 <br /><br />
 
+<% if flash[:notice] %>
+	<div class="result_success"><%= flash[:notice] %></div>
+	<br />
+<% end %>
 
 <div class="blue_region">
 		
@@ -29,6 +33,9 @@
 
 <%= render :partial => "shared/resume/edit/field_works" %>
 
+<%= render :partial => "shared/resume/edit/keywords" %>
+
+<input type="image" alt="Update Resume" src="/images/resume/updateResume.png" />
 
 <% end %>
 

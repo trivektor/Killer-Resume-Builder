@@ -13,26 +13,20 @@ class ResumesController < ApplicationController
             
     if @resume.save
       
-      @resume.resume_personal_information = ResumePersonalInformation.new
-      @resume.resume_personal_information.save
+      @resume.resume_personal_information = ResumePersonalInformation.create
       
-      @resume.resume_skill = ResumeSkill.new
-      @resume.resume_skill.save
+      @resume.resume_skill = ResumeSkill.create
       
-      @resume.resume_field_work = ResumeFieldWork.new
-      @resume.resume_field_work.save
+      @resume.resume_field_work = ResumeFieldWork.create
       
-      @resume.resume_keyword = ResumeKeyword.new
-      @resume.resume_keyword.save
+      @resume.resume_keyword = ResumeKeyword.create
       
-      @resume.resume_section_order = ResumeSectionOrder.new(:resume_id => @resume.id, 
+      @resume.resume_section_order = ResumeSectionOrder.create(:resume_id => @resume.id, 
       :orders => "personal_information/education/skills/work_experience/references/field_works")
       
-      @resume.resume_theme = ResumeTheme.new
-      @resume.resume_theme.save
+      @resume.resume_theme = ResumeTheme.create
       
-      @resume.resume_setting = ResumeSetting.new
-      @resume.resume_setting.save
+      @resume.resume_setting = ResumeSetting.create
       
       for f in ["personal_information", "education", "skills", "work_experience", "field_works", "references"]
         name = f.sub("_", " ").split(" ").select {|w| w.capitalize! || w}.join(" ")
@@ -61,6 +55,7 @@ class ResumesController < ApplicationController
     @personal_info = @resume.resume_personal_information
     @skill = @resume.resume_skill
     @field_work = @resume.resume_field_work
+    @section_names = @resume.resume_section_names.find_by_resume_id(@resume.id)
     
   end
   
@@ -68,7 +63,11 @@ class ResumesController < ApplicationController
     @resume = Resume.find(params[:id])
     if @resume.update_attributes(params[:resume]) 
       @resume.resume_personal_information.update_attributes(params[:resume_personal_information])
+      @resume.resume_skill.update_attributes(params[:resume_skill])
+      @resume.resume_field_work.update_attributes(params[:resume_field_work])
+      flash[:notice] = "Your resume has been updated"
       redirect_to :controller => "resumes", :action => :edit, :id => params[:id]
+      
     end
   end
   
