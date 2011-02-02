@@ -25,15 +25,11 @@
 
 <%= render :partial => "shared/resume/edit/title", :locals => {:f => f} %>
 
-<%= render :partial => "shared/resume/edit/personal_information", :locals => {:f => f} %>
+<% for s in @section_order %>
 
-<%= render :partial => "shared/resume/edit/education", :locals => {:f => f} %>
+<%= render :partial => "shared/resume/edit/" + s, :locals => {:f => f} %>
 
-<%= render :partial => "shared/resume/edit/skills" %>
-
-<%= render :partial => "shared/resume/edit/field_works" %>
-
-<%= render :partial => "shared/resume/edit/keywords" %>
+<% end %>
 
 <input type="image" alt="Update Resume" src="/images/resume/updateResume.png" />
 

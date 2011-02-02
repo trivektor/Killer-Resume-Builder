@@ -51,11 +51,22 @@ class ResumesController < ApplicationController
   def edit
     
     @body_id = "resume_edit"
+    
     @resume = Resume.find(params[:id])
+    
     @personal_info = @resume.resume_personal_information
+    
     @skill = @resume.resume_skill
+    
     @field_work = @resume.resume_field_work
-    @section_names = @resume.resume_section_names.find_by_resume_id(@resume.id)
+    
+    @section_names = {}
+    
+    @resume.resume_section_names.each do |s|
+      @section_names[s.section] = s.name
+    end
+    
+    @section_order = @resume.resume_section_order.orders.split("/")
     
   end
   

@@ -1,6 +1,8 @@
 <div class="box_top"></div>
 <div class="box">
 	
+	<%= render :partial => "shared/section_name_editor", :locals => {:section => "references"} %>
+	
 	<div class="section_options">
 		<div class="options_label">Options</div>
 		<a class="disable_section" rel="field_works">Disable this section</a>
@@ -8,14 +10,11 @@
 		<input type="hidden" class="section_mode" value="" />
 	</div>
 	
-	<%= render :partial => "shared/section_name_editor", :locals => {:section => "field_works"} %>
+	<div class="clearfloat"></div>
+	
+	
 	
 	<div class="clearfloat"></div>
-
-	<%= fields_for @field_work do |f| %>
-		<%= f.text_area :field_works, :class => :markitup %>
-	<% end %>
-	<div class="clearfloat"></div>
-
+	
 </div>
 <div class="box_bottom"></div>
