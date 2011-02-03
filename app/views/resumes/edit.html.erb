@@ -31,8 +31,36 @@
 
 <% end %>
 
+<%= render :partial => "shared/resume/edit/keywords" %>
+
+<% 
+sections = {
+	1 => "personal_information",
+	2 => "education",
+	3 => "skills",
+	4 => "work_experience",
+	5 => "references",
+	6 => "field_works"
+}
+%>
+
+<div style="display:none" id="order_sections">
+	<h2>Order Sections</h2>
+	<%= image_tag "resume/closeOverlay.png", :alt => "Close", :class => "close_overlay" %>
+	<div class="sortable ui-sortable" id="sort_resume_sections" style="">
+		<% for s in @section_order %>
+			<div id="section_<%= sections.index(s) %>" class="sections">
+				<%= s.sub("_", " ").split(" ").select {|w| w.capitalize! || w}.join(" ") %>
+			</div>
+		<% end %>
+	</div>
+	<div style="display: none;" class="updated">Your resume sections have been re-ordered. Please refresh your browser.</div>
+</div>
+
 <input type="image" alt="Update Resume" src="/images/resume/updateResume.png" />
 
 <% end %>
+
+<input type="hidden" id="ResumeId" value="<%= @resume.id %>" />
 
 </div>

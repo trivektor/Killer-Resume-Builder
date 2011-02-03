@@ -28,6 +28,8 @@ Krb::Application.routes.draw do
     match "/resumes/:url" => "resumes#show"
     
     resources :resumes
+    
+    match "/ajax/sort_resume_sections" => "ajax#sort_resume_sections"
       
     
   #end
