@@ -27,7 +27,7 @@
 			<% @resumes.each do |resume| %>
 			<li class="white_region">
 				<div class="left">
-					<%= link_to(resume.title, :url => "/resumes/#{resume.url}" ) %>
+					<%= link_to resume.title, "/resumes/#{resume.url}" %>
 					<p class="timestamp">
 						Last updated <%= resume.updated_at.strftime("%b %d, %Y %H:%M %p") %>
 					</p>
@@ -35,7 +35,7 @@
 				<div class="options">
 					<a title="Delete" class="delete" href="/resumes/delete/1"></a>
 					<a target="_blank" title="View" class="view_live" href="/resumes/view/trivektor"></a>
-					<%= link_to "a", :url => edit_resume_path(resume) %>
+					<%= link_to "", edit_resume_path(resume), {:class => :edit} %>
 					<a title="Analytics" class="analytic" href="/resumes/analytic/1"></a>
 				</div>
 			</li>

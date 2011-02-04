@@ -74,7 +74,7 @@ class ResumesController < ApplicationController
   
   def update
     @resume = Resume.find(params[:id])
-    debugger
+
     if @resume.update_attributes(params[:resume]) 
       @resume.resume_personal_information.update_attributes(params[:resume_personal_information])
       @resume.resume_skill.update_attributes(params[:resume_skill])
