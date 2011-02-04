@@ -1,0 +1,2 @@
+module ResumeEucationsHelper
+end

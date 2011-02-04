@@ -1,3 +1,5 @@
+
+require 'ruby-debug'
 class ResumesController < ApplicationController
   
   def new
@@ -45,7 +47,7 @@ class ResumesController < ApplicationController
   end
   
   def show
-    @resume = Resume.find_by_url(params[:url])
+    @resume = Resume.find_by_url(params[:id])
   end
   
   def edit
@@ -72,13 +74,16 @@ class ResumesController < ApplicationController
   
   def update
     @resume = Resume.find(params[:id])
+    debugger
     if @resume.update_attributes(params[:resume]) 
       @resume.resume_personal_information.update_attributes(params[:resume_personal_information])
       @resume.resume_skill.update_attributes(params[:resume_skill])
       @resume.resume_field_work.update_attributes(params[:resume_field_work])
       flash[:notice] = "Your resume has been updated"
       redirect_to :controller => "resumes", :action => :edit, :id => params[:id]
-      
+    else
+      flash[:error] = 'wrong info'
+      Rails.logger.debug @resume.errors
     end
   end
   

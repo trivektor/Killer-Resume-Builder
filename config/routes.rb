@@ -6,30 +6,52 @@ Krb::Application.routes.draw do
   
   match "/dashboard" => "dashboard#index"
   
-  #Krb::Application.routes.draw do |map|
     
-    resources :user_sessions
-      match "login" => "user_sessions#new", :as => :login
-      match "logout" => "user_sessions#destroy", :as => :logout
+  resources :user_sessions
+    match "login" => "user_sessions#new", :as => :login
+    match "logout" => "user_sessions#destroy", :as => :logout
+  
+  resources :users, :only => [:new, :create]
+    match "signup" => "users#new", :as => :signup
+  
+  resources :profiles
+    match "/profile/:username" => "profiles#index"
     
-    resources :users, :only => [:new, :create]
-      match "signup" => "users#new", :as => :signup
+  # scope :path => "/resumes", :controller => :resumes do
+  #       match "new" => :new
+  #       match "edit/:id" => :edit
+  #     end
+  
+  # match "/resumes/new" => "resumes#new"
+  # match "/resumes/:id" => "resumes#update"
+  # get "/resumes/:username" => "resumes#show" #http://url/resumes/trivektor ==> show the trivektor's resume  # @resume = Resume.find_by_username params[:username]
+  
+  resources :resumes do #, :only => [:new, :create, :update, :edit, :destroy] do
     
-    resources :profiles
-      match "/profile/:username" => "profiles#index"
+    resources :resume_educations do
+      member do
+        #   /resumes/1/resume_educations/1/...
+        get :toggle  #/resumes/1/resume_educations/1/toggle  -> params[:resume_id], params[:id],  toggle_resume_resume_education_path(@resume, @...)
+      end
       
-    # scope :path => "/resumes", :controller => :resumes do
-    #       match "new" => :new
-    #       match "edit/:id" => :edit
-    #     end
+      # delete_all
+      collection do
+        # /resumes/1/resume_educations/...
+        get :delete_all  #/resumes/1/resume_educations/delete_all  -> params[:resume_id],  delete_all_resume_resume_educations_path(@resume)
+      end
+      
+    end
+  end
+  
+  match "/ajax/sort_resume_sections" => "ajax#sort_resume_sections" # <--- dude, this is so PHP. ha ha
     
-    match "/resumes/new" => "resumes#new"
-    match "/resumes/:id" => "resumes#update"
-    match "/resumes/:url" => "resumes#show"
+    # scope :path => "/resume_educations", :controller => :resume_educations do
+    #   match "new/:id" => :new
+    #   match "create/:id" => :create
+    # end
     
-    resources :resumes
     
-    match "/ajax/sort_resume_sections" => "ajax#sort_resume_sections"
+    
       
     
   #end

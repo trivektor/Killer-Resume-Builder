@@ -10,15 +10,15 @@
 <% end %>
 
 <div class="blue_region">
-		
-<%= form_for @resume do |f| %>		
-	
+
+<%= form_for @resume, :url => resume_path(@resume),:method => :put do |f| %>		
+
 <div id="resume_controls">
-	<a class="trigger_overlay blue_btn" rel="order_sections" effect="bounce">Order Sections</a>
-	<a href="/resumes/delete/1" class="red_btn delete">Delete resume</a>
-	<a href="/resumes/view/trivektor" class="blue_btn" target="_blank">View live</a>	
-	<a href="/resumes/select_theme/1" class="green_btn">Theme</a>	
-	<a class="trigger_overlay blue_btn" rel="resume_settings" effect="shake">Settings</a>
+  <a class="trigger_overlay blue_btn" rel="order_sections" effect="bounce">Order Sections</a>
+  <a href="/resumes/delete/1" class="red_btn delete">Delete resume</a>
+  <a href="/resumes/view/trivektor" class="blue_btn" target="_blank">View live</a>	
+  <a href="/resumes/select_theme/1" class="green_btn">Theme</a>	
+  <a class="trigger_overlay blue_btn" rel="resume_settings" effect="shake">Settings</a>
 </div>
 
 <div class="clearfloat"></div>
@@ -35,26 +35,26 @@
 
 <% 
 sections = {
-	1 => "personal_information",
-	2 => "education",
-	3 => "skills",
-	4 => "work_experience",
-	5 => "references",
-	6 => "field_works"
+  1 => "personal_information",
+  2 => "education",
+  3 => "skills",
+  4 => "work_experience",
+  5 => "references",
+  6 => "field_works"
 }
 %>
 
 <div style="display:none" id="order_sections">
-	<h2>Order Sections</h2>
-	<%= image_tag "resume/closeOverlay.png", :alt => "Close", :class => "close_overlay" %>
-	<div class="sortable ui-sortable" id="sort_resume_sections" style="">
-		<% for s in @section_order %>
-			<div id="section_<%= sections.index(s) %>" class="sections">
-				<%= s.sub("_", " ").split(" ").select {|w| w.capitalize! || w}.join(" ") %>
-			</div>
-		<% end %>
-	</div>
-	<div style="display: none;" class="updated">Your resume sections have been re-ordered. Please refresh your browser.</div>
+  <h2>Order Sections</h2>
+  <%= image_tag "resume/closeOverlay.png", :alt => "Close", :class => "close_overlay" %>
+  <div class="sortable ui-sortable" id="sort_resume_sections" style="">
+    <% for s in @section_order %>
+    <div id="section_<%= sections.index(s) %>" class="sections">
+      <%= s.sub("_", " ").split(" ").select {|w| w.capitalize! || w}.join(" ") %>
+    </div>
+    <% end %>
+  </div>
+  <div style="display: none;" class="updated">Your resume sections have been re-ordered. Please refresh your browser.</div>
 </div>
 
 <input type="image" alt="Update Resume" src="/images/resume/updateResume.png" />

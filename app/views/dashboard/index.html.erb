@@ -24,24 +24,24 @@
 	<h2>Your resumes</h2>
 	<div id="your_resumes" class="blue_region">
 		<ul class="item_list" id="resumes_list">
-			<% @resumes.each do |r| %>
+			<% @resumes.each do |resume| %>
 			<li class="white_region">
 				<div class="left">
-					<%= link_to(r.title, {:controller => "resumes", :action => "show", :url => r.url}) %>
+					<%= link_to(resume.title, :url => "/resumes/#{resume.url}" ) %>
 					<p class="timestamp">
-						Last updated <%= r.updated_at.strftime("%b %d, %Y %H:%M %p") %>
+						Last updated <%= resume.updated_at.strftime("%b %d, %Y %H:%M %p") %>
 					</p>
 				</div>
 				<div class="options">
 					<a title="Delete" class="delete" href="/resumes/delete/1"></a>
 					<a target="_blank" title="View" class="view_live" href="/resumes/view/trivektor"></a>
-					<%= link_to("", {:controller => "resumes", :action => "edit", :id => r.id}, :class => "edit") %>
+					<%= link_to "a", :url => edit_resume_path(resume) %>
 					<a title="Analytics" class="analytic" href="/resumes/analytic/1"></a>
 				</div>
 			</li>
 			<% end %>
 		</ul>
-		<%= link_to (image_tag "resume/createAResume.png", :alt => "Create Resume"), {:controller => "resumes", :action => "new"} %>
+		<%= link_to (image_tag "resume/createAResume.png", :alt => "Create Resume"), new_resume_path %>
 	</div>
 </div>
 <!-- left col ends -->

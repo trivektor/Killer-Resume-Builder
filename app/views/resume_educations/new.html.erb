@@ -1,0 +1,46 @@
+<% @title_for_layout = "Add Education" %>
+
+<div class="blue_region">
+
+<div class="box_top"></div>
+<div class="box">
+
+<h2>Add Education</h2>
+
+<%= form_for @resume_education, :url => resume_resume_educations_path(@resume) do |f| %>
+<div class="form_row">
+	<label>Institution</label>
+	<%= f.text_field :institution, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<label for="ResumeEducationBeginDate">Begin Date</label>
+	<input name="data[ResumeEducation][begin_date]" class="textbox period_date hasDatepicker" maxlength="255" id="ResumeEducationBeginDate" type="text"></div>
+
+<div class="form_row">
+	<label for="ResumeEducationEndDate">End Date</label>
+	<input name="data[ResumeEducation][end_date]" class="textbox period_date hasDatepicker" maxlength="255" id="ResumeEducationEndDate" type="text"></div>
+
+<div class="form_row">
+	<label for="ResumeEducationDegree">Degree</label>
+	<input name="data[ResumeEducation][degree]" class="textbox" maxlength="255" id="ResumeEducationDegree" type="text"></div>
+
+<div class="form_row">
+	<label for="ResumeEducationFieldOfStudy">Field of Study</label>
+	<input name="data[ResumeEducation][field_of_study]" class="textbox" maxlength="255" id="ResumeEducationFieldOfStudy" type="text"></div>
+
+<div class="form_row">
+	<label for="ResumeEducationGpa">GPA</label>
+	<input name="data[ResumeEducation][gpa]" class="textbox" id="ResumeEducationGpa" type="text"></div>
+
+<div class="form_row">
+	<label for="ResumeEducationLocation">Location</label>
+	<input name="data[ResumeEducation][location]" class="textbox" maxlength="50" id="ResumeEducationLocation" type="text"></div>
+
+<input src="/img/resume/addItNowBtn.png" alt="Add It Now" type="image">
+
+<% end %>
+</div>
+<div class="box_bottom"></div>
+
+</div>

@@ -7,7 +7,7 @@
 <div class="box">
 <h2>Create New Resume</h2>
 
-<% form_for @resume do |f| %>
+<% form_for @resume, :url => resume_path(@resume) do |f| %>
 
 <% if !@resume.errors.empty? %>
     <div class="result_error">

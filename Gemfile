@@ -14,7 +14,6 @@ gem 'mysql2'
 # gem 'capistrano'
 
 # To use debugger
-gem 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -27,6 +26,7 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+group :development, :test do
+  # gem 'webrat'
+  gem 'ruby-debug', :require => 'ruby-debug'
+end
