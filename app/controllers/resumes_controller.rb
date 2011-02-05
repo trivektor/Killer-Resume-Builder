@@ -56,12 +56,6 @@ class ResumesController < ApplicationController
     
     @resume = Resume.find(params[:id])
     
-    @personal_info = @resume.resume_personal_information
-    
-    @skill = @resume.resume_skill
-    
-    @field_work = @resume.resume_field_work
-    
     @section_names = {}
     
     @resume.resume_section_names.each do |s|
@@ -75,14 +69,10 @@ class ResumesController < ApplicationController
   def update
     @resume = Resume.find(params[:id])
 
-    if @resume.update_attributes(params[:resume]) 
-      @resume.resume_personal_information.update_attributes(params[:resume_personal_information])
-      @resume.resume_skill.update_attributes(params[:resume_skill])
-      @resume.resume_field_work.update_attributes(params[:resume_field_work])
+    if @resume.update_attributes(params[:resume])
       flash[:notice] = "Your resume has been updated"
       redirect_to :controller => "resumes", :action => :edit, :id => params[:id]
     else
-      flash[:error] = 'wrong info'
       Rails.logger.debug @resume.errors
     end
   end

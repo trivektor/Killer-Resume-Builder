@@ -12,8 +12,8 @@
 	
 	<div class="clearfloat"></div>
 
-	<%= fields_for @field_work do |f| %>
-		<%= f.text_area :field_works, :class => :markitup %>
+	<%= f.fields_for :resume_field_work do |fw| %>
+		<%= fw.text_area :field_works, :class => :markitup %>
 	<% end %>
 	<div class="clearfloat"></div>
 

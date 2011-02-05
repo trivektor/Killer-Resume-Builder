@@ -13,7 +13,7 @@
 <div class="clearfloat"></div>
 <div class="form_row">
 	
-	<%= fields_for @skill do |s| %>
+	<%= f.fields_for :resume_skill do |s| %>
 		<%= s.text_area :skills, :class => :markitup %>
 	<% end %>
 	

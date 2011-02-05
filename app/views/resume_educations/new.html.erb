@@ -15,15 +15,18 @@
 
 <div class="form_row">
 	<label for="ResumeEducationBeginDate">Begin Date</label>
-	<input name="data[ResumeEducation][begin_date]" class="textbox period_date hasDatepicker" maxlength="255" id="ResumeEducationBeginDate" type="text"></div>
+	<%= f.text_field :begin_date, :class => :textbox %>
+</div>
 
 <div class="form_row">
 	<label for="ResumeEducationEndDate">End Date</label>
-	<input name="data[ResumeEducation][end_date]" class="textbox period_date hasDatepicker" maxlength="255" id="ResumeEducationEndDate" type="text"></div>
+	<%= f.text_field :end_date, :class => :textbox  %>
+</div>
 
 <div class="form_row">
 	<label for="ResumeEducationDegree">Degree</label>
-	<input name="data[ResumeEducation][degree]" class="textbox" maxlength="255" id="ResumeEducationDegree" type="text"></div>
+	<%= f.text_field :end_date, :class => :te %>
+</div>
 
 <div class="form_row">
 	<label for="ResumeEducationFieldOfStudy">Field of Study</label>
