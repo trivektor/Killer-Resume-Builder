@@ -30,6 +30,7 @@ Krb::Application.routes.draw do
     
     resources :resume_educations do
       member do
+        get :delete
         #   /resumes/1/resume_educations/1/...
         get :toggle  #/resumes/1/resume_educations/1/toggle  -> params[:resume_id], params[:id],  toggle_resume_resume_education_path(@resume, @...)
       end

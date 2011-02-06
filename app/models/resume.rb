@@ -18,6 +18,6 @@ class Resume < ActiveRecord::Base
   
   validates_presence_of :url, :title
   
-  accepts_nested_attributes_for :resume_personal_information, :resume_skill, :resume_field_work
+  accepts_nested_attributes_for :resume_personal_information, :resume_skill, :resume_field_work, :resume_educations
   
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130193632) do
+ActiveRecord::Schema.define(:version => 20110205032250) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20110130193632) do
   create_table "resume_educations", :force => true do |t|
     t.integer  "resume_id"
     t.string   "institution"
-    t.datetime "begin_date"
-    t.datetime "end_date"
+    t.string   "begin_date"
+    t.string   "end_date"
     t.string   "degree"
     t.string   "field_of_study"
     t.string   "gpa"
