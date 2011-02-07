@@ -5,7 +5,9 @@
 	
 	<div class="section_options">
 		<div class="options_label">Options</div>
-		<div class="add"></div>
+		<div class="add">
+  	  <%= link_to "Add a new entry", new_resume_resume_work_experience_path(@resume) %>
+  	</div>
 		<a class="disable_section" rel="education">Disable this section</a>
 		<a class="enable_section" rel="education">Enable this section</a>
 		<input type="hidden" class="section_mode" value="" />
