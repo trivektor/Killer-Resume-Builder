@@ -14,7 +14,16 @@
 	</div>
 	
 	<div id="sort_education" class="sortable">
-		
+		<% @resume.resume_work_experiences.each do |we| %>
+		  <div class="ui-state-default">
+		    <h3 class="organization_name"><%= we.organization_name %></h3>
+		    <div class="position_title"><%= we.title %></div>
+		    <div class="position_date"><%= we.begin_date %> - <%= we.end_date %></div>
+		    <div class="clearfloat"></div>
+		    <a href="/resumes/<%=@resume.id%>/resume_work_experiences/<%=we.id%>/edit" class="edit_link"></a>
+		    <a href="/resumes/<%=@resume.id%>/resume_work_experiences/<%=we.id%>/delete" class="delete_link"></a>
+		  </div>
+		<% end %>
 	</div>
 	
 	<div class="clearfloat"></div>
