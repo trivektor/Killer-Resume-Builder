@@ -9,6 +9,8 @@ class ResumeWorkExperiencesController < ApplicationController
     @resume_work_experience.resume_id = params[:resume_id]
     if @resume_work_experience.save
       redirect_to :controller => :resumes, :action => :edit, :id => params[:resume_id]
+    else
+      render :action => :new
     end
   end
   
@@ -20,10 +22,12 @@ class ResumeWorkExperiencesController < ApplicationController
   
   def update
     if manipulatable? params[:resume_id]
-      resume_work_experience = find_resume_work_experience params[:id], params[:resume_id]
-      if resume_work_experience.update_attributes(params[:resume_work_experience])
+      @resume_work_experience = find_resume_work_experience params[:id], params[:resume_id]
+      if @resume_work_experience.update_attributes(params[:resume_work_experience])
         flash[:notice] = "Work experience has been updated"
         redirect_to :controller => :resume_work_experiences, :action => :edit, :id => params[:id]
+      else
+        render :action => :edit
       end
     end
   end
@@ -33,7 +37,6 @@ class ResumeWorkExperiencesController < ApplicationController
       ResumeWorkExperience.delete params[:id]
       redirect_to :controller => :resumes, :action => :edit, :id => params[:resume_id]
     end
-    
   end
   
   def manipulatable?(resume_id)

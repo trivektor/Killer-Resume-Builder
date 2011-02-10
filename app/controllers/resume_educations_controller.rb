@@ -16,20 +16,19 @@ class ResumeEducationsController < ApplicationController
   
   def edit
     if manipulatable? params[:resume_id]
-      @resume = find_resume params[:resume_id]
-      @resume_education = find_resume_education params[:id]
+      @resume_education = find_resume_education params[:id], params[:resume_id]
     end
   end
   
   def update
-    @resume = find_resume params[:resume_id]
-    @resume_education = find_resume_education params[:id]
-    if @resume_education.update_attributes params[:resume_education]
-      flash[:notice] = "Education has been updated"
-      #redirect_to edit_resume_resume_education_path(@resume_education)
-      redirect_to :controller => :resume_educations, :action => :edit, :id => params[:id]
-    else
-      render :action => :edit
+    if manipulatable? params[:resume_id]
+      @resume_education = find_resume_education params[:id], params[:resume_id]
+      if @resume_education.update_attributes params[:resume_education]
+        flash[:notice] = "Education has been updated"
+        redirect_to :controller => :resume_educations, :action => :edit, :id => params[:id]
+      else
+        render :action => :edit
+      end
     end
   end
   
@@ -55,8 +54,8 @@ class ResumeEducationsController < ApplicationController
     Resume.find(resume_id)
   end
   
-  def find_resume_education(resume_education_id)
-    ResumeEducation.find(resume_education_id)
+  def find_resume_education(resume_education_id, resume_id)
+    ResumeEducation.where(:id => resume_education_id, :resume_id => resume_id).first
   end
   
 end
