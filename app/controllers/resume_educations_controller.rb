@@ -1,7 +1,6 @@
 class ResumeEducationsController < ApplicationController
   
   def new
-    @resume = find_resume params[:resume_id]
     @resume_education = ResumeEducation.new
   end
   
