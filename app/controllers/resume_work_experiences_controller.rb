@@ -33,6 +33,15 @@ class ResumeWorkExperiencesController < ApplicationController
     end
   end
   
+  def delete
+    
+    if manipulatable? params[:resume_id]
+      ResumeWorkExperience.delete params[:id]
+      redirect_to :controller => :resumes, :action => :edit, :id => params[:resume_id]
+    end
+    
+  end
+  
   def manipulatable?(resume_id)
     resume = find_resume resume_id
     resume.user_id == current_user.id 
