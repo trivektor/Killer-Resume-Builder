@@ -49,6 +49,12 @@ Krb::Application.routes.draw do
       end
     end
     
+    resources :resume_references do
+      member do
+        get :delete
+      end
+    end
+    
   end
   
   match "/ajax/sort_resume_sections" => "ajax#sort_resume_sections" # <--- dude, this is so PHP. ha ha
