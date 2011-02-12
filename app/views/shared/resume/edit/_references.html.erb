@@ -18,7 +18,7 @@
 	<div id="sort_references" class="sortable">
 	  <% @resume.resume_references.each do |ref| %>
 	    <div class="ui-state-default">
-	      <%= link_to "", edit_resume_resume_reference_path(@resume), :class => :edit_link %>
+	      <a class="edit_link" href="/resumes/<%=@resume.id%>/resume_references/<%=ref.id%>/edit"></a>
 	      <a class="delete_link" href="/resumes/<%=@resume.id%>/resume_references/<%=ref.id%>/delete"></a>
 	      <ul class="reference_details">
 	        <li><%= ref.name %>, <%= ref.title %></li>

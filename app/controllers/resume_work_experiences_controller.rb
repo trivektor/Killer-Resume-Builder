@@ -1,5 +1,10 @@
 class ResumeWorkExperiencesController < ApplicationController
   
+  before_filter do
+    find_resume
+    redirect_to dashboard_path unless manipulatable?
+  end
+  
   def new
     @resume_work_experience = ResumeWorkExperience.new
   end
@@ -8,50 +13,51 @@ class ResumeWorkExperiencesController < ApplicationController
     @resume_work_experience = ResumeWorkExperience.new(params[:resume_work_experience])
     @resume_work_experience.resume_id = params[:resume_id]
     if @resume_work_experience.save
-      redirect_to :controller => :resumes, :action => :edit, :id => params[:resume_id]
+      redirect_to edit_resume_path(@resume)
     else
       render :action => :new
     end
   end
   
   def edit
-    if manipulatable? params[:resume_id]
-      @resume_work_experience = find_resume_work_experience params[:id], params[:resume_id]
-    end
+    @resume_work_experience = find_resume_work_experience
   end
   
   def update
-    if manipulatable? params[:resume_id]
-      @resume_work_experience = find_resume_work_experience params[:id], params[:resume_id]
-      if @resume_work_experience.update_attributes(params[:resume_work_experience])
-        flash[:notice] = "Work experience has been updated"
-        redirect_to :controller => :resume_work_experiences, :action => :edit, :id => params[:id]
-      else
-        render :action => :edit
-      end
+    resume_work_experience = find_resume_work_experience
+    if resume_work_experience.update_attributes(params[:resume_work_experience])
+      flash[:notice] = "Work experience has been updated"
+      redirect_to edit_resume_resume_work_experience_path(@resume)
+    else
+      render :action => :edit
     end
   end
   
   def delete
-    if manipulatable? params[:resume_id]
-      ResumeWorkExperience.delete params[:id]
-      redirect_to :controller => :resumes, :action => :edit, :id => params[:resume_id]
-    end
-  end
-  
-  def manipulatable?(resume_id)
-    resume = find_resume resume_id
-    resume.user_id == current_user.id 
+    ResumeWorkExperience.delete(params[:id])
+    redirect_to edit_resume_path(@resume)
   end
   
   private
   
-  def find_resume(resume_id)
-    Resume.find(resume_id)
+  def manipulatable?
+    if @resume
+      @resume.user_id == current_user.id 
+    else
+      false
+    end
   end
   
-  def find_resume_work_experience(resume_work_experience_id, resume_id)
-    ResumeWorkExperience.where(:id => resume_work_experience_id, :resume_id => resume_id).first
+  def find_resume
+    begin
+      @resume = Resume.find(params[:resume_id])
+    rescue
+      nil
+    end
+  end
+  
+  def find_resume_work_experience
+    ResumeWorkExperience.where(:id => params[:id], :resume_id => params[:resume_id]).first
   end
   
 end
