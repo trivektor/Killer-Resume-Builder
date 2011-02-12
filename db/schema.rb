@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(:version => 20110212170908) do
 
   create_table "resume_themes", :force => true do |t|
     t.integer  "resume_id"
-    t.string   "theme"
+    t.integer  "theme_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

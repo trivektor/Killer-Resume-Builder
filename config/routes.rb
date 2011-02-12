@@ -63,7 +63,8 @@ Krb::Application.routes.draw do
     #   match "new/:id" => :new
     #   match "create/:id" => :create
     # end
-    
+  
+  match "/:url" => "resumes#show"  
     
     
       

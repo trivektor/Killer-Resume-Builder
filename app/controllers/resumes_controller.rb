@@ -26,7 +26,7 @@ class ResumesController < ApplicationController
       @resume.resume_section_order = ResumeSectionOrder.create(:resume_id => @resume.id, 
       :orders => "personal_information/education/skills/work_experience/references/field_works")
       
-      @resume.resume_theme = ResumeTheme.create
+      @resume.resume_theme = ResumeTheme.create(:theme_id => Theme.default_theme.id)
       
       @resume.resume_setting = ResumeSetting.create
       
@@ -40,7 +40,7 @@ class ResumesController < ApplicationController
       end
       
       
-      redirect_to :controller => "dashboard", :action => "index"
+      redirect_to dashboard_path
     else
       render :action => "new"
     end
@@ -48,6 +48,7 @@ class ResumesController < ApplicationController
   
   def show
     @resume = Resume.find_by_url(params[:id])
+    render :layout => "resume"
   end
   
   def edit
@@ -75,6 +76,11 @@ class ResumesController < ApplicationController
     else
       Rails.logger.debug @resume.errors
     end
+  end
+  
+  def delete
+    Resume.delete(params[:id])
+    redirect_to dashboard_path
   end
   
 end

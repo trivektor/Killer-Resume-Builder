@@ -2,7 +2,7 @@ class CreateResumeThemes < ActiveRecord::Migration
   def self.up
     create_table :resume_themes do |t|
       t.integer :resume_id
-      t.string :theme
+      t.integer :theme_id
       t.timestamps
     end
   end
