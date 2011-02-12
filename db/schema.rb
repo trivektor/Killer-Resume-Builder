@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110206052916) do
+ActiveRecord::Schema.define(:version => 20110212170908) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -246,6 +246,17 @@ ActiveRecord::Schema.define(:version => 20110206052916) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "themes", :force => true do |t|
+    t.string   "theme"
+    t.string   "slug"
+    t.string   "style",      :default => "1 column"
+    t.string   "style_slug", :default => "1_column"
+    t.string   "status",     :default => "active"
+    t.boolean  "default",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"
