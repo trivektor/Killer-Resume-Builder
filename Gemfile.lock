@@ -38,6 +38,7 @@ GEM
     activesupport (3.0.1)
     arel (1.0.1)
       activesupport (~> 3.0.0)
+    bluecloth (2.0.11)
     builder (2.1.2)
     columnize (0.3.2)
     erubis (2.6.6)
@@ -86,6 +87,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic!
+  bluecloth
   mysql2
   rails (= 3.0.1)
   ruby-debug

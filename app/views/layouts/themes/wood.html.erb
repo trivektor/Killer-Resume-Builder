@@ -1,0 +1,78 @@
+<%= render :partial => "shared/resume/show/head" %>
+
+<body>
+	<%= render :partial => "shared/resume/show/top_bar" %>
+	<div class="bottomShadow">
+	<div style="width:970px; margin:0 auto">
+	<div class="leftShadow">
+		<div class="rightShadow">
+			<div id="resume_sheet">
+				<div class="paper">
+					<div class="left_col">
+						
+						<%= image_tag "stock.jpg", :class => "user_image" %>
+
+					
+						<% if @resume.resume_setting.hide_personal_info != 0 %>
+							<% personalInfo = @resume.resume_personal_information %>
+							<ul id="personal_information">
+								<% if personalInfo.address %>
+								<li><%= personalInfo.address %></li>
+								<% end %>
+								<li><%= personalInfo.city %>, <%= personalInfo.state %>, <%= personalInfo.postal_code %></li>
+								<% if personalInfo.phone_number %>
+									<li><%= personalInfo.phone_number %></li>
+								<% end %>
+								<% if personalInfo.email %>
+									<li><a href="mailto:<%= personalInfo.email %>"><bdo dir="rtl"><%= personalInfo.email.reverse %></bdo></a></li>
+								<% end %>
+								<% if personalInfo.website %>
+									<li><a href="<% personalInfo.website %>" target="_blank"><%= personalInfo.website %></a></li>
+								<% end %>
+							</ul>
+
+							<% if personalInfo.facebook || personalInfo.twitter || personalInfo.flickr || personalInfo.linkedin %>
+							<div id="social_networks">
+								<% if !personalInfo.facebook.empty? %>
+									<a href="<%= personalInfo.facebook %>" target="_blank">
+										<%= image_tag "export/facebook_16.png", :alt => :Facebook, :title => :Facebook %>
+									</a>
+								<% end %>
+								<% if !personalInfo.twitter.empty? %>
+									<a href="<%= personalInfo.twitter %>" target="_blank">
+										<%= image_tag "export/twitter_16.png", :alt => :Twitter, :title => :Twitter %>
+									</a>
+								<% end %>
+								<% if !personalInfo.flickr.empty? %>
+									<a href="<%= personalInfo.flickr %>" target="_blank">
+										<%= image_tag "export/flickr_16.png", :alt => :Flickr, :title => :Flickr %>
+									</a>
+								<% end %>
+								<% if !personalInfo.linkedin.empty? %>
+									<a href="<%= personalInfo.linkedin %>" target="_blank">
+										<%= image_tag "export/linkedin_16.png", :alt => :LinkedIn, :title => :LinkedIn %>
+									</a>
+								<% end %>
+							</div>
+							<% end %>
+
+						<% end %>
+
+					</div>
+					<div class="right_col">
+
+						<% for s in @section_order %>
+							<%= render :partial => "shared/resume/show/wood/#{s}" %>
+					    <% end %>
+
+					</div>
+					<div class="clearfloat"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	
+</body>
+</html>

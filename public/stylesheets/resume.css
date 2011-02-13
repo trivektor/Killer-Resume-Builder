@@ -1,0 +1,36 @@
+* {margin:0; padding:0;}
+
+#resume_sheet {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #BFBFBF;
+    margin: 20px auto;
+    padding: 20px 95px;
+    width: 700px;
+}
+
+.paper ul {
+	margin-left:15px;
+}
+
+.paper ul li {
+	margin:10px 0;
+}
+
+.clearfloat {
+	clear:both;
+}
+
+a {
+	text-decoration:none;
+	outline:none;
+	cursor:pointer;
+}
+
+images {border:0;}
+
+#resume_top_bar {background:url(../../images/resume/resumeTopBarBg.png) repeat-x; color:#fff !important; height:41px; overflow:hidden; margin-bottom:50px;}
+#resume_top_bar_inner {padding-top:11px; width:900px; margin:0 auto; overflow:hidden;}
+#resume_top_bar_options {float:right;}
+#last_updated_on {float:left;}
+#like_resume {float:left; margin-right:3px;}
+.share_this {color:#fff;}

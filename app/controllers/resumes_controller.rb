@@ -47,8 +47,22 @@ class ResumesController < ApplicationController
   end
   
   def show
-    @resume = Resume.find_by_url(params[:id])
-    render :layout => "resume"
+    @resume = Resume.find_by_url(params[:url])
+    if !@resume.nil?
+      @theme = Theme.find(@resume.resume_theme.theme_id)
+      
+      @section_names = {}
+      
+      @resume.resume_section_names.each do |s|
+        @section_names[s.section] = s.name
+      end
+      
+      @section_order = @resume.resume_section_order.orders.split("/")
+      
+      render :layout => "themes/" + @theme.slug
+    else
+      # TODO: add error handling
+    end
   end
   
   def edit

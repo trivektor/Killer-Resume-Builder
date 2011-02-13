@@ -1,0 +1,22 @@
+body {background:#eee; font-size:13px; font-family:lucida grande,arial;}
+
+#personal_info_wrapper {padding-bottom:20px; border-bottom:1px dashed #bfbfbf; margin-bottom:20px;}
+#personal_info {float:left; width:400px;}
+#personal_info ul {list-style:none; margin:0;}
+#personal_info ul li {margin:2px 0;}
+#personal_info ul strong {font-style:oblique;}
+#personal_info a {color:#bfbfbf;}
+#resume_name {color:#000 !important; margin-bottom:20px; font-size:36px; font-weight:normal;}
+#personal_info_bio {margin-top:20px;}
+#user_photo {float:right; margin-top:14px;-moz-box-shadow:0 2px 4px #555555;background:#BFBFBF;border:8px solid #fff;}
+
+.section_wrapper {padding-bottom:15px; border-bottom:1px dashed #ccc; margin-bottom:20px; overflow:hidden;}
+.section_title_left {float:left; width:220px; margin-right:30px; color:#000; font-size:19px; font-weight:normal;}
+.section_title_left span {font-size:15px; display:inline-block; padding:3px 7px; background:#e6e6e6; color:#444;}
+.section_details_right {float:left; width:430px;}
+.section_details_right h3 {color:#333; font-size:15px; font-weight:normal; margin-bottom:5px;}
+.section_details_right h4 {font-weight:normal; margin-bottom:20px; color:#777; font-size:12px;}
+.work_position_details {margin-bottom:20px;}
+.work_position_details p {margin-bottom:10px;}
+
+
