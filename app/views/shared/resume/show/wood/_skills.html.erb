@@ -9,6 +9,6 @@
 	</div>
 	
 	<div class="section_details_right">
-		<%= @resume.resume_skill.skills %>
+		<%= RDiscount.new(@resume.resume_skill.skills).to_html.html_safe %>
 	</div>
 </div>
