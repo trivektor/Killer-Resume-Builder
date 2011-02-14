@@ -1,0 +1,88 @@
+<% @title_for_layout = "#{@user.username}'s profile" %>
+
+<div class="blue_region" id="profile_header">
+	<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg" />
+
+	<div class="white_region">
+		<div id="profile_header_info">
+			<h2 id="profile_name">
+				<%= !@profile.first_name.empty? && !@profile.last_name.empty? ? @profile.first_name + " " + @profile.last_name : @user.username %>
+			</h2>
+		    <div></div>
+		    <% if @profile.user_id == current_user.id %>
+	        
+	            <%= link_to image_tag("Basic_set_PNG/pencil_16.png"), edit_profile_path(@profile), {:class => "edit_profile_btn", :id => "edit_profile"} %>
+	            
+	        <% end %>
+	    </div>
+		<div class="clearfloat"></div>
+	</div>
+	<div class="clearfloat"></div>
+</div>
+
+<!-- left col starts -->
+<div id="profile_left_col">
+		
+		<!-- Recently heard starts -->
+		<h2>Recently heard</h2>
+		<div class="thought_list blue_region">
+					<ul>
+									<li class="white_region">
+						<div class="inner">
+							<div class="thought">Listening to "Paper plane" by Mat Ngoc..</div>
+							<p class="timestamp">Jan 02, 2011 at 01:22pm</p>
+						</div>
+					</li>
+							</ul>
+				</div>
+		<!-- Recently heard ends -->
+		
+		<!-- Shouts starts -->
+		<h2>Shouts</h2>
+		<div class="blue_region">
+						<div class="white_region" id="shoutbox_wrapper">
+				<form accept-charset="utf-8" action="/user_threads/shout" method="post" id="UserThreadShoutForm"><div style="display: none;"><input type="hidden" value="POST" name="_method"></div>					<div class="input textarea"><textarea rows="6" cols="30" id="shout_box" name="data[UserThread][content]"></textarea></div>					<div id="shout_options">
+						<input type="hidden" value="0" id="UserThreadPrivate_" name="data[UserThread][private]"><input type="checkbox" id="UserThreadPrivate" value="1" name="data[UserThread][private]">						<input type="hidden" id="UserThreadType" value="profile" name="data[UserThread][type]">						<input type="hidden" id="UserThreadTargetId" value="1" name="data[UserThread][target_id]">						<span>Mark as private (only you and this person can see it)</span>
+						<input type="image" alt="Shout It Out" src="/img/resume/shoutItOutBtn.png" id="send_shout">
+						<div class="clearfloat"></div>
+					</div>
+				</form>
+			</div>
+						<ul class="item_list" id="shouts_list">
+																				
+																		<li id="comment_1">
+							<!-- Starting to render - user_image -->
+<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">
+<!-- Finished - user_image -->
+							<div class="white_region">
+								<p class="shout_message">I just implemented Facebook Connect</p>
+								<p class="timestamp">by <a href="/profile/515097306">Tri Vuong</a>									on Dec 30, 2010 at 01:52pm								</p>
+								<div class="options">
+									<span rel="1" title="Delete this comment" class="remove_comment"></span>
+																		<span rel="1" title="Report this comment" class="report_comment"></span>
+																	</div>
+							</div>
+							<div class="clearfloat"></div>
+						</li>
+																		</ul>
+		</div>
+		<!-- Shouts ends -->
+		
+	</div>
+<!-- left col ends -->
+
+<!-- right col starts -->
+<div id="profile_right_col">
+		<h2>Resumes</h2>
+		<div class="resume_list blue_region">
+							<ul>
+									<li class="white_region">
+						<div class="inner">
+							<a class="resume_title" href="/resumes/view/trivektor">Tri Vuong's resume</a>							<a class="view_live" href="/resumes/view/trivektor">View Live</a>						</div>
+					</li>
+								</ul>
+					</div>
+	</div>
+<!-- right col ends -->
+
+<div class="clearfloat"></div>

@@ -92,16 +92,18 @@ $(function(){
 		$.post(
 			"/profiles/update",
 			{
-				first_name:profileFirstName.val(),
-				last_name:profileLastName.val(),
-				city:profileCity.val(),
-				state:profileState.val(),
-				postal_code:profilePostalCode.val(),
-				country_id:profileCountry.val(),
-				job_category:profileCategory.val(),
-				job_industry:profileIndustry.val(),
-				job_title:profileJobTitle.val(),
-				hidden:(profileHidden.is(":checked") ? 1 : 0)
+				profile : {
+					first_name:profileFirstName.val(),
+					last_name:profileLastName.val(),
+					city:profileCity.val(),
+					state:profileState.val(),
+					postal_code:profilePostalCode.val(),
+					country_id:profileCountry.val(),
+					job_category:profileCategory.val(),
+					job_industry:profileIndustry.val(),
+					job_title:profileJobTitle.val(),
+					hidden:(profileHidden.is(":checked") ? 1 : 0)
+				}
 			},
 			function(response) {
 				if (response == 1) {

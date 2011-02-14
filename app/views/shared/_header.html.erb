@@ -16,8 +16,7 @@
 						<div style="display: none;" id="account_links">
 							<ul class="white_region">
 								<li>
-									<%= link_to("Profile", {:controller => "profiles", :action => "index", :username =>
-									current_user.username}, :class => "view_profile profile_control_links") %>
+									<%= link_to("Profile", profile_path(current_user.username), :class => "view_profile profile_control_links") %>
 								</li>
 								<li><a class="edit_profile_btn profile_control_links" href="/profile/515097306">Edit Profile</a></li>
 								<li><%= link_to "Logout", logout_path, :class => "logout profile_control_links"  %></li>

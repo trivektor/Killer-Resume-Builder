@@ -15,8 +15,7 @@ Krb::Application.routes.draw do
     match "signup" => "users#new", :as => :signup
   
   resources :profiles
-    match "/profile/:username" => "profiles#index"
-    
+  post "/profiles/update"
   # scope :path => "/resumes", :controller => :resumes do
   #       match "new" => :new
   #       match "edit/:id" => :edit
