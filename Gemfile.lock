@@ -39,6 +39,7 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
+    carmen (0.2.5)
     columnize (0.3.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -87,6 +88,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic!
+  carmen
   mysql2
   rails (= 3.0.1)
   rdiscount

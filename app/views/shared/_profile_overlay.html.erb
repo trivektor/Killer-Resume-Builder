@@ -18,39 +18,40 @@
 				
 			</div>
 			<div id="profile_details_input">
+			    <%= form_for @profile do |f| %>
 				<h2><%= image_tag "resume/profileDetailsHeader.png", :alt => "Profile" %></h2>
 				<div id="edit_profile_message" style="display:none"></div>
 				<div class="form_row">
 					<label>First Name</label>
-					<input id="profile_first_name" type="text" class="textbox" value="" />
+					<%= f.text_field :first_name, :class => :textbox, :id => "profile_first_name" %>
 				</div>
 				<div class="form_row">
 					<label>Last Name</label>
-					<input id="profile_last_name" type="text" class="textbox" value="" />
+					<%= f.text_field :last_name, :class => :textbox, :id => "profile_last_name" %>
 				</div>
 				<div class="form_row">
 					<label>City</label>
-					<input id="profile_city" type="text" class="textbox" value="" />
+					<%= f.text_field :city, :class => :textbox, :id => "profile_city" %>
 				</div>
 				<div class="form_row">
 					<label>State/Province</label>
-					<input id="profile_state" type="text" class="textbox" value="" />
+					<%= f.text_field :state, :class => :textbox, :id => "profile_state" %>
 				</div>
 				<div class="form_row">
 					<label>Country</label>
-					
+					<%= select "country", "id", get_countries, {:id => "profile_country"}, {} %>
 				</div>
 				<div class="form_row">
 					<label>Postal Code</label>
-					<input id="profile_postal_code" type="text" class="textbox" value="" />
+					<%= f.text_field :postal_code, :class => :textbox, :id => "profile_postal_code" %>
 				</div>
 				<div class="form_row">
 					<label>Job Function</label>
-					
+					<%= select "job_category", "id", get_job_categories, :id => "profile_" %>
 				</div>
 				<div class="form_row">
 					<label>Industry</label>
-					
+					<%= select "job_industry", "id", get_job_industries, {} %>
 				</div>
 				<div class="form_row">
 					<label>Title</label>
@@ -58,6 +59,7 @@
 				</div>
 				<%= image_tag "resume/updateProfileBtn.png", :alt => "Update", "class" => 'account_overlay_update_btn', :id => "update_profile_btn" %>
 				<div class="clearfloat"></div>
+				<% end %>
 			</div>
 		</div>
 	</div>

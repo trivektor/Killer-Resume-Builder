@@ -33,8 +33,8 @@
 					</p>
 				</div>
 				<div class="options">
-					<a title="Delete" class="delete" href="/resumes/delete/1"></a>
-					<a target="_blank" title="View" class="view_live" href="/resumes/view/trivektor"></a>
+                    <a title="Delete" class="delete" href="/resumes/<%=resume.id%>/delete"></a>
+					<a target="_blank" title="View" class="view_live" href="/<%=resume.url%>"></a>
 					<%= link_to "", edit_resume_path(resume), {:class => :edit} %>
 					<a title="Analytics" class="analytic" href="/resumes/analytic/1"></a>
 				</div>

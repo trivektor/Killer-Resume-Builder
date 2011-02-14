@@ -90,7 +90,7 @@ $(function(){
 	
 	$("#update_profile_btn").click(function(){
 		$.post(
-			"/ajax/update_profile",
+			"/profiles/update",
 			{
 				first_name:profileFirstName.val(),
 				last_name:profileLastName.val(),

@@ -1,9 +1,51 @@
 class ApplicationController < ActionController::Base
+  
   protect_from_forgery
   
-  helper_method :current_user_session, :current_user, :logged_in?
+  before_filter do
+    if logged_in?
+      user_profile
+    end
+  end
+  
+  helper_method :current_user_session, :current_user, :logged_in?, :user_profile, :get_countries, :get_job_categories, :get_job_industries
   
   protected 
+  
+  def get_countries
+    countries = Country.find(:all)
+    countries_hash = {}
+    for country in countries
+      countries_hash[country.printable_name] = country.id
+    end
+    countries_hash.sort
+  end
+  
+  def get_job_industries
+    industries = JobIndustry.where(:status => :active).find(:all)
+    industries_hash = {}
+    for industry in industries
+      industries_hash[industry.industry] = industry.id
+    end
+    industries_hash.sort
+  end
+  
+  def get_job_categories
+    categories = JobCategory.where(:status => :active).find(:all)
+    categories_hash = {}
+    for category in categories
+      categories_hash[category.category_name] = category.id
+    end
+    categories_hash.sort
+  end
+  
+  def user_profile
+    if session[:user_profile].nil?
+      session[:user_profile] = Profile.find_by_user_id(current_user.id)
+    end
+    
+    @profile = session[:user_profile]
+  end
   
   def current_user_session
     @current_user_session ||= UserSession.find
