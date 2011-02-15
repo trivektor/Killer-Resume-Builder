@@ -26,15 +26,17 @@
 		<!-- Recently heard starts -->
 		<h2>Recently heard</h2>
 		<div class="thought_list blue_region">
-					<ul>
-									<li class="white_region">
-						<div class="inner">
-							<div class="thought">Listening to "Paper plane" by Mat Ngoc..</div>
-							<p class="timestamp">Jan 02, 2011 at 01:22pm</p>
-						</div>
-					</li>
-							</ul>
-				</div>
+			<ul>
+			    <% for thought in @user.thoughts %>
+				<li class="white_region">
+					<div class="inner">
+						<div class="thought"><%= thought.thought %></div>
+						<p class="timestamp"><%= thought.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
+					</div>
+				</li>
+				<% end %>
+			</ul>
+		</div>
 		<!-- Recently heard ends -->
 		
 		<!-- Shouts starts -->

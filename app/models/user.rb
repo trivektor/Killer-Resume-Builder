@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   
   has_one :profile
   has_many :resumes
+  has_many :thoughts
   
   acts_as_authentic do |config|
     config.crypto_provider = Authlogic::CryptoProviders::MD5

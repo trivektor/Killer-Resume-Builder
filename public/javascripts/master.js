@@ -438,11 +438,20 @@ $(function(){
 		var thought = $("#thoughtbox_message").val();
 		if (thought != '' && thought != 'Type your thought here...') {
 			$.post(
-				"/ajax/send_thought",
-				{thought:thought},
+				"/thoughts/new",
+				{ 
+					thought : {
+						content : thought
+					}
+				},
 				function(response) {
-					alert('Your thought has been published, baby!');
-					$("#thoughtbox_message").val("Type your thought here...");
+					if (response.result == 1) {
+						alert('Your thought has been published, baby!');
+						$("#thoughtbox_message").val("Type your thought here...");
+					} else {
+						alert('An error occured while sharing your thought. Please wait a few minutes and try again')
+					}
+					
 				}
 			)
 		}
