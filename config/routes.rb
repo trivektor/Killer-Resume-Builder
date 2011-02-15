@@ -19,6 +19,8 @@ Krb::Application.routes.draw do
   
   post "/thoughts/new"
   
+  resources :user_threads
+  
   # scope :path => "/resumes", :controller => :resumes do
   #       match "new" => :new
   #       match "edit/:id" => :edit

@@ -42,31 +42,41 @@
 		<!-- Shouts starts -->
 		<h2>Shouts</h2>
 		<div class="blue_region">
-						<div class="white_region" id="shoutbox_wrapper">
-				<form accept-charset="utf-8" action="/user_threads/shout" method="post" id="UserThreadShoutForm"><div style="display: none;"><input type="hidden" value="POST" name="_method"></div>					<div class="input textarea"><textarea rows="6" cols="30" id="shout_box" name="data[UserThread][content]"></textarea></div>					<div id="shout_options">
-						<input type="hidden" value="0" id="UserThreadPrivate_" name="data[UserThread][private]"><input type="checkbox" id="UserThreadPrivate" value="1" name="data[UserThread][private]">						<input type="hidden" id="UserThreadType" value="profile" name="data[UserThread][type]">						<input type="hidden" id="UserThreadTargetId" value="1" name="data[UserThread][target_id]">						<span>Mark as private (only you and this person can see it)</span>
+			<div class="white_region" id="shoutbox_wrapper">
+				<!-- <form accept-charset="utf-8" action="/user_threads/shout" method="post" id="UserThreadShoutForm"> -->
+				<%= form_for @user_thread do |f| %>
+				    <%= f.text_area :content, :rows => 6, :cols => 30, :id => "shout_box" %>
+				    <div id="shout_options">
+						<input type="hidden" value="0" id="UserThreadPrivate_" name="data[UserThread][private]">
+						<input type="checkbox" id="UserThreadPrivate" value="1" name="data[UserThread][private]">
+						<input type="hidden" id="UserThreadType" value="profile" name="data[UserThread][type]">					
+						<input type="hidden" id="UserThreadTargetId" value="1" name="data[UserThread][target_id]">
+						<input type="hidden" name="user[username]" value="<%= @user.username %>">
+						<input type="hidden" name="user[target]" value="<%= @profile.user_id %>">
+						<span>Mark as private (only you and this person can see it)</span>
 						<input type="image" alt="Shout It Out" src="/images/resume/shoutItOutBtn.png" id="send_shout">
 						<div class="clearfloat"></div>
 					</div>
-				</form>
+                <% end %>
 			</div>
-						<ul class="item_list" id="shouts_list">
-																				
-																		<li id="comment_1">
-							<!-- Starting to render - user_image -->
-<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">
-<!-- Finished - user_image -->
-							<div class="white_region">
-								<p class="shout_message">I just implemented Facebook Connect</p>
-								<p class="timestamp">by <a href="/profile/515097306">Tri Vuong</a>									on Dec 30, 2010 at 01:52pm								</p>
-								<div class="options">
-									<span rel="1" title="Delete this comment" class="remove_comment"></span>
-																		<span rel="1" title="Report this comment" class="report_comment"></span>
-																	</div>
-							</div>
-							<div class="clearfloat"></div>
-						</li>
-																		</ul>
+			<ul class="item_list" id="shouts_list">
+			    <% for shout in @shouts %>
+				<li id="comment_1">
+				    <!-- Starting to render - user_image -->
+                    <img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">
+                    <!-- Finished - user_image -->
+					<div class="white_region">
+						<p class="shout_message"><%= shout.content %></p>
+						<p class="timestamp">by <a href="/profile/515097306">Tri Vuong</a> on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
+						<div class="options">
+							<span rel="<%= shout.id %>" title="Delete this comment" class="remove_comment"></span>
+							<span rel="<%= shout.id %>" title="Report this comment" class="report_comment"></span>
+						</div>
+					</div>
+				    <div class="clearfloat"></div>
+				</li>
+				<% end %>
+			</ul>
 		</div>
 		<!-- Shouts ends -->
 		
