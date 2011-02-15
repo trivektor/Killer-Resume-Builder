@@ -39,7 +39,7 @@
 				</div>
 				<div class="form_row">
 					<label>Country</label>
-					<%= select "profile_country", nil, get_countries %>
+					<%= select "profile", "country_id", get_countries %>
 				</div>
 				<div class="form_row">
 					<label>Postal Code</label>
@@ -47,11 +47,11 @@
 				</div>
 				<div class="form_row">
 					<label>Job Function</label>
-					<%= select "profile_category", nil, get_job_categories %>
+					<%= select "profile", "job_category_id", get_job_categories %>
 				</div>
 				<div class="form_row">
 					<label>Industry</label>
-					<%= select "profile_industry", nil, get_job_industries %>
+					<%= select "profile", "job_industry_id", get_job_industries %>
 				</div>
 				<div class="form_row">
 					<label>Title</label>

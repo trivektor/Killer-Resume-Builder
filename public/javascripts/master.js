@@ -106,7 +106,8 @@ $(function(){
 				}
 			},
 			function(response) {
-				if (response == 1) {
+				
+				if (response.success == 1) {
 					editProfileMessage.removeClass().addClass("result_success").text("Your profile has been updated").show();
 				} else {
 					editProfileMessage.removeClass().addClass("result_error").text("An error occurred. Please try again later").show();

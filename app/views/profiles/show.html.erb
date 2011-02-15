@@ -43,7 +43,7 @@
 						<div class="white_region" id="shoutbox_wrapper">
 				<form accept-charset="utf-8" action="/user_threads/shout" method="post" id="UserThreadShoutForm"><div style="display: none;"><input type="hidden" value="POST" name="_method"></div>					<div class="input textarea"><textarea rows="6" cols="30" id="shout_box" name="data[UserThread][content]"></textarea></div>					<div id="shout_options">
 						<input type="hidden" value="0" id="UserThreadPrivate_" name="data[UserThread][private]"><input type="checkbox" id="UserThreadPrivate" value="1" name="data[UserThread][private]">						<input type="hidden" id="UserThreadType" value="profile" name="data[UserThread][type]">						<input type="hidden" id="UserThreadTargetId" value="1" name="data[UserThread][target_id]">						<span>Mark as private (only you and this person can see it)</span>
-						<input type="image" alt="Shout It Out" src="/img/resume/shoutItOutBtn.png" id="send_shout">
+						<input type="image" alt="Shout It Out" src="/images/resume/shoutItOutBtn.png" id="send_shout">
 						<div class="clearfloat"></div>
 					</div>
 				</form>
@@ -75,13 +75,17 @@
 <div id="profile_right_col">
 		<h2>Resumes</h2>
 		<div class="resume_list blue_region">
-							<ul>
-									<li class="white_region">
-						<div class="inner">
-							<a class="resume_title" href="/resumes/view/trivektor">Tri Vuong's resume</a>							<a class="view_live" href="/resumes/view/trivektor">View Live</a>						</div>
-					</li>
-								</ul>
+			<ul>
+			    <% for resume in @resumes %>
+				<li class="white_region">
+					<div class="inner">
+						<a class="resume_title" href="/<%= resume.url %>"><%= resume.title %></a>
+						<a class="view_live" href="/<%= resume.url %>">View Live</a>
 					</div>
+				</li>
+				<% end %>
+			</ul>
+		</div>
 	</div>
 <!-- right col ends -->
 
