@@ -19,6 +19,10 @@ Krb::Application.routes.draw do
   
   post "/thoughts/new"
   
+  resources :blogs, :only => [:show, :index]
+    match "/blogs/author/:name" => "blogs#author"
+    match "/blogs/tag/:tag" => "blogs#tag"
+  
   resources :user_threads
   
   # scope :path => "/resumes", :controller => :resumes do

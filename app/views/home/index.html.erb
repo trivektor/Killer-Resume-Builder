@@ -113,36 +113,9 @@
 		<h2>From Our Blog</h2>
 
 		<div class="blue_region" id="blog_post_list">
-			<!-- Starting to render - blog_post_item -->
-<div class="blog_post_shadow">
-	<div class="blog_post">
-		<!-- Starting to render - blog_post_date -->
-<div class="blog_post_date">
-	<div class="blog_post_month">Dec</div>
-	<div class="blog_post_day">01</div>
-	<div class="blog_post_year">2010</div>
-</div>
-
-<!-- Finished - blog_post_date -->
-		<div class="blog_post_content">
-			<h3><a href="/blog/when-it-rains-it-snows">When it rains, it snows</a></h3>
-	
-							<div class="blog_post_author">
-				<a href="/blogs/authors/Megan-McDonald">Megan McDonald</a></div>
-			
-			<div class="blog_post_summary">Rumors abound about the supposed never-ending rain in Seattle. But, speaking as a Seattle native, it really isn?t so bad. Why don?t I mind a few drizzly days? Not only does the rain make our region green and beautiful, but as winter approaches, rain in the city means snow in the mountains. And for me, that means skiing - plenty of it.</div>
-	
-			<a href="/blog/when-it-rains-it-snows"><img alt="" src="/img/resume/readMoreBtn.png"></a>	
-			<ul class="blog_post_options">
-				<li class="blog_num_comments"><strong>0 comments</strong></li>
-				<li class="blog_tags"><strong>Tags:</strong> bits-and-bytes, megan, skiing</li>
-			</ul>
-		</div>
-		<div class="clearfloat"></div>
-	</div>
-</div>
-
-<!-- Finished - blog_post_item -->
+		    <% for blog in @blogs %>
+		    <%= render :partial => "shared/blog/post", :locals => {:post => blog} %>
+		    <% end %>
 		</div>
 
 		<div class="clearfloat"></div>

@@ -1,0 +1,43 @@
+<% @title_for_layout = @post.title %>
+
+<div class="blue_region" id="blog_post_list">
+    <div class="blog_post_shadow">
+        <div class="blog_post">
+	        <div class="blog_left_col">
+		        
+		        <%= render :partial => "shared/blog/post_date", :locals => {:post_date => @post.created_at} %>
+		        
+		        <ul class="social_share">
+    			    <li><img alt="" src="/img/export/facebook_16.png"></li>
+    			    <li><img alt="" src="/img/export/twitter_16.png"></li>
+    			    <li><img alt="" src="/img/export/linkedin_16.png"></li>
+    			    <li><img alt="" src="/img/export/reddit_16.png"></li>
+    		    </ul>
+	        </div>
+	        <div class="blog_post_content">
+		        <h3><a><%= @post.title %></a></h3>
+		
+				<div class="blog_post_author">
+				    <%= link_to @post.author, :controller => :blogs, :action => :author, :name => @post.author_slug.downcase %>
+			    </div>
+				
+		        <p class="blog_post_summary">
+		            <%= @post.summary %>
+			    </p>	
+		
+		        <div class="blog_post_body">
+		            
+		            <p>
+		            <%= @post.body %>
+		            </p>
+			    
+		            <p style="margin-bottom: 40px;">Like this post? <span rel="1" id="recommend_post">Recommend it</span></p>
+		
+	            </div>
+	            <div class="clearfloat"></div>
+            </div>
+            <div class="clearfloat"></div>
+        </div>
+    </div>
+</div>
+<div class="clearfloat"></div>

@@ -1,0 +1,35 @@
+<div class="blog_post_shadow">
+    <div class="blog_post">
+        
+        <%= render :partial => "shared/blog/post_date", :locals => {:post_date => post.created_at} %>
+        
+        <div class="blog_post_content">
+        
+            <h3><%= link_to post.title, :controller => :blogs, :action => :show, :id => post.slug %></h3>
+
+		    <div class="blog_post_author">
+		        <%= link_to post.author, :controller => :blogs, :action => :author, :name => post.author_slug %>
+	        </div>
+
+            <p class="blog_post_summary"><%= post.summary %></p>
+            
+            <%= link_to image_tag("resume/readMoreBtn.png", :alt => "Read more"), :controller => :blogs, :action => :show, :id => post.slug %>
+            
+            <ul class="blog_post_options">
+	            <li class="blog_num_comments"><strong><%= post.blog_comments.count %> comments</strong></li>
+	            <% if post.blog_tags.count > 0 %>
+	            <li class="blog_tags"><strong>Tags:</strong> 
+	                <% 
+	                tags = []
+	                for tag in post.blog_tags
+	                    tags << tag.tag
+	                end 
+	                %>
+	                <%= tags.join(", ") %>
+	            </li>
+	            <% end %>
+            </ul>
+        </div>
+        <div class="clearfloat"></div>
+    </div>
+</div>
