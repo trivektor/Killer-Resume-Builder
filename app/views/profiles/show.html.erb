@@ -59,6 +59,7 @@
 					</div>
                 <% end %>
 			</div>
+			
 			<ul class="item_list" id="shouts_list">
 			    <% for shout in @shouts %>
 				<li id="comment_1">
@@ -67,7 +68,9 @@
                     <!-- Finished - user_image -->
 					<div class="white_region">
 						<p class="shout_message"><%= shout.content %></p>
-						<p class="timestamp">by <a href="/profile/515097306">Tri Vuong</a> on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
+						<p class="timestamp">by 
+						    <%= link_to @shouters[shout.user_id], :controller => :profiles, :action => :show, :id => @shouters[shout.user_id] %>
+						    on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
 						<div class="options">
 							<span rel="<%= shout.id %>" title="Delete this comment" class="remove_comment"></span>
 							<span rel="<%= shout.id %>" title="Report this comment" class="report_comment"></span>

@@ -10,6 +10,20 @@ class ProfilesController < ApplicationController
     
     @shouts = UserThread.where(:target_id => @profile.user_id, :thread_type => :profile).find(:all)
     
+    shouter_ids = []
+    
+    for shout in @shouts
+      shouter_ids << shout.user_id 
+    end
+    
+    @shouters = {}
+    
+    users = User.where(:id => shouter_ids).includes(:profile)
+    
+    for u in users
+      @shouters[u.id] = u.username
+    end
+    
     @user_thread = UserThread.new
     
   end
