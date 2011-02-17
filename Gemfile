@@ -27,6 +27,8 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 
 gem 'rdiscount'
 
+gem 'mini_magick'
+
 gem 'carmen'
 
 # Bundle gems for the local environment. Make sure to

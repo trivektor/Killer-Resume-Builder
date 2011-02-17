@@ -11,6 +11,11 @@ class DataFile < ActiveRecord::Base
     
     File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
     
+    image = MiniMagick::Image.from_file("public/images/uploads/#{name}")
+    image.resize("600x400")
+    image.write("public/images/uploads/test.png") 
+    #image.save()
+    
     name
     
   end
