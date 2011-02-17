@@ -1,8 +1,5 @@
 class ProfilesController < ApplicationController
   
-  def index
-  end
-  
   def show
     @user = User.find_by_username(params[:id])
     @profile = Profile.find_by_user_id(@user.id)
@@ -46,5 +43,21 @@ class ProfilesController < ApplicationController
     
     #render :nothing => true
   end
+  
+  def upload_photo
+    render :layout => "photo_upload"
+  end
+  
+  def process_upload_photo
+    
+    @uploaded_photo = DataFile.save(params[:upload])
+    
+    render :layout => "photo_upload"
+    
+  end
+  
+  private 
+  
+  
   
 end

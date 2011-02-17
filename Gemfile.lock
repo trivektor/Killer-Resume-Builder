@@ -6,6 +6,14 @@ GIT
     authlogic (2.1.3)
       activesupport
 
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 6a10b358bff2562a5c9b1585f0c8122b540966a3
+  specs:
+    paperclip (2.3.8)
+      activerecord
+      activesupport
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -90,6 +98,7 @@ DEPENDENCIES
   authlogic!
   carmen
   mysql2
+  paperclip!
   rails (= 3.0.1)
   rdiscount
   ruby-debug

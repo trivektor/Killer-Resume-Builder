@@ -1,0 +1,16 @@
+<%= form_tag('/profiles/process_upload_photo', :multipart => true) do %>
+    <h2>Upload Photo</h2>
+    <%= file_field(:upload, :datafile) %>
+    <br /><br />
+    <input src="/images/resume/uploadPhotoBtn.png" type="image" />
+    <img src="/images/resume/cancelUploadBtn.png" id="cancel_upload_photo" alt="Cancel Upload" />
+<% end %>
+
+<script>
+window.onload = function() {
+	document.getElementById("cancel_upload_photo").onclick = function(event) {
+		event.preventDefault();
+		top.cancel_photo_upload();
+	}
+}
+</script>

@@ -14,8 +14,11 @@ Krb::Application.routes.draw do
   resources :users, :only => [:new, :create]
     match "signup" => "users#new", :as => :signup
   
+  match "/profiles/upload_photo" => "profiles#upload_photo"
+  match "profiles/process_upload_photo" => "profiles#process_upload_photo"
   resources :profiles
-  post "/profiles/update"
+    post "/profiles/update"
+    
   
   post "/thoughts/new"
   
