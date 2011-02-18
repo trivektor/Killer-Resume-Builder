@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.find_by_user_id(@user.id)
     @resumes = Resume.where(:user_id => @user.id, :status => :active).find(:all)
     
-    @shouts = UserThread.where(:target_id => @profile.user_id, :thread_type => :profile).find(:all)
+    @shouts = UserThread.where(:target_id => @profile.user_id, :thread_type => :profile).order("created_at DESC").find(:all)
     
     shouter_ids = []
     
@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
     users = User.where(:id => shouter_ids).includes(:profile)
     
     for u in users
-      @shouters[u.id] = u.username
+      @shouters[u.id] = {:username => u.username, :photo => u.profile.photo}
     end
     
     @user_thread = UserThread.new

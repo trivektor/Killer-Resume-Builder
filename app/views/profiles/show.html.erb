@@ -7,7 +7,8 @@
 	<div class="white_region">
 		<div id="profile_header_info">
 			<h2 id="profile_name">
-				<%= !@profile.first_name.empty? && !@profile.last_name.empty? ? @profile.first_name + " " + @profile.last_name : @user.username %>
+				<%= !@profile.first_name.nil? && !@profile.last_name.nil? && 
+				!@profile.first_name.empty? && !@profile.last_name.empty? ? @profile.first_name + " " + @profile.last_name : @user.username %>
 			</h2>
 		    <div></div>
 		    <% if @profile.user_id == current_user.id %>
@@ -27,16 +28,24 @@
 		<!-- Recently heard starts -->
 		<h2>Recently heard</h2>
 		<div class="thought_list blue_region">
-			<ul>
-			    <% for thought in @user.thoughts %>
-				<li class="white_region">
-					<div class="inner">
-						<div class="thought"><%= thought.thought %></div>
-						<p class="timestamp"><%= thought.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
-					</div>
-				</li>
-				<% end %>
-			</ul>
+		    <% if @user.thoughts.count > 0 %>
+			    <ul>
+    			    <% for thought in @user.thoughts %>
+    				<li class="white_region">
+    					<div class="inner">
+    						<div class="thought"><%= thought.thought %></div>
+    						<p class="timestamp"><%= thought.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
+    					</div>
+    				</li>
+    				<% end %>
+    			</ul>
+			<% else %>
+			<div class="white_region">
+			    <p class="inner">
+			        This user has yet shared any thought
+			    </p>
+			</div>
+			<% end %>
 		</div>
 		<!-- Recently heard ends -->
 		
@@ -64,13 +73,13 @@
 			<ul class="item_list" id="shouts_list">
 			    <% for shout in @shouts %>
 				<li id="comment_1">
-				    <!-- Starting to render - user_image -->
-                    <img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">
-                    <!-- Finished - user_image -->
+
+                    <%= render :partial => "shared/user_image", :locals => {:photo => @shouters[shout.user_id][:photo]} %>
+
 					<div class="white_region">
 						<p class="shout_message"><%= shout.content %></p>
 						<p class="timestamp">by 
-						    <%= link_to @shouters[shout.user_id], :controller => :profiles, :action => :show, :id => @shouters[shout.user_id] %>
+						    <%= link_to @shouters[shout.user_id][:username], :controller => :profiles, :action => :show, :id => @shouters[shout.user_id][:username] %>
 						    on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
 						<div class="options">
 							<span rel="<%= shout.id %>" title="Delete this comment" class="remove_comment"></span>
@@ -91,16 +100,22 @@
 <div id="profile_right_col">
 		<h2>Resumes</h2>
 		<div class="resume_list blue_region">
-			<ul>
-			    <% for resume in @resumes %>
-				<li class="white_region">
-					<div class="inner">
-						<a class="resume_title" href="/<%= resume.url %>"><%= resume.title %></a>
-						<a class="view_live" href="/<%= resume.url %>">View Live</a>
-					</div>
-				</li>
-				<% end %>
-			</ul>
+		    <% if @resumes.count > 0 %>
+			    <ul>
+    			    <% for resume in @resumes %>
+    				<li class="white_region">
+    					<div class="inner">
+    						<a class="resume_title" href="/<%= resume.url %>"><%= resume.title %></a>
+    						<a class="view_live" href="/<%= resume.url %>">View Live</a>
+    					</div>
+    				</li>
+    				<% end %>
+    			</ul>
+    		<% else %>
+    		    <div class="white_region">
+    		        This user has yet created any resumes
+    		    </div>
+    		<% end %>
 		</div>
 	</div>
 <!-- right col ends -->
