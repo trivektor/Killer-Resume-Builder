@@ -3,7 +3,9 @@
 <h2 id="thoughtbox_header">Share your thought</h2>
 
 <div class="blue_region" id="thoughtbox_wrapper">
-	<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">	
+	
+	<%= render :partial => "shared/user_image", :locals => {:photo => @profile.photo} %>
+	
 	<div id="thoughtbox">
 		<div id="thoughtbox_left">
 			<div id="thoughtbox_right">
@@ -50,24 +52,23 @@
 <div class="right_col">
 	<h2>Your profile</h2>
 	<div class="blue_region" id="your_profile">
-		<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg">
-			<ul class="white_region" id="your_profile_header">
-					<li id="your_profile_name"><%= @profile.first_name %> <%= @profile.last_name %></li>
-					<li>
-					<% 
-						if @profile.job_title then
-							puts @profile.job_title
-						else %>
-							<a class="edit_profile_btn">Edit your profile</a>
-					<% end %>
-					</li>
-					<li>
-					</li>
-					<li><a class="edit_profile_btn" href="/profile/edit/1">Edit your profile</a></li>
-				</ul>
-				<div class="clearfloat"></div>
-
-		</div>
+		<%= render :partial => "shared/user_image", :locals => {:photo => @profile.photo} %>
+		<ul class="white_region" id="your_profile_header">
+			<li id="your_profile_name"><%= @profile.first_name %> <%= @profile.last_name %></li>
+			<li>
+			<% 
+				if @profile.job_title then
+					puts @profile.job_title
+				else %>
+					<a class="edit_profile_btn">Edit your profile</a>
+			<% end %>
+			</li>
+			<li>
+			</li>
+			<li><a class="edit_profile_btn" href="/profile/edit/1">Edit your profile</a></li>
+		</ul>
+	    <div class="clearfloat"></div>
+    </div>
 </div>
 <!-- right col ends -->
 

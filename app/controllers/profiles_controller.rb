@@ -50,14 +50,22 @@ class ProfilesController < ApplicationController
   
   def process_upload_photo
     
-    @uploaded_photo = DataFile.save(params[:upload])
+    uploaded_photo = DataFile.save(params[:upload])
+    
+    profile = Profile.find_by_user_id(current_user.id)
+    
+    profile.update_attributes(:photo => uploaded_photo)
+    profile.save
+    
+    session[:user_profile] = Profile.find_by_user_id(current_user.id)
     
     render :layout => "photo_upload"
     
   end
   
-  private 
-  
+  def crop_photo
+    
+  end
   
   
 end

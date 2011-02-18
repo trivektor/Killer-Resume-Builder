@@ -22,13 +22,9 @@ gem 'mysql2'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
-
 #gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
-
 gem 'rdiscount'
-
 gem 'mini_magick'
-
 gem 'carmen'
 
 # Bundle gems for the local environment. Make sure to
