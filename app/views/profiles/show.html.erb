@@ -1,7 +1,8 @@
 <% @title_for_layout = "#{@user.username}'s profile" %>
 
 <div class="blue_region" id="profile_header">
-	<img alt="" class="user_image" src="/userphoto/user_1293992994_Hector_vs_Achilles_by_GENZOMAN.jpg" />
+    
+	<%= render :partial => "shared/user_image", :locals => {:photo => @profile.photo} %>
 
 	<div class="white_region">
 		<div id="profile_header_info">
