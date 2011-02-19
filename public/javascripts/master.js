@@ -89,9 +89,10 @@ $(function(){
 	var editProfileMessage = $("#edit_profile_message");
 	
 	$("#update_profile_btn").click(function(){
-		$.post(
-			"/profiles/update",
-			{
+		$.ajax({
+			url: "/profiles/" + $("#profile_id").val(),
+			type: 'PUT',
+			data: {
 				profile : {
 					first_name:profileFirstName.val(),
 					last_name:profileLastName.val(),
@@ -105,7 +106,7 @@ $(function(){
 					hidden:(profileHidden.is(":checked") ? 1 : 0)
 				}
 			},
-			function(response) {
+			success: function(response) {
 				
 				if (response.success == 1) {
 					editProfileMessage.removeClass().addClass("result_success").text("Your profile has been updated").show();
@@ -113,7 +114,7 @@ $(function(){
 					editProfileMessage.removeClass().addClass("result_error").text("An error occurred. Please try again later").show();
 				}
 			}
-		)
+		})
 	})
 	
 	$("#change_photo_btn").click(function(){

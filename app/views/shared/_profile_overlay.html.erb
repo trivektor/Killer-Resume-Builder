@@ -62,6 +62,8 @@
 					<input id="profile_job_title" type="text" class="textbox" value="" />
 				</div>
 				<%= image_tag "resume/updateProfileBtn.png", :alt => "Update", "class" => 'account_overlay_update_btn', :id => "update_profile_btn" %>
+				<input type="hidden" id="profile_id" value="<%= @profile.id %>" />
+
 				<div class="clearfloat"></div>
 				<% end %>
 			</div>

@@ -18,8 +18,6 @@ Krb::Application.routes.draw do
   match "profiles/process_upload_photo" => "profiles#process_upload_photo"
   match "profiles/crop_photo" => "profiles#crop_photo"
   resources :profiles
-    post "/profiles/update"
-    
   
   post "/thoughts/new"
   
