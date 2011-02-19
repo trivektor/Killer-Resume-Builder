@@ -17,12 +17,13 @@
 	
 	<div id="sort_references" class="sortable">
 	  <% @resume.resume_references.each do |ref| %>
-	    <div class="ui-state-default">
-	      <a class="edit_link" href="/resumes/<%=@resume.id%>/resume_references/<%=ref.id%>/edit"></a>
-	      <a class="delete_link" href="/resumes/<%=@resume.id%>/resume_references/<%=ref.id%>/delete"></a>
+	    <div id="ref_<%= ref.id %>" class="ui-state-default">
+	      <a class="edit_link" href="/resumes/<%= @resume.id %>/resume_references/<%= ref.id %>/edit"></a>
+	      <a class="delete_link" href="/resumes/<%= @resume.id %>/resume_references/<%= ref.id %>/delete"></a>
 	      <ul class="reference_details">
 	        <li><%= ref.name %>, <%= ref.title %></li>
 	        <li><%= ref.organization %></li>
+	        
 	      </ul>
 	    </div>
 	  <% end %>

@@ -66,6 +66,7 @@ Krb::Application.routes.draw do
     resources :resume_references do
       member do
         get :delete
+        post :order
       end
     end
     
@@ -89,7 +90,7 @@ Krb::Application.routes.draw do
     # end
   
   match "/:url" => "resumes#show"  
-    
+  match "/resume_references/order" => "resume_references#order"
     
       
     

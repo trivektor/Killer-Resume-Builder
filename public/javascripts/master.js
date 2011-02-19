@@ -19,12 +19,28 @@ $(function(){
 					url: "/resume_section_orders/" + $("#resume_section_order_id").val(),
 					type: 'PUT',
 					data: order,
-					success: function() {
-						blinkUpdatedStatus();
-					}
+					success: blinkUpdatedStatus
 				})
 			}
 		});
+		
+		$("#sort_references").sortable({
+			revert: true,
+			stop: function() {
+				var resume_id = $("#ResumeId").val();
+				var order = $(this).sortable('serialize',{key:'order[]'});
+				order += '&resume_id=' + resume_id ;
+				
+				var t = $(this);
+				
+				$.ajax({
+					url: "/resume_references/order",
+					type: 'POST',
+					data: order,
+					success: blinkUpdatedStatus
+				})
+			}
+		})
 	}
 	
 	//Masked input
