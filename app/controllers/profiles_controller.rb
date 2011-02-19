@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
     @profile = Profile.find_by_user_id(@user.id)
     @resumes = Resume.where(:user_id => @user.id, :status => :active).find(:all)
     
+    @thoughts = Thought.where(:user_id => @user.id).order("created_at DESC").find(:all)
+    
     @shouts = UserThread.where(:target_id => @profile.user_id, :thread_type => :profile).order("created_at DESC").find(:all)
     
     shouter_ids = []

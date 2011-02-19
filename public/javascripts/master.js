@@ -459,7 +459,7 @@ $(function(){
 					}
 				},
 				function(response) {
-					if (response.result == 1) {
+					if (response.success == 1) {
 						alert('Your thought has been published, baby!');
 						$("#thoughtbox_message").val("Type your thought here...");
 					} else {

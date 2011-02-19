@@ -28,9 +28,9 @@
 		<!-- Recently heard starts -->
 		<h2>Recently heard</h2>
 		<div class="thought_list blue_region">
-		    <% if @user.thoughts.count > 0 %>
-			    <ul>
-    			    <% for thought in @user.thoughts %>
+		    <% if @thoughts.count > 0 %>
+			    <ul class="item_list">
+    			    <% for thought in @thoughts %>
     				<li class="white_region">
     					<div class="inner">
     						<div class="thought"><%= thought.thought %></div>
@@ -101,7 +101,7 @@
 		<h2>Resumes</h2>
 		<div class="resume_list blue_region">
 		    <% if @resumes.count > 0 %>
-			    <ul>
+			    <ul id="profile_resumes_list" class="item_list">
     			    <% for resume in @resumes %>
     				<li class="white_region">
     					<div class="inner">
