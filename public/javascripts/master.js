@@ -7,21 +7,22 @@ $(function(){
 	
 	//Init Sortable
 	if ($("div.sortable").length) {
-		$("div.sortable").sortable({
+		$("#sort_resume_sections").sortable({
 			revert: true,
 			stop: function() {
-				var order = $(this).sortable('serialize',{key:'id[]'});
-				order += '&resumeId=' + $("#ResumeId").val();
+				var order = $(this).sortable('serialize',{key:'order[]'});
+				order += '&resume_id=' + $("#ResumeId").val();
 
 				var t = $(this);
 
-				$.post(
-					"/ajax/" + $(this).attr("id"),
-					order,
-					function() {
+				$.ajax({
+					url: "/resume_section_orders/" + $("#resume_section_order_id").val(),
+					type: 'PUT',
+					data: order,
+					success: function() {
 						blinkUpdatedStatus();
 					}
-				)
+				})
 			}
 		});
 	}

@@ -20,6 +20,8 @@ class AjaxController < ApplicationController
     resume_section_order = ResumeSectionOrder.find_by_resume_id(resume_id)
     resume_section_order.update_attributes(:orders => section_orders.join("/"))
     
+    render :json => {:success => 1}
+    
   end
   
 end

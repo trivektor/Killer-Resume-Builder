@@ -1,3 +1,5 @@
+<% resume_skills = @resume.resume_skill.skills %>
+
 <div class="section_wrapper">
 	
 	<div class="header_tag orange_tab_left">
@@ -9,6 +11,6 @@
 	</div>
 	
 	<div class="section_details_right">
-		<%= RDiscount.new(@resume.resume_skill.skills).to_html.html_safe %>
+		<%= !resume_skills.nil? ? RDiscount.new(resume_skills).to_html.html_safe : '' %>
 	</div>
 </div>

@@ -15,8 +15,8 @@
 
 <div id="resume_controls">
   <a class="trigger_overlay blue_btn" rel="order_sections" effect="bounce">Order Sections</a>
-  <a href="/resumes/delete/<%= @resume.id %>" class="red_btn delete">Delete resume</a>
-  <a href="/resumes/<%= @resume.url %>" class="blue_btn" target="_blank">View live</a>
+  <a href="/resumes/<%= @resume.id %>/delete" class="red_btn delete">Delete resume</a>
+  <a href="/<%= @resume.url %>" class="blue_btn" target="_blank">View live</a>
   <a href="/resumes/select_theme/<% @resume.id %>" class="green_btn">Theme</a>	
   <a class="trigger_overlay blue_btn" rel="resume_settings" effect="shake">Settings</a>
 </div>
@@ -55,6 +55,7 @@ sections = {
     <% end %>
   </div>
   <div style="display: none;" class="updated">Your resume sections have been re-ordered. Please refresh your browser.</div>
+  <input type="hidden" id="resume_section_order_id" value="<%= @resume.resume_section_order.id %>">
 </div>
 
 <input type="image" alt="Update Resume" src="/images/resume/updateResume.png" />

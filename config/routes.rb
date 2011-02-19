@@ -79,6 +79,8 @@ Krb::Application.routes.draw do
   
   resources :resume_keywords
   
+  resources :resume_section_orders
+  
   match "/ajax/sort_resume_sections" => "ajax#sort_resume_sections" # <--- dude, this is so PHP. ha ha
     
     # scope :path => "/resume_educations", :controller => :resume_educations do

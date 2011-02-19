@@ -95,7 +95,8 @@ class ResumesController < ApplicationController
   end
   
   def delete
-    Resume.delete(params[:id])
+    resume = Resume.find(params[:id])
+    resume.destroy
     redirect_to dashboard_path
   end
   
