@@ -3,11 +3,17 @@
 	<h2>Keywords</h2>
 	<p>Enter your desire keywords. These keywords will be used as meta keywords for your resume.</p>
 	<div id="keywordsMessage">
-		<span id="keywordsLeft">18 keywords left.</span>
+	    <% keywords_left = 20 - @resume.resume_keywords.count %>
+		<span id="keywordsLeft"><%= keywords_left == 20 ? "You have 20 keywords left. Choose wisely." : "#{keywords_left} keywords left" %></span>
 	</div>
 	<div id="keywordsListWrapper">
 		<div id="keywordsList">
-			
+			<% for keyword in @resume.resume_keywords %>
+			    <div class="keyword_wrapper">
+                	<div class="keyword"><%= keyword.keywords %></div>
+                	<div rel="<%= keyword.id %>" class="keyword_remove">x</div>
+                </div>
+			<% end %>
 		</div>
 		<input type="text" id="keywordsInput" />
 		<div class="clearfloat"></div>

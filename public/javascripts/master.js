@@ -234,10 +234,11 @@ $(function(){
 	
 	//Update resume settings
 	$("#update_resume_settings").click(function(){
-		$.post(
-			"/resume_settings/update",
-			{
-				resume_id:$("#ResumeId").val(),
+		$.ajax({
+			url: "/resume_settings/" + $("#resume_settings_id").val(),
+			type: 'PUT',
+			data: {
+				resume_id: $("#ResumeId").val(),
 				resume_setting : {
 					status:$("input[name='resume_setting[status]']:checked").val(),
 					hide_personal_info:$("#ResumeSettingHidePersonalInfo").is(":checked") ? 1 : 0,
@@ -246,10 +247,10 @@ $(function(){
 					show_last_updated:$("#ResumeSettingShowLastUpdated").is(":checked") ? 1 : 0
 				}
 			},
-			function(response) {
+			success: function(response) {
 				blinkUpdatedStatus();
 			}
-		)
+		})
 	})
 	
 	//Theme selector
@@ -381,30 +382,41 @@ $(function(){
 			var t = $(this);
 			
 			$.post(
-				"/ajax/update_keywords_list",
-				{resume_id:$("#ResumeId").val(), keywords:$(this).val()},
+				"/resume_keywords",
+				{
+					resume_id: $("#ResumeId").val(), 
+					resume_keyword: $(this).val()
+				},
 				function(response){
 					t.val("");
-					var ret = $.parseJSON(response);
-					keywordsList.append('<div class="keyword_wrapper"><div class="keyword">' + ret.keyword + '</div><div class="keyword_remove" rel="' + ret.id + '">x</div></div>');
-					update_keywords_left();
+					if (response.success == 1) {
+						keywordsList.append('<div class="keyword_wrapper"><div class="keyword">' + response.keyword + '</div><div class="keyword_remove" rel="' + response.id + '">x</div></div>');
+						update_keywords_left();
+					}
 				}
 			)
 		}
 		
 	});
 	
-	//Remove keywords
+	//Remove keywords	
 	$("div.keyword_remove").live('click', function(){
 		var t = $(this)
-		$.post(
-			"/ajax/remove_keywords",
-			{id:t.attr("rel"), resume_id:$("#ResumeId").val(), keywords:$(this).siblings("keyword").text()},
-			function(response){
+		var url = "/resume_keywords/" + t.attr("rel")
+		$.ajax({
+			url: url,
+			type: 'DELETE',
+			asycn: true,
+			data: {
+				id: t.attr("rel"), 
+				resume_id: $("#ResumeId").val(), 
+				resume_keyword: $(this).siblings("keyword").text()
+			},
+			success: function(response){
 				t.parent().remove();
 				update_keywords_left();
 			}
-		)
+		})
 	})
 	
 	keywordsListWrapper.click(function(){keywordsInput.focus()});

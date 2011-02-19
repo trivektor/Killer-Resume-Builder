@@ -40,6 +40,10 @@ Krb::Application.routes.draw do
   
   resources :resumes do #, :only => [:new, :create, :update, :edit, :destroy] do
     
+    member do
+      get :delete
+    end
+    
     resources :resume_educations do
       member do
         get :delete
@@ -74,6 +78,8 @@ Krb::Application.routes.draw do
       post :update
     end
   end
+  
+  resources :resume_keywords
   
   match "/ajax/sort_resume_sections" => "ajax#sort_resume_sections" # <--- dude, this is so PHP. ha ha
     

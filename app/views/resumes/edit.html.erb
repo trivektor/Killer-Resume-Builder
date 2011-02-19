@@ -15,9 +15,9 @@
 
 <div id="resume_controls">
   <a class="trigger_overlay blue_btn" rel="order_sections" effect="bounce">Order Sections</a>
-  <a href="/resumes/delete/1" class="red_btn delete">Delete resume</a>
-  <a href="/resumes/view/trivektor" class="blue_btn" target="_blank">View live</a>	
-  <a href="/resumes/select_theme/1" class="green_btn">Theme</a>	
+  <a href="/resumes/delete/<%= @resume.id %>" class="red_btn delete">Delete resume</a>
+  <a href="/resumes/<%= @resume.url %>" class="blue_btn" target="_blank">View live</a>
+  <a href="/resumes/select_theme/<% @resume.id %>" class="green_btn">Theme</a>	
   <a class="trigger_overlay blue_btn" rel="resume_settings" effect="shake">Settings</a>
 </div>
 
@@ -65,6 +65,7 @@ sections = {
 <div style="display:none" id="resume_settings">
 	<h2>Resume Settings</h2>
 	<%= image_tag "resume/closeLoginForm.png", :class => "close_overlay" %>
+	<input type="hidden" id="resume_settings_id" value="<%= @resume.resume_setting.id %>" />
 	<ul>
 		<li>
 			<input type="radio" value="active" id="ResumeSettingStatusActive" name="resume_setting[status]" <%= @settings.status == "active" ? 'checked=\"checked\"' : "" %> />

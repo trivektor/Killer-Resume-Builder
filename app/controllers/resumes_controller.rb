@@ -21,7 +21,7 @@ class ResumesController < ApplicationController
       
       @resume.resume_field_work = ResumeFieldWork.create
       
-      @resume.resume_keyword = ResumeKeyword.create
+      #@resume.resume_keyword = ResumeKeyword.create
       
       @resume.resume_section_order = ResumeSectionOrder.create(:resume_id => @resume.id, 
       :orders => "personal_information/education/skills/work_experience/references/field_works")

@@ -1,7 +1,6 @@
 class Resume < ActiveRecord::Base
   
   has_one :resume_personal_information, :dependent => :destroy
-  has_one :resume_keyword, :dependent => :destroy
   has_one :resume_section_order, :dependent => :destroy
   has_one :resume_field_work, :dependent => :destroy
   has_one :resume_skill, :dependent => :destroy
@@ -9,6 +8,7 @@ class Resume < ActiveRecord::Base
   has_one :resume_setting, :dependent => :destroy
   
   has_many :resume_educations, :dependent => :destroy
+  has_many :resume_keywords, :dependent => :destroy
   has_many :resume_work_experiences, :dependent => :destroy
   has_many :resume_references, :dependent => :destroy
   has_many :resume_section_names, :dependent => :destroy
