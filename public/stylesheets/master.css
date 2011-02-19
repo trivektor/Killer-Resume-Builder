@@ -180,7 +180,7 @@ background:#F9F9DC; text-transform:uppercase; line-height:17px;}
 
 .thought_list .thought {font-size:14px;}
 
-.user_image {background:#bfbfbf; border:5px solid #fff; -moz-box-shadow:0 1px 3px -1px #000; -webkit-box-shadow:0 1px 3px #222;}
+.user_image {width:56px; height:56px; background:#bfbfbf; border:5px solid #fff; -moz-box-shadow:0 1px 3px -1px #000; -webkit-box-shadow:0 1px 3px #222;}
 
 .shout_message {font-size:14px; margin-bottom:5px;}
 
@@ -263,7 +263,7 @@ li.omega .feature_details p {width:290px;}
 .account_overlay_wrapper {display:none;background:#ececec;width:800px; position:absolute; top:20px; left:50%; margin-left:-400px; -moz-box-shadow:0 6px 46px #444; -webkit-box-shadow:0 6px 46px #444;
 -moz-border-radius:4px; -webkit-border-radius:4px; z-index:8004}
 .account_overlay_left {padding:25px; width:198px; float:left; -moz-border-radius:4px 0 0 4px;}
-.account_overlay_left .user_image {margin:0 auto 10px; max-width:120px; display:block; -moz-box-shadow:0 2px 6px #777; -webkit-box-shadow:0 2px 6px #777;}
+.account_overlay_left .user_image {margin:0 auto 10px; width:120px; height:120px; display:block; -moz-box-shadow:0 2px 6px #777; -webkit-box-shadow:0 2px 6px #777;}
 #change_photo_btn {display:block; margin:0 auto; cursor:pointer;}
 .account_overlay_right {background:#fff; padding:8px; width:534px; float:left; border-left:1px solid #dfdfdf; -moz-border-radius:0 4px 4px 0;}
 .account_overlay_right .inner {padding:18px 40px; background:#e4e9d0}
@@ -331,9 +331,9 @@ li.omega .feature_details p {width:290px;}
 #thoughtbox_right {background:url(../images/resume/thoughtboxright.png) no-repeat top right; height:67px;}
 #share_thought {position:absolute; top:17px; right:20px; cursor:pointer;}
 #thoughts_chars_count_wrapper {margin-top:4px; margin-left:86px; font-size:10px;}
-#thoughtbox_wrapper .user_image {width:56px; float:left; margin-right:10px;}
+#thoughtbox_wrapper .user_image {float:left; margin-right:10px;}
 #your_profile_header {float:left; width:222px;}
-#your_profile .user_image {width:60px;float:left; margin-right:10px}
+#your_profile .user_image {float:left; margin-right:10px}
 #your_profile_name {margin-bottom:6px !important; width:130px; background:url(../images/resume/profileNameTag.png) no-repeat; color:#fff; padding:4px 0 6px; text-align:center;}
 #your_profile_name a {color:#fff !important;}
 #your_profile_header li {margin:2px 0; font-size:11px}
@@ -487,7 +487,7 @@ font-size:13px; -moz-border-radius:3px; -webkit-border-radius:3px}
 
 /* Profile */
 #profile_header {position:relative;}
-#profile_header .user_image {float:left; margin-right:12px; width:58px;}
+#profile_header .user_image {float:left; margin-right:12px}
 #profile_header_info {float:left;}
 #profile_name {line-height:28px;}
 #profile_header {margin-bottom:30px;}
@@ -497,8 +497,8 @@ font-size:13px; -moz-border-radius:3px; -webkit-border-radius:3px}
 #shout_options {margin-top:10px;}
 #send_shout {display:inline; float:right}
 #shoutbox_wrapper {margin-bottom:10px;}
-#shouts_list .user_image {float:left; width:50px; margin-right:10px;}
-#shouts_list .white_region {float:left; width:521px;}
+#shouts_list .user_image {float:left; margin-right:10px;}
+#shouts_list .white_region {float:left; width:515px;}
 #shouts_list .options {width:100%; float:none; margin-top:5px; overflow:hidden;}
 #edit_profile {position:absolute;top:20px;right:20px;}
 #profile_details_input select {width:190px;}
