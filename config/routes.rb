@@ -69,6 +69,12 @@ Krb::Application.routes.draw do
     
   end
   
+  resources :resume_settings do
+    member do
+      post :update
+    end
+  end
+  
   match "/ajax/sort_resume_sections" => "ajax#sort_resume_sections" # <--- dude, this is so PHP. ha ha
     
     # scope :path => "/resume_educations", :controller => :resume_educations do

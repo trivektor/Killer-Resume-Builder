@@ -79,6 +79,8 @@ class ResumesController < ApplicationController
     
     @section_order = @resume.resume_section_order.orders.split("/")
     
+    @settings = @resume.resume_setting
+    
   end
   
   def update
@@ -95,6 +97,10 @@ class ResumesController < ApplicationController
   def delete
     Resume.delete(params[:id])
     redirect_to dashboard_path
+  end
+  
+  def update_settings
+    
   end
   
 end

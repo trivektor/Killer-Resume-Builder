@@ -226,7 +226,7 @@ $(function(){
 	
 	$(".delete").click(function(event){
 		event.preventDefault();
-		//console.log("abc");
+
 		if (confirm('Are you sure you want to delete this resume? This action cannot be undone')) {
 		 			window.location.href = $(this).attr("href");
 		}
@@ -235,14 +235,16 @@ $(function(){
 	//Update resume settings
 	$("#update_resume_settings").click(function(){
 		$.post(
-			"/ajax/update_resume_settings",
+			"/resume_settings/update",
 			{
 				resume_id:$("#ResumeId").val(),
-				status:$("input[name='data[ResumeSetting][status]']:checked").val(),
-				hide_personal_info:$("#ResumeSettingHidePersonalInfo").is(":checked") ? 1 : 0,
-				alert_copy:$("#ResumeSettingAlertCopy").is(":checked") ? 1 : 0,
-				email_notification:$("#ResumeSettingEmailNotification").is(":checked") ? 1 : 0,
-				show_last_updated:$("#ResumeSettingShowLastUpdated").is(":checked") ? 1 : 0
+				resume_setting : {
+					status:$("input[name='resume_setting[status]']:checked").val(),
+					hide_personal_info:$("#ResumeSettingHidePersonalInfo").is(":checked") ? 1 : 0,
+					alert_copy:$("#ResumeSettingAlertCopy").is(":checked") ? 1 : 0,
+					email_notification:$("#ResumeSettingEmailNotification").is(":checked") ? 1 : 0,
+					show_last_updated:$("#ResumeSettingShowLastUpdated").is(":checked") ? 1 : 0
+				}
 			},
 			function(response) {
 				blinkUpdatedStatus();
