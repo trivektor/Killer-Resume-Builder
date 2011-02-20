@@ -76,6 +76,11 @@ class ResumesController < ApplicationController
     	    @hidden_fields << hfield.hidden_field
   	    end
   	  end
+  	  
+  	  user_agent = UserAgent.parse(request.user_agent)
+  	  
+  	  VisitorInfo.create(:resume_id => @resume.id, :browser => user_agent[2].product, :version => user_agent.version,
+  	  :platform => user_agent[0].comment.join(" "), :ip_address => request.remote_addr, :domain_name => request.host)
       
       render :layout => "themes/" + @theme.slug
     else
@@ -127,9 +132,5 @@ class ResumesController < ApplicationController
     resume.destroy
     redirect_to dashboard_path
   end
-  
-  def update_settings
-    
-  end
-  
+ 
 end
