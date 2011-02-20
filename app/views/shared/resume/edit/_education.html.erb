@@ -15,7 +15,7 @@
 	
 	<div id="sort_education" class="sortable">
 		<% @resume.resume_educations.each do |edu| %>
-		  <div class="ui-state-default">
+		  <div id="edu_<%= edu.id %>" class="ui-state-default">
 		    <h3 class="institution_name"><%= edu.institution %></h3>
 		    <p class="degree">
 		      <%= edu.degree %>

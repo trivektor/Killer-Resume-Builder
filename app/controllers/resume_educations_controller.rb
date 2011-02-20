@@ -38,6 +38,22 @@ class ResumeEducationsController < ApplicationController
     redirect_to edit_resume_path(@resume)
   end
   
+  def order
+    orders = params[:order]
+    
+    weight = orders.count
+    
+    i = 0
+    
+    for id in orders
+      edu = ResumeEducation.find(id)
+      edu.update_attributes(:weight => weight)
+      weight -= 1
+    end
+    
+    render :json => {:success => 1}
+  end
+  
   private
   
   def manipulatable?

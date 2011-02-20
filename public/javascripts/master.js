@@ -40,7 +40,27 @@ $(function(){
 					success: blinkUpdatedStatus
 				})
 			}
-		})
+		});
+		
+		$("#sort_education").sortable({
+			revert: true,
+			stop: function() {
+				var resume_id = $("#ResumeId").val();
+				var order = $(this).sortable('serialize',{key:'order[]'});
+				order += '&resume_id=' + resume_id ;
+				
+				var t = $(this);
+				
+				$.ajax({
+					url: "/resume_educations/order",
+					type: 'POST',
+					data: order,
+					success: blinkUpdatedStatus
+				})
+			}
+		});
+		
+		
 	}
 	
 	//Masked input
