@@ -68,6 +68,14 @@ class ResumesController < ApplicationController
     	end
     	
     	@field_works = @resume.resume_field_work.field_works
+    	
+    	@hidden_fields = []
+    	
+    	if @resume.resume_hidden_fields.count > 0
+    	  for hfield in @resume.resume_hidden_fields
+    	    @hidden_fields << hfield.hidden_field
+  	    end
+  	  end
       
       render :layout => "themes/" + @theme.slug
     else
@@ -90,6 +98,16 @@ class ResumesController < ApplicationController
     @section_order = @resume.resume_section_order.orders.split("/")
     
     @settings = @resume.resume_setting
+    
+    @field_works = @resume.resume_field_work.field_works
+  	
+  	@hidden_fields = []
+  	
+  	if @resume.resume_hidden_fields.count > 0
+  	  for hfield in @resume.resume_hidden_fields
+  	    @hidden_fields << hfield.hidden_field
+	    end
+	  end
     
   end
   

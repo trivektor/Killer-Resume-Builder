@@ -8,9 +8,16 @@
 		<div class="add">
 		  <%= link_to "Add a new entry", new_resume_resume_reference_path(@resume) %>
 		</div>
-		<a class="disable_section" rel="field_works">Disable this section</a>
-		<a class="enable_section" rel="field_works">Enable this section</a>
-		<input type="hidden" class="section_mode" value="" />
+		
+		<% section_mode = "active" %>
+		
+		<% if @hidden_fields.include?("references") %>
+		    <a class="enable_section" rel="references">Enable this section</a>
+		    <% section_mode = "disabled" %>
+		<% else %>
+		    <a class="disable_section" rel="references">Disable this section</a>
+		<% end %>
+		<input type="hidden" class="section_mode" value="<%= section_mode %>" />
 	</div>
 	
 	<div class="clearfloat"></div>

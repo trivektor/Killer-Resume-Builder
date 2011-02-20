@@ -3,9 +3,16 @@
 	
 	<div class="section_options">
 		<div class="options_label">Options</div>
-		<a class="disable_section" rel="field_works">Disable this section</a>
-		<a class="enable_section" rel="field_works">Enable this section</a>
-		<input type="hidden" class="section_mode" value="" />
+		
+		<% section_mode = "active" %>
+		
+		<% if @hidden_fields.include?("field_works") %>
+		    <a class="enable_section" rel="field_works">Enable this section</a>
+		    <%= section_mode = "disabled" %>
+		<% else %>
+		    <a class="disable_section" rel="field_works">Disable this section</a>
+		<% end %>
+		<input type="hidden" class="section_mode" value="<%= section_mode %>" />
 	</div>
 	
 	<%= render :partial => "shared/section_name_editor", :locals => {:section => "field_works"} %>

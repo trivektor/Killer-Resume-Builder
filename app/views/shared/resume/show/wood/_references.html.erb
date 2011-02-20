@@ -16,7 +16,7 @@
 						<div class="reference_name"><%= r.name %></div>
 						<p><%= r.title %>, <%= r.organization %></p>
 						<% if r.email %>
-						    <a href="mailto:<%= r.email %>"><%= r.email %></a>
+						    <%= obfuscate_email r.email %>
 						<% end %>
 					</li>
 				<% end %>

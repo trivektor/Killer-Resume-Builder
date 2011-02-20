@@ -10,8 +10,9 @@
 				<div class="paper">
 					<div class="left_col">
 						
-						<%= image_tag "stock.jpg", :class => "user_image" %>
+						<%= image_tag "resume/male.png", :class => "user_image" %>
 
+                        <div id="name"><%= @resume.resume_personal_information.full_name %></div>
 					
 						<% if @resume.resume_setting.hide_personal_info != 0 %>
 							<% personalInfo = @resume.resume_personal_information %>
