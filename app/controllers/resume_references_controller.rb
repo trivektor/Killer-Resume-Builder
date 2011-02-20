@@ -52,7 +52,6 @@ class ResumeReferencesController < ApplicationController
       weight -= 1
     end
     
-    render :json => {:success => 1}
   end
   
   private

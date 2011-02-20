@@ -7,7 +7,7 @@ class Resume < ActiveRecord::Base
   has_one :resume_theme, :dependent => :delete
   has_one :resume_setting, :dependent => :delete
   
-  has_many :resume_educations, :dependent => :delete_all
+  has_many :resume_educations, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_keywords, :dependent => :delete_all
   has_many :resume_work_experiences, :dependent => :delete_all
   has_many :resume_references, :dependent => :delete_all, :order => "weight DESC"
