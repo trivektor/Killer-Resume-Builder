@@ -59,6 +59,16 @@ class ResumesController < ApplicationController
       
       @section_order = @resume.resume_section_order.orders.split("/")
       
+      @keywords = []
+      
+      if @resume.resume_keywords.count > 0
+    	   for keyword in @resume.resume_keywords
+    	       @keywords << keyword.keywords
+    	   end
+    	end
+    	
+    	@field_works = @resume.resume_field_work.field_works
+      
       render :layout => "themes/" + @theme.slug
     else
       # TODO: add error handling

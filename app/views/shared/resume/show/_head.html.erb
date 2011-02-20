@@ -4,6 +4,12 @@
 	
 	<title><%= @resume.title %> - Resume Builder</title>
 	
+	<meta content="<%= @resume.title %>" name="title" />
+	
+	<% if @keywords.count > 0 %>
+	    <meta content="<%= @keywords.join(", ") %>" name="keywords" />    
+	<% end %>
+	
 	<%= stylesheet_link_tag [
     	"resume.css",
     	"themes/#{@theme.slug}"
