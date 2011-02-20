@@ -92,7 +92,7 @@ Krb::Application.routes.draw do
   match "/:url" => "resumes#show"  
   match "/resume_references/order" => "resume_references#order"
   match "/resume_educations/order" => "resume_educations#order"
-    
+  match "/resume_work_experiences/order" => "resume_work_experiences#order"
       
     
   #end

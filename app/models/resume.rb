@@ -9,7 +9,7 @@ class Resume < ActiveRecord::Base
   
   has_many :resume_educations, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_keywords, :dependent => :delete_all
-  has_many :resume_work_experiences, :dependent => :delete_all
+  has_many :resume_work_experiences, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_references, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_section_names, :dependent => :delete_all
   has_many :resume_hidden_fields, :dependent => :delete_all

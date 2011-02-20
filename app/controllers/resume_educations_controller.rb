@@ -46,7 +46,7 @@ class ResumeEducationsController < ApplicationController
     i = 0
     
     for id in orders
-      edu = ResumeEducation.find(id)
+      edu = ResumeEducation.where(:resume_id => params[:resume_id], :id => id).first
       edu.update_attributes(:weight => weight)
       weight -= 1
     end

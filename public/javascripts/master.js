@@ -60,6 +60,24 @@ $(function(){
 			}
 		});
 		
+		$("#sort_work_experience").sortable({
+			revert: true,
+			stop: function() {
+				var resume_id = $("#ResumeId").val();
+				var order = $(this).sortable('serialize',{key:'order[]'});
+				order += '&resume_id=' + resume_id ;
+				
+				var t = $(this);
+				
+				$.ajax({
+					url: "/resume_work_experiences/order",
+					type: 'POST',
+					data: order,
+					success: blinkUpdatedStatus
+				})
+			}
+		})
+		
 		
 	}
 	

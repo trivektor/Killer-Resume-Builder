@@ -47,7 +47,7 @@ class ResumeReferencesController < ApplicationController
     i = 0
     
     for id in orders
-      ref = ResumeReference.find(id)
+      ref = ResumeReference.where(:resume_id => params[:resume_id], :id => id).first
       ref.update_attributes(:weight => weight)
       weight -= 1
     end
