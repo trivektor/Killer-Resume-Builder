@@ -92,6 +92,10 @@ sections = {
 			<input type="checkbox" id="ResumeSettingShowLastUpdated" name="resume_setting[show_last_updated]" <%= @settings.show_last_updated ? 'checked="checked"' : '' %> /> 
 			<span>show last updated date</span>
 		</li>
+		<li>
+		    <input type="checkbox" id="ResumeSettingAllowSharing" name="resume_setting[allow_sharing]" <%= @settings.allow_sharing ? 'checked="checked"' : ''  %> />
+		    <span>allow sharing on social networks</span>
+		</li>
 	</ul>
 	<%= image_tag "resume/updateSettingsBtn.png", :id => "update_resume_settings" %>
 </div>

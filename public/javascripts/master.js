@@ -217,7 +217,8 @@ $(function(){
 					hide_personal_info:$("#ResumeSettingHidePersonalInfo").is(":checked") ? 1 : 0,
 					alert_copy:$("#ResumeSettingAlertCopy").is(":checked") ? 1 : 0,
 					email_notification:$("#ResumeSettingEmailNotification").is(":checked") ? 1 : 0,
-					show_last_updated:$("#ResumeSettingShowLastUpdated").is(":checked") ? 1 : 0
+					show_last_updated:$("#ResumeSettingShowLastUpdated").is(":checked") ? 1 : 0,
+					allow_sharing:$("#ResumeSettingAllowSharing").is(":checked") ? 1: 0
 				}
 			},
 			success: function(response) {
