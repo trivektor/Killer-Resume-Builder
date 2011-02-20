@@ -23,6 +23,8 @@
 
 <!-- left col starts -->
 <div class="left_col">
+    
+    <!-- Your Resumes starts -->
 	<h2>Your resumes</h2>
 	<div id="your_resumes" class="blue_region">
 		<ul class="item_list" id="resumes_list">
@@ -45,6 +47,47 @@
 		</ul>
 		<%= link_to (image_tag "resume/createAResume.png", :alt => "Create Resume"), new_resume_path %>
 	</div>
+	<!-- Your Resumes ends -->
+	
+	<!-- Resume Statistics starts -->
+	<h2>Your most viewed resumes</h2>
+	<div id="resume_statistics" class="blue_region">
+	    <ul class="item_list" id="popular_resumes">
+	        <% @popular_resumes.each do |resume| %>
+	            <li class="white_region">
+	                <div class="left">
+	                    <%= link_to resume.title, "/resumes/#{resume.url}" %>
+	                </div>
+	                <div class="options">
+	                    <a class="analytic"></a>
+	                    <span><%= resume.views %></span>
+	                </div>
+	            </li>
+	        <% end %>
+	    </ul>
+	</div>
+	<!-- Resume Statistics ends  -->
+	
+	<!-- Who's viewed your resumes starts -->
+	<h2>Who's viewed your resumes</h2>
+	<div id="resume_viewers" class="blue_region">
+	    <ul class="item_list" id="resume_viewers">
+	        <% @resume_viewers.each do |user| %>
+	            <li>
+	                <%= render :partial => "shared/user_image", :locals => {:photo => user.profile.photo} %>
+	                <div class="white_region">
+	                    <div class="left">
+	                        <%= link_to user.username, "" %>
+	                        <p class="timestamp"><% %></p>
+	                    </div>
+	                </div>
+	                <div class="clearfloat"></div>
+	            </li>
+	        <% end %>
+	    </ul>
+	</div>
+	<!-- Who's viewed your resumes ends -->
+	
 </div>
 <!-- left col ends -->
 
@@ -58,7 +101,7 @@
 			<li>
 			<% 
 				if @profile.job_title then
-					puts @profile.job_title
+					@profile.job_title
 				else %>
 					<a class="edit_profile_btn">Edit your profile</a>
 			<% end %>

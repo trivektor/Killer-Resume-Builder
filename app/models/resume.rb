@@ -13,6 +13,7 @@ class Resume < ActiveRecord::Base
   has_many :resume_references, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_section_names, :dependent => :delete_all
   has_many :resume_hidden_fields, :dependent => :delete_all
+  has_many :resume_viewers, :dependent => :delete_all, :order => "created_at DESC"
   
   belongs_to :user
   

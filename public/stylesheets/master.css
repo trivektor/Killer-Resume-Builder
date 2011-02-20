@@ -343,6 +343,8 @@ li.omega .feature_details p {width:290px;}
 #from_our_blog h3 {margin-bottom:10px;}
 #from_our_blog p {line-height:19px;}
 #resume_tips p {line-height:19px;}
+#resume_viewers .user_image {float:left; margin-right:10px;}
+#resume_viewers .white_region {float:left;}
 
 /* Resume settings */
 #resume_settings {background:#fff; width:350px; padding:15px; -moz-border-radius:5px; -webkit-border-radius:5px; position:fixed; left:50%; top:200px; 

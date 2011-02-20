@@ -1,1 +1,1 @@
-<%= image_tag "uploads/#{photo}", :class => :user_image %>
+<%= photo == "male.png" || photo == "female.png" ? image_tag("resume/#{photo}", :class => "user_image") : image_tag("uploads/#{photo}", :class => :user_image) %>

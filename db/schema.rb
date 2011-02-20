@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110220180539) do
+ActiveRecord::Schema.define(:version => 20110220192743) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(:version => 20110220180539) do
     t.integer  "job_industry_id"
     t.string   "job_title"
     t.string   "website"
-    t.string   "gender"
+    t.string   "gender",          :default => "male.png"
     t.text     "looking_for"
     t.boolean  "hidden"
     t.string   "photo",           :default => ""
@@ -229,6 +229,13 @@ ActiveRecord::Schema.define(:version => 20110220180539) do
   create_table "resume_themes", :force => true do |t|
     t.integer  "resume_id"
     t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_viewers", :force => true do |t|
+    t.integer  "resume_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

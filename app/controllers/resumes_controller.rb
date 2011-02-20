@@ -83,6 +83,8 @@ class ResumesController < ApplicationController
   	  :platform => user_agent[0].comment.join(" "), :ip_address => request.remote_addr, :domain_name => request.host)
   	  
   	  @resume.update_attributes(:views => @resume.views + 1)
+  	  
+  	  ResumeViewer.create(:resume_id => @resume.id, :user_id => current_user.id)
       
       render :layout => "themes/" + @theme.slug
     else
