@@ -110,6 +110,7 @@
 			</ul>
 		</div> -->
 
+        <% if @blogs.count > 0 %>
 		<h2>From Our Blog</h2>
 
 		<div class="blue_region" id="blog_post_list">
@@ -117,6 +118,7 @@
 		    <%= render :partial => "shared/blog/post", :locals => {:post => blog} %>
 		    <% end %>
 		</div>
+		<% end %>
 
 		<div class="clearfloat"></div>
 </div>

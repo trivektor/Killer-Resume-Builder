@@ -1,4 +1,4 @@
-class CreateTableVisitorInfos < ActiveRecord::Migration
+class CreateVisitorInfos < ActiveRecord::Migration
   def self.up
     create_table :visitor_infos do |t|
       t.integer :resume_id

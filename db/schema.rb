@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110220160801) do
+ActiveRecord::Schema.define(:version => 20110220170117) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -100,15 +100,11 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
     t.string   "gender"
     t.text     "looking_for"
     t.boolean  "hidden"
-    t.string   "photo",              :default => ""
+    t.string   "photo",           :default => ""
     t.string   "status"
     t.boolean  "completeness"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   create_table "resume_educations", :force => true do |t|
@@ -121,7 +117,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
     t.string   "gpa"
     t.string   "location"
     t.integer  "weight"
-    t.string   "status",         :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,7 +125,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
   create_table "resume_field_works", :force => true do |t|
     t.integer  "resume_id"
     t.text     "field_works"
-    t.string   "status",      :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -144,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
   create_table "resume_keywords", :force => true do |t|
     t.integer  "resume_id"
     t.text     "keywords"
-    t.string   "status",     :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -165,7 +161,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
     t.string   "flickr"
     t.string   "linked_in"
     t.text     "bio"
-    t.string   "status",       :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone_number"
@@ -189,7 +185,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
     t.string   "website"
     t.text     "details"
     t.integer  "weight"
-    t.string   "status",       :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -224,7 +220,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
   create_table "resume_skills", :force => true do |t|
     t.integer  "resume_id"
     t.text     "skills"
-    t.string   "status",     :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -244,7 +240,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
     t.string   "title"
     t.text     "details"
     t.integer  "weight"
-    t.string   "status",            :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -253,7 +249,7 @@ ActiveRecord::Schema.define(:version => 20110220160801) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "url"
-    t.string   "status",     :default => "active"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

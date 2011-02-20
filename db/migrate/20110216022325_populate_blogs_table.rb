@@ -19,6 +19,7 @@ class PopulateBlogsTable < ActiveRecord::Migration
       Since I was a new entrepreneur, I knew needed a lot of advice.  As I reached out to successful investors and entrepreneurs, I made each of them signed my nifty NDA.  Some wouldn't, so I just asked them for general advice.
       ",
       :author => "Jason Freedman",
+      :author_slug => "jason-freedman",
       :status => :active
     )
     blog1.blog_tags.create(:tag => "startup")
@@ -40,6 +41,7 @@ class PopulateBlogsTable < ActiveRecord::Migration
       The Zune line, excellent as it was, is a relic. Future Windows-based PMPs will use Windows Phone 7, not Zune technology. Microsoft may have spent a lot on the brand, but they never went anywhere with it. It’s time to move on.
       ",
       :author => "John Brownlee",
+      :author_slug => "john-brownlee",
       :status => :active
     )
     blog2.blog_tags.create(:tag => "microsoft")
