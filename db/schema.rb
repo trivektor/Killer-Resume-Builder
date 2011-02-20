@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110220170117) do
+ActiveRecord::Schema.define(:version => 20110220173058) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(:version => 20110220170117) do
     t.boolean  "email_notification",     :default => true
     t.boolean  "display_personal_photo", :default => true
     t.boolean  "show_last_updated",      :default => true
+    t.boolean  "allow_sharing",          :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
