@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110220192743) do
+ActiveRecord::Schema.define(:version => 20110222012631) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -97,12 +97,13 @@ ActiveRecord::Schema.define(:version => 20110220192743) do
     t.integer  "job_industry_id"
     t.string   "job_title"
     t.string   "website"
-    t.string   "gender",          :default => "male.png"
+    t.string   "gender",                    :default => "male"
     t.text     "looking_for"
-    t.boolean  "hidden"
-    t.string   "photo",           :default => ""
-    t.string   "status"
-    t.boolean  "completeness"
+    t.integer  "hidden",                    :default => 0
+    t.string   "photo",                     :default => "male.png"
+    t.string   "status",                    :default => "active"
+    t.boolean  "completeness",              :default => false
+    t.boolean  "hide_profile_notification", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
