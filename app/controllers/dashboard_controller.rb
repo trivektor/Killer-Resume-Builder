@@ -11,6 +11,7 @@ class DashboardController < ApplicationController
     
     @resume_viewers = get_resume_viewers
     
+    @missing = Profile.missing_fields(current_user.profile)
   end
   
   private 

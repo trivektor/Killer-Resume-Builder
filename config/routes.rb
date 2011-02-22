@@ -17,6 +17,7 @@ Krb::Application.routes.draw do
   match "profiles/upload_photo" => "profiles#upload_photo"
   match "profiles/process_upload_photo" => "profiles#process_upload_photo"
   match "profiles/crop_photo" => "profiles#crop_photo"
+  match "profiles/hide_profile_notice" => "profiles#hide_profile_notice"
   resources :profiles
   
   post "/thoughts/new"

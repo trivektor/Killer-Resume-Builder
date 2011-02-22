@@ -10,7 +10,14 @@
 				<%= !@profile.first_name.nil? && !@profile.last_name.nil? && 
 				!@profile.first_name.empty? && !@profile.last_name.empty? ? @profile.first_name + " " + @profile.last_name : @user.username %>
 			</h2>
-		    <div></div>
+			<ul class="item_list">
+			<% if !@profile.job_title.empty? %>
+			    <li><%= @profile.job_title %></li>
+			<% end %>
+			<% if !@location.empty? %>
+		        <li><%= @location.join(", ") %></li>
+		    <% end %>
+		    </ul>
 		    <% if @profile.user_id == current_user.id %>
 	        
 	            <%= link_to image_tag("Basic_set_PNG/pencil_16.png"), edit_profile_path(@profile), {:class => "edit_profile_btn", :id => "edit_profile"} %>

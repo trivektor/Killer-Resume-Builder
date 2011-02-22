@@ -115,6 +115,18 @@ $(function(){
 		o.fadeIn(function(){accountSettingsOverlay.fadeIn()})
 	})
 	
+	//Hide profile complete notice
+	$("#hide_profile_complete_notice").click(function(){
+		var p = $(this).parent()
+		$.post(
+			"profiles/hide_profile_notice",
+			{},
+			function(){
+				$("#profile_complete_notice").slideUp(500)
+			}
+		)
+	})
+	
 	//Edit profile
 	var profileOverlay = $("#profile_overlay_wrapper");
 	$(".edit_profile_btn").bind('click', function(event){
@@ -136,7 +148,7 @@ $(function(){
 	var profileCity = $("#profile_city");
 	var profileState = $("#profile_state");
 	var profilePostalCode = $("#profile_postal_code");
-	var profileCountry = $("#profile_country");
+	var profileCountry = $("#profile_country_id");
 	var profileCategory = $("#profile_category");
 	var profileIndustry = $("#profile_industry");
 	var profileJobTitle = $("#profile_job_title");

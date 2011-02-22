@@ -321,7 +321,9 @@ li.omega .feature_details p {width:290px;}
 #login_form a {font-size:11px;}
 
 
-/* Dashboard */ 
+/* Dashboard */
+#profile_complete_notice {margin-bottom:20px; padding:10px; text-align:center;}
+#hide_profile_complete_notice {color:#E26A00; cursor:pointer;}
 #dashboard .nav {float:left;}
 #dashboard_activity_feed .user_image {float:left; width:31px; margin-right:9px}
 #thoughtbox {position:relative; float:left;}

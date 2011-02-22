@@ -1,5 +1,13 @@
 <% @title_for_layout = "Dashboard" %>
 
+<% if !@missing.empty? && @profile.hide_profile_notification == false %>
+    <div id="profile_complete_notice" class="result_success">
+        <p>Your profile is yet completed. In order to complete it, you need to fill in <%= @missing.join(", ") %>.
+            <span id="hide_profile_complete_notice">Hide this notice</span>
+        </p>
+    </div>
+<% end %>
+
 <h2 id="thoughtbox_header">Share your thought</h2>
 
 <div class="blue_region" id="thoughtbox_wrapper">
@@ -99,16 +107,12 @@
 		<ul class="white_region" id="your_profile_header">
 			<li id="your_profile_name"><%= @profile.first_name %> <%= @profile.last_name %></li>
 			<li>
-			<% 
-				if @profile.job_title then
-					@profile.job_title
-				else %>
-					<a class="edit_profile_btn">Edit your profile</a>
+			<% if !@profile.job_title.empty? then %>
+				<%= @profile.job_title %>
+			<% else %>
+				<a class="edit_profile_btn">Edit your profile</a>
 			<% end %>
 			</li>
-			<li>
-			</li>
-			<li><a class="edit_profile_btn" href="/profile/edit/1">Edit your profile</a></li>
 		</ul>
 	    <div class="clearfloat"></div>
     </div>
