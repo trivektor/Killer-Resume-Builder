@@ -33,5 +33,5 @@ gem 'useragent'
 # and rake tasks are available in development mode:
 group :development, :test do
   # gem 'webrat'
-  gem 'ruby-debug', :require => 'ruby-debug'
+  # gem 'ruby-debug', :require => 'ruby-debug'
 end
