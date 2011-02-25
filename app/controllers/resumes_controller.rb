@@ -125,9 +125,9 @@ class ResumesController < ApplicationController
 
     if @resume.update_attributes(params[:resume])
       flash[:notice] = "Your resume has been updated"
-      redirect_to :controller => "resumes", :action => :edit, :id => params[:id]
+      redirect_to edit_resume_path(@resume)
     else
-      Rails.logger.debug @resume.errors
+      render :action => :edit
     end
   end
   

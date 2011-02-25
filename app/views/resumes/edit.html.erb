@@ -23,8 +23,6 @@
 
 <div class="clearfloat"></div>
 
-<%= render :partial => "shared/resume/edit/title", :locals => {:f => f} %>
-
 <% for s in @section_order %>
 
 <%= render :partial => "shared/resume/edit/" + s, :locals => {:f => f} %>
