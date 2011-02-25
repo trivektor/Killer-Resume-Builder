@@ -53,7 +53,7 @@ font-size:11px; z-index:100; padding-top:9px}
 #account_links li .profile_control_links {color:#333 !important; padding-left:25px !important; display:block; height:16px;}
 #account_links li a.view_profile {background:url(../images/Basic_set_PNG/user_16.png) no-repeat;}
 #account_links li a.edit_profile_btn {background:url(../images/Basic_set_PNG/pencil_16.png) no-repeat;}
-#account_links li a.edit_account_settings {background:url(../images/Basic_set_PNG/key_16.png) no-repeat;}
+#account_links li a.edit_account_settings {color:#333; background:url(../images/Basic_set_PNG/key_16.png) no-repeat; padding-left:25px; display:block; height:16px;}
 #account_links li a.logout {background:url(../images/Basic_set_PNG/stop_16.png) no-repeat}
 #account_links li a.close {background:url(../images/Basic_set_PNG/delete_16.png) no-repeat}
 #username {position:relative;}

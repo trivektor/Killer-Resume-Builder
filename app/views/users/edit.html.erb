@@ -1,0 +1,33 @@
+<% @title_for_layout = "Change Password" %>
+
+<h2>Account Settings</h2>
+
+<%= form_for @user, :autocomplete => :off do |f| %>
+
+	<% if !@user.errors.empty? %>
+	    <div class="result_error">
+
+	     	<%= f.error_messages %>
+
+	    </div>
+	 <% end %>
+
+<div class="form_row">
+    <label>Email</label>
+    <%= f.text_field :email %>
+</div>
+
+<div class="form_row">
+    <label>Username</label>
+    <%= f.text_field :username %>
+</div>
+
+<div class="form_row">
+    <label>Password</label>
+    <%= f.password_field :password %>
+</div>
+
+<%= f.submit :value => "Update" %>
+
+<% end %>
+    

@@ -11,7 +11,7 @@ Krb::Application.routes.draw do
     match "login" => "user_sessions#new", :as => :login
     match "logout" => "user_sessions#destroy", :as => :logout
   
-  resources :users, :only => [:new, :create]
+  resources :users, :only => [:new, :create, :edit, :update]
     match "signup" => "users#new", :as => :signup
   
   match "profiles/upload_photo" => "profiles#upload_photo"

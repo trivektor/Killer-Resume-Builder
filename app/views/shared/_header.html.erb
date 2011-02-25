@@ -19,6 +19,7 @@
 									<%= link_to("Profile", profile_path(current_user.username), :class => "view_profile profile_control_links") %>
 								</li>
 								<li><a class="edit_profile_btn profile_control_links" href="/profile/515097306">Edit Profile</a></li>
+								<li><%= link_to ("Account Settings", edit_user_path(current_user), :class => "edit_account_settings") %></li>
 								<li><%= link_to "Logout", logout_path, :class => "logout profile_control_links"  %></li>
 								<li class="omega"><a class="close profile_control_links" id="close_account_links">Close</a></li>
 							</ul>
