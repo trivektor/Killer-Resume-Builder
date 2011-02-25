@@ -24,8 +24,8 @@ class ResumeWorkExperiencesController < ApplicationController
   end
   
   def update
-    resume_work_experience = find_resume_work_experience
-    if resume_work_experience.update_attributes(params[:resume_work_experience])
+    @resume_work_experience = find_resume_work_experience
+    if @resume_work_experience.update_attributes(params[:resume_work_experience])
       flash[:notice] = "Work experience has been updated"
       redirect_to edit_resume_resume_work_experience_path(@resume)
     else

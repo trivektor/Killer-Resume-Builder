@@ -11,11 +11,8 @@
     <h2>Add Experience</h2>
     
     <% if !@resume_work_experience.errors.empty? %>
-      <div class="result_error">
-        <%= f.error_messages %>
-      </div>
+      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
     <% end %>
-    
     
     <div class="form_row">
       <label>Organization Name</label>

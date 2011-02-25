@@ -14,6 +14,10 @@
     <div class="result_success"><%= flash[:notice] %></div>
     <% end %>
     
+    <% if !@resume_work_experience.errors.empty? %>
+      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+    <% end %>
+    
     <div class="form_row">
       <label>Organization Name</label>
       <%= f.text_field :organization_name, :class => :textbox %>

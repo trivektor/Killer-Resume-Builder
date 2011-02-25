@@ -24,8 +24,8 @@ class ResumeEducationsController < ApplicationController
   end
   
   def update
-    resume_education = find_resume_education
-    if resume_education.update_attributes(params[:resume_education])
+    @resume_education = find_resume_education
+    if @resume_education.update_attributes(params[:resume_education])
       flash[:notice] = "Education has been updated"
       redirect_to edit_resume_resume_education_path(@resume)
     else

@@ -24,8 +24,8 @@ class ResumeReferencesController < ApplicationController
   end
   
   def update
-    resume_reference = find_resume_reference
-    if resume_reference.update_attributes(params[:resume_reference])
+    @resume_reference = find_resume_reference
+    if @resume_reference.update_attributes(params[:resume_reference])
       flash[:notice] = "Reference has been updated"
       redirect_to edit_resume_resume_reference_path(@resume)
     else
@@ -51,6 +51,8 @@ class ResumeReferencesController < ApplicationController
       ref.update_attributes(:weight => weight)
       weight -= 1
     end
+    
+    render :json => {:success => 1}
     
   end
   

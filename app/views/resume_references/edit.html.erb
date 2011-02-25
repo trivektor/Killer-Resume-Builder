@@ -11,9 +11,7 @@
     <h2>Edit Reference</h2>
 
     <% if !@resume_reference.errors.empty? %>
-      <div class="result_error">
-        <%= f.error_messages %>
-      </div>
+      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
     <% end %>
     
     <% if flash[:notice] %>
