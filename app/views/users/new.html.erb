@@ -20,11 +20,7 @@
 			<%= form_for(@user) do |f| %>
 			
 				<% if !@user.errors.empty? %>
-				    <div class="result_error">
-
-				     	<%= f.error_messages %>
-
-				    </div>
+				    <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
 				 <% end %>
 			
 				<div class="form_row">
