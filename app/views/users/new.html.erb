@@ -20,12 +20,22 @@
 			<%= form_for(@user) do |f| %>
 			
 				<% if !@user.errors.empty? %>
-				    <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
-				 <% end %>
+				  <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+				<% end %>
+				 
+				<div class="form_row">
+          <%= f.label :first_name %>
+ 					<%= f.text_field :first_name, :class => :textbox, :autocomplete => :off %>
+ 				</div>
+ 				
+ 				<div class="form_row">
+ 				  <%= f.label :last_name %>
+ 				  <%= f.text_field :last_name, :class => :textbox, :autocomplete => :off %>
+ 				</div>
 			
 				<div class="form_row">
 					<%= f.label :username %>
-					<%= f.text_field :username, :class => "textbox", :autocomplete => "off" %>
+					<%= f.text_field :username, :class => :textbox, :autocomplete => :off %>
 				</div>
 				<div class="form_row">
 					<%= f.label :email %>

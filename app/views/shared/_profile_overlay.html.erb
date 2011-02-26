@@ -1,9 +1,7 @@
 <div id="profile_overlay_wrapper" class="account_overlay_wrapper">
 	<div class="account_overlay_left">
 		
-		
-		<%= image_tag "uploads/#{@profile.photo}", :class => :user_image %>
-		
+		<%= render :partial => "shared/user_image", :locals => {:photo => @profile.photo} %>
 		
 		<%= image_tag "resume/changePhotoBtn.png", :id => "change_photo_btn" %>
 		
