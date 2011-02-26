@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 class ResumesController < ApplicationController
   
   def new
