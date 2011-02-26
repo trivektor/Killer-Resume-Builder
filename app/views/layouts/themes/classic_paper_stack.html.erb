@@ -1,0 +1,26 @@
+<%= render :partial => "shared/resume/show/head" %>
+
+<body>
+	
+	<%= render :partial => "shared/resume/show/top_bar" %>
+
+	<div id="paper_stack_top"></div>
+	<div id="paper_stack_body_wrapper">
+		<div id="name_tag_wrapper">
+			<div id="name_tag_right_end">
+				<div id="name_tag"><%= @resume.resume_personal_information.full_name %></div>
+			</div>
+		</div>
+		
+		<%#= render :partial => "resume/view/classic_paper_stack/personal_information" %>
+		
+		<div class="clearfloat"></div>
+		
+		<% for s in @section_order %>
+			<%= render :partial => "shared/resume/show/classic_paper_stack/#{s}" %>
+	  <% end %>
+		
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,31 @@
+<div class="section_header_wrapper">
+	<div class="section_header_right_end">
+		<h2 class="section_header">
+			<%= @section_names['references'] %>
+		</h2>
+	</div>
+</div>
+
+
+<div id="references_section" class="section_details_wrapper">
+	<% if @resume.resume_references.count > 0 %>
+		<ul id="references_list">
+			<% for ref in @resume.resume_references %>
+			<li>
+				<div class="reference_name"><%= ref.name %></div>
+				<div class="reference_title"><%= ref.title %>, <%= ref.organization %></div>
+				<% if ref.email %>
+					<div class="reference_email">
+						<%= obfuscate_email ref.email %>
+					</div>
+				<% end %>
+				<% if ref.phone_number %>
+					<div class="reference_phone_number"><%= ref.phone_number %></div>
+				<% end %>
+			</li>
+			<% end %>
+		</ul>
+	<% else %>
+		<p>Available upon request</p>
+	<% end %>
+</div>

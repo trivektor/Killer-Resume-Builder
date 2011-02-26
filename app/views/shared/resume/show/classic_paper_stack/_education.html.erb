@@ -1,0 +1,23 @@
+<div class="section_header_wrapper">
+	<div class="section_header_right_end">
+		<h2 class="section_header">
+			<%= @section_names['education'] %>
+		</h2>
+	</div>
+</div>
+
+<div id="resume_education" class="section_details_wrapper">	
+	<ul>
+		<% for edu in @resume.resume_educations %>
+			<li>
+				<div class="left">
+					<div class="institution_name"><%= edu.institution %></div>
+					<p class="degree"><%= edu.degree %>, <%= edu.field_of_study %></p>
+				</div>
+				<p class="period"><%= edu.begin_date %> - <%= edu.end_date.empty? ? "present" : edu.end_date %></p>
+				<div class="clearfloat"></div>
+			</li>	
+		<% end %>
+	</ul>
+	
+</div>
