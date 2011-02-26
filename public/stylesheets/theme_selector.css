@@ -1,0 +1,13 @@
+* {margin:0; padding:0;}
+
+#resume_preview {border:0;}
+
+#theme_list_container {background:url(../images/resume/themeListBg.png) repeat; position:fixed; bottom:0; left:0; width:100%;}
+
+#theme_list {padding:20px; color:#fff;}
+
+#closeThemeSelector {position:absolute; top: 11px; right:20px; cursor:pointer}
+
+#theme_list_trigger {background:url(../images/resume/themeListBg.png) repeat; padding:10px 15px; color:#fff; font-size:16px;
+position:fixed; bottom:0; right:10px; cursor:pointer; -moz-border-radius:10px 10px 0 0;
+-webkit-border-top-left-radius:10px; -webkit-border-top-right-radius:10px;}

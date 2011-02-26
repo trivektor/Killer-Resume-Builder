@@ -41,6 +41,7 @@ Krb::Application.routes.draw do
     
     member do
       get :delete
+      get :select_theme
     end
     
     resources :resume_educations do

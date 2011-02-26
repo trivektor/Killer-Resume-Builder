@@ -134,5 +134,24 @@ class ResumesController < ApplicationController
     resume.destroy
     redirect_to dashboard_path
   end
+  
+  def select_theme
+    @themes = get_themes
+    @resume = Resume.find(params[:id])
+    render :layout => "theme_selector"
+  end
+  
+  private 
+  
+  def get_themes
+    themes = Theme.where(:status => :active).find(:all)
+    themes_hash = {}
+    
+    for theme in themes
+      themes_hash[theme.theme] = theme.id
+    end
+    
+    themes_hash
+  end
  
 end
