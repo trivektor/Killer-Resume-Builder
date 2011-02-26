@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :thoughts, :dependent => :destroy
   has_many :user_threads, :dependent => :destroy
   
+  accepts_nested_attributes_for :profile
+  
   acts_as_authentic do |config|
     config.crypto_provider = Authlogic::CryptoProviders::MD5
     config.validate_email_field = false

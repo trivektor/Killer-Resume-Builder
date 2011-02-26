@@ -9,7 +9,9 @@ class UsersController < ApplicationController
   end
   
   def new
-    @user = User.new 
+    @user = User.new
+    
+    render :layout => "signup"
   end
   
   def create
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
       redirect_to dashboard_path
       
     else
-      render :action => :new
+      render :layout => "signup", :action => :new
     end
     
   end
