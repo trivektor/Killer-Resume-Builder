@@ -13,7 +13,7 @@ end
 %>
 
 <div class="section_name_editor_wrapper">
-	<h2 class="section_name_editable"><%= @section_names[section] %></h2>
+	<h2 class="section_name_editable" title="Click to rename section"><%= @section_names[section] %></h2>
 	<input class="section_name_editor" type="text" value="<%= @section_names[section] %>" title="Click to rename this section" style="display:none" />
 	<span class="update_section_name blue_btn" style="display:none" rel="<%= section %>">Update</span>
 	<span class="cancel_update_section_name green_btn" style="display:none">Cancel</span>

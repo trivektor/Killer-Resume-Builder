@@ -7,6 +7,8 @@ class ResumeEducationsController < ApplicationController
   
   def new
     @resume_education = ResumeEducation.new
+    
+    @section_name = find_section_name
   end
   
   def create
@@ -21,6 +23,8 @@ class ResumeEducationsController < ApplicationController
   
   def edit
     @resume_education = find_resume_education
+    
+    @section_name = find_section_name
   end
   
   def update
@@ -74,6 +78,11 @@ class ResumeEducationsController < ApplicationController
   
   def find_resume_education
     ResumeEducation.where(:id => params[:id], :resume_id => params[:resume_id]).first
+  end
+  
+  def find_section_name
+    section_name = ResumeSectionName.where(:resume_id => params[:resume_id], :section => "education").first
+    section_name.name
   end
   
 end

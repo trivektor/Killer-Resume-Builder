@@ -7,6 +7,8 @@ class ResumeWorkExperiencesController < ApplicationController
   
   def new
     @resume_work_experience = ResumeWorkExperience.new
+    
+    @section_name = find_section_name
   end
   
   def create
@@ -21,6 +23,8 @@ class ResumeWorkExperiencesController < ApplicationController
   
   def edit
     @resume_work_experience = find_resume_work_experience
+    
+    @section_name = find_section_name
   end
   
   def update
@@ -74,6 +78,11 @@ class ResumeWorkExperiencesController < ApplicationController
   
   def find_resume_work_experience
     ResumeWorkExperience.where(:id => params[:id], :resume_id => params[:resume_id]).first
+  end
+  
+  def find_section_name
+    section_name = ResumeSectionName.where(:resume_id => params[:resume_id], :section => "work_experience").first
+    section_name.name
   end
   
 end

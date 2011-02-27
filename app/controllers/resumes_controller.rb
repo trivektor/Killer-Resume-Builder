@@ -46,43 +46,21 @@ class ResumesController < ApplicationController
   
   def show
     @resume = Resume.find_by_url(params[:url])
+    
     if !@resume.nil?
       @theme = Theme.find(@resume.resume_theme.theme_id)
       
-      @section_names = {}
+      @section_names = get_section_names(@resume)
       
-      @resume.resume_section_names.each do |s|
-        @section_names[s.section] = s.name
-      end
+      @section_order = get_section_order(@resume)
       
-      @section_order = @resume.resume_section_order.orders.split("/")
+      @keywords = get_keywords(@resume)
       
-      @keywords = []
-      
-      if @resume.resume_keywords.count > 0
-    	   for keyword in @resume.resume_keywords
-    	       @keywords << keyword.keywords
-    	   end
-    	end
-    	
     	@field_works = @resume.resume_field_work.field_works
     	
-    	@hidden_fields = []
-    	
-    	if @resume.resume_hidden_fields.count > 0
-    	  for hfield in @resume.resume_hidden_fields
-    	    @hidden_fields << hfield.hidden_field
-  	    end
-  	  end
+    	@hidden_fields = get_hidden_fields(@resume)
   	  
-  	  user_agent = UserAgent.parse(request.user_agent)
-  	  
-  	  VisitorInfo.create(:resume_id => @resume.id, :browser => user_agent[2].product, :version => user_agent.version,
-  	  :platform => user_agent[0].comment.join(" "), :ip_address => request.remote_addr, :domain_name => request.host)
-  	  
-  	  @resume.update_attributes(:views => @resume.views + 1)
-  	  
-  	  ResumeViewer.create(:resume_id => @resume.id, :user_id => current_user.id)
+  	  update_analytics(@resume)
       
       render :layout => "themes/" + @theme.slug
     else
@@ -96,25 +74,15 @@ class ResumesController < ApplicationController
     
     @resume = Resume.find(params[:id])
     
-    @section_names = {}
+    @section_names = get_section_names(@resume)
     
-    @resume.resume_section_names.each do |s|
-      @section_names[s.section] = s.name
-    end
-    
-    @section_order = @resume.resume_section_order.orders.split("/")
+    @section_order = get_section_order(@resume)
     
     @settings = @resume.resume_setting
     
     @field_works = @resume.resume_field_work.field_works
   	
-  	@hidden_fields = []
-  	
-  	if @resume.resume_hidden_fields.count > 0
-  	  for hfield in @resume.resume_hidden_fields
-  	    @hidden_fields << hfield.hidden_field
-	    end
-	  end
+  	@hidden_fields = get_hidden_fields(@resume)
     
   end
   
@@ -152,6 +120,55 @@ class ResumesController < ApplicationController
     end
     
     themes_hash
+  end
+  
+  def get_section_names(resume)
+    section_names = {}
+    
+    resume.resume_section_names.each do |s|
+      section_names[s.section] = s.name
+    end
+    
+    section_names
+  end
+  
+  def get_keywords(resume)
+    keywords = []
+    
+    if resume.resume_keywords.count > 0
+  	   for keyword in resume.resume_keywords
+  	       keywords << keyword.keywords
+  	   end
+  	end
+  	
+  	keywords
+  end
+  
+  def get_hidden_fields(resume)
+    hidden_fields = []
+    
+    if resume.resume_hidden_fields.count > 0
+  	  for hfield in resume.resume_hidden_fields
+  	    hidden_fields << hfield.hidden_field
+	    end
+	  end
+	  
+	  hidden_fields
+  end
+  
+  def get_section_order(resume)
+    resume.resume_section_order.orders.split("/")
+  end
+  
+  def update_analytics(resume)
+    user_agent = UserAgent.parse(request.user_agent)
+	  
+	  VisitorInfo.create(:resume_id => resume.id, :browser => user_agent[2].product, :version => user_agent.version,
+	  :platform => user_agent[0].comment.join(" "), :ip_address => request.remote_addr, :domain_name => request.host)
+	  
+	  resume.update_attributes(:views => resume.views + 1)
+	  
+	  ResumeViewer.create(:resume_id => resume.id, :user_id => current_user.id)
   end
  
 end
