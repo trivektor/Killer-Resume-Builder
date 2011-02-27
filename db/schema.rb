@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227020228) do
+ActiveRecord::Schema.define(:version => 20110227052515) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(:version => 20110227020228) do
     t.string   "flickr"
     t.string   "linked_in"
     t.text     "bio"
-    t.string   "status"
+    t.string   "status",       :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone_number"

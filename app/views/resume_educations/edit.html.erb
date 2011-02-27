@@ -1,5 +1,7 @@
 <% @title_for_layout = "Edit Education" %>
 
+<%= render :partial => "shared/back_to_resume" %>
+
 <%= form_for @resume_education, :url => resume_resume_education_path(@resume) do |f| %>
 
 <div class="blue_region">
@@ -14,7 +16,7 @@
       <div class="result_success"><%= flash[:notice] %></div>
     <% end %>
     
-    <% if !@resume_education.errors.empty? %>
+    <% if @resume_education.errors.count > 0 %>
       <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
     <% end %>
 

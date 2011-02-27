@@ -1,5 +1,7 @@
 <% @title_for_layout = "Edit Reference" %>
 
+<%= render :partial => "shared/back_to_resume" %>
+
 <%= form_for @resume_reference, :url => resume_resume_reference_path(@resume) do |f| %>
 
 <div class="blue_region">
@@ -8,11 +10,7 @@
 
   <div class="box">
   
-    <h2>Edit Reference</h2>
-
-    <% if !@resume_reference.errors.empty? %>
-      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
-    <% end %>
+    <h2><%= @title_for_layout %></h2>
     
     <% if flash[:notice] %>
       <div class="result_success">
@@ -20,6 +18,10 @@
       </div>
     <% end %>
 
+    <% if @resume_reference.errors.count > 0 %>
+      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+    <% end %>
+    
     <div class="form_row">
     	<label for="ResumeReference.Name">Name</label>
     	<%= f.text_field :name, :class => :textbox %>

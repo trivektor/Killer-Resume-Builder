@@ -176,6 +176,8 @@ background:#F9F9DC; text-transform:uppercase; line-height:17px;}
 .white_region .report_comment {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/warning_16.png) no-repeat; display:block; cursor:pointer;}
 .white_region .comment_reported {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/block_16.png) no-repeat; display:block; cursor:pointer;}
 
+.go_back {margin-bottom:15px; display:inline-block;}
+
 .item_list li {margin-bottom:9px;}
 
 .thought_list .thought {font-size:14px;}

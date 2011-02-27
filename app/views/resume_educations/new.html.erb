@@ -1,5 +1,7 @@
 <% @title_for_layout = "Add Education" %>
 
+<%= render :partial => "shared/back_to_resume" %>
+
 <%= form_for @resume_education, :url => resume_resume_educations_path(@resume) do |f| %>
 
 <div class="blue_region">
@@ -8,9 +10,9 @@
   
   <div class="box">
     
-    <h2>Add Education</h2>
+    <h2><%= @title_for_layout %></h2>
     
-    <% if !@resume_education.errors.empty? %>
+    <% if @resume_education.errors.count > 0 %>
       <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
     <% end %>
 
@@ -49,9 +51,7 @@
     	<%= f.text_field :location, :class => :textbox %>
     </div>
 
-    <div class="form_row">
-      <input src="/images/resume/addItNowBtn.png" alt="Add It Now" type="image" />
-    </div>
+    <input src="/images/resume/addItNowBtn.png" alt="Add It Now" type="image" />
     
   </div>
   

@@ -1,5 +1,7 @@
 <% @title_for_layout = "Add Reference" %>
 
+<%= render :partial => "shared/back_to_resume" %>
+
 <%= form_for @resume_reference, :url => resume_resume_references_path(@resume) do |f| %>
 
 <div class="blue_region">
@@ -8,9 +10,9 @@
 
   <div class="box">
   
-    <h2>Add Reference</h2>
+    <h2><%= @title_for_layout %></h2>
 
-    <% if !@resume_reference.errors.empty? %>
+    <% if @resume_reference.errors.count > 0 %>
       <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
     <% end %>
 
