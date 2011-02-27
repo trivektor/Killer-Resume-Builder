@@ -1,0 +1,13 @@
+<div class="section_wrapper">
+	<h2 class="section_title_left">
+		<span><%= @section_names['field_works'] %></span>
+	</h2>
+	<div class="section_details_right">
+		<% if !@resume.resume_field_work.blank? %>
+		  <%= RDiscount.new(@resume.resume_field_work.field_works).to_html.html_safe %>
+		<% end %>
+	</div>
+
+	<div class="clearfloat"></div>
+	
+</div>
