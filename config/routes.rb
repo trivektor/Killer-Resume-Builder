@@ -74,6 +74,8 @@ Krb::Application.routes.draw do
     
     resources :resume_themes, :only => [:update]
     
+    resources :resume_section_names, :only => [:update]
+    
   end
   
   resources :resume_settings do

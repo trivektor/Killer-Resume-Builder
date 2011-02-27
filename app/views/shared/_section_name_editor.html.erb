@@ -1,7 +1,22 @@
+<% 
+
+resume_section_names = @resume.resume_section_names
+
+section_id = 0
+
+resume_section_names.each do |rsn|
+  if rsn.section == section
+    section_id = rsn.id
+  end
+end
+
+%>
+
 <div class="section_name_editor_wrapper">
 	<h2 class="section_name_editable"><%= @section_names[section] %></h2>
-	<input class="section_name_editor" type="text" value="Section Name" title="Click to rename this section" style="display:none" />
-	<span class="update_section_name blue_btn" style="display:none" rel="section_slug">Update</span>
+	<input class="section_name_editor" type="text" value="<%= @section_names[section] %>" title="Click to rename this section" style="display:none" />
+	<span class="update_section_name blue_btn" style="display:none" rel="<%= section %>">Update</span>
 	<span class="cancel_update_section_name green_btn" style="display:none">Cancel</span>
-	<input type="hidden" id="Id" value="sectionSlug" />
+	
+	<input type="hidden" class="resume_section_name_id" value="<%= section_id %>" />
 </div>

@@ -251,42 +251,53 @@ $(function(){
 		)
 	})
 	
-		$("h2.section_name_editable").bind('click',
-				function(){
-					$(this).hide().siblings().show();
-				}
-			)
+	$("h2.section_name_editable").bind('click', function(){ $(this).hide().siblings().show(); })
+	
+	$("input.section_name_editor").bind('keypress', function(event){ 
+		var key = event.keyCode ? event.keyCode : event.keyWhich;
 		
-		$("span.update_section_name").bind(
-			'click',
-			function(){
-				
-				var t = $(this);
-				
-				var updatedName = t.siblings("input[type=text]").val();
-				
-				if (updatedName == '') {
-					alert('Please enter a new name for this section');
-					return;
+		if (key == 13) {
+			event.preventDefault();
+			$(this).siblings("span.update_section_name").trigger('click')
+		}
+		
+	})
+		
+	$("span.update_section_name").bind('click', function(){
+		
+		var t = $(this);
+		
+		var updatedName = t.siblings("input[type=text]").val();
+		
+		if (updatedName == '') {
+			alert('Please enter a new name for this section');
+			return;
+		}
+		
+		$.ajax({
+			type: "PUT",
+			url: "/resumes/" + $("#ResumeId").val() + "/resume_section_names/" + $(this).siblings(".resume_section_name_id").val() ,
+			data: {
+				resume_section_name: {
+					section:t.attr("rel"), 
+					name:updatedName
 				}
-				
-				$.post(
-					"/ajax/update_section_name",
-					{id:t.siblings("input[type=hidden]").val(), resume_id:$("#ResumeId").val(), section:t.attr("rel"), name:updatedName},
-					function(response){
-						if (response == 1) {
-							t.siblings("input[type=text]").trigger("click");
-							blinkUpdatedStatus();
-						}
-					}
-				)
-			})
+			},
+			success: function(response){
+				if (response.success == 1) {
+					t.siblings(".section_name_editable").text(updatedName)
+					t.siblings(".cancel_update_section_name").trigger("click");
+					blinkUpdatedStatus();
+				}
+			}
+		})
+	})
 			
-			$("span.cancel_update_section_name").bind('click', function(){
-				var _this = $(this);
-				_this.hide();
-				_this.siblings().hide().siblings("h2").show();
-			})
+	$("span.cancel_update_section_name").bind('click', function(){
+		var _this = $(this);
+		_this.hide();
+		_this.siblings().hide().siblings("h2").show();
+	})
 	
 	//Options hover
 	$("div.section_options").hover(
