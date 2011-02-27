@@ -1,0 +1,26 @@
+<div class="section_wrapper">
+	<h2 class="section_header"><%= @section_names['work_experience'] %></h2>
+	<div class="section_content">
+		<ul class="item_list">
+			<% for exp in @resume.resume_work_experiences %>
+			<li>
+				<div class="left">
+					<span class="title"><%= exp.organization_name %></span>
+					<p class="position"><%= exp.title %></p>
+				</div>
+				<div class="period">
+					<div class="period_inner">
+						<span class="begin"><%= exp.begin_date %></span>
+						<span class="end"><%= exp.end_date %></span>
+					</div>
+				</div>
+				<div class="clearfloat"></div>
+				<div class="position_details">
+					<%= RDiscount.new(exp.details).to_html.html_safe unless exp.details.blank? %>
+				</div>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="section_bottom"></div>
+</div>

@@ -1,0 +1,15 @@
+<div class="section_wrapper">
+	<h2 class="section_header"><%= @section_names['references'] %></h2>
+	<div id="references_section" class="section_content">
+		<ul class="item_list">
+			<% for ref in @resume.resume_references %>
+			<li>
+				<span class="title"><%= ref.name %></span>
+				<p class="role"><%= ref.title %>, <%= ref.organization %></p>
+				<p><%= obfuscate_email ref.email unless ref.email.blank? %></p>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="section_bottom"></div>
+</div>

@@ -1,6 +1,6 @@
 @font-face {font-family:PetitLatin;src:url(../fonts/PetitLatin.ttf);}
 
-body {font-family:PetitLatin,georgia,arial; font-size:12px; background:url(../../img/themes/bwr/body.png) repeat;}
+body {font-family:PetitLatin,georgia,arial; font-size:12px; background:url(../../images/themes/bwr/body.png) repeat;}
 
 #name_tag_wrapper {width:660px; margin:20px auto 0; position:relative;}
 #name_tag {color:#fff; font-size:35px; font-weight:normal; margin-bottom:10px}
@@ -14,22 +14,22 @@ a {color:#ff6e00; cursor:pointer;}
 #personal_info li {color:#fff; margin-bottom:5px;}
 
 .section_wrapper {width:660px; margin:30px auto;}
-.section_header {background:url(../../img/themes/bwr/sectionHeaderBg.png) no-repeat; height:27px; font-size:25px; color:#fff; font-weight:normal;
+.section_header {background:url(../../images/themes/bwr/sectionHeaderBg.png) no-repeat; height:27px; font-size:25px; color:#fff; font-weight:normal;
 padding:10px 30px; line-height:25px;}
 .section_content {background:#fff; padding:25px 25px 0;}
-.section_bottom {background:url(../../img/themes/bwr/sectionBottomBg.png) no-repeat left bottom; height:23px;}
+.section_bottom {background:url(../../images/themes/bwr/sectionBottomBg.png) no-repeat left bottom; height:23px;}
 
 .item_list {padding:1px 0;}
-.item_list li {padding-left:25px; background:url(../../img/themes/bwr/dot.png) no-repeat left 2px; list-style:none; margin-bottom:30px;}
+.item_list li {padding-left:25px; background:url(../../images/themes/bwr/dot.png) no-repeat left 2px; list-style:none; margin-bottom:30px;}
 .item_list .title {display:block; font-size:15px; line-height:15px; margin-bottom:10px; padding-top:1px;}
 .item_list .left {float:left; width:350px;}
-.item_list .period {float:right; background:url(../../img/themes/bwr/periodBg.png) no-repeat; width:126px; height:35px;}
+.item_list .period {float:right; background:url(../../images/themes/bwr/periodBg.png) no-repeat; width:126px; height:35px;}
 .period_inner {width:102px; margin:10px auto 0; overflow:hidden;}
 .period .begin {float:left; color:#000; font-size:13px;}
 .period .end {float:right; color:#fff; font-size:13px;}
 
 #skills_section ul {padding:1px 0;}
-#skills_section li {list-style:none; background:url(../../img/themes/bwr/dot.png) no-repeat left 2px; padding-left:25px; margin-bottom:10px;}
+#skills_section li {list-style:none; background:url(../../images/themes/bwr/dot.png) no-repeat left 2px; padding-left:25px; margin-bottom:10px;}
 
 .position_details {margin-top:20px;}
 .position_details li {background:none; padding:0; margin-bottom:15px;}
