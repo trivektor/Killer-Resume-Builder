@@ -1,0 +1,20 @@
+<div class="section_wrapper">
+	<h2 class="section_title_left"><span><%= @section_names['references'] %> &raquo;</span></h2>
+	<div class="section_details_right">
+		<% if @resume.resume_references.count > 0 %>
+			<ul>
+				<% for ref in @resume.resume_references %>
+					<li>
+						<div class="reference_name"><%= ref.name %></div>
+						<p><%= ref.title %>, <%= ref.organization %></p>
+						<% if !ref.email.empty? %>
+						  <%= obfuscate_email ref.email %>
+						<% end %>
+					</li>
+				<% end %>
+			</ul>
+		<% else %>
+		<p>Available upon request</p>
+		<% end %>
+	</div>
+</div>

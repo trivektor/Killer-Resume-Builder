@@ -1,6 +1,6 @@
 <% personal_info = @resume.resume_personal_information %>
 
-<% if !@resume.resume_setting.hide_personal_info %>
+<% if @resume.resume_setting.hide_personal_info == 0 %>
 	<ul id="personal_info">
 		<% if personal_info.address %>
 			<li><%= personal_info.address %></li>

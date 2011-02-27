@@ -1,0 +1,16 @@
+<%= render :partial => "shared/resume/show/head" %>
+<body>
+	<div id="resume_sheet">
+		<div id="header">
+			<?= $this->element('user_image', array('photo' => $profile['Profile']['photo'])) ?>
+			<?= $this->element('resume/view/'.$theme_slug.'/personal_information') ?>
+			<div class="clearfloat"></div>
+		</div>
+		
+		<% for s in @section_order %>
+			<%= render :partial => "shared/resume/show/thin_beige/#{s}" %>
+	  <% end %>
+		
+	</div>
+</body>
+</html>

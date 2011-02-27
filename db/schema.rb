@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222032146) do
+ActiveRecord::Schema.define(:version => 20110227020228) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20110222032146) do
   create_table "resume_field_works", :force => true do |t|
     t.integer  "resume_id"
     t.text     "field_works"
-    t.string   "status"
+    t.string   "status",      :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -222,7 +222,7 @@ ActiveRecord::Schema.define(:version => 20110222032146) do
   create_table "resume_skills", :force => true do |t|
     t.integer  "resume_id"
     t.text     "skills"
-    t.string   "status"
+    t.string   "status",     :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -248,8 +248,8 @@ ActiveRecord::Schema.define(:version => 20110222032146) do
     t.string   "end_date"
     t.string   "title"
     t.text     "details"
-    t.integer  "weight"
-    t.string   "status"
+    t.integer  "weight",            :default => 0
+    t.string   "status",            :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

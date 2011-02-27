@@ -12,7 +12,7 @@
 						
 						<%= image_tag "resume/male.png", :class => "user_image" %>
 					
-                        <div id="name"><%= @resume.resume_personal_information.full_name %></div>
+            <div id="name"><%= @resume.resume_personal_information.full_name %></div>
 					
 						<% if @resume.resume_setting.hide_personal_info != 0 %>
 							<% personalInfo = @resume.resume_personal_information %>
