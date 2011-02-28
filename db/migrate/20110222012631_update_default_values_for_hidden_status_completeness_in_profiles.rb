@@ -3,7 +3,7 @@ class UpdateDefaultValuesForHiddenStatusCompletenessInProfiles < ActiveRecord::M
     change_table :profiles do |t|
       t.change :hidden, :boolean, :default => false
       t.change :status, :string, :default => :active
-      t.change :completeness, :boolean, :default => 0
+      t.change :completeness, :boolean, :default => false
     end
     
     profiles = Profile.find(:all)
