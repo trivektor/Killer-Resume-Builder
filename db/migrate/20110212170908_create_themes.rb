@@ -6,7 +6,7 @@ class CreateThemes < ActiveRecord::Migration
       t.string :style, :default => "1 column"
       t.string :style_slug, :default => "1_column"
       t.string :status, :default => :active
-      t.boolean :default, :default => 0
+      t.boolean :default, :default => false
       t.timestamps
     end
     
