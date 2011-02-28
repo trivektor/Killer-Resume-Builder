@@ -1,11 +1,4 @@
 Krb::Application.routes.draw do
-  
-  root :to => 'home#index'
-  
-  #resources :users, :only => [:new, :create]
-  
-  match "/dashboard" => "dashboard#index"
-  
     
   resources :user_sessions
     match "login" => "user_sessions#new", :as => :login
@@ -87,6 +80,12 @@ Krb::Application.routes.draw do
   resources :resume_keywords
   
   resources :resume_section_orders
+  
+  root :to => 'home#index'
+  
+  #resources :users, :only => [:new, :create]
+  
+  match "/dashboard" => "dashboard#index"
     
     # scope :path => "/resume_educations", :controller => :resume_educations do
     #   match "new/:id" => :new
