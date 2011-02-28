@@ -4,10 +4,10 @@ class CreateResumeSettings < ActiveRecord::Migration
       t.integer :resume_id
       t.string :status, :default => "active"
       t.boolean :hide_personal_info, :default => false
-      t.boolean :alert_copy, :default => 1
-      t.boolean :email_notification, :default => 1
-      t.boolean :display_personal_photo, :default => 1
-      t.boolean :show_last_updated, :default => 1
+      t.boolean :alert_copy, :default => true
+      t.boolean :email_notification, :default => true
+      t.boolean :display_personal_photo, :default => true
+      t.boolean :show_last_updated, :default => true
       t.timestamps
     end
   end
