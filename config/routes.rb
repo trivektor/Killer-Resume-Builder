@@ -84,10 +84,10 @@ Krb::Application.routes.draw do
   root :to => 'home#index'
   
   #resources :users, :only => [:new, :create]
+
+  match "/dashboard" => "dashboard#index"
   
   match "/:url" => "resumes#show"  
-  
-  match "/dashboard" => "dashboard#index"
     
     # scope :path => "/resume_educations", :controller => :resume_educations do
     #   match "new/:id" => :new
