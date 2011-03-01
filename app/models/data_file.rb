@@ -5,19 +5,19 @@ class DataFile < ActiveRecord::Base
     
     name = name.gsub(" ", "_")
     
-    directory  = "public/images/uploads"
+    directory  = "public/images/upload"
     
     path = File.join(directory, name)
     
     File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
     
-    ext = File.extname("public/images/uploads/#{name}")
+    ext = File.extname("public/images/upload/#{name}")
     
-    image = MiniMagick::Image.from_file("public/images/uploads/#{name}")
+    image = MiniMagick::Image.from_file("public/images/upload/#{name}")
     #image.resize "500x500>"
     image.resize "120x120"
     image.gravity "center"
-    image.write("public/images/uploads/#{name}")
+    image.write("public/images/upload/#{name}")
     
     name
     
