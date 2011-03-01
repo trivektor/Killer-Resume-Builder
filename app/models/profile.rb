@@ -1,6 +1,8 @@
 class Profile < ActiveRecord::Base
   
-  belongs_to :user, :dependent => :destroy, :foreign_key => "user_id"
+  belongs_to :user
+  
+  before_save :capitalize_first_name, :capitalize_last_name
   
   def self.missing_fields(profile)
     missing = []
@@ -18,6 +20,16 @@ class Profile < ActiveRecord::Base
     end
     
     missing
+  end
+  
+  private
+  
+  def capitalize_first_name
+    self.first_name = self.first_name.capitalize
+  end
+  
+  def capitalize_last_name
+    self.last_name = self.last_name.capitalize
   end
   
 end

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  
+    
   has_one :profile, :dependent => :destroy
   has_many :resumes, :dependent => :destroy
   has_many :thoughts, :dependent => :destroy
@@ -24,6 +24,14 @@ class User < ActiveRecord::Base
     config.validate_password_field = false
     config.login_field = :email
     config.validate_login_field = false
+  end
+  
+  before_save :downcase_username
+  
+  private
+  
+  def downcase_username
+    self.username = self.username.downcase
   end
   
 end

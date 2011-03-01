@@ -1,7 +1,7 @@
 <div class="section_wrapper">
 	<h2 class="section_header"><%= @section_names['field_works'] %></h2>
 	<div class="section_content">
-		<%= RDiscount.new(@resume.resume_field_work.field_works).to_html.html_safe unless @resume.resume_field_work.field_works.blank? %>
+		<%= RDiscount.new(@field_works) unless @field_works.blank? %>
 	</div>
 	<div class="section_bottom"></div>
 </div>

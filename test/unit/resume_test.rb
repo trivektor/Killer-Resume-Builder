@@ -15,6 +15,17 @@ class ResumeTest < ActiveSupport::TestCase
     assert_equal resume.user_id, 1
   end
   
+  test "should save resume with a slugified url" do
+    
+    url = "this is the url"
+    
+    resume = Resume.new(:url => url, :title => "This is the title", :user_id => 1)
+    resume.save
+    resume.reload
+    
+    assert_equal "this-is-the-url", resume.url
+  end
+  
   test "when a resume is deleted, its associated educations should also be deleted" do
     resume = Resume.create(:url => "trivektor", :title => "Tri Vuong's resume", :user_id => 1)
     
