@@ -146,8 +146,8 @@ background:#F9F9DC; text-transform:uppercase; line-height:17px;}
 .box_bottom {background:url(../images/resume/editFormBgBottom.png) no-repeat center center; width:818px; height:23px; margin:0 auto 20px;}
 .box .textbox {width:564px; clear:both;}
 
-.delete_link {position:absolute; top:10px; right:15px; display:block; background:url(../images/Basic_set_PNG/delete_16.png) no-repeat; width:16px; height:16px; padding:0;}
-.edit_link {position:absolute; top:10px; right:42px; display:block; background:url(../images/Basic_set_PNG/pencil_16.png) no-repeat; width:16px; height:16px; padding:0;}
+.delete_link {position:absolute; top:10px; right:15px; display:block; background:url(../images/resume/delete_16.png) no-repeat; width:16px; height:16px; padding:0;}
+.edit_link {position:absolute; top:10px; right:42px; display:block; background:url(../images/resume/pencil_16.png) no-repeat; width:16px; height:16px; padding:0;}
 
 .reference_details {list-style:none;}
 .reference_details li {margin:5px 0;}
@@ -161,20 +161,20 @@ background:#F9F9DC; text-transform:uppercase; line-height:17px;}
 .resume_tip_title {display:block; margin-bottom:10px; font-size:16px; color:#55a1d5}
 .resume_tip_credit {margin-top:11px; font-size:11px;}
 
-.white_region .view_live {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/search_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
-.white_region .delete {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/delete_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
-.white_region .edit {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/pencil_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
-.white_region .analytic {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/statistics_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .view_live {float:right; width:16px; height:16px; background:url(../images/resume/search_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .delete {float:right; width:16px; height:16px; background:url(../images/resume/delete_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .edit {float:right; width:16px; height:16px; background:url(../images/resume/pencil_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
+.white_region .analytic {float:right; width:16px; height:16px; background:url(../images/resume/statistics_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;cursor:pointer;}
 .white_region .left {float:left; width:400px;}
 .white_region .options {float:right; width:161px; text-align:right;}
 .white_region .remove_fav_job {float:right;cursor:pointer;margin-left:15px;}
 .white_region .fav_job, .white_region .fav_job_heart {float:right;cursor:pointer;margin-left:15px;}
 .white_region .applied_job {float:right;}
 .white_region .remove_search_result {cursor:pointer;}
-.white_region .review {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/briefcase_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;}
-.white_region .remove_comment {margin-left:10px; float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/trash_16.png) no-repeat; display:block; cursor:pointer;}
-.white_region .report_comment {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/warning_16.png) no-repeat; display:block; cursor:pointer;}
-.white_region .comment_reported {float:right; width:16px; height:16px; background:url(../images/Basic_set_PNG/block_16.png) no-repeat; display:block; cursor:pointer;}
+.white_region .review {float:right; width:16px; height:16px; background:url(../images/resume/briefcase_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;}
+.white_region .remove_comment {margin-left:10px; float:right; width:16px; height:16px; background:url(../images/resume/trash_16.png) no-repeat; display:block; cursor:pointer;}
+.white_region .report_comment {float:right; width:16px; height:16px; background:url(../images/resume/warning_16.png) no-repeat; display:block; cursor:pointer;}
+.white_region .comment_reported {float:right; width:16px; height:16px; background:url(../images/resume/block_16.png) no-repeat; display:block; cursor:pointer;}
 
 .go_back {margin-bottom:15px; display:inline-block;}
 
@@ -541,7 +541,7 @@ font-size:13px; -moz-border-radius:3px; -webkit-border-radius:3px}
 #feedback_question {background:url(../images/resume/feedbackQuestion.png) no-repeat left top}
 #feedback_bug {background:url(../images/resume/feedbackBug.png) no-repeat left top}
 #feedback_praise {background:url(../images/resume/feedbackPraise.png) no-repeat left top}
-#feedback_assistance_request {background:url(../images/Basic_set_PNG/help_32.png) no-repeat left top;}
+#feedback_assistance_request {background:url(../images/resume/help_32.png) no-repeat left top;}
 #feedbacks_list {margin-top:10px; float:left; width:690px;}
 #feedbacks_list .left {width:500px}
 #feedback_right {float:right; width:265px; margin-top:10px;}

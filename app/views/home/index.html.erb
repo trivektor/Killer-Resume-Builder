@@ -1,8 +1,5 @@
 <% @title_for_layout = "Home" %>
 
-<div id="content">
-			
-			
 <div id="home_intro_wrapper">
 	<div id="home_intro">
 		<h2 id="home_intro_header">Create Beautiful Online Resumes For Free</h2>
@@ -110,16 +107,5 @@
 			</ul>
 		</div> -->
 
-        <% if @blogs.count > 0 %>
-		<h2>From Our Blog</h2>
-
-		<div class="blue_region" id="blog_post_list">
-		    <% for blog in @blogs %>
-		    <%= render :partial => "shared/blog/post", :locals => {:post => blog} %>
-		    <% end %>
-		</div>
-		<% end %>
-
 		<div class="clearfloat"></div>
 </div>
-		</div>
