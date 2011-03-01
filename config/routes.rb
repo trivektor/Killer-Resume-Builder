@@ -85,6 +85,8 @@ Krb::Application.routes.draw do
   
   #resources :users, :only => [:new, :create]
   
+  match "/:url" => "resumes#show"  
+  
   match "/dashboard" => "dashboard#index"
     
     # scope :path => "/resume_educations", :controller => :resume_educations do
@@ -92,7 +94,7 @@ Krb::Application.routes.draw do
     #   match "create/:id" => :create
     # end
   
-  #match "/:url" => "resumes#show"  
+  
   #match "/resume_references/order" => "resume_references#order"
   #match "/resume_educations/order" => "resume_educations#order"
   #match "/resume_work_experiences/order" => "resume_work_experiences#order"
