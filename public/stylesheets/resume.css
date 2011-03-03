@@ -1,5 +1,7 @@
 * {margin:0; padding:0;}
 
+img {border:0;}
+
 #resume_sheet {
 	background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #BFBFBF;
@@ -34,3 +36,5 @@ images {border:0;}
 #last_updated_on {float:left;}
 #like_resume {float:left; margin-right:3px;}
 .share_this {color:#fff;}
+
+#resume_top_bar_options img {margin:0 2px;}

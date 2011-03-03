@@ -1,0 +1,13 @@
+<% if @resume.resume_setting.allow_sharing %>
+
+  <%= image_tag "resume/facebook_16.png", :alt => "Facebook" %>
+
+  <%= image_tag "resume/twitter_16.png", :alt => "Twitter" %>
+  
+  <%= image_tag "resume/reddit_16.png" %>
+
+  <%= image_tag "resume/linkedin_16.png", :alt => "LinkedIn" %>
+
+  <a href="http://www.delicious.com/save?jump=yes&url=<%= request.url %>&title=<%= @resume.title %>"><%= image_tag "resume/delicious_16.png", :alt => "Delicious" %></a>
+  
+<% end %>

@@ -82,8 +82,6 @@ Krb::Application.routes.draw do
   resources :resume_section_orders
   
   root :to => 'home#index'
-  
-  #resources :users, :only => [:new, :create]
 
   match "/dashboard" => "dashboard#index"
   

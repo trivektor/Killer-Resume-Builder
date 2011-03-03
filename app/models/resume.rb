@@ -17,7 +17,9 @@ class Resume < ActiveRecord::Base
   
   belongs_to :user
   
-  validates_presence_of :url, :title
+  validates_length_of :url, :minimum => 4
+  validates_uniqueness_of :url
+  validates_presence_of :title
   
   accepts_nested_attributes_for :resume_personal_information, :resume_skill, :resume_field_work, :resume_educations
   
