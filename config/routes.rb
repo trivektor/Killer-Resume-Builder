@@ -13,7 +13,7 @@ Krb::Application.routes.draw do
   match "profiles/hide_profile_notice" => "profiles#hide_profile_notice"
   resources :profiles
   
-  post "/thoughts/new"
+  resources :thoughts, :only => [:create]
   
   resources :blogs, :only => [:show, :index]
     match "/blogs/author/:name" => "blogs#author"

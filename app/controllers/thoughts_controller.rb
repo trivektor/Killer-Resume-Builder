@@ -1,10 +1,6 @@
 class ThoughtsController < ApplicationController
   
-  def index
-    
-  end
-  
-  def new
+  def create
     
     success = 0
     
@@ -17,9 +13,7 @@ class ThoughtsController < ApplicationController
     respond_to do |format|
       format.json { render :json => {:success => success.to_s} }
     end
-  end
-  
-  def create
+    
   end
   
 end

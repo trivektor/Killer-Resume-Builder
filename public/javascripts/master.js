@@ -81,6 +81,10 @@ $(function(){
 		
 	}
 	
+	$("#back_to_top").click(function(){
+		$.scrollTo(0, 2000)
+	})
+	
 	//Masked input
 	//$("input.period_date").mask("aaa 99");
 	$("input.period_date").datepicker({
@@ -449,7 +453,7 @@ $(function(){
 		var thought = $("#thoughtbox_message").val();
 		if (thought != '' && thought != 'Type your thought here...') {
 			$.post(
-				"/thoughts/new",
+				"/thoughts",
 				{ 
 					thought : {
 						content : thought
