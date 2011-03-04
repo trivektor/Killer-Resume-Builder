@@ -1,15 +1,21 @@
 <div id="profile_overlay_wrapper" class="account_overlay_wrapper">
 	<div class="account_overlay_left">
 		
-		<%= render :partial => "shared/user_image", :locals => {:photo => @profile.photo} %>
+    <%= image_tag current_user.gravatar_url, :class => "user_image" %>
 		
 		<%= image_tag "resume/changePhotoBtn.png", :id => "change_photo_btn" %>
 		
 	</div>
 	<div class="account_overlay_right">
 		<div class="inner">
-			<div id="profile_image_cropper" style="display:none">
-				<iframe width="100%" height="400" frameborder="0" style="border:0" src="/profiles/upload_photo" id="photouploadiframe"></iframe>
+			<div id="profile_image_cropper" style="display:none; height:400px">
+        <div id="change_avatar">
+          <strong>Change your avatar at <a href="http://www.gravatar.com" target="_blank" style="color:#4183C4">gravatar.com</a></strong>
+        </div>
+        <p style="font-size:11px">We are using <%= current_user.email %></p>
+        <p></p>
+        <p>Your avatar change on gravatar.com might take a while to be updated by our system</p>
+				<!-- <iframe width="100%" height="400" frameborder="0" style="border:0" src="/profiles/upload_photo" id="photouploadiframe"></iframe> -->
 				<!-- <div id="upload_image_preview" style="overflow-x:auto"></div>
 				<div id="file-uploader">       
 				    <noscript>          
