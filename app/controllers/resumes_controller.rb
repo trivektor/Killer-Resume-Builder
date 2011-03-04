@@ -72,22 +72,12 @@ class ResumesController < ApplicationController
     
     @body_id = "resume_edit"
     
-    @resume = Resume.find(params[:id])
-    
-    @section_names = get_section_names(@resume)
-    
-    @section_order = get_section_order(@resume)
-    
-    @settings = @resume.resume_setting
-    
-    @field_works = @resume.resume_field_work.field_works
-  	
-  	@hidden_fields = get_hidden_fields(@resume)
+    find_resume
     
   end
   
   def update
-    @resume = Resume.find(params[:id])
+    find_resume
 
     if @resume.update_attributes(params[:resume])
       flash[:notice] = "Your resume has been updated"
@@ -109,7 +99,21 @@ class ResumesController < ApplicationController
     render :layout => "theme_selector"
   end
   
-  private 
+  private
+  
+  def find_resume
+    @resume = Resume.find(params[:id])
+    
+    @section_names = get_section_names(@resume)
+    
+    @section_order = get_section_order(@resume)
+    
+    @settings = @resume.resume_setting
+    
+    @field_works = @resume.resume_field_work.field_works
+  	
+  	@hidden_fields = get_hidden_fields(@resume)
+  end
   
   def get_themes
     themes = Theme.where(:status => :active).find(:all)

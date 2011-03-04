@@ -1,106 +1,105 @@
-<% @title_for_layout = "Edit Resume" %>
+<% 
+@title_for_layout = "Edit Resume"
+sections = {1 => "personal_information", 2 => "education", 3 => "skills", 4 => "work_experience", 5 => "references", 6 => "field_works"}
+%>
 
-<%= link_to ("Back to dashboard", {:controller => "dashboard", :action => "index"}) %>
+<%= form_for @resume, :url => resume_path(@resume),:method => :put do |f| %>		
 
-<br /><br />
+<%= link_to ("Back to dashboard", {:controller => "dashboard", :action => "index"}, :class => "go_back") %>
 
 <% if flash[:notice] %>
 	<div class="result_success"><%= flash[:notice] %></div>
-	<br />
+<% end %>
+
+<% if @resume.errors.count > 0 %>
+  <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+  <br />
 <% end %>
 
 <div class="blue_region">
 
-<%= form_for @resume, :url => resume_path(@resume),:method => :put do |f| %>		
-
-<div id="resume_controls">
-  <a class="trigger_overlay blue_btn" rel="order_sections" effect="bounce">Order Sections</a>
-  <a href="/resumes/<%= @resume.id %>/delete" class="red_btn delete">Delete resume</a>
-  <a href="/<%= @resume.url %>" class="blue_btn" target="_blank">View live</a>
-  <a href="/resumes/<%= @resume.id %>/select_theme" class="green_btn">Theme</a>	
-  <a class="trigger_overlay blue_btn" rel="resume_settings" effect="shake">Settings</a>
-</div>
-
-<div class="clearfloat"></div>
-
-<% for s in @section_order %>
-
-<%= render :partial => "shared/resume/edit/" + s, :locals => {:f => f} %>
-
-<% end %>
-
-<%= render :partial => "shared/resume/edit/keywords" %>
-
-<% 
-sections = {
-  1 => "personal_information",
-  2 => "education",
-  3 => "skills",
-  4 => "work_experience",
-  5 => "references",
-  6 => "field_works"
-}
-%>
-
-<div style="display:none" id="order_sections">
-  <h2>Order Sections</h2>
-  <%= image_tag "resume/closeOverlay.png", :alt => "Close", :class => "close_overlay" %>
-  <div class="sortable ui-sortable" id="sort_resume_sections" style="">
-    <% for s in @section_order %>
-    <div id="section_<%= sections.index(s) %>" class="sections">
-      <%= s.sub("_", " ").split(" ").select {|w| w.capitalize! || w}.join(" ") %>
-    </div>
-    <% end %>
+  <div id="resume_controls">
+    <a class="trigger_overlay blue_btn" effect="bounce" rel="change_title">Change title</a>
+    <a class="trigger_overlay blue_btn" rel="order_sections" effect="bounce">Order Sections</a>
+    <a href="/resumes/<%= @resume.id %>/delete" class="red_btn delete">Delete resume</a>
+    <a href="/resumes/<%= @resume.id %>/select_theme" class="green_btn">Theme</a>	
+    <a class="trigger_overlay blue_btn" rel="resume_settings" effect="shake">Settings</a>
+    <a href="/<%= @resume.url %>" class="blue_btn" target="_blank">View live</a>
   </div>
-  <div style="display: none;" class="updated">Your resume sections have been re-ordered. Please refresh your browser.</div>
-  <input type="hidden" id="resume_section_order_id" value="<%= @resume.resume_section_order.id %>">
-</div>
+    
+  <div class="clearfloat"></div>
+    
+  <%= render :partial => "shared/resume/edit/title", :locals => {:f => f} %>
 
-<div style="text-align:right; width:898px">
+  <div class="clearfloat"></div>
+
+  <% for s in @section_order %>
+    <%= render :partial => "shared/resume/edit/" + s, :locals => {:f => f} %>
+  <% end %>
+    
+  <%= render :partial => "shared/resume/edit/keywords" %>
+    
+  <div style="text-align:right; width:898px">
     <input type="image" alt="Update Resume" src="/images/resume/updateResume.png" />
+  </div>
+
+  <!-- Order Sections starts -->
+  <div id="order_sections" class="overlay_modal" style="display:none">
+    <h2>Order Sections</h2>
+    <%= image_tag "resume/closeOverlay.png", :alt => "Close", :class => "close_overlay" %>
+    <div class="sortable ui-sortable" id="sort_resume_sections" style="">
+      <% for s in @section_order %>
+      <div id="section_<%= sections.index(s) %>" class="sections">
+        <%= s.sub("_", " ").split(" ").select {|w| w.capitalize! || w}.join(" ") %>
+      </div>
+      <% end %>
+    </div>
+    <div style="display:none" class="updated">Your resume sections have been re-ordered. Please refresh your browser.</div>
+    <input type="hidden" id="resume_section_order_id" value="<%= @resume.resume_section_order.id %>">
+  </div>
+  <!-- Order Sections ends -->
+
+  <!-- Resume Settings starts -->
+  <div id="resume_settings" class="overlay_modal" style="display:none">
+  	<h2>Resume Settings</h2>
+  	<%= image_tag "resume/closeLoginForm.png", :class => "close_overlay" %>
+  	<input type="hidden" id="resume_settings_id" value="<%= @resume.resume_setting.id %>" />
+  	<ul>
+  		<li>
+  			<input type="radio" value="active" id="ResumeSettingStatusActive" name="resume_setting[status]" <%= @settings.status == "active" ? 'checked=\"checked\"' : "" %> />
+  			<label for="ResumeSettingStatusActive">active</label>
+  			<input type="radio" value="disabled" id="ResumeSettingStatusDisabled" name="resume_setting[status]" <%= @settings.status == "disabled" ? 'checked=\"checked\"' : "" %> />
+  			<label for="ResumeSettingStatusDisabled">disabled</label> 
+  		</li>
+  		<li>
+  			<input type="checkbox" id="ResumeSettingHidePersonalInfo" name="resume_setting[hide_personal_info]" <%= @settings.hide_personal_info ? 'checked="checked"' : "" %> /> 
+  			<span>hide personal info</span>
+  		</li>
+  		<li>
+  			<input type="checkbox" id="ResumeSettingAlertCopy" name="resume_setting[alert_copy]" <%= @settings.alert_copy ? 'checked="checked"' : '' %> /> 
+  			<span>notify me when someone copies my resume</span>
+  		</li>
+  		<li>
+  			<input type="checkbox" id="ResumeSettingEmailNotification" name="resume_setting[email_notification]" <%= @settings.email_notification ? 'checked="checked"' : '' %> /> 
+  			<span>email me when someone visits my resume</span>
+  		</li>
+  		<li>
+  			<input type="checkbox" id="ResumeSettingShowLastUpdated" name="resume_setting[show_last_updated]" <%= @settings.show_last_updated ? 'checked="checked"' : '' %> /> 
+  			<span>show last updated date</span>
+  		</li>
+  		<li>
+  		    <input type="checkbox" id="ResumeSettingAllowSharing" name="resume_setting[allow_sharing]" <%= @settings.allow_sharing ? 'checked="checked"' : ''  %> />
+  		    <span>allow sharing on social networks</span>
+  		</li>
+  	</ul>
+  	<%= image_tag "resume/updateSettingsBtn.png", :id => "update_resume_settings" %>
+  </div>
+  <!-- Resume Settings ends -->
+
+  <div style="display:none" id="updated_status">Your resume has been updated</div>
+
+  <input type="hidden" id="ResumeId" value="<%= @resume.id %>" />
+
 </div>
 
 <% end %>
-
-<!-- Resume Settings starts -->
-<div style="display:none" id="resume_settings">
-	<h2>Resume Settings</h2>
-	<%= image_tag "resume/closeLoginForm.png", :class => "close_overlay" %>
-	<input type="hidden" id="resume_settings_id" value="<%= @resume.resume_setting.id %>" />
-	<ul>
-		<li>
-			<input type="radio" value="active" id="ResumeSettingStatusActive" name="resume_setting[status]" <%= @settings.status == "active" ? 'checked=\"checked\"' : "" %> />
-			<label for="ResumeSettingStatusActive">active</label>
-			<input type="radio" value="disabled" id="ResumeSettingStatusDisabled" name="resume_setting[status]" <%= @settings.status == "disabled" ? 'checked=\"checked\"' : "" %> />
-			<label for="ResumeSettingStatusDisabled">disabled</label> 
-		</li>
-		<li>
-			<input type="checkbox" id="ResumeSettingHidePersonalInfo" name="resume_setting[hide_personal_info]" <%= @settings.hide_personal_info ? 'checked="checked"' : "" %> /> 
-			<span>hide personal info</span>
-		</li>
-		<li>
-			<input type="checkbox" id="ResumeSettingAlertCopy" name="resume_setting[alert_copy]" <%= @settings.alert_copy ? 'checked="checked"' : '' %> /> 
-			<span>notify me when someone copies my resume</span>
-		</li>
-		<li>
-			<input type="checkbox" id="ResumeSettingEmailNotification" name="resume_setting[email_notification]" <%= @settings.email_notification ? 'checked="checked"' : '' %> /> 
-			<span>email me when someone visits my resume</span>
-		</li>
-		<li>
-			<input type="checkbox" id="ResumeSettingShowLastUpdated" name="resume_setting[show_last_updated]" <%= @settings.show_last_updated ? 'checked="checked"' : '' %> /> 
-			<span>show last updated date</span>
-		</li>
-		<li>
-		    <input type="checkbox" id="ResumeSettingAllowSharing" name="resume_setting[allow_sharing]" <%= @settings.allow_sharing ? 'checked="checked"' : ''  %> />
-		    <span>allow sharing on social networks</span>
-		</li>
-	</ul>
-	<%= image_tag "resume/updateSettingsBtn.png", :id => "update_resume_settings" %>
-</div>
-<!-- Resume Settings ends -->
-
-<div style="display: none;" id="updated_status">Your resume has been updated</div>
-
-<input type="hidden" id="ResumeId" value="<%= @resume.id %>" />
-
-</div>
