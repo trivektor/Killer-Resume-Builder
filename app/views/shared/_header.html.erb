@@ -7,24 +7,12 @@
 			<% if logged_in? %>
 			
 			<ul id="top_panel">
-				<li><a class="last" href="/feedback">Feedback</a></li>
-				<li><a href="/pages/tour">Tour</a></li>
-				<li><a href="http://krbdr.tumblr.com" target="_blank">Blog</a></li>
+        <li><%= link_to "Logout", logout_path, :class => :last  %></li>
+        <li><%= link_to ("Account Settings", edit_user_path(current_user)) %></li>
+        <li><%= link_to("Profile", profile_path(current_user.username)) %></li>
 				<li><%= link_to "Dashboard", :controller => :dashboard, :action => :index %></li>
-				<li id="username_tab">
-					<span>Hi <%= current_user.username %></span>
-						<div style="display: none;" id="account_links">
-							<ul class="white_region">
-								<li>
-									<%= link_to("Profile", profile_path(current_user.username), :class => "view_profile profile_control_links") %>
-								</li>
-								<li><a class="edit_profile_btn profile_control_links" href="/profile/515097306">Edit Profile</a></li>
-								<li><%= link_to ("Account Settings", edit_user_path(current_user), :class => "edit_account_settings") %></li>
-								<li><%= link_to "Logout", logout_path, :class => "logout profile_control_links"  %></li>
-								<li class="omega"><a class="close profile_control_links" id="close_account_links">Close</a></li>
-							</ul>
-						</div>
-				</li> 
+				<li>Hi <%= current_user.username %></li> 
+			  <li id="header_profile_photo"><%= image_tag current_user.gravatar_url, :class => :user_image %></li>
 			</ul>
 			<% else %>
 			

@@ -193,23 +193,6 @@ $(function(){
 		profileImageCropper.show();
 	})
 	
-	//Account links
-	var accountLinks = $("#account_links");
-	
-	$("#username_tab").hoverIntent({
-		over: function(){
-			accountLinks.fadeIn(500);
-		},
-		timeout: 500,
-		out: function(){
-			accountLinks.fadeOut();
-		}
-	})
-	
-	$("#close_account_links").click(function(event){
-		accountLinks.fadeOut(500);
-	})
-	
 	//Update resume
 	var ru = $("#resume_updated");
 	

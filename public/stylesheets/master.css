@@ -56,11 +56,11 @@ font-size:11px; z-index:100; padding-top:9px}
 #account_links li a.edit_account_settings {color:#333; background:url(../images/resume/key_16.png) no-repeat; padding-left:25px; display:block; height:16px;}
 #account_links li a.logout {background:url(../images/resume/stop_16.png) no-repeat}
 #account_links li a.close {background:url(../images/resume/delete_16.png) no-repeat}
-#username {position:relative;}
-#username_tab span {cursor:pointer; color:#fff; position:relative;}
+#header_profile_photo .user_image {width:17px; height:17px; border:2px solid #fff; position:relative; top:-3px; left:-10px;}
+
 
 #top_panel {position:absolute; top:19px; right:0px; font-size:11px;}
-#top_panel > li {float:right; margin-left:4px;}
+#top_panel > li {float:right; margin-left:4px; color:#fff;}
 #top_panel > li > a {display:block; color:#fff; padding:0px 8px; border-right:1px solid #fff;}
 #top_panel .last {padding-right:0; border-right:0;}
 
