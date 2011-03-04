@@ -1,0 +1,12 @@
+<% personal_information = @resume.resume_personal_information %>
+
+<div class="section_wrapper">
+  <ul id="personal_information">
+    <li><h1 id="full_name"><%= personal_information.full_name %></h1></li>
+    <li><%= personal_information.address %>, <%= personal_information.state %></li>
+    <li><%= personal_information.phone_number %></li>
+    <li><%= personal_information.fax_number %></li>
+    <li><%= obfuscate_email personal_information.email unless personal_information.email.blank? %></li>
+    <li><a href="<%= personal_information.website %>" target="_blank"><%= personal_information.website %></a></li>
+  </ul>
+</div>

@@ -1,42 +1,36 @@
-body {background:#e7dbc6; font-family:myriad pro; font-size:12px; color:#333;}
+body {background:#E0DBCA; font-size:15px;}
 
-#resume_sheet {background:#fff; width:500px; margin:50px auto; padding:0; border:0; -moz-box-shadow:0 -2px 5px #888; 
--webkit-box-shadow:0 -2px 5px #888;}
+a {color:red;}
 
-#header {background:url(../../img/themes/thin_beige/headerBg.png) repeat-x left bottom #464646; padding:10px; margin-bottom:10px;}
+ul {list-style:none;}
 
-#header .user_image {float:left; width:60px; margin-right:20px; border:5px solid #fff}
+.section_wrapper {padding:20px 0}
+.header_tag {color:#888888; margin-bottom:20px;}
 
-#resume_full_name {font-size:26px}
+#container {background:#CEC9B8; padding:3px; border:3px solid #DAD5C4; width:640px; margin:0 auto;}
 
-#header #personal_info {color:#e7dbc6; float:left; width:380px;}
+#personal_information {list-style:none;}
+#personal_information li {margin-bottom:10px;}
 
-ul li {list-style:none;}
+#resume_sheet {margin:0; width:538px; padding:20px 50px;}
 
-#personal_info ul li a {color:#e7dbc6;}
+#full_name {margin-bottom:2px;}
 
-.section_tag {float:left; margin-left:-34px; background:url(../../img/themes/thin_beige/tagLeftBg.png) no-repeat left top; padding-left:19px; height:56px}
-.section_tag_end {background:url(../../img/themes/thin_beige/tagRightBg.png) no-repeat right top; padding-right:17px;}
-.section_tag_middle {background:url(../../img/themes/thin_beige/tagMiddleBg.png) repeat-x; color:#fff; font-size:20px; height:47px; line-height:47px;
-font-weight:normal;}
+#address {margin-bottom:2px;}
 
-.section_wrapper {padding:15px 20px;}
-.section_content {margin-top:20px;}
+.institution_name {margin-bottom:10px;}
+.education_degree {margin-bottom:10px; line-height:22px; font-style:oblique; color:#666;}
 
-.item_list li {overflow:hidden;}
-.institution_name, .organization_name {display:block;font-size:14px; font-weight:bold; margin-bottom:5px}
-.position_title {color:#b6a588; margin-bottom:5px;}
-.left {float:left; width:320px;}
-.period {float:right; width:100px;}
-.period {float:right; width:100px;}
-.period span {float:left; margin-right:4px; display:block; padding:4px; -moz-border-radius:3px; -webkit-border-radius:3px; line-height:12px;}
-.period .month { background:#e7dbc6;}
-.period .year {background:#111; color:#fff;}
+#resume_skills {color:#666; font-style:oblique;}
+#resume_skills li {line-height:22px;}
 
-#skills_section ul li {margin:5px 0;}
-#references_section li {margin-bottom:15px;}
-#references_section li a {color:#b6a588;}
+.position_title {margin-bottom:10px}
+.position_duration {margin-bottom:10px}
+.position_details {line-height:22px; font-style:oblique; color:#666;}
+.position_details li {margin-bottom:10px;}
 
-.position_details li {margin:15px 0;}
+.reference_name { margin-bottom:5px; font-weight:bold; }
+.reference_title {margin-bottom:5px;}
+.reference_organization {margin-bottom:5px;}
 
-.reference_name {margin-bottom:4px; font-size:13px; font-weight:bold;}
+#field_works {color:#666; font-style:oblique; line-height:22px;}

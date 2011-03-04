@@ -1,16 +1,12 @@
 <%= render :partial => "shared/resume/show/head" %>
 <body>
-	<div id="resume_sheet">
-		<div id="header">
-			<?= $this->element('user_image', array('photo' => $profile['Profile']['photo'])) ?>
-			<?= $this->element('resume/view/'.$theme_slug.'/personal_information') ?>
-			<div class="clearfloat"></div>
+  <%= render :partial => "shared/resume/show/top_bar" %>
+  <div id="container">
+	  <div id="resume_sheet">
+		  <% for s in @section_order %>
+			  <%= render :partial => "shared/resume/show/thin_beige/#{s}" %>
+	      <% end %>
 		</div>
-		
-		<% for s in @section_order %>
-			<%= render :partial => "shared/resume/show/thin_beige/#{s}" %>
-	  <% end %>
-		
 	</div>
 </body>
 </html>
