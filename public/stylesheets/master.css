@@ -369,8 +369,7 @@ position:absolute; bottom:20px; text-align:center}
 #home_features {overflow:hidden}
 
 /* Login */
-#login #content {height:700px;}
-#login #container {background:url(../images/resume/graygradient.jpg) repeat-x}
+#login .result_error {width:486px; margin: 0 auto 10px;}
 
 /* Overlay login form */
 #overlayLoginForm, #forgotPasswordOverlayForm {background:url(../images/resume/hangingLoginFormOverlay.png) no-repeat; width:460px; padding:20px; 

@@ -8,10 +8,12 @@
 		<h2 id="home_intro_header">Create Beautiful Online Resumes For Free</h2>
 			<%= image_tag("resume/introImage.png", :alt => "Create Beautiful Online Resumes For Free", :id => "home_intro_image") %>
 		<div id="cta">
+		  <% if !logged_in? %>
 			<a href="/signup">
 				<%= image_tag("resume/signupCTA.png", :alt => "Signup") %>
 			</a>
-			<%= image_tag("resume/takeATour.png", :alt => "Take A Tour") %>
+			<% end %>
+			<!-- <%= image_tag("resume/takeATour.png", :alt => "Take A Tour") %> -->
 		</div>
 	</div>
 </div>
@@ -60,22 +62,19 @@
 					</div>
 				</li>
 				<li>
-					<%= image_tag("resume/statistics_32.png", :alt => "Analytics", :class => 'feature_illustration') %>
-					<div class="feature_details">
-						<h3>Analytics</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
-						Ipsum has been the industry's standard dummy text ever since the 1500s, when an 
-						unknown printer took a galley of type and scrambled it to make a type specimen 
-						book.</p>
-					</div>
-				</li>
-				<li class="omega">
 					<%= image_tag("resume/flag_32.png", :alt => "Theft Report", :class => 'feature_illustration') %>
 					<div class="feature_details">
 						<h3>Theft Report</h3>
 						<p>You work hard and merticulously to build your resume. You spend hours polishing it, making it look great. It is unwanted
 						that your resume is plagiarized in any mean. Our theft reporting tool will notify you of any infringement possibility give
 						you the support you need in response.</p>
+					</div>
+				</li>
+				<li class="omega">
+					<%= image_tag("resume/statistics_32.png", :alt => "Analytics", :class => 'feature_illustration') %>
+					<div class="feature_details">
+						<h3>Analytics</h3>
+						<p>Our analytics tools will tell you information about your resume viewers, helping you customize your resumes</p>
 					</div>
 				</li>
 			</ul>

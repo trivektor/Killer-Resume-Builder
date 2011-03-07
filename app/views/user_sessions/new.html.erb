@@ -1,10 +1,16 @@
-<% @title_for_layout = "Login" %>
+<% 
+@title_for_layout = "Login"
+@body_id = "login"
+%>
 
 <%= form_for @user_session do |f| %>
 
-<div style="position:static" id="overlayLoginForm">
+<% if @user_session.errors.count > 0 %>
+  <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+<% end %>
+
+<div id="overlayLoginForm">
 	
-	<img alt="" id="overlayLoginFormClose" src="/img/resume/closeOverlay.png">	
 	<div id="overlayLoginFormInner">
 		<h2 id="overlayLoginFormHeader">Login</h2>
 		<div class="clearfloat"></div>
@@ -18,8 +24,7 @@
 			<%= f.password_field :password, :class => "textbox" %>
 		</div>
 		<div id="overlayLoginFormButtons">
-			<input type="image" src="/images/resume/cancelLoginButton.png" id="cancelLoginForm">
-			<input type="image" src="/images/resume/loginFormGo.png" id="submitLoginForm">
+			<input type="image" src="/images/resume/loginFormGo.png" id="submitLoginForm" />
 		</div>
 		<div id="overlayLoginFormBottom">
 			
