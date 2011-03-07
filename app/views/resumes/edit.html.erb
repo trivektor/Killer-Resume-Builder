@@ -1,5 +1,6 @@
 <% 
 @title_for_layout = "Edit Resume"
+@body_id = "resume_edit"
 sections = {1 => "personal_information", 2 => "education", 3 => "skills", 4 => "work_experience", 5 => "references", 6 => "field_works"}
 %>
 
@@ -19,7 +20,6 @@ sections = {1 => "personal_information", 2 => "education", 3 => "skills", 4 => "
 <div class="blue_region">
 
   <div id="resume_controls">
-    <a class="trigger_overlay blue_btn" effect="bounce" rel="change_title">Change title</a>
     <a class="trigger_overlay blue_btn" rel="order_sections" effect="bounce">Order Sections</a>
     <a href="/resumes/<%= @resume.id %>/delete" class="red_btn delete">Delete resume</a>
     <a href="/resumes/<%= @resume.id %>/select_theme" class="green_btn">Theme</a>	

@@ -70,8 +70,6 @@ class ResumesController < ApplicationController
   
   def edit
     
-    @body_id = "resume_edit"
-    
     find_resume
     
   end

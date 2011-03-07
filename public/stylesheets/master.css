@@ -96,10 +96,9 @@ font-size:11px; z-index:100; padding-top:9px}
 
 .form_row {margin:20px 0; position:relative; overflow:hidden;}
 .form_row label {margin-bottom:7px; display:block}
-.form_row .eg {margin-top:3px; font-size:11px; color:#666}
+.form_row .eg {margin-top:3px; font-size:11px; color:#666; float:right}
 
 #resume_edit .form_row label {float:left}
-#resume_edit .form_row .eg {float:right;}
 
 .textbutton {text-align:center; width:154px; font-size:13px; color:#fff; display:block; margin-top:10px; border:0;
 background:url(../images/resume/textbuttonbg.png) no-repeat; height:31px; line-height:29px; text-shadow:0 1px 1px #000;}

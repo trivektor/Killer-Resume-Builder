@@ -1,4 +1,7 @@
-<% @title_for_layout = "Dashboard" %>
+<% 
+@title_for_layout = "Dashboard"
+@body_id = "dashboard"
+%>
 
 <% if !@missing.empty? && @profile.hide_profile_notification == false %>
     <div id="profile_complete_notice" class="result_success">
@@ -39,13 +42,13 @@
 			<% @resumes.each do |resume| %>
 			<li class="white_region">
 				<div class="left">
-					<%= link_to resume.title, "/resumes/#{resume.url}" %>
+					<%= link_to resume.title, edit_resume_path(resume) %>
 					<p class="timestamp">
 						Last updated <%= resume.updated_at.strftime("%b %d, %Y %H:%M %p") %>
 					</p>
 				</div>
 				<div class="options">
-                    <a title="Delete" class="delete" href="/resumes/<%=resume.id%>/delete"></a>
+          <a title="Delete" class="delete" href="/resumes/<%=resume.id%>/delete"></a>
 					<a target="_blank" title="View" class="view_live" href="/<%=resume.url%>"></a>
 					<%= link_to "", edit_resume_path(resume), {:class => :edit} %>
 					<a title="Analytics" class="analytic" href="/resumes/analytic/1"></a>
@@ -64,7 +67,7 @@
 	        <% @popular_resumes.each do |resume| %>
 	            <li class="white_region">
 	                <div class="left">
-	                    <%= link_to resume.title, "/resumes/#{resume.url}" %>
+	                    <%= link_to resume.title, edit_resume_path(resume) %>
 	                </div>
 	                <div class="options">
 	                    <a class="analytic"></a>

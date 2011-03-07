@@ -140,9 +140,7 @@ $(function(){
 	
 	$("#close_profile_overlay").click(function(){
 		editProfileMessage.removeClass().text("").hide();
-		profileImageCropper.hide();
 		profileDetailsInput.show();
-		$("#photouploadiframe").attr("src", "profile/upload_photo");
 	})
 	
 	var profileDetailsInput = $("#profile_details_input");

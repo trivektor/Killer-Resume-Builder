@@ -2,9 +2,7 @@ class DashboardController < ApplicationController
   
   before_filter :require_user, :only => :index
   
-  def index
-    @body_id = "dashboard"
-    
+  def index 
     @resumes = get_resumes
     
     @popular_resumes = get_popular_resumes

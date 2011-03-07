@@ -9,57 +9,46 @@
 	<div class="account_overlay_right">
 		<div class="inner">
 			<div id="profile_image_cropper" style="display:none; height:400px">
-        <div id="change_avatar">
-          <strong>Change your avatar at <a href="http://www.gravatar.com" target="_blank" style="color:#4183C4">gravatar.com</a></strong>
-        </div>
-        <p style="font-size:11px">We are using <%= current_user.email %></p>
-        <p></p>
-        <p>Your avatar change on gravatar.com might take a while to be updated by our system</p>
-				<!-- <iframe width="100%" height="400" frameborder="0" style="border:0" src="/profiles/upload_photo" id="photouploadiframe"></iframe> -->
-				<!-- <div id="upload_image_preview" style="overflow-x:auto"></div>
-				<div id="file-uploader">       
-				    <noscript>          
-				        <p>Please enable JavaScript to use file uploader.</p>
-				        
-				    </noscript>         
-				</div> -->
+        <div id="change_avatar">Change your avatar at <a href="http://www.gravatar.com" target="_blank" style="color:#4183C4">gravatar.com</a></div>
+        <p style="margin-top:10px">We are using <%= current_user.email %></p>
+        <p style="margin-top:10px">Your avatar change on gravatar.com might take a while to be updated by our system</p>
 				
 			</div>
 			<div id="profile_details_input">
-			    <%= form_for @profile do |f| %>
+			    <%= form_for @profile do |profile_form| %>
 				<h2><%= image_tag "resume/profileDetailsHeader.png", :alt => "Profile" %></h2>
 				<div id="edit_profile_message" style="display:none"></div>
 				<div class="form_row">
 					<label>First Name</label>
-					<%= f.text_field :first_name, :class => :textbox, :id => "profile_first_name" %>
+					<%= profile_form.text_field :first_name, :class => :textbox, :id => "profile_first_name" %>
 				</div>
 				<div class="form_row">
 					<label>Last Name</label>
-					<%= f.text_field :last_name, :class => :textbox, :id => "profile_last_name" %>
+					<%= profile_form.text_field :last_name, :class => :textbox, :id => "profile_last_name" %>
 				</div>
 				<div class="form_row">
 					<label>City</label>
-					<%= f.text_field :city, :class => :textbox, :id => "profile_city" %>
+					<%= profile_form.text_field :city, :class => :textbox, :id => "profile_city" %>
 				</div>
 				<div class="form_row">
 					<label>State/Province</label>
-					<%= f.text_field :state, :class => :textbox, :id => "profile_state" %>
+					<%= profile_form.text_field :state, :class => :textbox, :id => "profile_state" %>
 				</div>
 				<div class="form_row">
 					<label>Country</label>
-					<%= select "profile", "country_id", get_countries %>
+					<%= profile_form.select "country_id", get_countries, :selected => @profile.country_id %>
 				</div>
 				<div class="form_row">
 					<label>Postal Code</label>
-					<%= f.text_field :postal_code, :class => :textbox, :id => "profile_postal_code" %>
+					<%= profile_form.text_field :postal_code, :class => :textbox, :id => "profile_postal_code" %>
 				</div>
 				<div class="form_row">
 					<label>Job Function</label>
-					<%= select "profile", "job_category_id", get_job_categories %>
+					<%= profile_form.select "job_category_id", get_job_categories, :selected => @profile.job_category_id %>
 				</div>
 				<div class="form_row">
 					<label>Industry</label>
-					<%= select "profile", "job_industry_id", get_job_industries %>
+					<%= profile_form.select "job_industry_id", get_job_industries, :selected => @profile.job_industry_id %>
 				</div>
 				<div class="form_row">
 					<label>Title</label>
