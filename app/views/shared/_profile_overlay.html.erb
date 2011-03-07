@@ -15,7 +15,7 @@
 				
 			</div>
 			<div id="profile_details_input">
-			    <%= form_for @profile do |profile_form| %>
+			    <%= form_for @profile, :html => { :id => :profile_form } do |profile_form| %>
 				<h2><%= image_tag "resume/profileDetailsHeader.png", :alt => "Profile" %></h2>
 				<div id="edit_profile_message" style="display:none"></div>
 				<div class="form_row">

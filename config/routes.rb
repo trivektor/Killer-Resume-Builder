@@ -47,6 +47,7 @@ Krb::Application.routes.draw do
       # delete_all
       collection do
         # /resumes/1/resume_educations/...
+        post :order
         get :delete_all  #/resumes/1/resume_educations/delete_all  -> params[:resume_id],  delete_all_resume_resume_educations_path(@resume)
       end
       
@@ -56,6 +57,10 @@ Krb::Application.routes.draw do
       member do
         get :delete
       end
+      
+      collection do
+        post :order
+      end
     end
     
     resources :resume_references do
@@ -63,11 +68,23 @@ Krb::Application.routes.draw do
         get :delete
         post :order
       end
+      
+      collection do
+        post :order
+      end
+    end
+    
+    resources :resume_hidden_fields do
+      collection do
+        post :update_section
+      end
     end
     
     resources :resume_themes, :only => [:update]
     
     resources :resume_section_names, :only => [:update]
+    
+    
     
   end
   
