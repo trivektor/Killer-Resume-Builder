@@ -7,20 +7,17 @@ class ResumeHiddenFieldsController < ApplicationController
   
   def update_section
     
-    action = params[:action]
+    type = params[:type].to_s
     
-    hidden_field = find_resume_hidden_field
-    
-    if (action == "enable")
+    if (type == "enable")
       hidden_field = find_resume_hidden_field
       hidden_field.destroy unless hidden_field.nil?
     else
       hidden_field = ResumeHiddenField.new(:resume_id => params[:resume_id], :hidden_field => params[:hidden_field])
       hidden_field.save
-      
-      render :json => {:success => 1}
     end
     
+    render :json => {:success => 1}
     
   end
   

@@ -7,17 +7,14 @@
 		<div class="options_label">Options</div>
 		
 		<div class="add">
-  	        <%= link_to "Add a new entry", new_resume_resume_work_experience_path(@resume) %>
-  	    </div>
+  	    <%= link_to "Add a new entry", new_resume_resume_work_experience_path(@resume) %>
+  	</div>
   	    
-  	    <% section_mode = "active" %>
+  	<% section_mode = @hidden_fields.include?("work_experience") ? "disabled" : "active" %>
 		
-		<% if @hidden_fields.include?("work_experience") %>
-		    <a class="enable_section" rel="work_experience">Enable this section</a>
-		    <% section_mode = "disabled" %>
-		<% else %>
-		    <a class="disable_section" rel="work_experience">Disable this section</a>
-		<% end %>
+		<a class="enable_section" rel="work_experience">Enable this section</a>
+		<a class="disable_section" rel="work_experience">Disable this section</a>
+		
 		<input type="hidden" class="section_mode" value="<%= section_mode %>" />
 	</div>
 	

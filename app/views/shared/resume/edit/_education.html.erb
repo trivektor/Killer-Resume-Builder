@@ -9,14 +9,11 @@
 		  <%= link_to "Add a new entry", new_resume_resume_education_path(@resume) %>
 		</div>
 		
-		<% section_mode = "active" %>
+		<% section_mode = @hidden_fields.include?("education") ? "disabled" : "active" %>
 		
-		<% if @hidden_fields.include?("education") %>
-		    <a class="enable_section" rel="education">Enable this section</a>
-		    <% section_mode = "disabled" %>
-		<% else %>
-		    <a class="disable_section" rel="education">Disable this section</a>
-		<% end %>
+		<a class="enable_section" rel="education">Enable this section</a>
+		<a class="disable_section" rel="education">Disable this section</a>
+		
 		<input type="hidden" class="section_mode" value="<%= section_mode %>" />
 	</div>
 	

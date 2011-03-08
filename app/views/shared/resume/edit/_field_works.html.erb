@@ -4,14 +4,11 @@
 	<div class="section_options">
 		<div class="options_label">Options</div>
 		
-		<% section_mode = "active" %>
+		<% section_mode = @hidden_fields.include?("field_works") ? "disabled" : "active" %>
 		
-		<% if @hidden_fields.include?("field_works") %>
-		    <a class="enable_section" rel="field_works">Enable this section</a>
-		    <%= section_mode = "disabled" %>
-		<% else %>
-		    <a class="disable_section" rel="field_works">Disable this section</a>
-		<% end %>
+	  <a class="enable_section" rel="field_works">Enable this section</a>
+		<a class="disable_section" rel="field_works">Disable this section</a>
+
 		<input type="hidden" class="section_mode" value="<%= section_mode %>" />
 	</div>
 	

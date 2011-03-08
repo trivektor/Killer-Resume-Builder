@@ -68,6 +68,7 @@ var Resume = {
 		this.setup_section_options();
 		
 		this.setup_disable_section_action();
+		this.setup_enable_section_action();
 	},
 	
 	setup_selectors : function() {
@@ -78,7 +79,8 @@ var Resume = {
 		this.update_section_name = $("span.update_section_name");
 		this.cancel_update_section_name = $("span.cancel_update_section_name");
 		this.section_options = $(".section_options");
-		this.disable_section = $(".disable_section");
+		Resume.disable_section = $(".disable_section");
+		Resume.enable_section = $(".enable_section");
 	},
 	
 	edit_section_name_action : function() {
@@ -174,15 +176,32 @@ var Resume = {
 	},
 	
 	setup_disable_section_action : function() {
-		this.disable_section.bind('click', function() {
+		Resume.disable_section.bind('click', function() {
 			var t = $(this);
 			$.post(
 				"/resumes/" + Resume.id + "/resume_hidden_fields/update_section",
-				{ hidden_field:t.attr("rel"), action:"disable" },
+				{ hidden_field : t.attr("rel"), type : "disable" },
 				function(response) {
 					if (response.success == 1) {
 						t.siblings("input.section_mode").val("disabled");
 						t.hide().siblings("span.enable_section").show();
+						Resume.blinkUpdatedStatus();
+					}
+				}
+			)
+		})
+	},
+	
+	setup_enable_section_action : function() {
+		Resume.enable_section.bind('click', function(){
+			var t = $(this);
+			$.post(
+				"/resumes/" + Resume.id + "/resume_hidden_fields/update_section",
+				{ hidden_field : t.attr("rel"), type : "enable" },
+				function(response) {
+					if (response.success == 1) {
+						t.siblings("input.section_mode").val("active");
+						t.hide().siblings("span.disable_section").hide();
 						Resume.blinkUpdatedStatus();
 					}
 				}
@@ -359,22 +378,6 @@ $(function(){
 			function() {
 				$("#theme_selector").hide();
 				o.hide();
-			}
-		)
-	})
-	
-	//Enable section
-	$("a.enable_section").click(function(){
-		var t = $(this);
-		$.post(
-			"/ajax/update_section",
-			{resume_id:$("#ResumeId").val(), hidden_field:t.attr("rel"), action:"enable"},
-			function(response) {
-				if (response == 1) {
-					t.siblings("input.section_mode").val("active");
-					t.hide().siblings("span.disable_section").hide();
-					blinkUpdatedStatus();
-				}
 			}
 		)
 	})
