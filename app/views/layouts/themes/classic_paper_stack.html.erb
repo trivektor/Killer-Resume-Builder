@@ -16,9 +16,7 @@
 		
 		<div class="clearfloat"></div>
 		
-		<% for s in @section_order %>
-			<%= render :partial => "shared/resume/show/classic_paper_stack/#{s}" %>
-	  <% end %>
+		<%= render :partial => "shared/resume_section_renderer" %>
 		
 	</div>
 	

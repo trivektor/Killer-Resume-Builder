@@ -3,11 +3,9 @@
 	
 	<%= render :partial => "shared/resume/show/top_bar" %>
 
-		<div class="clearfloat"></div>
+	<div class="clearfloat"></div>
 		
-		<% for s in @section_order %>
-			<%= render :partial => "shared/resume/show/bwr/#{s}" %>
-	  <% end %>
+	<%= render :partial => "shared/resume_section_renderer" %>
 	
 </body>
 </html>

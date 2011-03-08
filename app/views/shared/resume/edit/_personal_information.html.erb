@@ -8,70 +8,75 @@
 <div class="clearfloat"></div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationFullName">Full Name</label>
+  <%= pi.label :full_name %>
 	<%= pi.text_field :full_name, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationAddress">Address</label>
+  <%= pi.label :address %>
 	<%= pi.text_field :address, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationCity">City</label>
+  <%= pi.label :city %>
 	<%= pi.text_field :city, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationState">State/Province</label>
+  <label for="resume_resume_personal_information_attributes_state">State/Province</label>
 	<%= pi.text_field :state, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationPhoneNumber">Phone Number</label>
+	<%= pi.label :phone_number %>
 	<%= pi.text_field :phone_number, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationFaxNumber">Fax Number</label>
+	<%= pi.label :fax_number %>
 	<%= pi.text_field :fax_number, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationEmail">Email</label>
+	<%= pi.label :email %>
 	<%= pi.text_field :email, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationWebsite">Website</label>
+	<%= pi.label :website %>
 	<%= pi.text_field :website, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label>Bio / Summary</label>
+	<label for="resume_resume_personal_information_attributes_bio">Bio / Summary</label>
 	<div id="markItUpResumePersonalInformationBio" class="markItUp">
 		<%= pi.text_area :bio, :class=> "markitup" %>
 	</div>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationFacebook">Facebook</label>
+	<%= pi.label :facebook %>
 	<%= pi.text_field :facebook, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationTwitter">Twitter</label>
+	<%= pi.label :twitter %>
 	<%= pi.text_field :twitter, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationFlickr">Flickr</label>
+	<%= pi.label :flickr %>
 	<%= pi.text_field :flickr, :class => :textbox %>
 </div>
 
 <div class="form_row">
-	<label for="ResumePersonalInformationLinkedin">Linkedin</label>
+	<%= pi.label :linkedin %>
 	<%= pi.text_field :linkedin, :class => :textbox %>
+</div>
+
+<div class="form_row">
+  <%= pi.label :github %>
+  <%= pi.text_field :github, :class => :textbox %>
 </div>
 
 <div class="clearfloat"></div>

@@ -82,20 +82,10 @@
 	<!-- Who's viewed your resumes starts -->
 	<h2>Who's viewed your resumes</h2>
 	<div id="resume_viewers" class="blue_region">
-	    <ul class="item_list" id="resume_viewers">
-	        <% @resume_viewers.each do |user| %>
-	            <li>
-	                <%= render :partial => "shared/user_image", :locals => {:photo => user.profile.photo} %>
-	                <div class="white_region">
-	                    <div class="left">
-	                        <%= link_to user.username, profile_path(user.username) %>
-	                        <p class="timestamp"><% %></p>
-	                    </div>
-	                </div>
-	                <div class="clearfloat"></div>
-	            </li>
-	        <% end %>
-	    </ul>
+	    <% @resume_viewers.each do |user| %>
+	        <%= link_to (render :partial => "shared/user_image", :locals => {:photo => user.profile.photo}), profile_path(user.username) %>
+	    <% end %>
+	    <div class="clearfloat"></div>
 	</div>
 	<!-- Who's viewed your resumes ends -->
 	

@@ -69,11 +69,11 @@ class ProfilesController < ApplicationController
   end
   
   def hide_profile_notice
-    # profile = current_user.profile
-    #     profile.update_attributes(:hide_profile_notification => 1)
-    #     
-    #     update_profile_session
-    #     
+    profile = current_user.profile
+    profile.update_attributes(:hide_profile_notification => 1)
+        
+    update_profile_session
+        
     render :json => {:success => 1}
   end
   

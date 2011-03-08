@@ -3,9 +3,7 @@
 <body>
 	<div id="resume_sheet">
 		
-	  <% for s in @section_order %>
-			<%= render :partial => "shared/resume/show/orange/#{s}" %>
-	  <% end %>
+	  <%= render :partial => "shared/resume_section_renderer" %>
 	  
 	</div>
 </body>

@@ -2,9 +2,7 @@
 
 <body>
 	<div id="resume_sheet">
-	  <% for s in @section_order %>
-			<%= render :partial => "shared/resume/show/black_and_white/#{s}" %>
-	  <% end %>
+	  <%= render :partial => "shared/resume_section_renderer" %>
 	</div>
 </body>
 </html>

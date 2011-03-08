@@ -1,0 +1,3 @@
+<% for s in @section_order %>
+	<%= render :partial => "shared/resume/show/#{@theme.slug}/#{s}" unless @hidden_fields.include?(s)  %>
+<% end %>

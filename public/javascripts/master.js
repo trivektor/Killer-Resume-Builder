@@ -372,6 +372,7 @@ var Profile = {
 		this.change_photo_btn = $("#change_photo_btn");
 		this.profile_details_input = $("#profile_details_input");
 		this.profile_image_cropper = $("#profile_image_cropper");
+		this.complete_notice = $("#profile_complete_notice");
 	},
 	
 	setup_profile_overlay : function() {

@@ -62,9 +62,7 @@
 					</div>
 					<div class="right_col">
 
-						<% for s in @section_order %>
-							<%= render :partial => "shared/resume/show/wood/#{s}" %>
-					  <% end %>
+						<%= render :partial => "shared/resume_section_renderer" %>
 
 					</div>
 					<div class="clearfloat"></div>
