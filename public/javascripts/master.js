@@ -1,3 +1,13 @@
+var Message = {
+	delete_confirmation : "Are you sure you want to delete this resume? This action cannot be undone",
+	blank_section_name : "Please enter a new name for this section",
+	thought_published_success : "Your thought has been published, baby!",
+	thought_published_failed : "An error occured while sharing your thought. Please wait a few minutes and try again",
+	thoughtbox_original : "Type your thought here...",
+	keywords_limit_exceeded : "You've exceeded 20 keywords",
+	comment_reported : "This comment has been reported"
+}
+
 var Krb = {
 	
 	init : function() {
@@ -17,7 +27,7 @@ var Krb = {
 	setup_delete_action : function() {
 		Krb.delete_action.bind("click", function(event) {
 			event.preventDefault();
-			if (confirm('Are you sure you want to delete this resume? This action cannot be undone')) {
+			if (confirm(Message.delete_confirmation)) {
 				window.location.href = $(this).attr("href");
 			}
 		})
@@ -119,7 +129,7 @@ var Resume = {
 			var updatedName = t.siblings("input[type=text]").val();
 
 			if (updatedName == '') {
-				alert('Please enter a new name for this section');
+				alert(Message.blank_section_name);
 				return;
 			}
 
@@ -257,7 +267,7 @@ var Resume = {
 				event.preventDefault();
 
 				if (Resume.keywordsList.children().length > 12) {
-					Resume.keywordsMessage.text("You've exceeded 20 keywords").addClass("result_error").slideDown();
+					Resume.keywordsMessage.text(Message.keywords_limit_exceeded).addClass("result_error").slideDown();
 					return;
 				}
 
@@ -467,16 +477,16 @@ var Thought = {
 		this.share_thought_btn.click(function() {
 			var thought = Thought.thoughtbox.val();
 			
-			if (thought != '' && thought != 'Type your thought here...') {
+			if (thought != '' && thought != Message.thoughtbox_original) {
 				$.post(
 					"/thoughts",
 					{ thought : { content : thought } },
 					function(response) {
 						if (response.success == 1) {
-							alert('Your thought has been published, baby!');
-							Thought.thoughtbox.val("Type your thought here...")
+							alert(Message.thought_published_success);
+							Thought.thoughtbox.val(Message.thoughtbox_original)
 						} else {
-							alert('An error occured while sharing your thought. Please wait a few minutes and try again')
+							alert(Message.thought_published_fail)
 						}
 					}
 				)
@@ -504,12 +514,6 @@ $(function(){
 	Sortable.init({target: $("#sort_references"), revert: true, url:"/resumes/" + Resume.id + "/resume_references/order", request_type:'POST'})
 	Sortable.init({target: $("#sort_education"), revert: true, url:"/resumes/" + Resume.id +  "/resume_educations/order", request_type:'POST'})
 	Sortable.init({target: $("#sort_work_experience"), revert: true, url:"/resumes/" + Resume.id + "/resume_work_experiences/order", request_type:'POST' })
-	
-	var o = $("#overlay");
-	var rs = $("#resume_settings")
-	
-	//Update resume
-	var ru = $("#resume_updated");
 	
 	//keywordsListWrapper.click(function(){keywordsInput.focus()});
 	
@@ -539,7 +543,7 @@ $(function(){
 			"/ajax/report_profile_comment",
 			{comment_id:t.attr("rel")},
 			function(response) {
-				t.removeClass().addClass("comment_reported").attr("title", "This comment has been reported");
+				t.removeClass().addClass("comment_reported").attr("title", Message.comment_reported);
 			}
 		)
 	})
