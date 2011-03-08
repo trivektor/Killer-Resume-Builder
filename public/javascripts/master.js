@@ -69,6 +69,10 @@ var Resume = {
 		
 		this.setup_disable_section_action();
 		this.setup_enable_section_action();
+		
+		this.setup_keywords_input_keydown_action();
+		
+		this.setup_remove_keyword_action();
 	},
 	
 	setup_selectors : function() {
@@ -79,8 +83,14 @@ var Resume = {
 		this.update_section_name = $("span.update_section_name");
 		this.cancel_update_section_name = $("span.cancel_update_section_name");
 		this.section_options = $(".section_options");
-		Resume.disable_section = $(".disable_section");
-		Resume.enable_section = $(".enable_section");
+		this.disable_section = $(".disable_section");
+		this.enable_section = $(".enable_section");
+		this.keywordsList = $("#keywordsList");
+		this.keywordsListWrapper = $("#keywordsListWrapper");
+		this.keywordsInput = $("#keywordsInput");
+		this.keywordsMessage = $("#keywordsMessage");
+		this.keywordsLeft = $("#keywordsLeft");
+		this.keyword_remove = $(".keyword_remove");
 	},
 	
 	edit_section_name_action : function() {
@@ -235,6 +245,69 @@ var Resume = {
 	blinkUpdatedStatus : function() {
 		Resume.updated_status.fadeIn(500);
 		setTimeout(function(){ Resume.updated_status.fadeOut(500) }, 2000)
+	},
+	
+	setup_keywords_input_keydown_action : function() {
+		Resume.keywordsInput.keydown(function(event) {
+			
+			var code = event.keyCode ? event.keyCode : event.which;
+
+			if (code == 13) {
+				
+				event.preventDefault();
+
+				if (Resume.keywordsList.children().length > 12) {
+					Resume.keywordsMessage.text("You've exceeded 20 keywords").addClass("result_error").slideDown();
+					return;
+				}
+
+				var t = $(this);
+
+				$.post(
+					"/resume_keywords",
+					{
+						resume_id: Resume.id, 
+						resume_keyword: $(this).val()
+					},
+					function(response){
+						t.val("");
+						if (response.success == 1) {
+							Resume.keywordsList.append(Resume.keyword_wrapper_template(response.keyword, response.id));
+							Resume.update_keywords_left();
+						}
+					}
+				)
+			}
+		})
+	},
+	
+	keyword_wrapper_template : function(keyword, id) {
+		return '<div class="keyword_wrapper"><div class="keyword">' + keyword + '</div><div class="keyword_remove" rel="' + id + '">x</div></div>'
+	},
+	
+	update_keywords_left : function() {
+		Resume.keywordsLeft.text(20 - Resume.keywordsList.children().length + ' keywords left');
+	},
+	
+	setup_remove_keyword_action : function() {
+		Resume.keyword_remove.live('click', function() {
+			var t = $(this)
+			var url = "/resume_keywords/" + t.attr("rel")
+			$.ajax({
+				url: url,
+				type: 'DELETE',
+				asycn: true,
+				data: {
+					id: t.attr("rel"), 
+					resume_id: Resume.id,
+					resume_keyword: $(this).siblings("keyword").text()
+				},
+				success: function(response){
+					t.parent().remove();
+					Resume.update_keywords_left();
+				}
+			})
+		})
 	}
 	
 }
@@ -347,6 +420,72 @@ var Profile = {
 	
 }
 
+var Thought = {
+	
+	init : function() {
+		this.setup_selectors();
+		this.setup_share_thought_action();
+		this.thoughtbox_count_chars();
+	},
+	
+	setup_selectors : function() {
+		this.thoughtbox = $("#thoughtbox_message");
+		this.share_thought_btn = $("#share_thought");
+		this.thoughtCharsCount = $("#thoughts_chars_count");
+	},
+	
+	thoughtbox_count_chars : function() {
+		this.thoughtbox
+			.focus(Thought.thoughtbox_focus)
+			.blur(Thought.thoughtbox_blur)
+			.keypress(Thought.thoughtbox_keypress)
+			.keyup(Thought.thoughtbox_keyup);
+	},
+	
+	thoughtbox_focus : function() {
+		if ($(this).val() == $(this).attr("rel")) $(this).val("");
+	},
+	
+	thoughtbox_blur : function() {
+		if ($(this).val() == '') $(this).val($(this).attr("rel"));
+	},
+	
+	thoughtbox_keypress : function() {
+		var numChars = $(this).val().length;
+		if (numChars <= 140) {
+			Thought.thoughtCharsCount.text(140 - numChars);
+		}
+	},
+	
+	thoughtbox_keyup : function(){
+		var numChars = $(this).val().length;
+		Thought.thoughtCharsCount.text(140 - numChars);
+	},
+	
+	setup_share_thought_action : function() {
+		
+		this.share_thought_btn.click(function() {
+			var thought = Thought.thoughtbox.val();
+			
+			if (thought != '' && thought != 'Type your thought here...') {
+				$.post(
+					"/thoughts",
+					{ thought : { content : thought } },
+					function(response) {
+						if (response.success == 1) {
+							alert('Your thought has been published, baby!');
+							Thought.thoughtbox.val("Type your thought here...")
+						} else {
+							alert('An error occured while sharing your thought. Please wait a few minutes and try again')
+						}
+					}
+				)
+			}
+		})
+	}
+	
+}
+
 $(function(){
 	
 	Krb.init();
@@ -359,6 +498,8 @@ $(function(){
 	
 	Profile.init();
 	
+	Thought.init();
+	
 	Sortable.init({target: $("#sort_resume_sections"), revert: true, url:"/resume_section_orders/" + $("#resume_section_order_id").val(), request_type:'PUT'})
 	Sortable.init({target: $("#sort_references"), revert: true, url:"/resumes/" + Resume.id + "/resume_references/order", request_type:'POST'})
 	Sortable.init({target: $("#sort_education"), revert: true, url:"/resumes/" + Resume.id +  "/resume_educations/order", request_type:'POST'})
@@ -370,162 +511,7 @@ $(function(){
 	//Update resume
 	var ru = $("#resume_updated");
 	
-	//Theme selector
-	$("#pick_theme").click(function(){
-		$.post(
-			"/ajax/update_resume_theme",
-			{id: $("#ResumeThemeId").val(), theme_id: $("#theme_dropdown").val(), resume_id: $("#ResumeId").val()},
-			function() {
-				$("#theme_selector").hide();
-				o.hide();
-			}
-		)
-	})
-	
-	//Add and remove keywords
-	var keywordsList = $("#keywordsList");
-	var keywordsListWrapper = $("#keywordsListWrapper");
-	var keywordsInput = $("#keywordsInput");
-	var keywordsMessage = $("#keywordsMessage");
-	var keywordsLeft = $("#keywordsLeft");
-	
-	keywordsInput.keydown(function(event) {
-
-		var code = event.keyCode ? event.keyCode : event.which;
-		
-		if (code == 13) {
-			
-			event.preventDefault();
-			
-			if (keywordsList.children().length > 12) {
-				keywordsMessage.text("You've exceeded 20 keywords").addClass("result_error").slideDown();
-				return;
-			}
-			
-			var t = $(this);
-			
-			$.post(
-				"/resume_keywords",
-				{
-					resume_id: $("#ResumeId").val(), 
-					resume_keyword: $(this).val()
-				},
-				function(response){
-					t.val("");
-					if (response.success == 1) {
-						keywordsList.append('<div class="keyword_wrapper"><div class="keyword">' + response.keyword + '</div><div class="keyword_remove" rel="' + response.id + '">x</div></div>');
-						update_keywords_left();
-					}
-				}
-			)
-		}
-		
-	});
-	
-	//Remove keywords	
-	$("div.keyword_remove").live('click', function(){
-		var t = $(this)
-		var url = "/resume_keywords/" + t.attr("rel")
-		$.ajax({
-			url: url,
-			type: 'DELETE',
-			asycn: true,
-			data: {
-				id: t.attr("rel"), 
-				resume_id: $("#ResumeId").val(), 
-				resume_keyword: $(this).siblings("keyword").text()
-			},
-			success: function(response){
-				t.parent().remove();
-				update_keywords_left();
-			}
-		})
-	})
-	
-	keywordsListWrapper.click(function(){keywordsInput.focus()});
-	
-	function update_keywords_left() {
-		keywordsLeft.text(20 - keywordsList.children().length + ' keywords left');
-	}
-	
-	function get_keywords_list() {
-		var kList = new Array();
-		keywordsList.children().each(function(index, value){
-			kList.push($(this).text());
-		})
-		//console.log(kList);
-		return kList;
-	}
-	
-	//Update keywords
-	$("#update_keywords").click(function(){
-		$.post(
-				"/ajax/update_keywords_list",
-				{list:get_keywords_list(), resume_id:$("#ResumeId").val()},
-				function(response) {
-						if (response == 1) {
-							Resume.blinkUpdatedStatus();
-						}
-				}
-		)
-	})
-	
-	//Tweet
-	$("#share_thought").click(function(){
-		var thought = $("#thoughtbox_message").val();
-		if (thought != '' && thought != 'Type your thought here...') {
-			$.post(
-				"/thoughts",
-				{ 
-					thought : {
-						content : thought
-					}
-				},
-				function(response) {
-					if (response.success == 1) {
-						alert('Your thought has been published, baby!');
-						$("#thoughtbox_message").val("Type your thought here...");
-					} else {
-						alert('An error occured while sharing your thought. Please wait a few minutes and try again')
-					}
-					
-				}
-			)
-		}
-	})
-	
-	var thoughtCharsCount = $("#thoughts_chars_count");
-	
-	$("#thoughtbox_message").focus(function(){
-			if ($(this).val() == $(this).attr("rel")) $(this).val("");})
-	.blur(function(){
-			if ($(this).val() == '') $(this).val($(this).attr("rel"));
-	}).keypress(function(){
-		var numChars = $(this).val().length;
-		if (numChars > 140) {
-			//return false;
-		} else {
-			thoughtCharsCount.text(140 - numChars);
-		}
-	}).keyup(function(){
-		var numChars = $(this).val().length;
-		thoughtCharsCount.text(140 - numChars);
-	});
-	
-	$("img.hide_activity_feed_details").bind('click', function(){
-		var t = $(this);
-		$.post(
-			"ajax/hide_activity",
-			{activity_id:t.attr("rel")},
-			function(response) {
-				if (response == 1) {
-					var p = t.parent().parent();
-					p.slideUp(function(){p.remove()})
-				}
-			}
-		)
-	})
-	
+	//keywordsListWrapper.click(function(){keywordsInput.focus()});
 	
 	//Hover label
 	$(".focusLabel").focus(function(){

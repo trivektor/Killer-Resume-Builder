@@ -43,8 +43,8 @@ $(document).ready(function(){
 <div id="theme_list_container">
 	<div id="theme_list">
 	  <span>Pick a theme</span>
-	  <%= select "theme", "dropdown", @themes %>
-	  <%= link_to "Back to resume", edit_resume_path(@resume) %>
+	  <%= select "theme", "dropdown", @themes, :selected => @resume.resume_theme.theme_id %>
+    <%= link_to "Back to resume", edit_resume_path(@resume), :id => "go_back_to_resume" %>
 	</div>
 	<%= image_tag "resume/closeThemeSelector.png", :id => "closeThemeSelector", :alt => "Close Theme Selector" %>
 </div>
