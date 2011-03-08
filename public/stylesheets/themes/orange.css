@@ -10,7 +10,7 @@ body {background:#eee; font-family:arial; font-size:14px;}
 #personal_info a {color:#999;}
 #resume_name {color:#333 !important; margin-bottom:20px; font-size:36px}
 #personal_info_bio {margin-top:20px;}
-#user_photo {float:right; -moz-box-shadow:0 2px 4px #555555;background:#BFBFBF;border:8px solid #fff;}
+.user_image {float:right; -moz-box-shadow:0 2px 4px #555555;background:#BFBFBF;border:8px solid #fff;}
 
 .section_wrapper {padding-bottom:15px; border-bottom:1px dashed #ccc; margin-bottom:20px; overflow:hidden;}
 .section_title_left {float:left; width:220px; margin-right:30px; color:#000; font-size:19px; font-weight:normal;}

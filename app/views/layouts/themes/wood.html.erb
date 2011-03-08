@@ -10,7 +10,7 @@
 				<div class="paper">
 					<div class="left_col">
 						
-						<%= image_tag "resume/male.png", :class => "user_image" %>
+						<%= render :partial => "shared/resume_user_image" %>
 					
             <div id="name"><%= @resume.resume_personal_information.full_name %></div>
 					
