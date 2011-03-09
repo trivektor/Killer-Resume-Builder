@@ -359,6 +359,9 @@ var Profile = {
 		
 		var profile_id = $("#profile_id");
 		Profile.id = profile_id.val();
+		
+		this.setup_change_photo_action();
+		this.setup_profile_snapback_action();
 	},
 	
 	setup_selectors : function() {
@@ -373,6 +376,7 @@ var Profile = {
 		this.profile_details_input = $("#profile_details_input");
 		this.profile_image_cropper = $("#profile_image_cropper");
 		this.complete_notice = $("#profile_complete_notice");
+		this.back_to_profile = $("#back_to_edit_profile");
 	},
 	
 	setup_profile_overlay : function() {
@@ -421,11 +425,19 @@ var Profile = {
 		)
 	},
 	
-	setup_change_photo : function() {
+	setup_change_photo_action : function() {
 		Profile.change_photo_btn.click(function() {
 			Profile.profile_details_input.hide(function() {
 				Profile.profile_image_cropper.show();
 			});
+		})
+	},
+	
+	setup_profile_snapback_action : function() {
+		Profile.back_to_profile.click(function() {
+			Profile.profile_image_cropper.hide(function() {
+				Profile.profile_details_input.show();
+			})
 		})
 	}
 	
