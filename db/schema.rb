@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309004854) do
+ActiveRecord::Schema.define(:version => 20110309021747) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -321,6 +321,7 @@ ActiveRecord::Schema.define(:version => 20110309004854) do
     t.string   "password_salt"
     t.string   "single_access_token"
     t.string   "perishable_token"
+    t.string   "reset_password_token"
     t.integer  "login_count"
     t.integer  "failed_login_count"
     t.datetime "last_request_at"

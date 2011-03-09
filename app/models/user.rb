@@ -31,6 +31,12 @@ class User < ActiveRecord::Base
   
   before_save :downcase_username
   
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    #Notifier.deliver_password_reset_instructions(self)
+    
+  end
+  
   private
   
   def downcase_username

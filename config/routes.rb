@@ -98,6 +98,8 @@ Krb::Application.routes.draw do
   
   resources :resume_section_orders
   
+  resources :password_resets
+  
   root :to => 'home#index'
 
   match "/dashboard" => "dashboard#index"
