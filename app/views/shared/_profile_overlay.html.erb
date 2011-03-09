@@ -36,7 +36,7 @@
 				</div>
 				<div class="form_row">
 					<label>Country</label>
-					<%= profile_form.select "country_id", get_countries, :selected => @profile.country_id %>
+					<%= profile_form.select :country, Carmen::country_names, :selected => @profile.country %>
 				</div>
 				<div class="form_row">
 					<label>Postal Code</label>

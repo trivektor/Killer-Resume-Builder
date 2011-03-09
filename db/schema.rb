@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110308143637) do
+ActiveRecord::Schema.define(:version => 20110309004854) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20110308143637) do
     t.string   "last_name",                 :default => ""
     t.string   "city",                      :default => ""
     t.string   "state",                     :default => ""
+    t.string   "country"
     t.integer  "country_id",                :default => 0
     t.string   "postal_code",               :default => ""
     t.integer  "job_category_id",           :default => 0
