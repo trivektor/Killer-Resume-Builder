@@ -5,7 +5,7 @@
 
 <div class="blue_region" id="profile_header">
     
-	<%= render :partial => "shared/user_image", :locals => {:photo => @profile.photo} %>
+	<%= image_tag @user.gravatar_url, :class => :user_image, :alt => @profile.first_name + " " + @profile.last_name %>
 
 	<div class="white_region">
 		<div id="profile_header_info">
@@ -62,36 +62,33 @@
 				<%= form_for @user_thread do |f| %>
 				    <%= f.text_area :content, :rows => 6, :cols => 30, :id => "shout_box" %>
 				    <div id="shout_options">
-						<input type="hidden" value="0" id="UserThreadPrivate_" name="data[UserThread][private]">
-						<input type="checkbox" id="UserThreadPrivate" value="1" name="data[UserThread][private]">
-						<input type="hidden" id="UserThreadType" value="profile" name="data[UserThread][type]">					
-						<input type="hidden" id="UserThreadTargetId" value="1" name="data[UserThread][target_id]">
-						<input type="hidden" name="user[username]" value="<%= @user.username %>">
-						<input type="hidden" name="user[target]" value="<%= @profile.user_id %>">
-						<span>Mark as private (only you and this person can see it)</span>
-						<input type="image" alt="Shout It Out" src="/images/resume/shoutItOutBtn.png" id="send_shout">
-						<div class="clearfloat"></div>
-					</div>
-                <% end %>
+						  <input type="hidden" name="user[username]" value="<%= @user.username %>">
+						  <input type="hidden" name="user[target]" value="<%= @profile.user_id %>">
+						  <span>Mark as private (only you and this person can see it)</span>
+						  <input type="image" alt="Shout It Out" src="/images/resume/shoutItOutBtn.png" id="send_shout" />
+						  <div class="clearfloat"></div>
+					  </div>
+      <% end %>
 			</div>
 			
 			<ul class="item_list" id="shouts_list">
-			    <% for shout in @shouts %>
-				<li id="comment_1">
+			  <% for shout in @shouts %>
+				<li>
 
-                    <%= render :partial => "shared/user_image", :locals => {:photo => @shouters[shout.user_id][:photo]} %>
+          <%= image_tag @shouters[shout.user_id][:user].gravatar_url, :class => :user_image, :alt => @shouters[shout.user_id][:first_name] + " " + @shouters[shout.user_id][:last_name] %>
 
 					<div class="white_region">
 						<p class="shout_message"><%= shout.content %></p>
 						<p class="timestamp">by 
-						    <%= link_to @shouters[shout.user_id][:username], :controller => :profiles, :action => :show, :id => @shouters[shout.user_id][:username] %>
-						    on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
+						  <%= link_to @shouters[shout.user_id][:first_name] + " " + @shouters[shout.user_id][:last_name], :controller => :profiles, :action => :show, :id => @shouters[shout.user_id][:username] %>
+						  on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %>
+						</p>
 						<div class="options">
 							<span rel="<%= shout.id %>" title="Delete this comment" class="remove_comment"></span>
 							<span rel="<%= shout.id %>" title="Report this comment" class="report_comment"></span>
 						</div>
 					</div>
-				    <div class="clearfloat"></div>
+				  <div class="clearfloat"></div>
 				</li>
 				<% end %>
 			</ul>

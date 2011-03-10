@@ -1,10 +1,7 @@
 class ResumeReferencesController < ApplicationController
   
-  before_filter do
-    find_resume
-    redirect_to dashboard_path unless manipulatable?
-  end
-  
+  before_filter :require_user, :verify_ownership
+    
   def new
     @resume_reference = ResumeReference.new
     
@@ -85,6 +82,17 @@ class ResumeReferencesController < ApplicationController
   def find_section_name
     section_name = ResumeSectionName.where(:resume_id => params[:resume_id], :section => "references").first
     section_name.name
+  end
+  
+  def verify_ownership
+    find_resume
+    
+    if !manipulatable?
+      redirect_to dashboard_path
+      return false
+    end
+    
+    true
   end
   
 end

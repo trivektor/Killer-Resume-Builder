@@ -1,9 +1,6 @@
 class ResumeKeywordsController < ApplicationController
   
-  before_filter do
-    find_resume
-    render :json => {:success => -1} unless manipulatable?
-  end  
+  before_filter :require_user, :verify_ownership
   
   def create
     
@@ -38,6 +35,18 @@ class ResumeKeywordsController < ApplicationController
   
   def find_resume_keywords
     ResumeKeyword.find_by_resume_id(params[:resume_id])
+  end
+  
+  def verify_ownership
+    find_resume
+    
+    if !manipulatable?
+      render :json => {:success => -1}
+      return false
+    end
+    
+    return true
+    
   end
   
 end

@@ -1,9 +1,6 @@
 class ResumeSectionNamesController < ApplicationController
   
-  before_filter do
-    find_resume
-    render :json => {:success => -1} unless manipulatable?
-  end
+  before_filter :require_user, :verify_ownership
   
   def update
     resume_section_name = find_resume_section_name
@@ -34,6 +31,17 @@ class ResumeSectionNamesController < ApplicationController
   
   def find_resume_section_name
     ResumeSectionName.where(:id => params[:id], :resume_id => params[:resume_id]).first
+  end
+  
+  def verify_ownership
+    find_resume
+    
+    if !manipulatable?
+      render :json => {:success => -1}
+      return false
+    end
+    
+    return true
   end
   
 end

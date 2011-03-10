@@ -1,5 +1,8 @@
 class ResumesController < ApplicationController
   
+  before_filter :require_user
+  before_filter :verify_ownership, :except => [:show]
+  
   def new
     @resume = Resume.new
   end
@@ -171,6 +174,24 @@ class ResumesController < ApplicationController
 	  resume.update_attributes(:views => resume.views + 1)
 	  
 	  ResumeViewer.create(:resume_id => resume.id, :user_id => current_user.id)
+  end
+  
+  def verify_ownership
+    
+    begin
+      resume = Resume.find(params[:id])
+      
+      if !resume.user_id == current_user.id
+        redirect_to dashboard_path
+        return false
+      end
+      
+      return true
+    rescue
+      redirect_to dashboard_path
+      return false
+    end
+      
   end
  
 end

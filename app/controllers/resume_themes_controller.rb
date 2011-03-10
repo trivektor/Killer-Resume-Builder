@@ -1,9 +1,6 @@
 class ResumeThemesController < ApplicationController
   
-  before_filter do
-    find_resume
-    render :json => {:error => -1} unless manipulatable?
-  end
+  before_filter :require_user, :verify_ownership
   
   def update
     
@@ -32,6 +29,17 @@ class ResumeThemesController < ApplicationController
   
   def find_resume_theme
     ResumeTheme.find_by_resume_id(params[:resume_id])
+  end
+  
+  def verify_ownership
+    find_resume
+    
+    if !manipulatable?
+      render :json => {:success => -1}
+      return false
+    end
+    
+    return true
   end
   
 end

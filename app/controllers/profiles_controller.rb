@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     users = User.where(:id => shouter_ids).includes(:profile)
     
     for u in users
-      @shouters[u.id] = {:username => u.username, :photo => u.profile.photo}
+      @shouters[u.id] = {:user => u, :username => u.username, :photo => u.profile.photo, :first_name => u.profile.first_name, :last_name => u.profile.last_name}
     end
     
     @user_thread = UserThread.new

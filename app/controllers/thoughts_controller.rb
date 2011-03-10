@@ -1,5 +1,7 @@
 class ThoughtsController < ApplicationController
   
+  before_filter :require_user
+  
   def create
     
     success = 0
