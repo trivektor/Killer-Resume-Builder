@@ -5,7 +5,7 @@ require File.expand_path('../application', __FILE__)
 Krb::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :address => "stmp.sendgrid.net",
+  :address => "smtp.sendgrid.net",
   :port => "25",
   :domain => "krb.heroku.com",
   :authentication => :plain,
