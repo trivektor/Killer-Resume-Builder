@@ -1,7 +1,7 @@
 class ResumesController < ApplicationController
   
   before_filter :require_user
-  before_filter :verify_ownership, :except => [:show]
+  before_filter :verify_ownership, :except => [:show, :new, :create]
   
   def new
     @resume = Resume.new
