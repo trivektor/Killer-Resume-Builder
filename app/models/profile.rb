@@ -7,15 +7,15 @@ class Profile < ActiveRecord::Base
   def self.missing_fields(profile)
     missing = []
     
-    if profile.first_name.empty?
+    if profile.first_name.blank?
       missing << "first name"
     end
     
-    if profile.last_name.empty?
+    if profile.last_name.blank?
       missing << "last name"
     end
     
-    if profile.job_title.empty?
+    if profile.job_title.blank?
       missing << "job title"
     end
     
