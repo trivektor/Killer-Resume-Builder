@@ -1,6 +1,6 @@
 class ResumesController < ApplicationController
   
-  before_filter :require_user
+  before_filter :require_user, :except => [:show]
   before_filter :verify_ownership, :except => [:show, :new, :create]
   
   def new
@@ -173,7 +173,9 @@ class ResumesController < ApplicationController
 	  
 	  resume.update_attributes(:views => resume.views + 1)
 	  
-	  ResumeViewer.create(:resume_id => resume.id, :user_id => current_user.id)
+	  user_id = logged_in? ? current_user.id : 0
+	  
+	  ResumeViewer.create(:resume_id => resume.id, :user_id => user_id)
   end
   
   def verify_ownership
