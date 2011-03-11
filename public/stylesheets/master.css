@@ -211,9 +211,9 @@ line-height:29px; margin:10px auto 0; text-shadow:0 1px 1px #222; }
 .features_list {overflow:hidden; margin:20px 0 50px;}
 .features_list li {float:left; width:339px}
 .features_list li p {font-size:11px; line-height:20px;color:#444;}
-.feature_illustration {float:left; margin-right:14px}
+.feature_illustration {float:left; margin-right:22px}
 .feature_details {width:276px;}
-.features_list li h3 {margin-bottom:10px; font-weight:bold; text-transform:none; font-family:lucida grande,arial;}
+.features_list li h3 {color:#000; margin-bottom:10px; font-size:15px; text-transform:none; font-family:lucida grande,arial;}
 li.omega .feature_details p {width:290px;}
 
 .job_applicant_details {background:#fff; padding:20px; -moz-border-radius:5px; -webkit-border-radius:5px; -moz-box-shadow:0 6px 15px #444;
@@ -357,7 +357,7 @@ position:absolute; bottom:20px; text-align:center}
 #home_intro_para {float:left; width:270px; margin-top:40px}
 #home_intro_para h2 {font-size:30px; margin-bottom:10px;}
 #home_intro_para p {margin-bottom:10px; line-height:21px; font-size:11px;}
-#home_intro_header {margin-bottom:10px; text-align:center; font-size:30px;}
+#home_intro_header {margin-bottom:10px; text-align:center; font-size:19px; font-family:futura;}
 #cta {text-align:center; margin-top:20px; display:block;}
 #cta img {margin:0 5px;}
 
@@ -404,12 +404,10 @@ float:right; margin-bottom:10px; margin-right:-3px; margin-top:13px;}
 
 /* Footer */ 
 #footer_cta {padding:20px; background:#df3434; text-align:center;}
-#footer {padding:30px 20px 40px; color:#fff; background:#312e2e; border-top:6px solid #ec4646; margin-top:50px;}
-#footer_inner {width:1019px; margin:0 auto;}
-#footer_nav li {float:left;}
-#footer_nav li a {display:block; color:#fff; margin-right:8px; padding-right:8px; border-right:1px solid #fff; font-size:11px}
-#footer_nav_wrapper {margin-top:15px;}
-#copyright_statement {clear:both; float:right; font-size:11px;}
+#footer {padding:30px 20px; color:#fff; background:#312e2e; border-top:6px solid #ec4646; margin-top:50px;}
+#footer_inner {width:1019px; margin:0 auto; font-size:11px;}
+#footer_nav li {float:right;}
+#footer_nav li a {display:block; color:#fff; margin-right:8px; padding-right:8px; border-right:1px solid #fff}
 #footer_twitter {background:#58b5d3 url(../images/resume/footerTwitterBg.jpg) repeat-x left bottom;}
 #footer_facebook { background:#5480ac; }
 

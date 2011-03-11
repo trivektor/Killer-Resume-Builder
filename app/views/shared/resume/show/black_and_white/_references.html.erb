@@ -2,7 +2,7 @@
 	<h2 class="section_title_left"><span><%= @section_names['references']%></span></h2>
 	<div class="section_details_right">
 		<% if @resume.resume_references.count > 0 %>
-			<ul>
+			<ul class="item_list">
 				<% for ref in @resume.resume_references %>
 					<li>
 						<div class="reference_name"><%= ref.name %></div>

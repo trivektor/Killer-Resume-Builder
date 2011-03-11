@@ -10,13 +10,7 @@ img {border:0;}
     width: 700px;
 }
 
-.paper ul {
-	margin-left:15px;
-}
-
-.paper ul li {
-	margin:10px 0;
-}
+ul li {list-style:none;}
 
 .clearfloat {
 	clear:both;
@@ -38,3 +32,5 @@ images {border:0;}
 .share_this {color:#fff;}
 
 #resume_top_bar_options img {margin:0 2px;}
+
+.item_list li {margin-bottom:15px;}

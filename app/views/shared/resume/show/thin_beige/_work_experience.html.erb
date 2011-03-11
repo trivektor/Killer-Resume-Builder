@@ -1,6 +1,6 @@
 <div class="section_wrapper">
   <h2 class="header_tag"><%= @section_names["work_experience"] %></h2>
-  <ul>
+  <ul class="item_list">
     <% @resume.resume_work_experiences.each do |exp| %>
       <li>
         <h3 class="organization_name"><%= exp.organization_name %></h3>
