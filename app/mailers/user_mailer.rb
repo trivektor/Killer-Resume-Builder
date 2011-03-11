@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     #     subject     "Test"
     #     sent_on     Time.now
     #     body        { :user => user, :url => "http//www.google.com", :host => "krb.heroku.com" }
-    mail :to => "tri.vuong@utoronto.ca", :subject => "Test", :from => "trivektor@gmail.com"
+    mail :to => "tri.vuong@utoronto.ca", :subject => "Test"
   end
   
 end
