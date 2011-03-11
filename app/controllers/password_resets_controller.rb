@@ -11,9 +11,9 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by_email(params[:email])
     
     if @user
-      @user.deliver_password_reset_instructions!
+      #@user.deliver_password_reset_instructions!
       flash[:notice] = "Instructions to reset your password have been emailed to you."
-      UserMailer.send_password_reset_instructions(current_user)
+      #UserMailer.send_password_reset_instructions(current_user)
     else
       flash[:notice] = "No user was found with that email address"
     end
