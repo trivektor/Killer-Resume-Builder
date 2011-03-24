@@ -351,7 +351,8 @@ position:absolute; bottom:20px; text-align:center}
 /* Home page */
 #home #content {width:auto; margin:0;}
 #home .site_search {display:none;}
-#home_intro_wrapper {background:url(../images/resume/homeIntroBg2.jpg) repeat-x left bottom #f5f5f5; padding:30px 0; margin-bottom:40px;}
+#home_intro_wrapper {background:url(../images/resume/homeIntroBg2.jpg) repeat-x left bottom #f5f5f5; padding:30px 0;}
+#intro_shadow {display:block; margin:0 auto; margin-bottom:50px;}
 #home_intro {width:1019px; margin:0 auto;}
 #home_intro_image {display:block; margin:0 auto;}
 #home_intro_para {float:left; width:270px; margin-top:40px}
