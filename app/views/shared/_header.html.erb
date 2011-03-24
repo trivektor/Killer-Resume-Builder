@@ -8,7 +8,7 @@
 			
 			<ul id="top_panel">
         <li><%= link_to "Logout", logout_path, :class => :last  %></li>
-        <li><%= link_to ("Account Settings", edit_user_path(current_user)) %></li>
+        <!-- <li><%= link_to ("Account Settings", edit_user_path(current_user)) %></li> -->
         <li><a class="edit_profile_btn">Edit Profile</a></li>
 				<li><%= link_to "Dashboard", :controller => :dashboard, :action => :index %></li>
 				<li><%= link_to current_user.username, profile_path(current_user.username) %></li> 
