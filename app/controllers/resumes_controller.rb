@@ -72,39 +72,6 @@ class ResumesController < ApplicationController
   end
   
   def edit
-    
-    find_resume
-    
-  end
-  
-  def update
-    find_resume
-
-    if @resume.update_attributes(params[:resume])
-      flash[:notice] = "Your resume has been updated"
-      redirect_to edit_resume_path(@resume)
-    else
-      render :action => :edit
-    end
-  end
-  
-  def delete
-    resume = Resume.find(params[:id])
-    resume.destroy
-    redirect_to dashboard_path
-  end
-  
-  def select_theme
-    @themes = get_themes
-    @resume = Resume.find(params[:id])
-    render :layout => "theme_selector"
-  end
-  
-  private
-  
-  def find_resume
-    @resume = Resume.find(params[:id])
-    
     @section_names = get_section_names(@resume)
     
     @section_order = get_section_order(@resume)
@@ -116,16 +83,26 @@ class ResumesController < ApplicationController
   	@hidden_fields = get_hidden_fields(@resume)
   end
   
-  def get_themes
-    themes = Theme.where(:status => :active).find(:all)
-    themes_hash = {}
-    
-    for theme in themes
-      themes_hash[theme.theme] = theme.id
+  def update
+    if @resume.update_attributes(params[:resume])
+      flash[:notice] = "Your resume has been updated"
+      redirect_to edit_resume_path(@resume)
+    else
+      render :action => :edit
     end
-    
-    themes_hash
   end
+  
+  def delete
+    @resume.destroy
+    redirect_to dashboard_path
+  end
+  
+  def select_theme
+    @themes = Theme.get_all_themes
+    render :layout => "theme_selector"
+  end
+  
+  private
   
   def get_section_names(resume)
     section_names = {}
@@ -181,9 +158,9 @@ class ResumesController < ApplicationController
   def verify_ownership
     
     begin
-      resume = Resume.find(params[:id])
+      @resume = Resume.find(params[:id])
       
-      if !resume.user_id == current_user.id
+      if !@resume.user_id == current_user.id
         redirect_to dashboard_path
         return false
       end
