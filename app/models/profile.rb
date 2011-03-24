@@ -4,6 +4,20 @@ class Profile < ActiveRecord::Base
   
   before_save :capitalize_first_name, :capitalize_last_name
   
+  def self.get_location(profile)
+    location = []
+
+    location << profile.city unless profile.city.blank?
+    
+    location << profile.state unless profile.state.blank?
+    
+    location << profile.country unless profile.country.blank?
+    
+    location << profile.postal_code unless profile.postal_code.blank?
+          
+    location
+  end
+  
   def self.missing_fields(profile)
     missing = []
     

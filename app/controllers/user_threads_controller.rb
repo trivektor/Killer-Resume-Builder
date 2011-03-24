@@ -9,15 +9,15 @@ class UserThreadsController < ApplicationController
   
   def create
     #TODO: more rigorous checking to make sure that params[:user][:target] cannot be tinkered
-    if !params[:user_thread][:content].empty?
+    if !params[:user_thread][:content].blank?
       user_thread = UserThread.new(params[:user_thread])
       user_thread.user_id = current_user.id
       user_thread.target_id = params[:user][:target]
       user_thread.thread_type = :profile
       user_thread.save
-      
-      redirect_to :controller => :profiles, :action => :show, :id => params[:user][:username]
     end
+    
+    redirect_to :controller => :profiles, :action => :show, :id => params[:user][:username]
     
   end
   
@@ -36,14 +36,14 @@ class UserThreadsController < ApplicationController
   
   def find_user_thread
     begin
-      user_thread = UserThread.find(params[:id])
+      @user_thread = UserThread.find(params[:id])
     rescue
-      user_thread = nil
+      @user_thread = nil
     end
   end
   
   def verify_ownership
-    @user_thread = find_user_thread
+    find_user_thread
     
     return false unless @user_thread.nil?
     

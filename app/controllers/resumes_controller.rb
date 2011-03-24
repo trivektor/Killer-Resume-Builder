@@ -145,14 +145,13 @@ class ResumesController < ApplicationController
   def update_analytics(resume)
     user_agent = UserAgent.parse(request.user_agent)
 	  
-	  VisitorInfo.create(:resume_id => resume.id, :browser => user_agent[2].product, :version => user_agent.version,
-	  :platform => user_agent[0].comment.join(" "), :ip_address => request.remote_addr, :domain_name => request.host)
-	  
-	  resume.update_attributes(:views => resume.views + 1)
+	  resume.visitor_infos.create(:browser => user_agent[2].product, :version => user_agent.version, :platform => user_agent[0].comment.join(" "), :ip_address => request.remote_addr, :domain_name => request.host)
 	  
 	  user_id = logged_in? ? current_user.id : 0
 	  
-	  ResumeViewer.create(:resume_id => resume.id, :user_id => user_id)
+	  resume.update_attributes(:views => resume.views + 1) unless (user_id != 0 && user_id == resume.user.id)
+	  
+	  resume.resume_viewers.create(:user_id => user_id)
   end
   
   def verify_ownership

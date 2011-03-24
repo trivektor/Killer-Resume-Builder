@@ -14,6 +14,7 @@ class Resume < ActiveRecord::Base
   has_many :resume_section_names, :dependent => :delete_all
   has_many :resume_hidden_fields, :dependent => :delete_all
   has_many :resume_viewers, :dependent => :delete_all, :order => "created_at DESC"
+  has_many :visitor_infos, :dependent => :delete_all
   
   belongs_to :user
   
@@ -24,6 +25,29 @@ class Resume < ActiveRecord::Base
   accepts_nested_attributes_for :resume_personal_information, :resume_skill, :resume_field_work, :resume_educations
   
   before_save :prep_url
+  
+  def self.get_popular_resumes(user)
+    self.where("user_id = ?", user.id).order("views DESC").limit(5)
+  end
+  
+  def self.get_resume_viewers(resumes, user)
+    resume_ids = []
+    
+    resumes.each do |resume|
+      resume_ids << resume.id
+    end
+    
+    resume_viewers = ResumeViewer.where(:resume_id => resume_ids).find(:all)
+    
+    resume_viewer_ids = []
+    
+    resume_viewers.each do |resume_viewer|
+      resume_viewer_ids << resume_viewer.id unless resume_viewer.user_id == user.id
+    end
+    
+    viewers = User.includes(:profile).where(:id => resume_viewer_ids).limit(5).find(:all)
+    viewers
+  end
   
   private
   

@@ -39,22 +39,26 @@
 	<h2>Your resumes</h2>
 	<div id="your_resumes" class="blue_region">
 		<ul class="item_list" id="resumes_list">
-			<% @resumes.each do |resume| %>
-			<li class="white_region">
-				<div class="left">
-					<%= link_to resume.title, edit_resume_path(resume) %>
-					<p class="timestamp">
-						Last updated <%= resume.updated_at.strftime("%b %d, %Y %H:%M %p") %>
-					</p>
-				</div>
-				<div class="options">
-          <a title="Delete" class="delete" href="/resumes/<%=resume.id%>/delete"></a>
-					<a target="_blank" title="View" class="view_live" href="/<%=resume.url%>"></a>
-					<%= link_to "", edit_resume_path(resume), {:class => :edit} %>
-					<a title="Analytics" class="analytic" href="/resumes/analytic/1"></a>
-				</div>
-			</li>
-			<% end %>
+		  <% if @resumes.count > 0 %>
+			  <% @resumes.each do |resume| %>
+  			<li class="white_region">
+  				<div class="left">
+  					<%= link_to resume.title, edit_resume_path(resume) %>
+  					<p class="timestamp">
+  						Last updated <%= resume.updated_at.strftime("%b %d, %Y %H:%M %p") %>
+  					</p>
+  				</div>
+  				<div class="options">
+            <a title="Delete" class="delete" href="/resumes/<%=resume.id%>/delete"></a>
+  					<a target="_blank" title="View" class="view_live" href="/<%=resume.url%>"></a>
+  					<%= link_to "", edit_resume_path(resume), {:class => :edit} %>
+  					<a title="Analytics" class="analytic" href="/resumes/analytic/1"></a>
+  				</div>
+  			</li>
+  			<% end %>
+  		<% else %>
+  		<div class="white_region" style="margin-bottom:10px">You don't have any resume</div>
+  		<% end %>
 		</ul>
 		<%= link_to (image_tag "resume/createAResume.png", :alt => "Create Resume"), new_resume_path %>
 	</div>

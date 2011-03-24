@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   gravtastic :size => 120
     
   has_one :profile, :dependent => :destroy
-  has_many :resumes, :dependent => :destroy
-  has_many :thoughts, :dependent => :destroy
-  has_many :user_threads, :dependent => :destroy
+  has_many :resumes, :dependent => :destroy, :order => 'created_at DESC'
+  has_many :thoughts, :dependent => :destroy, :order => 'created_at DESC'
+  has_many :user_threads, :dependent => :destroy, :order => 'created_at ASC'
   
   accepts_nested_attributes_for :profile
   
