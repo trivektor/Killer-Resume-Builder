@@ -73,7 +73,7 @@
 			
 			<ul class="item_list" id="shouts_list">
 			  <% for shout in @shouts %>
-				<li>
+				<li id="thread_<%= shout.id %>">
 
           <%= image_tag @shouters[shout.user_id][:user].gravatar_url, :class => :user_image, :alt => @shouters[shout.user_id][:first_name] + " " + @shouters[shout.user_id][:last_name] %>
 
@@ -84,8 +84,14 @@
 						  on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %>
 						</p>
 						<div class="options">
+						  <% if @user.username == current_user.username %>
 							<span rel="<%= shout.id %>" title="Delete this comment" class="remove_comment"></span>
+							<% end %>
+							<% if !shout.reported %>
 							<span rel="<%= shout.id %>" title="Report this comment" class="report_comment"></span>
+							<% else %>
+							<span class="comment_reported" title="This comment has been reported"></span>
+							<% end %>
 						</div>
 					</div>
 				  <div class="clearfloat"></div>

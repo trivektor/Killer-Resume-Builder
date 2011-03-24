@@ -19,7 +19,12 @@ Krb::Application.routes.draw do
     match "/blogs/author/:name" => "blogs#author"
     match "/blogs/tag/:tag" => "blogs#tag"
   
-  resources :user_threads
+  resources :user_threads do
+    member do
+      post :report_comment
+      post :remove_comment
+    end
+  end
   
   # scope :path => "/resumes", :controller => :resumes do
   #       match "new" => :new

@@ -177,7 +177,7 @@ background:#F9F9DC; text-transform:uppercase; line-height:17px;}
 .white_region .review {float:right; width:16px; height:16px; background:url(../images/resume/briefcase_16.png) no-repeat; display:block; text-indent:-9999px; margin-left:15px;}
 .white_region .remove_comment {margin-left:10px; float:right; width:16px; height:16px; background:url(../images/resume/trash_16.png) no-repeat; display:block; cursor:pointer;}
 .white_region .report_comment {float:right; width:16px; height:16px; background:url(../images/resume/warning_16.png) no-repeat; display:block; cursor:pointer;}
-.white_region .comment_reported {float:right; width:16px; height:16px; background:url(../images/resume/block_16.png) no-repeat; display:block; cursor:pointer;}
+.white_region .comment_reported {float:right; width:16px; height:16px; background:url(../images/resume/block_16.png) no-repeat; display:block}
 
 .go_back {margin-bottom:15px; display:inline-block;}
 

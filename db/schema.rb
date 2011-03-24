@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309021747) do
+ActiveRecord::Schema.define(:version => 20110324041040) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -307,7 +307,7 @@ ActiveRecord::Schema.define(:version => 20110309021747) do
     t.text     "content"
     t.string   "status",      :default => "active"
     t.integer  "private",     :default => 0
-    t.integer  "reported",    :default => 0
+    t.boolean  "reported",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

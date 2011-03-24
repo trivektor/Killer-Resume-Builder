@@ -362,6 +362,9 @@ var Profile = {
 		
 		this.setup_change_photo_action();
 		this.setup_profile_snapback_action();
+		
+		this.setup_report_comment();
+		this.setup_remove_comment();
 	},
 	
 	setup_selectors : function() {
@@ -377,6 +380,8 @@ var Profile = {
 		this.profile_image_cropper = $("#profile_image_cropper");
 		this.complete_notice = $("#profile_complete_notice");
 		this.back_to_profile = $("#back_to_edit_profile");
+		this.report_comment = $(".report_comment");
+		this.remove_comment = $(".remove_comment");
 	},
 	
 	setup_profile_overlay : function() {
@@ -437,6 +442,37 @@ var Profile = {
 		Profile.back_to_profile.click(function() {
 			Profile.profile_image_cropper.hide(function() {
 				Profile.profile_details_input.show();
+			})
+		})
+	},
+	
+	setup_report_comment : function() {
+		this.report_comment.bind('click', function() {
+			$.ajax({
+				url: '/user_threads/' + $(this).attr("rel") + '/report_comment',
+				type: 'POST',
+				data: {},
+				success: function(response) {
+					if (response.success == 1) {
+						alert('The comment has been reported')
+					}
+				}
+			})
+		})
+	},
+	
+	setup_remove_comment : function() {
+		this.remove_comment.bind('click', function() {
+			var thread_id = $(this).attr("rel");
+			$.ajax({
+				url: '/user_threads/' + thread_id + '/remove_comment',
+				type: 'POST',
+				data: {},
+				success: function(response) {
+					if (response.success == 1) {
+						$("#thread_" + thread_id).slideUp().remove();
+					}
+				}
 			})
 		})
 	}
@@ -535,30 +571,6 @@ $(function(){
 		if ($(this).val() == $(this).attr("rel")) $(this).val("");
 	}).blur(function(){
 		if ($(this).val() == "") $(this).val($(this).attr("rel"));
-	})
-	
-	//Remove profile comment
-	$(".remove_comment").bind('click', function(){
-		var t = $(this);
-		$.post(
-			"/ajax/remove_profile_comment",
-			{comment_id:t.attr("rel")},
-			function(response) {
-				$("#comment_" + t.attr("rel")).fadeOut(400);
-			}
-		)
-	})
-	
-	//Report profile comment
-	$(".report_comment").bind('click', function(){
-		var t = $(this);
-		$.post(
-			"/ajax/report_profile_comment",
-			{comment_id:t.attr("rel")},
-			function(response) {
-				t.removeClass().addClass("comment_reported").attr("title", Message.comment_reported);
-			}
-		)
 	})
  
 })
