@@ -61,8 +61,10 @@
 	<!-- Your Resumes ends -->
 	
 	<!-- Resume Statistics starts -->
+	
 	<h2>Your most viewed resumes</h2>
 	<div id="resume_statistics" class="blue_region">
+	  <% if @popular_resumes.count > 0 %>
 	    <ul class="item_list" id="popular_resumes">
 	        <% @popular_resumes.each do |resume| %>
 	            <li class="white_region">
@@ -76,16 +78,24 @@
 	            </li>
 	        <% end %>
 	    </ul>
+	  <% else %>
+	    <p class="white_region">Statistics will appear here as your resumes being viewed</p>
+	  <% end %>
 	</div>
+
 	<!-- Resume Statistics ends  -->
 	
 	<!-- Who's viewed your resumes starts -->
 	<h2>Who's viewed your resumes</h2>
 	<div id="resume_viewers" class="blue_region">
-	    <% @resume_viewers.each do |user| %>
-	        <%= link_to (render :partial => "shared/user_image", :locals => {:photo => user.profile.photo}), profile_path(user.username) %>
-	    <% end %>
-	    <div class="clearfloat"></div>
+	    <% if @resume_viewers.count > 0 %>
+	      <% @resume_viewers.each do |user| %>
+  	        <%= link_to (render :partial => "shared/user_image", :locals => {:photo => user.profile.photo}), profile_path(user.username) %>
+  	    <% end %>
+  	    <div class="clearfloat"></div>
+  	  <% else %>
+  	    <p class="white_region" style="float:none">Statistics will appear here as people start viewing your resumes</p>
+  	  <% end %>
 	</div>
 	<!-- Who's viewed your resumes ends -->
 	
