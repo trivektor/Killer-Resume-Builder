@@ -8,7 +8,7 @@
 	
 		<ul>
 			<% if !personal_info.email.blank? %>
-				<li><strong>Email:</strong> <a href="mailto:<%= personal_info.email %>"><%= personal_info.email %></a></li>
+				<li><strong>Email:</strong> <%= obfuscate_email personal_info.email %></li>
 			<% end %>
 			<% if !personal_info.website.blank? %>
 				<li><strong>Website:</strong> <a href="<%= personal_info.website %>" target="_blank"><%= personal_info.website %></a></li>

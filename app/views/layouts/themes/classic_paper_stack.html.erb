@@ -12,11 +12,15 @@
 			</div>
 		</div>
 		
-		<%#= render :partial => "resume/view/classic_paper_stack/personal_information" %>
+		<%= render :partial => "shared/resume/show/classic_paper_stack/personal_information" %>
 		
 		<div class="clearfloat"></div>
 		
-		<%= render :partial => "shared/resume_section_renderer" %>
+		<% @section_order.delete("personal_information") %>
+		
+    <% for s in @section_order %>
+    	<%= render :partial => "shared/resume/show/#{@theme.slug}/#{s}" unless @hidden_fields.include?(s)  %>
+    <% end %>
 		
 	</div>
 	

@@ -25,7 +25,7 @@
 									<li><%= personalInfo.phone_number %></li>
 								<% end %>
 								<% if personalInfo.email %>
-									<li><a href="mailto:<%= personalInfo.email %>"><bdo dir="rtl"><%= personalInfo.email.reverse %></bdo></a></li>
+									<li><%= obfuscate_email personalInfo.email %></li>
 								<% end %>
 								<% if personalInfo.website %>
 									<li><a href="<% personalInfo.website %>" target="_blank"><%= personalInfo.website %></a></li>
