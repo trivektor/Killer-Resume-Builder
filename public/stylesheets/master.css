@@ -56,7 +56,7 @@ font-size:11px; z-index:100; padding-top:9px}
 #account_links li a.edit_account_settings {color:#333; background:url(../images/resume/key_16.png) no-repeat; padding-left:25px; display:block; height:16px;}
 #account_links li a.logout {background:url(../images/resume/stop_16.png) no-repeat}
 #account_links li a.close {background:url(../images/resume/delete_16.png) no-repeat}
-#header_profile_photo .user_image {width:17px; height:17px; border:2px solid #fff; position:relative; top:-3px; left:-10px;}
+#header_profile_photo .user_image {width:17px; height:17px; border:2px solid #fff; position:relative; top:-3px; left:0}
 
 
 #top_panel {position:absolute; top:19px; right:0px; font-size:11px;}
