@@ -29,6 +29,8 @@ gem 'mini_magick'
 gem 'carmen'
 gem 'useragent'
 gem 'gravtastic'
+gem 'haml-edge'
+gem 'haml'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

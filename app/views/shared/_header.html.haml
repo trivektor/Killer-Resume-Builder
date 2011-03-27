@@ -1,0 +1,26 @@
+#header_wrapper
+  
+  #header
+  
+    %h1#app_logo %a{:href => '/'} Killer Resume Builder
+    
+    - if logged_in?
+    
+      %ul#top_panel
+        %li
+          = link_to "Logout", logout_path, :class => :last
+        %li
+          %a.edit_profile_btn Edit Profile
+        %li
+          = link_to 'Dashboard', :controller => :dashboard, :action => :index
+        %li
+          = link_to current_user.username, profile_path(current_user.username)
+        %li#header_profile_photo
+          = image_tag current_user.gravatar_url, :class => :user_image
+    - else
+      = link_to image_tag("resume/login.png", :alt => "Login"), login_path, :id => "login_link"
+      = link_to(image_tag("resume/signup.png"), signup_path, :id => "signup_link")
+    
+    .clearfloat
+    
+  #header_nav_wrapper

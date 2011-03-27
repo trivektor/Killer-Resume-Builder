@@ -349,6 +349,7 @@ position:absolute; bottom:20px; text-align:center}
 .graph_column span {position:relative; top: -16px; left:50%; margin-left:-50px; width:100px; font-size:10px; color:#000; display:block;}
 
 /* Home page */
+#home_features_wrapper {width: 1019px; margin: 20px auto;}
 #home #content {width:auto; margin:0;}
 #home .site_search {display:none;}
 #home_intro_wrapper {background:url(../images/resume/homeIntroBg2.jpg) repeat-x left bottom #f5f5f5; padding:30px 0;}
