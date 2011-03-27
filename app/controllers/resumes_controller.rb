@@ -43,7 +43,7 @@ class ResumesController < ApplicationController
       
       redirect_to dashboard_path
     else
-      render :action => "new"
+      render :action => :new
     end
   end
   

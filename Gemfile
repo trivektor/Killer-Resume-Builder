@@ -36,6 +36,7 @@ gem 'haml'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'rspec-rails', '~> 2.4'
   # gem 'webrat'
   # gem 'ruby-debug', :require => 'ruby-debug'
 end
