@@ -7,7 +7,7 @@ class ChangeReportedTypeInUserThreads < ActiveRecord::Migration
 
   def self.down
     change_table :user_threads do |t|
-      t.change :reported, :integer, :default => 0
+      t.change :reported, :integer, :default => true
     end
   end
 end
