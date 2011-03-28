@@ -42,9 +42,9 @@ class User < ActiveRecord::Base
     
   end
   
-  def active?
-    self.active
-  end
+  # def active?
+  #   self.active
+  # end
   
   def activate!
     self.active = true
