@@ -9,4 +9,12 @@ class UserMailer < ActionMailer::Base
     mail :to => "tri.vuong@utoronto.ca", :from => "trivektor@gmail.com"
   end
   
+  def activation_instructions(user)
+    subject "Activation Instructions"
+    from "Killer Resume Builder <tri@trivuong.com>"
+    recipients user.email
+    sent_on Time.now
+    body :account_activation_url => activation_url(user.perishable_token)
+  end
+  
 end

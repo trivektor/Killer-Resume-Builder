@@ -15,14 +15,26 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    # @user = User.new(params[:user])
+    #     
+    #     if @user.save
+    #       @user.profile = Profile.new(:first_name => params[:user][:first_name], :last_name => params[:user][:last_name])
+    #       @user.profile.save
+    #       
+    #       redirect_to dashboard_path
+    #       
+    #     else
+    #       render :layout => "signup", :action => :new
+    #     end
     
-    if @user.save
+    @user =  User.new(params[:user])
+    
+    if @user.save_without_session_maintenance
       @user.profile = Profile.new(:first_name => params[:user][:first_name], :last_name => params[:user][:last_name])
       @user.profile.save
-      
-      redirect_to dashboard_path
-      
+      @user.deliver_activation_instructions!
+      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+      redirect_to registration_complete_url
     else
       render :layout => "signup", :action => :new
     end
@@ -49,6 +61,10 @@ class UsersController < ApplicationController
       
       render :layout => "application", :action => :edit
     end
+  end
+  
+  def registration_complete
+    render :layout => "application"
   end
   
 end

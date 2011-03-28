@@ -46,4 +46,17 @@ Krb::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  config.action_mailer.default_url_options = { :host => 'krb.heroku.com' }
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.sendgrid.net",
+    :port => 25,
+    :domain => "krb.heroku.com",
+    :authentication => :plain,
+    :user_name => "trivektor@gmail.com",
+    :password => "mnbvcxz"
+  }
+  
+  
+  
 end

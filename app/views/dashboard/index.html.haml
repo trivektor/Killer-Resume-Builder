@@ -3,8 +3,8 @@
 
 - if @missing.count > 0 && @profile.hide_profile_notification == false
   #profile_complete_notice.result_success
-    %p Your profile is yet completed. In order to complete it, you need to fill in |
-      = @missing.join(", ") |
+    %p 
+      Your profile is yet completed. In order to complete it, you need to fill in #{@missing.join(", ")}
       %span#hide_profile_complete_notice Hide this notice |
 
 %h2#thoughtbox_header Share your thought

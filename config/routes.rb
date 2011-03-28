@@ -6,7 +6,12 @@ Krb::Application.routes.draw do
   
   resources :users, :only => [:new, :create, :edit, :update]
     match "signup" => "users#new", :as => :signup
+    match "registration_complete" => "users#registration_complete", :as => :registration_complete
   
+  match "invalid_activation_code" => "activations#invalid_activation_code", :as => :invalid_activation_code
+  match "activated" => "activations#activated", :as => :activated
+  match "activate/:activation_code" => "activations#create", :as => :activation
+  match "send_activation/:user_id" => "users#send_activation"
   match "profiles/upload_photo" => "profiles#upload_photo"
   match "profiles/process_upload_photo" => "profiles#process_upload_photo"
   match "profiles/crop_photo" => "profiles#crop_photo"

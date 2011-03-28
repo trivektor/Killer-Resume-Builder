@@ -6,7 +6,7 @@
     .inner
       #profile_image_cropper{:style => 'display:none; height:400px'}
         #change_avatar
-          %p{:style => 'margin-top:10px'} We are using = current_user.email
+          %p{:style => 'margin-top:10px'} We are using #{current_user.email}
           %p{:style => 'margin:10px 0'} Your avatar change on gravatar.com might take a while to be updated by our system
           %a#back_to_edit_profile Back to profile details
       #profile_details_input
