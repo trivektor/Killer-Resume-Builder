@@ -28,7 +28,6 @@ class UsersController < ApplicationController
     #     end
     
     @user =  User.new(params[:user])
-    
     if @user.save
       @user.profile = Profile.new(:first_name => params[:user][:first_name], :last_name => params[:user][:last_name])
       @user.profile.save
