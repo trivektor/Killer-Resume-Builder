@@ -250,6 +250,9 @@ li.omega .feature_details p {width:290px;}
 .result_error {color:red; background:#F4ECC6; border:1px solid #ECAA6A; padding:5px; font-size:11px;}
 .result_success {background:#F4ECC6; border:1px solid #ECAA6A; padding:5px; font-size:11px;}
 
+.formatting_tips_wrapper {text-align:right;}
+.formatting_tips {font-size:11px; color:#E26A00; cursor:pointer;}
+
 .section_name_editable {cursor:pointer;}
 .section_name_editor_wrapper { margin-bottom:30px}
 .section_name_editor {margin-right:3px;}
@@ -516,3 +519,10 @@ font-size:13px; -moz-border-radius:3px; -webkit-border-radius:3px}
 #feedback_reply_form .textbox, #feedback_reply_form textarea {width:849px; padding:10px;}
 #feedback_reply_list .user_image {width:40px;}
 #feedback_body {margin:30px 0 10px;}
+
+/* Formatting Tips */
+#formatting_tips .blue_region {margin-bottom:0;}
+#formatting_tips .example {margin-top:10px; margin-bottom:8px; font-weight:bold;}
+#formatting_tips {width:600px; margin-left:-310px}
+#formatting_tips .white_region {margin-bottom:10px;}
+#formatting_tips p {margin-bottom:8px;}

@@ -94,6 +94,10 @@ sections = {1 => "personal_information", 2 => "education", 3 => "skills", 4 => "
   	<%= image_tag "resume/updateSettingsBtn.png", :id => "update_resume_settings" %>
   </div>
   <!-- Resume Settings ends -->
+  
+  <!-- Formatting Tips starts -->
+  <%= render :partial => 'shared/formatting_examples' %>
+  <!-- Formatting Tips ends -->
 
   <div style="display:none" id="updated_status">Your resume has been updated</div>
 
