@@ -20,7 +20,7 @@
       <% end %>
 
 	    <div class="form_row">
-		    <%= f.label "Pick a URL (Your resume will be available at http://#{request.domain}/yoururl)" %>
+		    <%= f.label "Pick a URL (Your resume will be available at #{Configuration.site_url}yoururl)" %>
 		    <%= f.text_field :url, :class => "textbox" %>
 	    </div>
 

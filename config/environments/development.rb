@@ -34,6 +34,10 @@ Krb::Application.configure do
     :user_name => "trivektor@gmail.com",
     :password => "mnbvcxz"
   }
+  
+  config.after_initialize do
+    Configuration.site_url = 'http://krb.localhost:3000/'
+  end
 
   
 end

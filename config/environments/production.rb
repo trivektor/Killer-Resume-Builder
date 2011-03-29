@@ -57,6 +57,9 @@ Krb::Application.configure do
     :password => "mnbvcxz"
   }
   
+  config.after_initialize do
+    Configuration.site_url = 'http://krb.heroku.com/'
+  end
   
   
 end
