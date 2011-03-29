@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name
   validates_length_of :username, :minimum => 4, :message => " is too short"
   validates :email, :email => {:message => " is not valid"}
-  validates_uniqueness_of :email
-  validates_uniqueness_of :username
+  validates_uniqueness_of :email, :case_sensitive => false
+  validates_uniqueness_of :username, :case_sensitive => false
   validates_length_of :password, :minimum => 4, :message => " is too short"
   
   # authlogic
@@ -32,9 +32,6 @@ class User < ActiveRecord::Base
     config.login_field = :email
     config.validate_login_field = false
   end
-  
-  # callbacks
-  before_save :downcase_username
   
   def deliver_password_reset_instructions!
     reset_perishable_token!
@@ -54,12 +51,6 @@ class User < ActiveRecord::Base
   def deliver_activation_instructions!
     reset_perishable_token!
     UserMailer.deliver_activation_instructions(self)
-  end
-  
-  private
-  
-  def downcase_username
-    self.username = self.username.downcase
   end
   
 end
