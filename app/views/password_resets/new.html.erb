@@ -8,7 +8,9 @@
 <%= render :partial => "shared/flash_notice" %>
 
 <% form_tag password_resets_path do %>
-  <label>Email</label>
-  <%= text_field_tag "email" %>
+  <div class="form_row">
+    <label>Please enter your email to receive password reset instructions</label>
+    <%= text_field_tag "email", nil, :class => :textbox %>
+  </div>
   <%= submit_tag "Reset my password" %>
 <% end %>
