@@ -14,7 +14,6 @@ class CreateThemes < ActiveRecord::Migration
     Theme.create :theme => "Orange", :slug => "orange"
     Theme.create :theme => "Orange Brick", :slug => "orange"
     Theme.create :theme => "Wooden", :slug => "wood", :style => "2 column", :style_slug => "2_column", :default => 1
-    Theme.create :theme => "Blue Sky", :slug => "blue_sky"
     Theme.create :theme => "Classic Paper Stack", :slug => "classic_paper_stack"
     Theme.create :theme => "Black White Red", :slug => "bwr"
     Theme.create :theme => "Thin Beige", :slug => "thin_beige"
