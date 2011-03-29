@@ -232,7 +232,7 @@ var Resume = {
 	update_resume_settings : function() {
 		this.update_resume_settings_btn.click(function() {
 			$.ajax({
-				url: "/resume_settings/" + Resume.id,
+				url: "/resumes/" + Resume.id + "/resume_settings/" + Resume.id,
 				type: 'PUT',
 				data: {
 					resume_id: Resume.id,
@@ -274,7 +274,7 @@ var Resume = {
 				var t = $(this);
 
 				$.post(
-					"/resume_keywords",
+					"/resumes/" + Resume.id + "/resume_keywords",
 					{
 						resume_id: Resume.id, 
 						resume_keyword: $(this).val()
@@ -302,7 +302,7 @@ var Resume = {
 	setup_remove_keyword_action : function() {
 		Resume.keyword_remove.live('click', function() {
 			var t = $(this)
-			var url = "/resume_keywords/" + t.attr("rel")
+			var url = "/resumes/" + Resume.id + "/resume_keywords/" + t.attr("rel")
 			$.ajax({
 				url: url,
 				type: 'DELETE',

@@ -11,7 +11,7 @@ class ResumeSettingsController < ApplicationController
       resume_setting.update_attributes(params[:resume_setting])
       
       render :json => {:success => 1}
-      
+    
     end
     
     
