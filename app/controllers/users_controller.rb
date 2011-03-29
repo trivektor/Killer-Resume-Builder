@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     #     end
     
     @user =  User.new(params[:user])
-    if @user.save_without_session_maintenance(false)
+    if @user.save_without_session_maintenance
       @user.profile = Profile.new(:first_name => params[:user][:first_name], :last_name => params[:user][:last_name])
       @user.profile.save
       @user.deliver_activation_instructions!
