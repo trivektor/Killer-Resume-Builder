@@ -20,7 +20,7 @@
 				</p>
 				<div class="clearfloat"></div>
 				<div class="position_details">
-					<%= RDiscount.new(exp.details).to_html.html_safe %>
+					<%= RDiscount.new(exp.details).to_html.html_safe unless exp.details.blank? %>
 				</div>
 			</li>
     <% end %>

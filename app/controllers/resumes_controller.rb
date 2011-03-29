@@ -9,10 +9,7 @@ class ResumesController < ApplicationController
   
   def create
     
-    #params[:resume].inspect
-    
-    @resume = Resume.new(:title => params[:resume][:title], :url => params[:resume][:url], 
-    :user_id => current_user.id, :status => "active")
+    @resume = Resume.new(:title => params[:resume][:title], :url => params[:resume][:url], :user_id => current_user.id)
             
     if @resume.save
       
@@ -22,24 +19,13 @@ class ResumesController < ApplicationController
       
       @resume.resume_field_work = ResumeFieldWork.create
       
-      #@resume.resume_keyword = ResumeKeyword.create
-      
-      @resume.resume_section_order = ResumeSectionOrder.create(:resume_id => @resume.id, 
-      :orders => "personal_information/education/skills/work_experience/references/field_works")
-      
       @resume.resume_theme = ResumeTheme.create(:theme_id => Theme.default_theme.id)
       
       @resume.resume_setting = ResumeSetting.create
       
-      for f in ["personal_information", "education", "skills", "work_experience", "field_works", "references"]
-        name = f.sub("_", " ").split(" ").select {|w| w.capitalize! || w}.join(" ")
-        @resume.resume_section_names.create!(
-          :resume_id => @resume.id,
-          :section => f,
-          :name => name
-        )
-      end
+      ResumeSectionOrder.create_resume_section_order(@resume)
       
+      ResumeSectionName.create_resume_section_names(@resume)
       
       redirect_to dashboard_path
     else
@@ -53,15 +39,15 @@ class ResumesController < ApplicationController
     if !@resume.nil?
       @theme = Theme.find(@resume.resume_theme.theme_id)
       
-      @section_names = get_section_names(@resume)
+      @section_names = ResumeSectionName.get_section_names(@resume)
       
-      @section_order = get_section_order(@resume)
+      @section_order = ResumeSectionOrder.get_section_order(@resume)
       
-      @keywords = get_keywords(@resume)
+      @keywords = ResumeKeyword.get_keywords(@resume)
       
     	@field_works = @resume.resume_field_work.field_works
     	
-    	@hidden_fields = get_hidden_fields(@resume)
+    	@hidden_fields = ResumeHiddenField.get_hidden_fields(@resume)
   	  
   	  update_analytics(@resume)
       
@@ -72,15 +58,15 @@ class ResumesController < ApplicationController
   end
   
   def edit
-    @section_names = get_section_names(@resume)
+    @section_names = ResumeSectionName.get_section_names(@resume)
     
-    @section_order = get_section_order(@resume)
+    @section_order = ResumeSectionOrder.get_section_order(@resume)
     
     @settings = @resume.resume_setting
     
     @field_works = @resume.resume_field_work.field_works
   	
-  	@hidden_fields = get_hidden_fields(@resume)
+  	@hidden_fields = ResumeHiddenField.get_hidden_fields(@resume)
   end
   
   def update
@@ -103,44 +89,6 @@ class ResumesController < ApplicationController
   end
   
   private
-  
-  def get_section_names(resume)
-    section_names = {}
-    
-    resume.resume_section_names.each do |s|
-      section_names[s.section] = s.name
-    end
-    
-    section_names
-  end
-  
-  def get_keywords(resume)
-    keywords = []
-    
-    if resume.resume_keywords.count > 0
-  	   for keyword in resume.resume_keywords
-  	       keywords << keyword.keywords
-  	   end
-  	end
-  	
-  	keywords
-  end
-  
-  def get_hidden_fields(resume)
-    hidden_fields = []
-    
-    if resume.resume_hidden_fields.count > 0
-  	  for hfield in resume.resume_hidden_fields
-  	    hidden_fields << hfield.hidden_field
-	    end
-	  end
-	  
-	  hidden_fields
-  end
-  
-  def get_section_order(resume)
-    resume.resume_section_order.orders.split("/")
-  end
   
   def update_analytics(resume)
     user_agent = UserAgent.parse(request.user_agent)

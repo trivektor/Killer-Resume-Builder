@@ -559,7 +559,7 @@ $(function(){
 	
 	Thought.init();
 	
-	Sortable.init({target: $("#sort_resume_sections"), revert: true, url:"/resume_section_orders/" + $("#resume_section_order_id").val(), request_type:'PUT'})
+	Sortable.init({target: $("#sort_resume_sections"), revert: true, url:"/resumes/" + Resume.id + "/resume_section_orders", request_type:'PUT'})
 	Sortable.init({target: $("#sort_references"), revert: true, url:"/resumes/" + Resume.id + "/resume_references/order", request_type:'POST'})
 	Sortable.init({target: $("#sort_education"), revert: true, url:"/resumes/" + Resume.id +  "/resume_educations/order", request_type:'POST'})
 	Sortable.init({target: $("#sort_work_experience"), revert: true, url:"/resumes/" + Resume.id + "/resume_work_experiences/order", request_type:'POST' })

@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20110328174719) do
     t.string   "website",                   :default => ""
     t.string   "gender",                    :default => "male"
     t.string   "looking_for",               :default => ""
-    t.integer  "hidden",                    :default => 0
+    t.boolean  "hidden",                    :default => false
     t.string   "photo",                     :default => "male.png"
     t.string   "status",                    :default => "active"
     t.boolean  "completeness",              :default => false
@@ -203,7 +203,9 @@ ActiveRecord::Schema.define(:version => 20110328174719) do
 
   create_table "resume_section_orders", :force => true do |t|
     t.integer  "resume_id"
-    t.text     "orders"
+    t.string   "section"
+    t.string   "name"
+    t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -260,7 +262,7 @@ ActiveRecord::Schema.define(:version => 20110328174719) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "url"
-    t.string   "status"
+    t.string   "status",     :default => "active"
     t.integer  "views",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -307,9 +309,9 @@ ActiveRecord::Schema.define(:version => 20110328174719) do
     t.text     "content"
     t.string   "status",      :default => "active"
     t.integer  "private",     :default => 0
-    t.boolean  "reported",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "reported",    :default => false
   end
 
   create_table "users", :force => true do |t|
@@ -321,7 +323,6 @@ ActiveRecord::Schema.define(:version => 20110328174719) do
     t.string   "password_salt"
     t.string   "single_access_token"
     t.string   "perishable_token"
-    t.string   "reset_password_token"
     t.integer  "login_count"
     t.integer  "failed_login_count"
     t.datetime "last_request_at"
@@ -331,7 +332,7 @@ ActiveRecord::Schema.define(:version => 20110328174719) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",               :default => false
+    t.boolean  "active",              :default => false
   end
 
   create_table "visitor_infos", :force => true do |t|

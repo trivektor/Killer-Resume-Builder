@@ -90,6 +90,12 @@ Krb::Application.routes.draw do
       end
     end
     
+    resources :resume_section_orders do
+      collection do
+        put :update
+      end
+    end
+    
     resources :resume_themes, :only => [:update]
     
     resources :resume_section_names, :only => [:update]
@@ -105,8 +111,6 @@ Krb::Application.routes.draw do
   end
   
   resources :resume_keywords
-  
-  resources :resume_section_orders
   
   resources :password_resets
   

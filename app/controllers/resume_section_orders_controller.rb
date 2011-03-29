@@ -4,25 +4,15 @@ class ResumeSectionOrdersController < ApplicationController
   
   def update
     
-    sections = {
-      1 => "personal_information",
-      2 => "education",
-      3 => "skills",
-      4 => "work_experience",
-      5 => "references",
-      6 => "field_works",
-      7 => "keywords"
-    }
+    order = params[:order]
     
-    section_orders = []
+    weight = order.count
     
-    for order in params[:order]
-      section_orders << sections[order.to_i]
+    for id in order
+      order = ResumeSectionOrder.where(:resume_id => params[:resume_id], :id => id).first
+      order.update_attributes(:weight => weight)
+      weight -= 1
     end
-    
-    resume_section_order = ResumeSectionOrder.find_by_resume_id(params[:resume_id])
-    
-    resume_section_order.update_attributes(:orders => section_orders.join("/"))
     
     render :json => {:success => 1}
     

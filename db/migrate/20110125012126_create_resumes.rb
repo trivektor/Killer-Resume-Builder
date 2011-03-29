@@ -4,7 +4,7 @@ class CreateResumes < ActiveRecord::Migration
       t.integer :user_id
       t.string :title
       t.string :url
-      t.string :status
+      t.string :status, :default => :active
       t.timestamps
     end
   end

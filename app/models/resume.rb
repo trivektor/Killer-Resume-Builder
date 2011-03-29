@@ -1,7 +1,6 @@
 class Resume < ActiveRecord::Base
   
   has_one :resume_personal_information, :dependent => :delete
-  has_one :resume_section_order, :dependent => :delete
   has_one :resume_field_work, :dependent => :delete
   has_one :resume_skill, :dependent => :delete
   has_one :resume_theme, :dependent => :delete
@@ -12,6 +11,7 @@ class Resume < ActiveRecord::Base
   has_many :resume_work_experiences, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_references, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_section_names, :dependent => :delete_all
+  has_many :resume_section_orders, :dependent => :delete_all, :order => "weight DESC"
   has_many :resume_hidden_fields, :dependent => :delete_all
   has_many :resume_viewers, :dependent => :delete_all, :order => "created_at DESC"
   has_many :visitor_infos, :dependent => :delete_all

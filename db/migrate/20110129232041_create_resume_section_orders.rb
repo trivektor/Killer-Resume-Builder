@@ -2,7 +2,9 @@ class CreateResumeSectionOrders < ActiveRecord::Migration
   def self.up
     create_table :resume_section_orders do |t|
       t.integer :resume_id
-      t.text :orders
+      t.string :section
+      t.string :name
+      t.integer :weight
       t.timestamps
     end
   end
