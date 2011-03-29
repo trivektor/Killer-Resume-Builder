@@ -23,7 +23,7 @@ class ActivationsController < ApplicationController
       return
     end
     
-    if @user.active then
+    if @user.active? then
       redirect_to activated_url
       return
     end
