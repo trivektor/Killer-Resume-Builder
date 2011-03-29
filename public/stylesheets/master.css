@@ -522,7 +522,7 @@ font-size:13px; -moz-border-radius:3px; -webkit-border-radius:3px}
 
 /* Formatting Tips */
 #formatting_tips .blue_region {margin-bottom:0;}
-#formatting_tips .example {margin-top:10px; margin-bottom:8px; font-weight:bold;}
+#formatting_tips .example {margin-top:10px; margin-bottom:8px; color:#888;}
 #formatting_tips {width:600px; margin-left:-310px}
 #formatting_tips .white_region {margin-bottom:10px;}
 #formatting_tips p {margin-bottom:8px;}
