@@ -38,8 +38,7 @@
             .left
               = link_to resume.title, edit_resume_path(resume)
               %p.timestamp
-                Last updated 
-                - resume.updated_at.strftime("%b %d, %Y %H:%M %p")
+                Last updated #{resume.updated_at.strftime("%b %d, %Y %H:%M %p")}
             .options
               %a.delete{:title => "Delete", :href => "/resumes/#{resume.id}/delete"}
               %a.view_live{:title => "View", :href => "#{resume.url}", :target => "_blank"}

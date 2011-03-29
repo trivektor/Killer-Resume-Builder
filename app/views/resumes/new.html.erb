@@ -20,14 +20,12 @@
       <% end %>
 
 	    <div class="form_row">
-		    <%= f.label "Pick a URL" %>
-		    <div class="eg">Your resume will be available at http://localhost:8888/resume/yoururl</div>
-		    <br />
+		    <%= f.label "Pick a URL (Your resume will be available at http://#{request.domain}/yoururl)" %>
 		    <%= f.text_field :url, :class => "textbox" %>
 	    </div>
 
 	    <div class="form_row">
-		    <%= f.label "Title" %>
+		    <%= f.label "Pick a title for your resume" %>
 		    <%= f.text_field :title, :class => "textbox" %>
 	    </div>
 
