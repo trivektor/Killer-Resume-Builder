@@ -22,12 +22,21 @@ class PasswordResetsController < ApplicationController
   end
   
   def edit
-    load_user_using_perishable_token
+    @user = User.find_by_perishable_token(params[:id])
+    if @user.nil?
+      redirect_to root_url
+      return
+    end
     render
   end
   
   def update
-    load_user_using_perishable_token
+    @user = User.find_by_perishable_token(params[:id])
+    if @user.nil?
+      redirect_to root_url
+      return
+    end
+    
     @user.password = params[:user][:password]
     @user.first_name = @user.profile.first_name
     @user.last_name = @user.profile.last_name
@@ -38,16 +47,6 @@ class PasswordResetsController < ApplicationController
       redirect_to login_url
     else
       render :action => :edit
-    end
-  end
-  
-  private
-  
-  def load_user_using_perishable_token
-    @user = User.find_by_perishable_token(params[:id])
-    unless @user
-      flash[:notice] = "Cannot locate your account"
-      redirect_to root_url
     end
   end
   
