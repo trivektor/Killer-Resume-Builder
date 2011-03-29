@@ -421,7 +421,7 @@ float:right; margin-bottom:10px; margin-right:-3px; margin-top:13px;}
 #select_themes #content {width:1000px;}
 #theme_dropdown_container {width:100px; margin:0 auto; padding:0 20px 20px; background:#fff;}
 
-#updated_status, .updated_status {background:#F4ECC6; padding:5px 10px; text-align:center; position:fixed; left:10px; bottom:10px; border:1px solid #ECAA6A; z-index:9999;}
+#updated_status, .updated_status {background:#F4ECC6; padding:20px; font-size:22px; text-align:center; position:fixed; left:0; top:0; right:0; z-index:9999;}
 
 #photo-uploader {margin-top:20px; display:none;}
 #upload_photo {color:#55a1d5; cursor:pointer; display:block; margin-top:20px;}

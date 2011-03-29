@@ -1,12 +1,9 @@
 <% 
-
-resume_section_names = @resume.resume_section_names
-
 section_id = 0
 
-resume_section_names.each do |rsn|
-  if rsn.section == section
-    section_id = rsn.id
+@resume.resume_section_orders.each do |rso|
+  if rso.section == section
+    section_id = rso.id
   end
 end
 
@@ -18,5 +15,5 @@ end
 	<span class="update_section_name blue_btn" style="display:none" rel="<%= section %>">Update</span>
 	<span class="cancel_update_section_name green_btn" style="display:none">Cancel</span>
 	
-	<input type="hidden" class="resume_section_name_id" value="<%= section_id %>" />
+	<input type="hidden" class="resume_section_order_id" value="<%= section_id %>" />
 </div>

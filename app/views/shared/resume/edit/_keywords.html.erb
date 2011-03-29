@@ -1,7 +1,7 @@
 <div class="box_top"></div>
 <div class="box">
 	<h2>Keywords</h2>
-	<p>Enter your desire keywords. These keywords will be used as meta keywords for your resume.</p>
+	<p>Enter your keywords. These keywords will be used as meta keywords for your resume.</p>
 	<div id="keywordsMessage">
 	    <% keywords_left = 20 - @resume.resume_keywords.count %>
 		<span id="keywordsLeft"><%= keywords_left == 20 ? "You have 20 keywords left. Choose wisely." : "#{keywords_left} keywords left" %></span>

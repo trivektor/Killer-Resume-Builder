@@ -20,4 +20,14 @@ class ResumeSectionOrder < ActiveRecord::Base
     section_orders
   end
   
+  def self.get_section_names(resume)
+    section_names = {}
+    
+    resume.resume_section_orders.each do |s|
+      section_names[s.section] = s.name
+    end
+    
+    section_names
+  end
+  
 end

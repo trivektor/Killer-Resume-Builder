@@ -25,8 +25,6 @@ class ResumesController < ApplicationController
       
       ResumeSectionOrder.create_resume_section_order(@resume)
       
-      ResumeSectionName.create_resume_section_names(@resume)
-      
       redirect_to dashboard_path
     else
       render :action => :new
@@ -39,7 +37,7 @@ class ResumesController < ApplicationController
     if !@resume.nil?
       @theme = Theme.find(@resume.resume_theme.theme_id)
       
-      @section_names = ResumeSectionName.get_section_names(@resume)
+      @section_names = ResumeSectionOrder.get_section_names(@resume)
       
       @section_order = ResumeSectionOrder.get_section_order(@resume)
       
@@ -58,9 +56,7 @@ class ResumesController < ApplicationController
   end
   
   def edit
-    @section_names = ResumeSectionName.get_section_names(@resume)
-    
-    @section_order = ResumeSectionOrder.get_section_order(@resume)
+    @section_names = ResumeSectionOrder.get_section_names(@resume)
     
     @settings = @resume.resume_setting
     

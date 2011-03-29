@@ -46,6 +46,7 @@
     <div class="form_row">
       <label>Details</label>
       <%= f.text_area :details, :class => :markitup %>
+      <%= render :partial => 'shared/formatting_tips' %>
     </div>
     
     <div class="form_row">
@@ -59,3 +60,5 @@
 </div>
 
 <% end %>
+
+<%= render :partial => 'shared/formatting_examples' %>

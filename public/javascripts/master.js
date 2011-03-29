@@ -135,9 +135,9 @@ var Resume = {
 
 			$.ajax({
 				type: "PUT",
-				url: "/resumes/" + Resume.id + "/resume_section_names/" + $(this).siblings(".resume_section_name_id").val() ,
+				url: "/resumes/" + Resume.id + "/resume_section_orders/" + $(this).siblings(".resume_section_order_id").val(),
 				data: {
-					resume_section_name: {
+					resume_section_order: {
 						section:t.attr("rel"), 
 						name:updatedName
 					}
@@ -253,8 +253,8 @@ var Resume = {
 	},
 	
 	blinkUpdatedStatus : function() {
-		Resume.updated_status.fadeIn(500);
-		setTimeout(function(){ Resume.updated_status.fadeOut(500) }, 2000)
+		Resume.updated_status.slideDown()
+		setTimeout(function(){ Resume.updated_status.slideUp(500) }, 3000)
 	},
 	
 	setup_keywords_input_keydown_action : function() {
@@ -559,7 +559,7 @@ $(function(){
 	
 	Thought.init();
 	
-	Sortable.init({target: $("#sort_resume_sections"), revert: true, url:"/resumes/" + Resume.id + "/resume_section_orders", request_type:'PUT'})
+	Sortable.init({target: $("#sort_resume_sections"), revert: true, url:"/resumes/" + Resume.id + "/resume_section_orders/update_order", request_type:'PUT'})
 	Sortable.init({target: $("#sort_references"), revert: true, url:"/resumes/" + Resume.id + "/resume_references/order", request_type:'POST'})
 	Sortable.init({target: $("#sort_education"), revert: true, url:"/resumes/" + Resume.id +  "/resume_educations/order", request_type:'POST'})
 	Sortable.init({target: $("#sort_work_experience"), revert: true, url:"/resumes/" + Resume.id + "/resume_work_experiences/order", request_type:'POST' })

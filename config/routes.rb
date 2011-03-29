@@ -91,8 +91,12 @@ Krb::Application.routes.draw do
     end
     
     resources :resume_section_orders do
+      member do
+        put :edit
+      end
+      
       collection do
-        put :update
+        put :update_order
       end
     end
     

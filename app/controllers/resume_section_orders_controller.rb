@@ -2,7 +2,19 @@ class ResumeSectionOrdersController < ApplicationController
   
   before_filter :require_user, :verify_ownership
   
+  def edit
+    
+  end
+  
   def update
+    section_order = ResumeSectionOrder.where(:resume_id => params[:resume_id], :id => params[:id]).first
+    if !section_order.nil?
+      section_order.update_attributes(:name => params[:resume_section_order][:name])
+    end
+    render :json => {:success => 1}
+  end
+  
+  def update_order
     
     order = params[:order]
     
