@@ -29,7 +29,7 @@ body {font-family:lucida grande, arial; font-size:12px; color:#444; background:#
 	background:#eb2219 url(../images/resume/headerBg.png) repeat-x;
 }
 #header {width:1019px; margin:0 auto;position:relative; padding:7px 0;}
-#app_logo {text-indent:-9999px; background:url(../images/resume/logo.png) no-repeat; width:238px; height:38px}
+#app_logo {text-indent:-9999px; background:url(../images/resume/logo.png) no-repeat; width:269px; height:38px}
 #app_logo a {display:block;}
 #login_link {position:absolute; top:14px; right:70px; cursor:pointer;}
 #overlayLoginForm #fb_login_btn {float:left;}
