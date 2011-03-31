@@ -1,5 +1,7 @@
 class ResumesController < ApplicationController
   
+  include ResumeHelper
+  
   before_filter :require_user, :except => [:show]
   before_filter :verify_ownership, :except => [:show, :new, :create]
   

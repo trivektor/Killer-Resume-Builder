@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   # authlogic
   acts_as_authentic do |config|
     config.crypto_provider = Authlogic::CryptoProviders::MD5
+    config.maintain_sessions = false
     config.validate_email_field = false
     config.validate_login_field = false
     config.validate_password_field = false

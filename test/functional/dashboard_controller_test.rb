@@ -2,7 +2,10 @@ require 'test_helper'
 
 class DashboardControllerTest < ActionController::TestCase
   
-  setup :activate_authlogic
+  def setup
+    activate_authlogic
+    @user = Factory(:user)
+  end
   
   test "should redirect if not logged in" do
     get :index
@@ -13,12 +16,7 @@ class DashboardControllerTest < ActionController::TestCase
   end
   
   test "should get index if logged in" do
-    
-    user = Factory(:user)
-    
-    assert user
-    
-    user_session = UserSession.create(user)
+    user_session = UserSession.create(@user)
     
     get :index
     assert_response 200

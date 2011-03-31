@@ -1,5 +1,7 @@
 class ResumeWorkExperiencesController < ApplicationController
   
+  include ResumeHelper
+  
   before_filter :require_user, :verify_ownership
   
   def new
@@ -61,35 +63,8 @@ class ResumeWorkExperiencesController < ApplicationController
   
   private
   
-  def manipulatable?
-    if @resume
-      @resume.user_id == current_user.id 
-    else
-      false
-    end
-  end
-  
-  def find_resume
-    begin
-      @resume = Resume.find(params[:resume_id])
-    rescue
-      nil
-    end
-  end
-  
   def find_resume_work_experience
     ResumeWorkExperience.where(:id => params[:id], :resume_id => params[:resume_id]).first
-  end
-  
-  def verify_ownership
-    find_resume
-    
-    if !manipulatable?
-      redirect_to dashboard_path
-      return false
-    end
-    
-    true
   end
   
 end
