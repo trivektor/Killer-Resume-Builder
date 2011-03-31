@@ -97,6 +97,7 @@ Krb::Application.routes.draw do
   
   root :to => 'home#index'
 
+  match "/users" => "home#index"
   match "/dashboard" => "dashboard#index"
   
   match "/:url" => "resumes#show"  

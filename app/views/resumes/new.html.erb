@@ -13,7 +13,7 @@
     
     <h2><%= @title_for_layout %></h2>
 
-    <% form_for @resume do |f| %>
+    <%= form_for @resume do |f| %>
 
       <% if !@resume.errors.empty? %>
         <%= render :partial => "shared/form_errors", :locals => {:f => f} %>

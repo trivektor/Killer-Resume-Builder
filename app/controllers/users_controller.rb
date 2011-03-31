@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @body_id = :signup
   end
   
+  def index
+    redirect_to root_url and return
+  end
+  
   def new
     @user = User.new
     
@@ -15,25 +19,13 @@ class UsersController < ApplicationController
   end
   
   def create
-    # @user = User.new(params[:user])
-    #     
-    #     if @user.save
-    #       @user.profile = Profile.new(:first_name => params[:user][:first_name], :last_name => params[:user][:last_name])
-    #       @user.profile.save
-    #       
-    #       redirect_to dashboard_path
-    #       
-    #     else
-    #       render :layout => "signup", :action => :new
-    #     end
-    
     @user =  User.new(params[:user])
     if @user.save_without_session_maintenance
       @user.profile = Profile.new(:first_name => params[:user][:first_name], :last_name => params[:user][:last_name])
       @user.profile.save
       @user.deliver_activation_instructions!
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to registration_complete_url
+      redirect_to registration_complete_url and return
     else
       render :layout => "signup", :action => :new
     end

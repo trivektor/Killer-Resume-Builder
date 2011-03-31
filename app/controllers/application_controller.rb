@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      redirect_to "/"
+      redirect_to root_url
       return false
     end
   end

@@ -25,7 +25,7 @@ class ResumesController < ApplicationController
       
       ResumeSectionOrder.create_resume_section_order(@resume)
       
-      redirect_to dashboard_path
+      redirect_to dashboard_path and return
     else
       render :action => :new
     end
@@ -49,9 +49,9 @@ class ResumesController < ApplicationController
   	  
   	  update_analytics(@resume)
       
-      render :layout => "themes/" + @theme.slug
+      render :layout => "themes/#{@theme.slug}"
     else
-      # TODO: add error handling
+      redirect_to root_url and return
     end
   end
   
@@ -76,7 +76,7 @@ class ResumesController < ApplicationController
   
   def delete
     @resume.destroy
-    redirect_to dashboard_path
+    redirect_to dashboard_path and return
   end
   
   def select_theme
