@@ -5,7 +5,9 @@ class ResumeReferencesController < ApplicationController
   def new
     @resume_reference = ResumeReference.new
     
-    @section_name = find_section_name
+    section_order = ResumeSectionOrder.where(:resume_id => params[:resume_id], :section => 'references').first
+    
+    @section_name = section_order.name
   end
   
   def create
@@ -21,7 +23,9 @@ class ResumeReferencesController < ApplicationController
   def edit
     @resume_reference = find_resume_reference
     
-    @section_name = find_section_name
+    section_order = ResumeSectionOrder.where(:resume_id => params[:resume_id], :section => 'references').first
+    
+    @section_name = section_order.name
   end
   
   def update
@@ -77,11 +81,6 @@ class ResumeReferencesController < ApplicationController
   
   def find_resume_reference
     ResumeReference.where(:id => params[:id], :resume_id => params[:resume_id]).first
-  end
-  
-  def find_section_name
-    section_name = ResumeSectionName.where(:resume_id => params[:resume_id], :section => "references").first
-    section_name.name
   end
   
   def verify_ownership
