@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
   
   def destroy
     @user_session = UserSession.find
-    @user_session.destroy
+    @user_session.destroy unless @user_session.nil?
     #current_user_session.destroy
     reset_session
     redirect_to "/"

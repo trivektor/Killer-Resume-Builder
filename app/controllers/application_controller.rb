@@ -52,7 +52,16 @@ class ApplicationController < ActionController::Base
   end
   
   def current_user
-    @current_user = current_user_session && current_user_session.user
+    if !session[:omniauth_user_id].nil?
+      @current_user ||= User.find_by_id(session[:omniauth_user_id])
+    else
+      @current_user = current_user_session && current_user_session.user
+    end
+  end
+  
+  def current_user=(user)
+    @current_user = user
+    session[:omniauth_user_id] = user.id
   end
   
   def logged_in?

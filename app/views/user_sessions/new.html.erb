@@ -28,6 +28,9 @@
 		<div id="overlayLoginFormButtons">
 			<input type="image" src="/images/resume/loginFormGo.png" id="submitLoginForm" />
 		</div>
+		<div style="float:left">
+		  <%= link_to (image_tag "resume/fb_login.png", :alt => "Login with Facebook"), "/auth/facebook" %>
+		</div>
 		<div id="overlayLoginFormBottom">
 			
 			<%= link_to "Forgot Password", new_password_reset_path %>

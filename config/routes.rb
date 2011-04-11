@@ -1,5 +1,7 @@
 Krb::Application.routes.draw do
     
+  get "git/status"
+
   resources :user_sessions
     match "login" => "user_sessions#new", :as => :login
     match "logout" => "user_sessions#destroy", :as => :logout
@@ -7,6 +9,8 @@ Krb::Application.routes.draw do
   resources :users, :only => [:new, :create, :edit, :update]
     match "signup" => "users#new", :as => :signup
     match "registration_complete" => "users#registration_complete", :as => :registration_complete
+    
+  match '/auth/:provider/callback', :to => 'sessions#create'
   
   match "invalid_activation_code" => "activations#invalid_activation_code", :as => :invalid_activation_code
   match "activated" => "activations#activated", :as => :activated

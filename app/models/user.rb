@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   gravtastic :size => 120
   
   # associations
+  has_many :authorizations, :dependent => :destroy
   has_one :profile, :dependent => :destroy
   has_many :resumes, :dependent => :destroy, :order => 'created_at DESC'
   has_many :thoughts, :dependent => :destroy, :order => 'created_at DESC'
@@ -32,6 +33,14 @@ class User < ActiveRecord::Base
     config.validate_password_field = false
     config.login_field = :email
     config.validate_login_field = false
+  end
+  
+  def self.create_from_hash!(hash)
+    logger.info hash['user_info']
+    user = User.new(:username => hash['user_info']['nickname'], :email => hash['user_info']['email'])
+    user.save(:validate => false)
+    user.profile = Profile.create(:first_name => hash['user_info']['first_name'], :last_name => hash['user_info']['last_name'])
+    user
   end
   
   def deliver_password_reset_instructions!
