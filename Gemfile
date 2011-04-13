@@ -31,8 +31,7 @@ gem 'useragent'
 gem 'gravtastic'
 gem 'haml-edge'
 gem 'haml'
-gem 'omniauth'
-gem 'always_verify_ssl_certificates'
+gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git', :tag => 'v0.2.0.beta5'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
