@@ -298,6 +298,8 @@ li.omega .feature_details p {width:290px;}
 #login_form #password {background:#EDE5BB url(../images/resume/lock_24.png) no-repeat 5px center; text-indent: 29px;}
 #login_form a {font-size:11px;}
 
+#third_party_authentication {width:460px; margin:0 auto; text-align:center; padding:20px}
+
 /* Dashboard */
 #profile_complete_notice {margin-bottom:20px; padding:10px; text-align:center;}
 #hide_profile_complete_notice {color:#E26A00; cursor:pointer;}
