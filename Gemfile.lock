@@ -37,6 +37,7 @@ GEM
       activesupport (= 3.0.1)
     activesupport (3.0.1)
     addressable (2.2.4)
+    always_verify_ssl_certificates (0.3.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
@@ -162,6 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  always_verify_ssl_certificates
   authlogic!
   carmen
   factory_girl_rails
