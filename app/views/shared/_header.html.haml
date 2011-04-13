@@ -15,7 +15,7 @@
         %li
           = link_to 'Dashboard', :controller => :dashboard, :action => :index
         %li
-          = link_to current_user.username, profile_path(current_user.username)
+          = link_to "#{user_profile.first_name} #{user_profile.last_name}", profile_path(current_user.username)
         %li#header_profile_photo
           = image_tag current_user.gravatar_url, :class => :user_image
     - else
