@@ -36,8 +36,7 @@ class User < ActiveRecord::Base
   end
   
   def self.create_from_hash!(hash)
-    logger.info hash['user_info']
-    user = User.new(:username => Time.now.to_i, :email => '')
+    user = User.new(:username => Time.now.to_i, :email => '', :auth_provider => hash['provider'])
     user.save(:validate => false)
     user.profile = Profile.create(:first_name => hash['user_info']['first_name'], :last_name => hash['user_info']['last_name'])
     user
