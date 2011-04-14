@@ -38,8 +38,13 @@ class User < ActiveRecord::Base
   def self.create_from_hash!(hash)
     user = User.new(:username => Time.now.to_i, :email => '', :auth_provider => hash['provider'])
     user.save(:validate => false)
+    
     if hash['provider'].downcase == 'twitter'
-      user.profile = Profile.create(:first_name => Twitter::Client.new.user(hash['user_info']['nickname']).name)
+      user.profile = Profile.create(:first_name => Twitter::Client.new.user(hash['user_info']['nickname'].to_s).name)
+    elsif hash['provider'].downcase == 'facebook'
+      graph = Koala::Facebook::GraphAPI.new('2227470867|2.Xa4gzX5dO5_lYlQYtcHu1g__.3600.1302753600.0-515097306|WszgJZ37pdDG4ozfKl_W7Xe9m38')
+      profile = graph.get_object(hash['user_info']['uid'])
+      user.profile = Profile.create(:first_name => profile['first_name'], :last_name => profile['last_name'], :website => profile['website'], :gender => profile['gender'])
     else
       user.profile = Profile.create(:first_name => hash['user_info']['first_name'], :last_name => hash['user_info']['last_name'])
     end
