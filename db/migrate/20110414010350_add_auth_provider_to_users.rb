@@ -4,6 +4,6 @@ class AddAuthProviderToUsers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_column :users, :auth_provider
+    remove_column :users, :auth_provider
   end
 end
