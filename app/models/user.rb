@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
   def self.create_from_hash!(hash)
     user = User.new(:username => Time.now.to_i, :email => '', :auth_provider => hash['provider'])
     user.save(:validate => false)
-    user.profile = Profile.create(:first_name => hash['user_info']['first_name'], :last_name => hash['user_info']['last_name'])
+    if hash['provider'].downcase == 'twitter'
+      user.profile = Profile.create(:first_name => Twitter.user(hash['user_info']['nickname']).name)
+    else
+      user.profile = Profile.create(:first_name => hash['user_info']['first_name'], :last_name => hash['user_info']['last_name'])
+    end
     user
   end
   
