@@ -1,0 +1,13 @@
+<div class="section_wrapper">
+  <h2 class="header_tag"><%= @section_names["work_experience"] %></h2>
+  <ul class="item_list">
+    <% @resume.resume_work_experiences.each do |exp| %>
+      <li>
+        <h3 class="organization_name"><%= exp.organization_name %></h3>
+        <div class="position_title"><%= exp.title %></div>
+        <div class="position_duration"><%= exp.begin_date %> - <%= exp.end_date.blank? ? :present : exp.end_date %></div>
+        <div class="position_details"><%= RDiscount.new(exp.details).to_html.html_safe %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,39 @@
+<div class="box_top"></div>
+<div class="box">
+	
+	<%= render :partial => "shared/section_name_editor", :locals => {:section => "references"} %>
+	
+	<div class="section_options">
+		<div class="options_label">Options</div>
+		<div class="add">
+		  <%= link_to "Add a new entry", new_resume_resume_reference_path(@resume) %>
+		</div>
+		
+		<% section_mode = @hidden_fields.include?("references") ? "disabled" : "active" %>
+		
+		<a class="enable_section" rel="references">Enable this section</a>
+		<a class="disable_section" rel="references">Disable this section</a>
+
+		<input type="hidden" class="section_mode" value="<%= section_mode %>" />
+	</div>
+	
+	<div class="clearfloat"></div>
+	
+	<div id="sort_references" class="sortable">
+	  <% @resume.resume_references.each do |ref| %>
+	    <div id="ref_<%= ref.id %>" class="ui-state-default">
+	      <a class="edit_link" href="/resumes/<%= @resume.id %>/resume_references/<%= ref.id %>/edit"></a>
+	      <a class="delete_link" href="/resumes/<%= @resume.id %>/resume_references/<%= ref.id %>/delete"></a>
+	      <ul class="reference_details">
+	        <li><%= ref.name %>, <%= ref.title %></li>
+	        <li><%= ref.organization %></li>
+            <li><a href="mailto:<%= ref.email %>"><%= ref.email %></a></li>
+	      </ul>
+	    </div>
+	  <% end %>
+	</div>
+	
+	<div class="clearfloat"></div>
+	
+</div>
+<div class="box_bottom"></div>

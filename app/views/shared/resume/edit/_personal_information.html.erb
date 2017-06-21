@@ -1,0 +1,87 @@
+<div id="personal_information">
+<%= f.fields_for :resume_personal_information do |pi| %>
+<div class="box_top"></div>
+<div class="box">
+
+<%= render :partial => "shared/section_name_editor", :locals => {:section => "personal_information"} %>
+
+<div class="clearfloat"></div>
+
+<div class="form_row">
+  <%= pi.label :full_name %>
+	<%= pi.text_field :full_name, :class => :textbox %>
+</div>
+
+<div class="form_row">
+  <%= pi.label :address %>
+	<%= pi.text_field :address, :class => :textbox %>
+</div>
+
+<div class="form_row">
+  <%= pi.label :city %>
+	<%= pi.text_field :city, :class => :textbox %>
+</div>
+
+<div class="form_row">
+  <label for="resume_resume_personal_information_attributes_state">State/Province</label>
+	<%= pi.text_field :state, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :phone_number %>
+	<%= pi.text_field :phone_number, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :fax_number %>
+	<%= pi.text_field :fax_number, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :email %>
+	<%= pi.text_field :email, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :website %>
+	<%= pi.text_field :website, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<label for="resume_resume_personal_information_attributes_bio">Bio / Summary</label>
+	<div id="markItUpResumePersonalInformationBio" class="markItUp">
+		<%= pi.text_area :bio, :class=> "markitup" %>
+	</div>
+	<%= render :partial => 'shared/formatting_tips' %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :facebook %>
+	<%= pi.text_field :facebook, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :twitter %>
+	<%= pi.text_field :twitter, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :flickr %>
+	<%= pi.text_field :flickr, :class => :textbox %>
+</div>
+
+<div class="form_row">
+	<%= pi.label :linkedin %>
+	<%= pi.text_field :linkedin, :class => :textbox %>
+</div>
+
+<div class="form_row">
+  <%= pi.label :github %>
+  <%= pi.text_field :github, :class => :textbox %>
+</div>
+
+<div class="clearfloat"></div>
+</div>
+<div class="box_bottom"></div>
+<% end %>
+</div>

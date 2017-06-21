@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Killer Resume Builder - <%= @title_for_layout %></title>
-  <%= stylesheet_link_tag "master.css" %>
+  <title>Rails Resume Builder - <%= @title_for_layout %></title>
+  <%= stylesheet_link_tag [
+	"master.css",
+	"markitup.css",
+	"markitupset.css"
+	] %>
   <%= javascript_include_tag [
 	"jquery-1.4.2.min", 
-	"jquery-ui-1.8.5.custom.min", 
-	"jquery.autoheight", 
-	"jquery.hoverIntent",
-	"jquery.imgareaselect",
-	"jquery.ui.datepicker",
+	"jquery.scrollTo",
+	"jquery-ui-1.8.5.custom.min",
 	"jquery.markitup",
 	"jquery.markitupset",
 	"master"] %>
   <%= csrf_meta_tag %>
 </head>
-<body id="<%=params[:body_id]%>">
+<body id="<%=@body_id%>">
+  
+<%= render :partial => "shared/top_panel" %>
 
 <div id="container">
 <%= render :partial => "shared/header" %>

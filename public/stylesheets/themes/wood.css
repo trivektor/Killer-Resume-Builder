@@ -1,0 +1,39 @@
+body {background:url(../../images/themes/wood/wood.jpg) repeat; font-family:arial; font-size:12px; color:#444}
+
+a {color:#ef5d00}
+
+#resume_sheet {border:0; padding:0; width:900px; background:#fff url(../../images/themes/wood/resumeSheetBg.png) repeat-y;}
+
+.clearfloat {clear:both;}
+
+.left_col {float:left; padding:50px 20px; width:241px}
+.right_col {float:left; padding:50px 60px; width:466px;}
+
+#name {color:#000; font-family:futura,arial; font-size:18px; text-transform:uppercase; text-align:center;}
+
+.user_image {border:8px solid #fff; -moz-box-shadow:0 2px 4px #999; -webkit-box-shadow:0 2px 4px #999;
+	margin:0 auto 20px; display:block;}
+
+.leftShadow {background:url(../../images/themes/wood/shadowLeft.png) no-repeat left 5px; padding-left:35px;}
+.rightShadow {background:url(../../images/themes/wood/rightShadow.png) no-repeat right 5px; padding-right:35px;}
+.bottomShadow {background:url(../../images/themes/wood/bottomShadow.png) no-repeat center bottom; padding-bottom:4px;}
+
+.orange_tab_left {padding-left:10px;background:url(../../images/themes/wood/orangeTabLeft.png) no-repeat left 0}
+.orange_tab_right {float:left;width:11px; height:38px;background:url(../../images/themes/wood/orangeTabRight.png) no-repeat right 0}
+.orange_tab_middle {float:left;background:url(../../images/themes/wood/orangeTabMiddle.png) repeat-x; padding:7px 0;
+	font-family:Futura,arial; font-size:18px; text-transform:uppercase; color:#fff; text-shadow:0 1px 2px #000;}
+	
+.header_tag {margin-bottom:20px;}
+
+.section_wrapper {padding-top:1px; margin-bottom:40px;}
+
+#personal_information {list-style:none; margin:20px 0 0 0; padding:0; text-align:center;}
+#social_networks {text-align:center; margin-top:30px;}
+#social_networks images {margin:0 2px;}
+
+.institution_name {margin-bottom:4px; color:#ef5d00; }
+.degree {margin-bottom:4px;}
+.degree_duration {font-weight:normal;}
+.organization_name {margin-bottom:4px; color:#ef5d00; }
+.position_title {margin-bottom:4px;}
+

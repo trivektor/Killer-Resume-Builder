@@ -1,0 +1,131 @@
+<% 
+@title_for_layout = "#{@user.username}'s profile"
+@body_id = "show_profile"
+%>
+
+<div class="blue_region" id="profile_header">
+    
+	<%= image_tag @user.gravatar_url, :class => :user_image, :alt => @profile.first_name + " " + @profile.last_name %>
+
+	<div class="white_region">
+		<div id="profile_header_info">
+			<h2 id="profile_name">
+				<%= !@profile.first_name.nil? && !@profile.last_name.nil? && 
+				!@profile.first_name.empty? && !@profile.last_name.empty? ? @profile.first_name + " " + @profile.last_name : @user.username %>
+			</h2>
+			<ul class="item_list">
+			<% if !@profile.job_title.empty? %>
+			    <li><%= @profile.job_title %></li>
+			<% end %>
+			<% if !@location.empty? %>
+		        <li><%= @location.join(", ") %></li>
+		    <% end %>
+		    </ul>
+	    </div>
+		<div class="clearfloat"></div>
+	</div>
+	<div class="clearfloat"></div>
+</div>
+
+<!-- left col starts -->
+<div id="profile_left_col">
+		
+		<!-- Recently heard starts -->
+		<h2>Recently heard</h2>
+		<div class="thought_list blue_region">
+		    <% if @thoughts.count > 0 %>
+			    <ul class="item_list">
+    			    <% for thought in @thoughts %>
+    				<li class="white_region">
+    					<div class="inner">
+    						<div class="thought"><%= thought.thought %></div>
+    						<p class="timestamp"><%= thought.created_at.strftime("%b %d, %Y %H:%M %p") %></p>
+    					</div>
+    				</li>
+    				<% end %>
+    			</ul>
+			<% else %>
+			<div class="white_region">
+			    <p class="inner">
+			        This user has yet shared any thought
+			    </p>
+			</div>
+			<% end %>
+		</div>
+		<!-- Recently heard ends -->
+		
+		<!-- Shouts starts -->
+		<h2>Shouts</h2>
+		<div class="blue_region">
+			<div class="white_region" id="shoutbox_wrapper">
+				<!-- <form accept-charset="utf-8" action="/user_threads/shout" method="post" id="UserThreadShoutForm"> -->
+				<%= form_for @user_thread do |f| %>
+				    <%= f.text_area :content, :rows => 6, :cols => 30, :id => "shout_box" %>
+				    <div id="shout_options">
+						  <input type="hidden" name="user[username]" value="<%= @user.username %>">
+						  <input type="hidden" name="user[target]" value="<%= @profile.user_id %>">
+						  <span>Mark as private (only you and this person can see it)</span>
+						  <input type="image" alt="Shout It Out" src="/images/resume/shoutItOutBtn.png" id="send_shout" />
+						  <div class="clearfloat"></div>
+					  </div>
+      <% end %>
+			</div>
+			
+			<ul class="item_list" id="shouts_list">
+			  <% for shout in @shouts %>
+				<li id="thread_<%= shout.id %>">
+
+          <%= image_tag @shouters[shout.user_id][:user].gravatar_url, :class => :user_image, :alt => @shouters[shout.user_id][:first_name] + " " + @shouters[shout.user_id][:last_name] %>
+
+					<div class="white_region">
+						<p class="shout_message"><%= shout.content %></p>
+						<p class="timestamp">by 
+						  <%= link_to @shouters[shout.user_id][:first_name] + " " + @shouters[shout.user_id][:last_name], :controller => :profiles, :action => :show, :id => @shouters[shout.user_id][:username] %>
+						  on <%= shout.created_at.strftime("%b %d, %Y %H:%M %p") %>
+						</p>
+						<div class="options">
+						  <% if @user.username == current_user.username %>
+							<span rel="<%= shout.id %>" title="Delete this comment" class="remove_comment"></span>
+							<% end %>
+							<% if !shout.reported %>
+							<span rel="<%= shout.id %>" title="Report this comment" class="report_comment"></span>
+							<% else %>
+							<span class="comment_reported" title="This comment has been reported"></span>
+							<% end %>
+						</div>
+					</div>
+				  <div class="clearfloat"></div>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<!-- Shouts ends -->
+		
+	</div>
+<!-- left col ends -->
+
+<!-- right col starts -->
+<div id="profile_right_col">
+		<h2>Resumes</h2>
+		<div class="resume_list blue_region">
+		    <% if @resumes.count > 0 %>
+			    <ul id="profile_resumes_list" class="item_list">
+    			    <% for resume in @resumes %>
+    				<li class="white_region">
+    					<div class="inner">
+    						<a class="resume_title" href="/<%= resume.url %>"><%= resume.title %></a>
+    						<a class="view_live" href="/<%= resume.url %>">View Live</a>
+    					</div>
+    				</li>
+    				<% end %>
+    			</ul>
+    		<% else %>
+    		    <div class="white_region">
+    		        This user has yet created any resumes
+    		    </div>
+    		<% end %>
+		</div>
+	</div>
+<!-- right col ends -->
+
+<div class="clearfloat"></div>

@@ -1,0 +1,28 @@
+<%= render :partial => "shared/resume/show/head" %>
+
+<body>
+	
+	<%= render :partial => "shared/resume/show/top_bar" %>
+
+	<div id="paper_stack_top"></div>
+	<div id="paper_stack_body_wrapper">
+		<div id="name_tag_wrapper">
+			<div id="name_tag_right_end">
+				<div id="name_tag"><%= @resume.resume_personal_information.full_name %></div>
+			</div>
+		</div>
+		
+		<%= render :partial => "shared/resume/show/classic_paper_stack/personal_information" %>
+		
+		<div class="clearfloat"></div>
+		
+		<% @section_order.delete("personal_information") %>
+		
+    <% for s in @section_order %>
+    	<%= render :partial => "shared/resume/show/#{@theme.slug}/#{s}" unless @hidden_fields.include?(s)  %>
+    <% end %>
+		
+	</div>
+	
+</body>
+</html>

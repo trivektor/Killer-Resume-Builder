@@ -6,6 +6,7 @@ class CreateBlogs < ActiveRecord::Migration
       t.column :summary, :text
       t.column :body, :text
       t.column :author, :string
+      t.column :author_slug, :string
       t.column :status, :string
       t.timestamps
     end

@@ -1,0 +1,12 @@
+<div class="section_wrapper">
+  <h2 class="header_tag"><%= @section_names["education"] %></h2>
+  <ul class="item_list">    
+      <% @resume.resume_educations.each do |edu| %>
+      <li>
+        <h3 class="institution_name"><%= edu.institution %></h3>
+        <div class="education_degree"><%= edu.degree %>, <%= edu.degree %>, <%= edu.field_of_study %></div>
+        <div class="education_duration"><%= edu.begin_date %> - <%= edu.end_date.blank? ? :present : edu.end_date %></div>
+      </li>
+      <% end %>
+  </ul>
+</div>

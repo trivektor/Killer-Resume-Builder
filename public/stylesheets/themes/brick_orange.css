@@ -1,0 +1,43 @@
+@font-face {font-family:Junction; src:url(../fonts/Junction.ttf)}
+@font-face {font-family:Bergamo; src:url(../fonts/Bergamo.ttf);}
+@font-face {font-family:LeagueGothic; src:url(../fonts/LeagueGothic.ttf);}
+@font-face {font-family:TeXGyreSchola; src:url(../fonts/TeXGyreSchola.ttf);}
+@font-face {font-family:MPlusOutline; src:url(../fonts/mplus-1c-medium.ttf);}
+
+body {background:#dcdfe2; font-family:TeXGyreSchola;}
+
+#resume_sheet {padding:0; background:#fff;}
+
+.paper {-moz-box-shadow:0 2px 9px #777; -webkit-box-shadow:0 2px 9px #777}
+
+.paper ul li {margin:5px 0;}
+
+.section {padding:20px 30px; background:#fafafa url(/resume/img/resume/gradient_grey.jpg) repeat-x left top; border-top:1px solid #d9d9d9;}
+
+#personal_information {position:relative;}
+
+#name_header {background:-moz-linear-gradient(center top, #ee4119, #9c0d0d); -webkit-gradient(center top, #ee4119, #9c0d0d); padding:32px 36px; border:1px solid #eee;}
+#name_header h1 {color:#fff; font-size:53px; line-height:53px; letter-spacing:-1px; font-family:MPlusOutline; font-style:oblique; text-transform:uppercase; margin-bottom:5px;}
+#name_header h2 {color:#fff !important; margin-bottom:0; font-size:13px; letter-spacing:0; font-family:MPlusOutline; text-transform:uppercase;}
+
+#mugshot {float:left; margin-right:60px;}
+#mugshot img {-moz-box-shadow:0 2px 4px #555555;background:none repeat scroll 0 0 #BFBFBF;border:8px solid #FFFFFF;}
+h2 {color:#C22B08 !important; font-weight:normal; font-size:25px; font-family:LeagueGothic;}
+h3 {color:#2ca7db !important; font-weight:normal; font-size:20px; margin-bottom:0;}
+
+#personal_details {float:left; width:320px; font-size:15px;}
+#personal_details span {color:#c22b08;}
+.experience {margin-bottom:20px;}
+.experience_description p {margin-bottom:10px;}
+
+.title_date {overflow:hidden; margin:10px 0;}
+.title {font-size:15px; font-style:oblique;}
+.date { border:1px solid #333; color:#fff;font-size:10px; float:right; background:-moz-linear-gradient(center top , #2398F3, #1D6DBA); 
+	-webkit-gradient(linear, center top, center top, color-stop(#2398F3), color-stop(#1D6DBA));
+	padding:1px 8px; -moz-border-radius:10px;}
+
+.reference {width:100%; width:100%; list-style:none !important; margin:0 0 10px 0 !important}
+.reference li {margin:0 !important;}
+
+#social_networks {position:absolute; top:60px; right:-40px; padding:2px 5px; background:#fff; -moz-border-radius:5px; -moz-box-shadow:0 1px 5px #888;}
+#social_networks img {display:block; margin:3px 0; width:24px;}

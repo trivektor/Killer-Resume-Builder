@@ -1,0 +1,83 @@
+<% 
+@title_for_layout = "Add #{@section_name}"
+@body_id = "resume_reference"
+%>
+
+<%= render :partial => "shared/back_to_resume" %>
+
+<%= form_for @resume_reference, :url => resume_resume_references_path(@resume) do |f| %>
+
+<div class="blue_region">
+	
+  <div class="box_top"></div>
+
+  <div class="box">
+  
+    <h2><%= @title_for_layout %></h2>
+
+    <% if @resume_reference.errors.count > 0 %>
+      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+    <% end %>
+
+    <div class="form_row">
+    	<label for="ResumeReference.Name">Name</label>
+    	<%= f.text_field :name, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Title">Title</label>
+    	<%= f.text_field :title, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Organization">Organization</label>
+    	<%= f.text_field :organization, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Department">Department</label>
+    	<%= f.text_field :department, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Address">Address</label>
+    	<%= f.text_field :address, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.City">City</label>
+    	<%= f.text_field :city, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.State">State</label>
+    	<%= f.text_field :state, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Postal Code">Postal Code</label>
+    	<%= f.text_field :postal_code, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Phone Number">Phone Number</label>
+    	<%= f.text_field :phone_number, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Fax Number">Fax Number</label>
+    	<%= f.text_field :fax_number, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Email">Email</label>
+    	<%= f.text_field :email, :class => :textbox %>
+    </div>
+    <div class="form_row">
+    	<label for="ResumeReference.Website">Website</label>
+    	<%= f.text_field :website, :class => :textbox %>
+    </div>
+
+    <div class="form_row">
+      <label for="ResumeReferenceDetails">Details</label>
+      <%= f.text_area :details, :class => :markitup %>
+    </div>
+
+    <input type="image" alt="Add It Now" src="/images/resume/addItNowBtn.png" />
+
+  </div>
+  
+  <div class="box_bottom"></div>
+  
+</div>
+<% end %>

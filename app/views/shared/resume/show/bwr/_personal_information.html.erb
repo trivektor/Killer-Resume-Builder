@@ -1,0 +1,31 @@
+<div id="name_tag_wrapper">
+	<h1 id="name_tag"><%= @resume.resume_personal_information.full_name %></h1>
+	
+	<% personal_info = @resume.resume_personal_information %>
+
+	<% if !@resume.resume_setting.hide_personal_info %>
+		<ul id="personal_info">
+			
+			<li><%= personal_info.address %>, <%= personal_info.city %>, <%= personal_info.state %>, <%= personal_info.postal_code %></li>
+			<% if !personal_info.email.blank? %>
+				<li><%= obfuscate_email personal_info.email %></li>
+			<% end %>
+			<% if !personal_info.fax_number.blank? %>
+				<li><%= personal_info.fax_number %></li>
+			<% end %>
+			<% if !personal_info.website.blank? %>
+				<li><a href="<%= personal_info.website %>" target="_blank"><%= personal_info.website %></a></li>
+			<% end %>
+		</ul>
+		
+		<ul id="social_networks">
+			<li><a href="<%= personal_info.linkedin %>" target="_blank"><%= image_tag 'export/linkedin_16.png', :title => 'LinkedIn' %></a></li>
+			<li><a href="<%= personal_info.flickr %>" target="_blank"><%= image_tag'export/flickr_16.png', :title => 'Flickr' %></a></li>
+			<li><a href="<%= personal_info.twitter %>" target="_blank"><%= image_tag'export/twitter_16.png', :title => 'Twitter' %></a></li>
+			<li><a href="<%= personal_info.facebook %>" target="_blank"><%= image_tag'export/facebook_16.png', :title => 'Facebook' %></a></li>
+		</ul>
+		
+	<% end %>
+	
+</div>
+

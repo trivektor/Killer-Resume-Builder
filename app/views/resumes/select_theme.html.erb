@@ -1,0 +1,57 @@
+<% 
+@title_for_layout = "Select A Theme"
+@body_id = "resume_select_theme"
+%>
+
+<script>
+$(document).ready(function(){
+	$("#theme_dropdown").change(function(){
+		$.ajax({
+		  type: "PUT",
+		  url: "/resumes/<%= @resume.id %>/resume_themes/<%= @resume.resume_theme.id %>",
+		  data: {
+		    resume_theme: {
+		      theme_id: $(this).val()
+		    }
+		  },  
+		  success: function() {
+				var r = $("#resume_preview");
+				r.attr("src", r.attr("src"));
+			}
+		})
+	})
+	
+	var themeListContainer = $("#theme_list_container");
+	
+	var themeListTrigger = $("#theme_list_trigger");
+	
+	themeListTrigger.click(function(){
+		$(this).hide(function(){
+			themeListContainer.slideDown();
+		})
+	})
+	
+	$("#closeThemeSelector").click(function(){
+		themeListContainer.fadeOut(function(){
+			themeListTrigger.show();
+		})
+	})
+	
+})
+</script>
+
+<div id="theme_list_container">
+	<div id="theme_list">
+	  <span>Pick a theme</span>
+	  <%= select "theme", "dropdown", @themes, :selected => @resume.resume_theme.theme_id %>
+    <%= link_to "Back to resume", edit_resume_path(@resume), :id => "go_back_to_resume" %>
+	</div>
+	<%= image_tag "resume/closeThemeSelector.png", :id => "closeThemeSelector", :alt => "Close Theme Selector" %>
+</div>
+
+<div id="theme_list_trigger" style="display:none">Show themes</div>
+
+<iframe id="resume_preview" class="autoHeight" width="100%" scrolling="no" src="/<%= @resume.url %>" border="0"></iframe>
+
+<input type="hidden" id="ResumeId" value="<%= @resume.id %>" />
+<input type="hidden" id="ResumeThemeId" value="<% @resume.resume_theme.id %>" />

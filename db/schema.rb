@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110110023108) do
+ActiveRecord::Schema.define(:version => 20110414010350) do
+
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_id"
@@ -40,19 +48,35 @@ ActiveRecord::Schema.define(:version => 20110110023108) do
     t.text     "summary"
     t.text     "body"
     t.string   "author"
+    t.string   "author_slug"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "countries", :force => true do |t|
-    t.string "country_code"
-    t.string "country_name"
+    t.string  "iso"
+    t.string  "name"
+    t.string  "printable_name"
+    t.string  "iso3"
+    t.integer "numcode"
+  end
+
+  create_table "data_files", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "job_categories", :force => true do |t|
     t.string   "category_name"
-    t.string   "status"
+    t.string   "status",        :default => "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_industries", :force => true do |t|
+    t.string   "industry"
+    t.string   "status",     :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,21 +95,212 @@ ActiveRecord::Schema.define(:version => 20110110023108) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",                :default => ""
+    t.string   "last_name",                 :default => ""
+    t.string   "city",                      :default => ""
+    t.string   "state",                     :default => ""
+    t.string   "country"
+    t.integer  "country_id",                :default => 0
+    t.string   "postal_code",               :default => ""
+    t.integer  "job_category_id",           :default => 0
+    t.integer  "job_industry_id",           :default => 0
+    t.string   "job_title",                 :default => ""
+    t.string   "website",                   :default => ""
+    t.string   "gender",                    :default => "male"
+    t.string   "looking_for",               :default => ""
+    t.boolean  "hidden",                    :default => false
+    t.string   "photo",                     :default => "male.png"
+    t.string   "status",                    :default => "active"
+    t.boolean  "completeness",              :default => false
+    t.boolean  "hide_profile_notification", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_educations", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "institution"
+    t.string   "begin_date"
+    t.string   "end_date"
+    t.string   "degree"
+    t.string   "field_of_study"
+    t.string   "gpa"
+    t.string   "location"
+    t.integer  "weight"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_field_works", :force => true do |t|
+    t.integer  "resume_id"
+    t.text     "field_works"
+    t.string   "status",      :default => "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_hidden_fields", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "hidden_field"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_keywords", :force => true do |t|
+    t.integer  "resume_id"
+    t.text     "keywords"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_personal_informations", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "full_name"
+    t.string   "address"
     t.string   "city"
     t.string   "state"
-    t.integer  "country_id"
     t.string   "postal_code"
-    t.integer  "job_category_id"
-    t.integer  "job_industry_id"
-    t.string   "job_title"
+    t.integer  "country"
+    t.string   "fax_number"
+    t.string   "email"
     t.string   "website"
-    t.string   "gender"
-    t.text     "looking_for"
-    t.boolean  "hidden"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "flickr"
+    t.string   "linked_in"
+    t.string   "github"
+    t.text     "bio"
+    t.string   "status",       :default => "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "phone_number"
+    t.string   "linkedin"
+  end
+
+  create_table "resume_references", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "name"
+    t.string   "title"
+    t.string   "organization"
+    t.string   "department"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "phone_number"
+    t.string   "fax_number"
+    t.string   "email"
+    t.string   "website"
+    t.text     "details"
+    t.integer  "weight"
     t.string   "status"
-    t.boolean  "completeness"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_section_names", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "section"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_section_orders", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "section"
+    t.string   "name"
+    t.integer  "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_settings", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "status",                 :default => "active"
+    t.boolean  "hide_personal_info",     :default => false
+    t.boolean  "alert_copy",             :default => true
+    t.boolean  "email_notification",     :default => true
+    t.boolean  "display_personal_photo", :default => true
+    t.boolean  "show_last_updated",      :default => true
+    t.boolean  "allow_sharing",          :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_skills", :force => true do |t|
+    t.integer  "resume_id"
+    t.text     "skills"
+    t.string   "status",     :default => "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_themes", :force => true do |t|
+    t.integer  "resume_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_viewers", :force => true do |t|
+    t.integer  "resume_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_work_experiences", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "organization_name"
+    t.string   "begin_date"
+    t.string   "end_date"
+    t.string   "title"
+    t.text     "details"
+    t.integer  "weight",            :default => 0
+    t.string   "status",            :default => "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resumes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "url"
+    t.string   "status",     :default => "active"
+    t.integer  "views",      :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "themes", :force => true do |t|
+    t.string   "theme"
+    t.string   "slug"
+    t.string   "style",      :default => "1 column"
+    t.string   "style_slug", :default => "1_column"
+    t.string   "status",     :default => "active"
+    t.boolean  "default",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "thoughts", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "thought"
+    t.string   "status",     :default => "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,10 +310,23 @@ ActiveRecord::Schema.define(:version => 20110110023108) do
     t.datetime "updated_at"
   end
 
+  create_table "user_threads", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "target_id"
+    t.string   "thread_type", :default => "profile"
+    t.text     "content"
+    t.string   "status",      :default => "active"
+    t.integer  "private",     :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "reported",    :default => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password"
+    t.string   "auth_provider",       :default => "krb"
     t.string   "persistence_token"
     t.string   "crypted_password"
     t.string   "password_salt"
@@ -111,6 +339,18 @@ ActiveRecord::Schema.define(:version => 20110110023108) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "active",              :default => false
+  end
+
+  create_table "visitor_infos", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "browser",     :default => ""
+    t.string   "version",     :default => ""
+    t.string   "platform",    :default => ""
+    t.string   "domain_name", :default => ""
+    t.string   "ip_address",  :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end

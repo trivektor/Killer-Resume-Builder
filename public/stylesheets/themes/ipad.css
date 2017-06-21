@@ -1,0 +1,16 @@
+body {background:#343131 url(../../img/themes/ipad/ipadBg.png) no-repeat top center; 
+	font-family:lucida grande,arial; font-size:12px;
+	height:1500px;}
+	
+a {color:#ff6e00}
+
+#resume_sheet {border:0; width:533px; margin-top:150px; padding:20px 34px; background:url(../../img/themes/ipad/paper.png) no-repeat;}
+
+#personal_info_wrapper .user_image {float:left; margin-right:15px;}
+#personal_info {float:left; width:300px;}
+#personal_info ul {list-style:none; padding:0; margin:0;}
+
+.section_wrapper {margin:20px 0;}
+
+h3 {color:#ff6e00; margin-bottom:4px; font-size:13px;}
+h2 {margin-bottom:8px;}

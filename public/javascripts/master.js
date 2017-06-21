@@ -1,534 +1,570 @@
-$(function(){
-	
-	//Init MarkItUp
-	if ($(".markitup").length) {
-		$(".markitup").markItUp(mySettings);
-	}
-	
-	//Init Sortable
-	if ($("div.sortable").length) {
-		$("div.sortable").sortable({
-			revert: true,
-			stop: function() {
-				var order = $(this).sortable('serialize',{key:'id[]'});
-				order += '&resumeId=' + $("#ResumeId").val();
+var Message = {
+	delete_confirmation : "Are you sure you want to delete this resume? This action cannot be undone",
+	blank_section_name : "Please enter a new name for this section",
+	thought_published_success : "Your thought has been published, baby!",
+	thought_published_failed : "An error occured while sharing your thought. Please wait a few minutes and try again",
+	thoughtbox_original : "Type your thought here...",
+	keywords_limit_exceeded : "You've exceeded 20 keywords",
+	comment_reported : "This comment has been reported"
+}
 
-				var t = $(this);
-
-				$.post(
-					"/ajax/" + $(this).attr("id"),
-					order,
-					function() {
-						blinkUpdatedStatus();
-					}
-				)
-			}
-		});
-	}
+var Krb = {
 	
-	//Masked input
-	//$("input.period_date").mask("aaa 99");
-	$("input.period_date").datepicker({
-		changeMonth:true,
-		changeYear:true,
-		showButtonPanel: true
-	}).keypress(function(event){
-		return false;
-	})
+	init : function() {
+		this.setup_selectors();
+		this.setup_overlay_trigger();
+		this.setup_overlay_close();
+		this.setup_delete_action();
+	},
 	
-	var o = $("#overlay");
-	var rs = $("#resume_settings")
+	setup_selectors : function() {
+		Krb.overlay = $("#overlay");
+		Krb.trigger_overlay = $(".trigger_overlay");
+		Krb.close_overlay = $(".close_overlay");
+		Krb.delete_action = $(".delete");
+	},
 	
-	$(".trigger_overlay").click(function(){
-						$("#" + $(this).attr("rel")).show($(this).attr("effect"), {}, 100, function(){});
-						//rs.show();
-						o.show();
-					})
-					
-					$(".close_overlay").click(function(){
-						
-						$(this).parent().fadeOut(function(){
-							o.fadeOut();
-					})
-				
-				})
-		
-	//Edit account settings
-	var accountSettingsOverlay = $("#account_settings_overlay_wrapper")
-	$("#edit_account_settings").click(function(event){
-		event.preventDefault();
-		o.fadeIn(function(){accountSettingsOverlay.fadeIn()})
-	})
-	
-	//Edit profile
-	var profileOverlay = $("#profile_overlay_wrapper");
-	$(".edit_profile_btn").bind('click', function(event){
-		event.preventDefault();
-		o.fadeIn(function(){profileOverlay.fadeIn()})
-	})
-	
-	$("#close_profile_overlay").click(function(){
-		editProfileMessage.removeClass().text("").hide();
-		profileImageCropper.hide();
-		profileDetailsInput.show();
-		$("#photouploadiframe").attr("src", "profile/upload_photo");
-	})
-	
-	var profileDetailsInput = $("#profile_details_input");
-	var profileImageCropper = $("#profile_image_cropper");
-	var profileFirstName = $("#profile_first_name");
-	var profileLastName = $("#profile_last_name");
-	var profileCity = $("#profile_city");
-	var profileState = $("#profile_state");
-	var profilePostalCode = $("#profile_postal_code");
-	var profileCountry = $("#profile_country");
-	var profileCategory = $("#profile_category");
-	var profileIndustry = $("#profile_industry");
-	var profileJobTitle = $("#profile_job_title");
-	var profileHidden = $("#profile_hidden");
-	var editProfileMessage = $("#edit_profile_message");
-	
-	$("#update_profile_btn").click(function(){
-		$.post(
-			"/ajax/update_profile",
-			{
-				first_name:profileFirstName.val(),
-				last_name:profileLastName.val(),
-				city:profileCity.val(),
-				state:profileState.val(),
-				postal_code:profilePostalCode.val(),
-				country_id:profileCountry.val(),
-				job_category:profileCategory.val(),
-				job_industry:profileIndustry.val(),
-				job_title:profileJobTitle.val(),
-				hidden:(profileHidden.is(":checked") ? 1 : 0)
-			},
-			function(response) {
-				if (response == 1) {
-					editProfileMessage.removeClass().addClass("result_success").text("Your profile has been updated").show();
-				} else {
-					editProfileMessage.removeClass().addClass("result_error").text("An error occurred. Please try again later").show();
-				}
-			}
-		)
-	})
-	
-	$("#change_photo_btn").click(function(){
-		profileDetailsInput.hide();
-		profileImageCropper.show();
-	})
-	
-	//Account links
-	var accountLinks = $("#account_links");
-	
-	$("#username_tab").hoverIntent({
-		over: function(){
-			accountLinks.fadeIn(500);
-		},
-		timeout: 500,
-		out: function(){
-			accountLinks.fadeOut();
-		}
-	})
-	
-	$("#close_account_links").click(function(event){
-		accountLinks.fadeOut(500);
-	})
-	
-	//Show and hide login form
-	var overlayLoginForm = $("#overlayLoginForm");
-	
-	$("#login_link").click(function(){
-		o.show();
-		overlayLoginForm.show("bounce", {}, 150, function(){});
-	})
-	
-	$("#overlayLoginFormClose, #cancelLoginForm").click(function(){
-		overlayLoginForm.fadeOut(500, function(){
-			o.fadeOut();
-			loginMessage.removeClass().hide();
-			$("#loginFormUsername").val("")
-			$("#loginFormPassword").val("")
-		});
-		
-	})
-	
-	$("#loginFormPassword").keypress(function(e){
-		var key = e.keyCode ? e.keyCode : e.which;
-		if (key == 13) {
-			loginMessage.text('').hide();
-			$("#submitLoginForm").trigger('click');
-		}
-	})
-	
-	var loginMessage = $("#loginMessage");
-	
-	$("#submitLoginForm").click(function(){
-		var rememberme = $("#rememberMe").is(":checked") ? 1 : 0;
-		$.post(
-			"/ajax/login",
-			{email: $("#loginFormUsername").val(), password: $("#loginFormPassword").val(), rememberme: rememberme},
-			function(response) {
-				if (response == -1) {
-					loginMessage.text('Invalid username or password').css('color', 'red').slideDown();
-					overlayLoginForm.show("shake", {}, 100, function(){});
-				} else {
-					window.location.href = '/dashboard';
-				}
-			}
-		)
-	})
-	
-	//Forgot password form
-	var forgotPassOverlayForm = $("#forgotPasswordOverlayForm");
-	$("#forgot_password_trigger").click(function(e){
-		e.preventDefault();
-		overlayLoginForm.hide();
-		forgotPassOverlayForm.fadeIn();
-	})
-	
-	$("#cancelForgotPasswordForm").click(function(){
-		forgotPassOverlayForm.fadeOut(function(){o.fadeOut()});
-	})
-	
-	var userEmail = $("#userEmail");
-	var forgotPasswordMessage = $("#forgotPasswordMessage");
-	
-	$("#submitForgotPasswordForm").click(function(){
-		var _email = userEmail.val();
-		$.post(
-			"/ajax/forgot_password",
-			{email:_email},
-			function(response) {
-				var _response = $.parseJSON(response);
-				if (_response.result == -1) {
-					forgotPasswordMessage.addClass("result_error").text(_response.message).show();
-				} else {
-					forgotPasswordMessage.addClass("result_success").text(_response.message).show();
-				}
-			}
-		)
-	})
-	
-	$("#overlayForgotPasswordFormClose").click(function(){
-		$(this).parent().fadeOut(function(){
-			o.fadeOut();
-			userEmail.val("");
-			forgotPasswordMessage.removeClass().hide();
-		});
-	})
-	
-	//Update resume
-	var ru = $("#resume_updated");
-	
-	$(".delete").click(function(event){
-		event.preventDefault();
-		//console.log("abc");
-		if (confirm('Are you sure you want to delete this resume? This action cannot be undone')) {
-		 			window.location.href = $(this).attr("href");
-		}
-	})
-	
-	//Update resume settings
-	$("#update_resume_settings").click(function(){
-		$.post(
-			"/ajax/update_resume_settings",
-			{
-				resume_id:$("#ResumeId").val(),
-				status:$("input[name='data[ResumeSetting][status]']:checked").val(),
-				hide_personal_info:$("#ResumeSettingHidePersonalInfo").is(":checked") ? 1 : 0,
-				alert_copy:$("#ResumeSettingAlertCopy").is(":checked") ? 1 : 0,
-				email_notification:$("#ResumeSettingEmailNotification").is(":checked") ? 1 : 0,
-				show_last_updated:$("#ResumeSettingShowLastUpdated").is(":checked") ? 1 : 0
-			},
-			function(response) {
-				blinkUpdatedStatus();
-			}
-		)
-	})
-	
-	//Theme selector
-	$("#pick_theme").click(function(){
-		$.post(
-			"/ajax/update_resume_theme",
-			{id: $("#ResumeThemeId").val(), theme_id: $("#theme_dropdown").val(), resume_id: $("#ResumeId").val()},
-			function() {
-				$("#theme_selector").hide();
-				o.hide();
-			}
-		)
-	})
-	
-		$("h2.section_name_editable").bind('click',
-				function(){
-					$(this).hide().siblings().show();
-				}
-			)
-		
-		$("span.update_section_name").bind(
-			'click',
-			function(){
-				
-				var t = $(this);
-				
-				var updatedName = t.siblings("input[type=text]").val();
-				
-				if (updatedName == '') {
-					alert('Please enter a new name for this section');
-					return;
-				}
-				
-				$.post(
-					"/ajax/update_section_name",
-					{id:t.siblings("input[type=hidden]").val(), resume_id:$("#ResumeId").val(), section:t.attr("rel"), name:updatedName},
-					function(response){
-						if (response == 1) {
-							t.siblings("input[type=text]").trigger("click");
-							blinkUpdatedStatus();
-						}
-					}
-				)
-			})
-			
-			$("span.cancel_update_section_name").bind('click', function(){
-				var _this = $(this);
-				_this.hide();
-				_this.siblings().hide().siblings("h2").show();
-			})
-	
-	//Options hover
-	$("div.section_options").hover(
-		function(){
-			$(this).children("div.options_label").hide();
-			$(this).children("div.add").show();
-			var sectionMode = $(this).children("input.section_mode").val();
-			if (sectionMode == 'active') {
-				$(this).children("a.disable_section").show();
-				$(this).children("a.enable_section").hide();
-			} else {
-				$(this).children("a.enable_section").show();
-				$(this).children("a.disable_section").hide();
-			}
-		}, 
-		function(){
-			$(this).children().hide();
-			$(this).children("div.options_label").show();
-		}
-	)
-	
-	//Disable section
-	$("a.disable_section").click(function(){
-		var t = $(this);
-		$.post(
-			"/ajax/update_section",
-			{resume_id:$("#ResumeId").val(), hidden_field:t.attr("rel"), action:"disable"},
-			function(response) {
-				if (response == 1) {
-					t.siblings("input.section_mode").val("disabled");
-					t.hide().siblings("span.enable_section").show();
-					blinkUpdatedStatus();
-				}
-			}
-		)
-	})
-	
-	//Enable section
-	$("a.enable_section").click(function(){
-		var t = $(this);
-		$.post(
-			"/ajax/update_section",
-			{resume_id:$("#ResumeId").val(), hidden_field:t.attr("rel"), action:"enable"},
-			function(response) {
-				if (response == 1) {
-					t.siblings("input.section_mode").val("active");
-					t.hide().siblings("span.disable_section").hide();
-					blinkUpdatedStatus();
-				}
-			}
-		)
-	})
-	
-	$("#upload_photo").click(function(){
-		$("#photo-uploader").slideDown();
-		$("#photouploadiframe").attr("src", $(this).attr("src"));
-	})
-	
-	//Add and remove keywords
-	var keywordsList = $("#keywordsList");
-	var keywordsListWrapper = $("#keywordsListWrapper");
-	var keywordsInput = $("#keywordsInput");
-	var keywordsMessage = $("#keywordsMessage");
-	var keywordsLeft = $("#keywordsLeft");
-	
-	keywordsInput.keydown(function(event) {
-
-		var code = event.keyCode ? event.keyCode : event.which;
-		
-		if (code == 13) {
-			
+	setup_delete_action : function() {
+		Krb.delete_action.bind("click", function(event) {
 			event.preventDefault();
-			
-			if (keywordsList.children().length > 12) {
-				keywordsMessage.text("You've exceeded 20 keywords").addClass("result_error").slideDown();
+			if (confirm(Message.delete_confirmation)) {
+				window.location.href = $(this).attr("href");
+			}
+		})
+	},
+	
+	setup_scrolling : function(triggerer, triggering_action, scrollTo, speed) {
+		triggerer.bind(triggering_action, function(){
+			$.scrollTo(scrollTo, speed)
+		})
+	},
+	
+	setup_overlay_trigger : function() {
+		Krb.trigger_overlay.bind("click", function() {
+			$("#" + $(this).attr("rel")).show($(this).attr("effect"), {}, 100, function(){});
+			Krb.overlay.show();
+		})
+	},
+	
+ 	setup_overlay_close : function() {
+		Krb.close_overlay.bind("click", function() {
+			$(this).parent().fadeOut(function() {
+				Krb.overlay.fadeOut();
+			})
+		})
+	}
+	
+}
+
+var MarkItUp = {
+	
+	init : function() {
+		if ($(".markitup").length) {
+			$(".markitup").markItUp(mySettings);
+		}
+	}
+	
+}
+
+var Resume = {
+
+	init : function() {
+		var resume_id = $("#ResumeId");
+		Resume.id = resume_id.val();
+		
+		this.setup_selectors();
+		this.update_resume_settings();
+		this.setup_editable_section_name();
+		this.setup_section_options();
+		
+		this.setup_disable_section_action();
+		this.setup_enable_section_action();
+		
+		this.setup_keywords_input_keydown_action();
+		
+		this.setup_remove_keyword_action();
+	},
+	
+	setup_selectors : function() {
+		this.updated_status = $("#updated_status");
+		this.update_resume_settings_btn = $("#update_resume_settings");
+		this.editable_section_name = $(".section_name_editable");
+		this.section_name_editor = $("input.section_name_editor");
+		this.update_section_name = $("span.update_section_name");
+		this.cancel_update_section_name = $("span.cancel_update_section_name");
+		this.section_options = $(".section_options");
+		this.disable_section = $(".disable_section");
+		this.enable_section = $(".enable_section");
+		this.keywordsList = $("#keywordsList");
+		this.keywordsListWrapper = $("#keywordsListWrapper");
+		this.keywordsInput = $("#keywordsInput");
+		this.keywordsMessage = $("#keywordsMessage");
+		this.keywordsLeft = $("#keywordsLeft");
+		this.keyword_remove = $(".keyword_remove");
+	},
+	
+	edit_section_name_action : function() {
+		this.editable_section_name.bind('click', function() {
+			$(this).hide().siblings().show();
+		})
+	},
+	
+	section_name_editor_keypress_action : function() {
+		this.section_name_editor.bind('keypress', function(event){ 
+			var key = event.keyCode ? event.keyCode : event.keyWhich;
+
+			if (key == 13) {
+				event.preventDefault();
+				$(this).siblings("span.update_section_name").trigger('click')
+			}
+
+		})
+	},
+	
+	update_section_name_action : function() {
+		this.update_section_name.bind('click', function(){
+
+			var t = $(this);
+
+			var updatedName = t.siblings("input[type=text]").val();
+
+			if (updatedName == '') {
+				alert(Message.blank_section_name);
 				return;
 			}
-			
-			var t = $(this);
-			
-			$.post(
-				"/ajax/update_keywords_list",
-				{resume_id:$("#ResumeId").val(), keywords:$(this).val()},
-				function(response){
-					t.val("");
-					var ret = $.parseJSON(response);
-					keywordsList.append('<div class="keyword_wrapper"><div class="keyword">' + ret.keyword + '</div><div class="keyword_remove" rel="' + ret.id + '">x</div></div>');
-					update_keywords_left();
-				}
-			)
-		}
-		
-	});
-	
-	//Remove keywords
-	$("div.keyword_remove").live('click', function(){
-		var t = $(this)
-		$.post(
-			"/ajax/remove_keywords",
-			{id:t.attr("rel"), resume_id:$("#ResumeId").val(), keywords:$(this).siblings("keyword").text()},
-			function(response){
-				t.parent().remove();
-				update_keywords_left();
-			}
-		)
-	})
-	
-	keywordsListWrapper.click(function(){keywordsInput.focus()});
-	
-	function update_keywords_left() {
-		keywordsLeft.text(20 - keywordsList.children().length + ' keywords left');
-	}
-	
-	function get_keywords_list() {
-		var kList = new Array();
-		keywordsList.children().each(function(index, value){
-			kList.push($(this).text());
-		})
-		//console.log(kList);
-		return kList;
-	}
-	
-	//Update keywords
-	$("#update_keywords").click(function(){
-		$.post(
-				"/ajax/update_keywords_list",
-				{list:get_keywords_list(), resume_id:$("#ResumeId").val()},
-				function(response) {
-						if (response == 1) {
-							blinkUpdatedStatus();
-						}
-				}
-		)
-	})
-	
-	//Tweet
-	$("#share_thought").click(function(){
-		var thought = $("#thoughtbox_message").val();
-		if (thought != '' && thought != 'Type your thought here...') {
-			$.post(
-				"/ajax/send_thought",
-				{thought:thought},
-				function(response) {
-					alert('Your thought has been published, baby!');
-					$("#thoughtbox_message").val("Type your thought here...");
-				}
-			)
-		}
-	})
-	
-	var thoughtCharsCount = $("#thoughts_chars_count");
-	
-	$("#thoughtbox_message").focus(function(){
-			if ($(this).val() == $(this).attr("rel")) $(this).val("");})
-	.blur(function(){
-			if ($(this).val() == '') $(this).val($(this).attr("rel"));
-	}).keypress(function(){
-		var numChars = $(this).val().length;
-		if (numChars > 140) {
-			//return false;
-		} else {
-			thoughtCharsCount.text(140 - numChars);
-		}
-	}).keyup(function(){
-		var numChars = $(this).val().length;
-		thoughtCharsCount.text(140 - numChars);
-	});
-	
-	$("img.hide_activity_feed_details").bind('click', function(){
-		var t = $(this);
-		$.post(
-			"ajax/hide_activity",
-			{activity_id:t.attr("rel")},
-			function(response) {
-				if (response == 1) {
-					var p = t.parent().parent();
-					p.slideUp(function(){p.remove()})
-				}
-			}
-		)
-	})
-	
-	var favJobsList = $("#fav_jobs_list");
-					
-					$("img.save_job").live('click', function(){
-						var t = $(this);
-						$.post(
-							"/ajax/fav_job",
-							{job_id:t.attr("rel")},
-							function(response) {
-								var _response = $.parseJSON(response);
-								if (_response.result == 1) {
-									//alert('Job has been added to your favorites list');
-									$("#no_fav_jobs").hide();
-									var favItem = $("<li class=\"white_region\" id=\"fav_job_item_" + _response.job_id + "\"> \
-										<div class=\"inner\"> \
-											<div class=\"left\"> \
-												<a class=\"job_title\" href=\"/jobs/view/company:" + _response.company_slug + "/slug:" + _response.job_slug + "\">" + _response.job_title 
-												+ "</a><p>at " + _response.company_name + " - <span class=\"stamp\">" + _response.posted_date +  "</span></p> \
-											</div> \
-											<div class=\"options\"> \
-												<img rel=\"" + _response.job_id + "\" title=\"Remove this job\" class=\"remove_fav_job\" src=\"/img/Basic_set_PNG/delete_16.png\" /></div> \
-										</div> \
-									</li>");
-									favJobsList.removeClass().prepend(favItem);
-								} else if (response == -1) {
-									alert('This job is already in your favorites list');
-								}
-							}
-						)
-					})
-				
-				$("img.unsave_job").live('click', function(){
-						var t = $(this);
-						$.post(
-							"/ajax/unfav_job",
-							{job_id:t.attr("rel")},
-							function(response) {
-								var p = $("#fav_job_item_" + t.attr("rel"));
-								p.slideUp(function(){p.remove()});
-							}
-						)
-					})
-	
-	//Slugify
-	$("input.need_slug").keyup(function(){
-			var slug = convertToSlug($(this).val());
-			var sluggedObject = $(this).attr("rel");
-			$("#slug_"+sluggedObject).val(slug);
-		}).change(function(){$(this).trigger('keyup')})
 
-	function convertToSlug(Text) {
-		return Text.toLowerCase().replace(/_+/g, '-').replace(/[^\w- ]+/g,'').replace(/ +/g,'-');
+			$.ajax({
+				type: "PUT",
+				url: "/resumes/" + Resume.id + "/resume_section_orders/" + $(this).siblings(".resume_section_order_id").val(),
+				data: {
+					resume_section_order: {
+						section:t.attr("rel"), 
+						name:updatedName
+					}
+				},
+				success: function(response){
+					if (response.success == 1) {
+						t.siblings(".section_name_editable").text(updatedName)
+						t.siblings(".cancel_update_section_name").trigger("click");
+						Resume.blinkUpdatedStatus();
+					}
+				}
+			})
+		})
+	},
+	
+	cancel_update_section_name_action : function() {
+		this.cancel_update_section_name.bind('click', function(){
+			var _this = $(this);
+			_this.hide();
+			_this.siblings().hide().siblings("h2").show();
+		})
+	},
+	
+	setup_editable_section_name : function() {
+		
+		this.edit_section_name_action();
+		
+		this.section_name_editor_keypress_action();
+
+		this.update_section_name_action();
+
+		this.cancel_update_section_name_action();
+		
+	},
+	
+	setup_section_options : function() {
+		this.section_options.hover(this.section_options_hover_in, this.section_options_hover_out)
+	},
+	
+	section_options_hover_in : function() {
+		$(this).children("div.options_label").hide();
+		$(this).children("div.add").show();
+		var sectionMode = $(this).children("input.section_mode").val();
+		if (sectionMode == 'active') {
+			$(this).children("a.disable_section").show();
+			$(this).children("a.enable_section").hide();
+		} else {
+			$(this).children("a.enable_section").show();
+			$(this).children("a.disable_section").hide();
+		}
+	},
+	
+	section_options_hover_out : function() {
+		$(this).children().hide();
+		$(this).children("div.options_label").show();
+	},
+	
+	setup_disable_section_action : function() {
+		Resume.disable_section.bind('click', function() {
+			var t = $(this);
+			$.post(
+				"/resumes/" + Resume.id + "/resume_hidden_fields/update_section",
+				{ hidden_field : t.attr("rel"), type : "disable" },
+				function(response) {
+					if (response.success == 1) {
+						t.siblings("input.section_mode").val("disabled");
+						t.hide().siblings("span.enable_section").show();
+						Resume.blinkUpdatedStatus();
+					}
+				}
+			)
+		})
+	},
+	
+	setup_enable_section_action : function() {
+		Resume.enable_section.bind('click', function(){
+			var t = $(this);
+			$.post(
+				"/resumes/" + Resume.id + "/resume_hidden_fields/update_section",
+				{ hidden_field : t.attr("rel"), type : "enable" },
+				function(response) {
+					if (response.success == 1) {
+						t.siblings("input.section_mode").val("active");
+						t.hide().siblings("span.disable_section").hide();
+						Resume.blinkUpdatedStatus();
+					}
+				}
+			)
+		})
+	},
+	
+	update_resume_settings : function() {
+		this.update_resume_settings_btn.click(function() {
+			$.ajax({
+				url: "/resumes/" + Resume.id + "/resume_settings/" + Resume.id,
+				type: 'PUT',
+				data: {
+					resume_id: Resume.id,
+					resume_setting : {
+						status:$("input[name='resume_setting[status]']:checked").val(),
+						hide_personal_info:$("#ResumeSettingHidePersonalInfo").is(":checked") ? 1 : 0,
+						alert_copy:$("#ResumeSettingAlertCopy").is(":checked") ? 1 : 0,
+						email_notification:$("#ResumeSettingEmailNotification").is(":checked") ? 1 : 0,
+						show_last_updated:$("#ResumeSettingShowLastUpdated").is(":checked") ? 1 : 0,
+						allow_sharing:$("#ResumeSettingAllowSharing").is(":checked") ? 1: 0
+					}
+				},
+				success: function(response) {
+					Resume.blinkUpdatedStatus();
+				}
+			})
+		})
+	},
+	
+	blinkUpdatedStatus : function() {
+		Resume.updated_status.slideDown()
+		setTimeout(function(){ Resume.updated_status.slideUp(500) }, 3000)
+	},
+	
+	setup_keywords_input_keydown_action : function() {
+		Resume.keywordsInput.keydown(function(event) {
+			
+			var code = event.keyCode ? event.keyCode : event.which;
+
+			if (code == 13) {
+				
+				event.preventDefault();
+
+				if (Resume.keywordsList.children().length > 12) {
+					Resume.keywordsMessage.text(Message.keywords_limit_exceeded).addClass("result_error").slideDown();
+					return;
+				}
+
+				var t = $(this);
+
+				$.post(
+					"/resumes/" + Resume.id + "/resume_keywords",
+					{
+						resume_id: Resume.id, 
+						resume_keyword: $(this).val()
+					},
+					function(response){
+						t.val("");
+						if (response.success == 1) {
+							Resume.keywordsList.append(Resume.keyword_wrapper_template(response.keyword, response.id));
+							Resume.update_keywords_left();
+						}
+					}
+				)
+			}
+		})
+	},
+	
+	keyword_wrapper_template : function(keyword, id) {
+		return '<div class="keyword_wrapper"><div class="keyword">' + keyword + '</div><div class="keyword_remove" rel="' + id + '">x</div></div>'
+	},
+	
+	update_keywords_left : function() {
+		Resume.keywordsLeft.text(20 - Resume.keywordsList.children().length + ' keywords left');
+	},
+	
+	setup_remove_keyword_action : function() {
+		Resume.keyword_remove.live('click', function() {
+			var t = $(this)
+			var url = "/resumes/" + Resume.id + "/resume_keywords/" + t.attr("rel")
+			$.ajax({
+				url: url,
+				type: 'DELETE',
+				asycn: true,
+				data: {
+					id: t.attr("rel"), 
+					resume_id: Resume.id,
+					resume_keyword: $(this).siblings("keyword").text()
+				},
+				success: function(response){
+					t.parent().remove();
+					Resume.update_keywords_left();
+				}
+			})
+		})
 	}
+	
+}
+
+var Sortable = {
+	
+	init : function(params) {
+		params.target.sortable({
+			revert: params.revert,
+			stop: function() {
+				var order = $(this).sortable('serialize', {key:'order[]'});
+				order += '&resume_id=' + $("#ResumeId").val();
+				
+				var t = $(this);
+				
+				$.ajax({
+					url: params.url,
+					type: params.request_type,
+					data: order,
+					success: Resume.blinkUpdatedStatus
+				})
+			}
+		});
+	}
+	
+}
+
+var Profile = {
+	
+	init : function() {
+		
+		this.setup_selectors();
+		
+		this.setup_hide_complete_notice();
+		
+		this.setup_profile_overlay();
+		
+		this.setup_profile_update();
+		
+		var profile_id = $("#profile_id");
+		Profile.id = profile_id.val();
+		
+		this.setup_change_photo_action();
+		this.setup_profile_snapback_action();
+		
+		this.setup_report_comment();
+		this.setup_remove_comment();
+	},
+	
+	setup_selectors : function() {
+		this.edit_profile_btn = $(".edit_profile_btn");
+		this.close_profile_overlay_btn = $("#close_profile_overlay");
+		this.hide_complete_notice_btn = $("#hide_profile_complete_notice");
+		this.update_profile_btn = $("#update_profile_btn");
+		this.change_photo_btn = $("#change_photo_btn");
+		this.overlay = $("#profile_overlay_wrapper");
+		this.edit_profile_message = $("#edit_profile_message");
+		this.change_photo_btn = $("#change_photo_btn");
+		this.profile_details_input = $("#profile_details_input");
+		this.profile_image_cropper = $("#profile_image_cropper");
+		this.complete_notice = $("#profile_complete_notice");
+		this.back_to_profile = $("#back_to_edit_profile");
+		this.report_comment = $(".report_comment");
+		this.remove_comment = $(".remove_comment");
+	},
+	
+	setup_profile_overlay : function() {
+		Profile.edit_profile_btn.bind('click', function(event) {
+			event.preventDefault();
+			Krb.overlay.fadeIn(function(){ Profile.overlay.fadeIn() })
+		})
+		
+		var that = this;
+		
+		Profile.close_profile_overlay_btn.click(function() {
+			that.edit_profile_message.removeClass().text("").hide();
+		})
+	},
+	
+	setup_hide_complete_notice : function() {
+		Profile.hide_complete_notice_btn.click(function() {
+			Profile.hide_complete_notice();
+		})
+	},
+	
+	setup_profile_update : function() {
+		Profile.update_profile_btn.click(function() {
+			$.ajax({
+				url: "/profiles/" + Profile.id,
+				type: 'PUT',
+				data: $("#profile_form").serialize(),
+				success: function(response) {
+					if (response.success == 1) {
+						Profile.edit_profile_message.removeClass().addClass("result_success").text("Your profile has been updated").show();
+					} else {
+						Profile.edit_profile_message.removeClass().addClass("result_error").text("An error occurred. Please try again later").show();
+					}
+				}
+			})
+		})
+	},
+	
+	hide_complete_notice : function() {
+		$.post(
+			"/profiles/hide_profile_notice", 
+			{}, 
+			function() {
+				Profile.complete_notice.slideUp(500)
+			}
+		)
+	},
+	
+	setup_change_photo_action : function() {
+		Profile.change_photo_btn.click(function() {
+			Profile.profile_details_input.hide(function() {
+				Profile.profile_image_cropper.show();
+			});
+		})
+	},
+	
+	setup_profile_snapback_action : function() {
+		Profile.back_to_profile.click(function() {
+			Profile.profile_image_cropper.hide(function() {
+				Profile.profile_details_input.show();
+			})
+		})
+	},
+	
+	setup_report_comment : function() {
+		this.report_comment.bind('click', function() {
+			$.ajax({
+				url: '/user_threads/' + $(this).attr("rel") + '/report_comment',
+				type: 'POST',
+				data: {},
+				success: function(response) {
+					if (response.success == 1) {
+						alert('The comment has been reported')
+					}
+				}
+			})
+		})
+	},
+	
+	setup_remove_comment : function() {
+		this.remove_comment.bind('click', function() {
+			var thread_id = $(this).attr("rel");
+			$.ajax({
+				url: '/user_threads/' + thread_id + '/remove_comment',
+				type: 'POST',
+				data: {},
+				success: function(response) {
+					if (response.success == 1) {
+						$("#thread_" + thread_id).slideUp().remove();
+					}
+				}
+			})
+		})
+	}
+	
+}
+
+var Thought = {
+	
+	init : function() {
+		this.setup_selectors();
+		this.setup_share_thought_action();
+		this.thoughtbox_count_chars();
+	},
+	
+	setup_selectors : function() {
+		this.thoughtbox = $("#thoughtbox_message");
+		this.share_thought_btn = $("#share_thought");
+		this.thoughtCharsCount = $("#thoughts_chars_count");
+	},
+	
+	thoughtbox_count_chars : function() {
+		this.thoughtbox
+			.focus(Thought.thoughtbox_focus)
+			.blur(Thought.thoughtbox_blur)
+			.keypress(Thought.thoughtbox_keypress)
+			.keyup(Thought.thoughtbox_keyup);
+	},
+	
+	thoughtbox_focus : function() {
+		if ($(this).val() == $(this).attr("rel")) $(this).val("");
+	},
+	
+	thoughtbox_blur : function() {
+		if ($(this).val() == '') $(this).val($(this).attr("rel"));
+	},
+	
+	thoughtbox_keypress : function() {
+		var numChars = $(this).val().length;
+		if (numChars <= 140) {
+			Thought.thoughtCharsCount.text(140 - numChars);
+		}
+	},
+	
+	thoughtbox_keyup : function(){
+		var numChars = $(this).val().length;
+		Thought.thoughtCharsCount.text(140 - numChars);
+	},
+	
+	setup_share_thought_action : function() {
+		
+		this.share_thought_btn.click(function() {
+			var thought = Thought.thoughtbox.val();
+			
+			if (thought != '' && thought != Message.thoughtbox_original) {
+				$.post(
+					"/thoughts",
+					{ thought : { content : thought } },
+					function(response) {
+						if (response.success == 1) {
+							alert(Message.thought_published_success);
+							Thought.thoughtbox.val(Message.thoughtbox_original)
+						} else {
+							alert(Message.thought_published_fail)
+						}
+					}
+				)
+			}
+		})
+	}
+	
+}
+
+$(function(){
+	
+	Krb.init();
+	
+	Krb.setup_scrolling($("#back_to_top"), "click", 0, 2000);
+	
+	Resume.init();
+	
+	MarkItUp.init();
+	
+	Profile.init();
+	
+	Thought.init();
+	
+	Sortable.init({target: $("#sort_resume_sections"), revert: true, url:"/resumes/" + Resume.id + "/resume_section_orders/update_order", request_type:'PUT'})
+	Sortable.init({target: $("#sort_references"), revert: true, url:"/resumes/" + Resume.id + "/resume_references/order", request_type:'POST'})
+	Sortable.init({target: $("#sort_education"), revert: true, url:"/resumes/" + Resume.id +  "/resume_educations/order", request_type:'POST'})
+	Sortable.init({target: $("#sort_work_experience"), revert: true, url:"/resumes/" + Resume.id + "/resume_work_experiences/order", request_type:'POST' })
+	
+	//keywordsListWrapper.click(function(){keywordsInput.focus()});
 	
 	//Hover label
 	$(".focusLabel").focus(function(){
@@ -536,191 +572,5 @@ $(function(){
 	}).blur(function(){
 		if ($(this).val() == "") $(this).val($(this).attr("rel"));
 	})
-	
-	//Search box
-	$("img.start_search_btn").click(function(){
-		var siblingSearch = $(this).siblings(".focusLabel");
-		if (siblingSearch.val() != siblingSearch.attr("rel") && siblingSearch.val() != '') $(this).parent().submit();
-	})
-
-	//Save search results
-	var ssro = $("#save_search_results_overlay");
-	
-	$("img.save_search_results_trigger").click(function(){
-		o.show();
-		ssro.show();
-	})
-	
-	$("img.save_search_results").click(function(){
-		var name = $("#search_result_name").val();
-		if (name) {
-			$.post(
-				"/ajax/save_search_results",
-				{
-					name:name,
-					type:$(this).attr("type"),
-					url:location.href
-				},
-				function(response){
-					if (response == 1) {
-						alert('Your search results have been saved');
-						ssro.hide();
-						o.hide();
-					}
-				}
-
-			)
-		}
-	})
-	
-	//Remove search results
-	$("img.remove_search_result").bind('click', function(){
-		var t = $(this);
-		$.post(
-			"ajax/remove_search_results",
-			{id:$(this).attr("rel")},
-			function() {
-				t.parent().parent().parent().remove();
-			}
-		)
-	})
-	
-	//Close overlay on entire site
-	$("img.close_overlay").bind('click', function(event){
-		event.preventDefault();
-		$(this).parent().fadeOut(function(){
-			o.fadeOut();
-		})
-	})
-	
-	//Recommend blog post
-	$("#recommend_post").click(function() {
-		var t = $(this);
-		$.post(
-			"/resume/ajax/recommend_post",
-			{id:t.attr("rel")},
-			function(){
-				t.parent().text("Thank you for your recommendation");
-			}
-		)
-	})
-	
-	//View job applicant details
-	var jobApplicantDetailsOverlay = $("#job_applicant_details_overlay");
-	var applicantFirstName = $("#applicant_first_name");
-	var applicantLastName = $("#applicant_last_name");
-	var applicantEmail = $("#applicant_email");
-	var applicantPhoneNumber = $("#applicant_phone_number");
-	var applicantCity = $("#applicant_city");
-	var applicantState = $("#applicant_state");
-	var applicantResume = $("#applicant_resume");
-	var applicantCoverLetter = $("#applicant_cover_letter");
-	var applicantProfile = $("#applicant_profile");
-	
-	$(".view_applicant_details").click(function(){
-		var t = $(this);
-		o.fadeIn(function(){
-			applicantFirstName.val(t.siblings(".applicant_first_name").val());
-			applicantLastName.val(t.siblings(".applicant_last_name").val());
- 			applicantEmail.val(t.siblings(".applicant_email").val());
-			applicantPhoneNumber.val(t.siblings(".applicant_phone_number").val());
-			applicantCity.val(t.siblings(".applicant_city").val());
-			applicantState.val(t.siblings(".applicant_state").val());
-			applicantResume.attr("href", "/files/resume/" + t.siblings(".applicant_resume").val());
-			var cover_letter = t.siblings(".applicant_cover_letter").html();
-			applicantProfile.attr("href", "/profile/" + t.siblings(".applicant_username").val()); 
-			if (cover_letter) {
-				applicantCoverLetter.html(cover_letter);
-			} else {
-				applicantCoverLetter.html("n/a");
-			}
-			
-			jobApplicantDetailsOverlay.fadeIn();
-		})
-	})
-	
-	//Remove profile comment
-	$(".remove_comment").bind('click', function(){
-		var t = $(this);
-		$.post(
-			"/ajax/remove_profile_comment",
-			{comment_id:t.attr("rel")},
-			function(response) {
-				$("#comment_" + t.attr("rel")).fadeOut(400);
-			}
-		)
-	})
-	
-	//Report profile comment
-	$(".report_comment").bind('click', function(){
-		var t = $(this);
-		$.post(
-			"/ajax/report_profile_comment",
-			{comment_id:t.attr("rel")},
-			function(response) {
-				t.removeClass().addClass("comment_reported").attr("title", "This comment has been reported");
-			}
-		)
-	})
-	
-	//Blink updated status
-	var updatedStatus = $("#updated_status");
-	function blinkUpdatedStatus() {
-		updatedStatus.fadeIn(500);
-		setTimeout(function(){updatedStatus.fadeOut(500)}, 2000);
-	}
-	
-	function showAccountSettingsUpdatedMessage(result, message) {
-		accountSettingsMessage.removeClass().addClass(result == 'error' ? "result_error" : "result_success").text(message).fadeIn(500);
-		setTimeout(function(){accountSettingsMessage.fadeOut(500)}, 2000);
-	}
-	
-	//Update Account email and password
-	var accountEmail = $("#account_email");
-	var accountPassword = $("#account_password");
-	var accountSettingsMessage = $("#edit_account_settings_message");
-	$("#update_account_password_btn").click(function(){
-		var password = accountPassword.val();
-		if (password) {
-			$.post(
-				"/ajax/update_account_password",
-				{password:password},
-				function(response) {
-					var _response = $.parseJSON(response);
-					var _result = _response.result;
-					if (_result == -1 || _result == -2 || _result == -3) {
-						showAccountSettingsUpdatedMessage("error", _response.message);
-					} else {
-						showAccountSettingsUpdatedMessage("success", _response.message);
-					}
-				}
-			)
-		}
-	})
-	
-	$("#update_account_email_btn").click(function(){
-		var email = accountEmail.val();
-		if (email) {
-			$.post(
-				"/ajax/update_account_email",
-				{email:email},
-				function(response) {
-					var _response = $.parseJSON(response);
-					var _result = _response.result;
-					if (_result == -1 || _result == -2 || _result == -3) {
-						showAccountSettingsUpdatedMessage("error", _response.message);
-					} else {
-						showAccountSettingsUpdatedMessage("success", _response.message);
-					}
-				}
-			)
-		}
-	})
  
 })
-
-function cancel_photo_upload() {
-	$("#profile_image_cropper").hide();
-	$("#profile_details_input").show();
-	$("#photouploadiframe").attr("src", "profile/upload_photo");
-}

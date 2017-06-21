@@ -1,0 +1,37 @@
+<div class="box_top"></div>
+<div class="box">
+	
+	<%= render :partial => "shared/section_name_editor", :locals => {:section => "work_experience"} %>
+	
+	<div class="section_options">
+		<div class="options_label">Options</div>
+		
+		<div class="add">
+  	    <%= link_to "Add a new entry", new_resume_resume_work_experience_path(@resume) %>
+  	</div>
+  	    
+  	<% section_mode = @hidden_fields.include?("work_experience") ? "disabled" : "active" %>
+		
+		<a class="enable_section" rel="work_experience">Enable this section</a>
+		<a class="disable_section" rel="work_experience">Disable this section</a>
+		
+		<input type="hidden" class="section_mode" value="<%= section_mode %>" />
+	</div>
+	
+	<div id="sort_work_experience" class="sortable">
+		<% @resume.resume_work_experiences.each do |exp| %>
+		  <div id="exp_<%= exp.id %>" class="ui-state-default">
+		    <h3 class="organization_name"><%= exp.organization_name %></h3>
+		    <div class="position_title"><%= exp.title %></div>
+		    <div class="position_date"><%= exp.begin_date %> - <%= exp.end_date %></div>
+		    <div class="clearfloat"></div>
+		    <a href="/resumes/<%= @resume.id %>/resume_work_experiences/<%= exp.id %>/edit" class="edit_link"></a>
+		    <a href="/resumes/<%= @resume.id %>/resume_work_experiences/<%= exp.id %>/delete" class="delete_link"></a>
+		  </div>
+		<% end %>
+	</div>
+	
+	<div class="clearfloat"></div>
+
+</div>
+<div class="box_bottom"></div>

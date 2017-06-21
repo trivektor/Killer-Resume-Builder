@@ -1,0 +1,7 @@
+<div class="section_wrapper">
+	<h2 class="section_header"><%= @section_names['skills'] %></h2>
+	<div id="skills_section"  class="section_content">
+		<%= RDiscount.new(@resume.resume_skill.skills).to_html.html_safe unless @resume.resume_skill.skills.blank? %>
+	</div>
+	<div class="section_bottom"></div>
+</div>

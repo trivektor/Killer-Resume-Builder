@@ -1,16 +1,67 @@
 class ApplicationController < ActionController::Base
+  
   protect_from_forgery
   
-  helper_method :current_user_session, :current_user, :logged_in?
+  before_filter do
+    if logged_in?
+      user_profile
+    end
+  end
+  
+  helper_method :current_user_session, :current_user, :logged_in?, :user_profile, :get_countries, :get_job_categories, :get_job_industries
   
   protected 
+  
+  def get_countries
+    countries = Country.find(:all)
+    countries_hash = {}
+    for country in countries
+      countries_hash[country.printable_name] = country.id
+    end
+    countries_hash.sort
+  end
+  
+  def get_job_industries
+    industries = JobIndustry.where(:status => :active).find(:all)
+    industries_hash = {}
+    for industry in industries
+      industries_hash[industry.industry] = industry.id
+    end
+    industries_hash.sort
+  end
+  
+  def get_job_categories
+    categories = JobCategory.where(:status => :active).find(:all)
+    categories_hash = {}
+    for category in categories
+      categories_hash[category.category_name] = category.id
+    end
+    categories_hash.sort
+  end
+  
+  def user_profile
+    if session[:user_profile].nil?
+      session[:user_profile] = Profile.find_by_user_id(current_user.id)
+    end
+    
+    @profile = session[:user_profile]
+  end
   
   def current_user_session
     @current_user_session ||= UserSession.find
   end
   
   def current_user
-    @current_user = current_user_session && current_user_session.user
+    if !session[:omniauth_user_id].nil?
+      @current_user ||= User.find_by_id(session[:omniauth_user_id])
+    else
+      @current_user = current_user_session && current_user_session.user
+    end
+  end
+  
+  def current_user=(user)
+    @current_user = user
+    session[:omniauth_user_id] = user.id
   end
   
   def logged_in?
@@ -37,7 +88,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      redirect_to "/"
+      redirect_to root_url
       return false
     end
   end

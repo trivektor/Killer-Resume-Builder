@@ -1,0 +1,12 @@
+<%
+@body_id = "blogs"
+@title_for_layout = "Blogs by #{params[:name]}"
+%>
+
+<div id="blog_post_list" class="blue_region">
+    <% for post in @posts %>
+        <%= render :partial => "shared/blog/post", :locals => {:post => post} %>
+    <% end %>
+</div>
+
+<div class="clearfloat"></div>

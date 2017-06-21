@@ -14,7 +14,6 @@ gem 'mysql2'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -23,10 +22,23 @@ gem 'mysql2'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+#gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git', :branch => 'rails3'
+#gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'rdiscount'
+gem 'mini_magick'
+gem 'carmen'
+gem 'useragent'
+gem 'gravtastic'
+gem 'haml-edge'
+gem 'haml'
+gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git', :tag => 'v0.2.0.beta5'
+gem 'twitter'
+gem 'koala'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+group :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 2.4'
+end

@@ -1,0 +1,45 @@
+* {margin:0; padding:0;}
+
+body {background:url(../../images/themes/classic_paper_stack/bodyBg.jpg) repeat; font-family:georgia; font-size:14px;}
+
+ul li {list-style:none}
+
+a {color:#cc7f36;}
+
+#paper_stack_top {width:758px; height:20px; background:url(../../images/themes/classic_paper_stack/paperStackTopBg.png) no-repeat; margin:50px auto 0;}
+#paper_stack_body_wrapper {margin:0 auto; width:698px; padding:10px 30px 60px; background:url(../../images/themes/classic_paper_stack/paperStackBg.png) repeat-y;}
+#name_tag_wrapper {background:url(../../images/themes/classic_paper_stack/nameTagLeft.png) no-repeat left bottom; padding-left:46px; float:left;
+position:relative; left:-65px; margin-bottom:25px;}
+#name_tag_right_end {background:url(../../images/themes/classic_paper_stack/nameTagRight.png) no-repeat right bottom; padding-right:24px;}
+#name_tag {color:#fff; font-size:25px; font-family:Lucida Grande,arial; height:60px; line-height:60px; padding:0 20px;
+background:url(../../images/themes/classic_paper_stack/nameTagMiddle.png) repeat-x}
+
+.section_details_wrapper {clear:both; background:#fffccc; padding:15px 25px; border:1px solid #cbc78b;}
+.section_details_wrapper .left {float:left; width:400px;}
+.section_details_wrapper .period {float:right; width:152px; height:33px; line-height:28px; font-size:11px; color:#fff;
+text-align:center; background:url(../../images/themes/classic_paper_stack/periodBg.png) no-repeat; overflow:hidden;}
+
+.institution_name, .organization_name {color:#cc7f36; font-weight:bold; margin-bottom:5px;}
+
+.section_header_wrapper {margin:20px 0; float:left; font-weight:normal;
+background:url(../../images/themes/classic_paper_stack/sectionHeaderLeft.png) no-repeat left bottom; padding-left:11px;}
+.section_header_right_end {background:url(../../images/themes/classic_paper_stack/sectionHeaderRightEnd.png) no-repeat right bottom; padding-right:12px;}
+.section_header {background:url(../../images/themes/classic_paper_stack/sectionHeaderMiddle.png) repeat-x; height:37px; font-size:20px; line-height:37px;
+	color:#fff; padding:0 10px; font-weight:normal;}
+	
+.position_details {margin-top:20px;}
+.position_details li {margin:15px 0;}
+
+.work_experience_item {margin-bottom:25px;}
+	
+#resume_education li {margin:18px 0}
+#resume_education {padding:0 25px;}
+
+#resume_skills li {margin:8px 0;}
+
+#references_list li {margin:15px 0;}
+
+#references_section {padding:10px 25px;}
+
+#personal_info {float:right; width:300px; text-align:right; font-size:11px;}
+#personal_info li {margin-bottom:5px;}

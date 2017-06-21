@@ -1,0 +1,11 @@
+<div class="section_header_wrapper">
+	<div class="section_header_right_end">
+		<h2 class="section_header">
+			<%= @section_names['field_works'] %>
+		</h2>
+	</div>
+</div>
+
+<div class="section_details_wrapper">
+  <%= RDiscount.new(@field_works).to_html.html_safe unless @field_works.blank? %>
+</div>

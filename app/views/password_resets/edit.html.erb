@@ -1,0 +1,14 @@
+<% @title_for_layout = 'Change Password' %>
+
+<h2>Change My Password</h2>
+
+<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
+
+  <%= render :partial => 'shared/form_errors', :locals => {:f => f} unless @user.errors.count == 0 %>
+  
+  <div class="form_row">
+  <label>New password</label>
+  <%= f.password_field :password, :class => :textbox %>
+  </div>
+  <%= f.submit "Update my password and log me in" %>
+<% end %>

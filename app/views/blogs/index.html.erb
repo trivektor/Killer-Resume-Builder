@@ -1,0 +1,21 @@
+<%
+@body_id = "blogs"
+@title_for_layout = "Blogs"
+%>
+
+<div id="blog_post_list" class="blue_region">
+    <% for post in @posts %>
+        <%= render :partial => "shared/blog/post", :locals => {:post => post} %>
+    <% end %>
+</div>
+
+<div id="blog_sidebar">
+    <h2>Authors</h2>
+    <ul class="blog_archive">
+        <% for author in @authors %>
+            <li><%= link_to author[:name], :controller => :blogs, :action => :author, :name => author[:slug] %></li>
+        <% end %>
+    </ul>
+</div>
+
+<div class="clearfloat"></div>

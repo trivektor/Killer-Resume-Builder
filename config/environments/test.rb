@@ -32,4 +32,19 @@ Krb::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  config.action_mailer.default_url_options = {:host => "krb.localhost:3000"}
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.sendgrid.net",
+    :port => 25,
+    :domain => "marrily.com",
+    :authentication => :plain,
+    :user_name => "trivektor@gmail.com",
+    :password => "mnbvcxz"
+  }
+  
+  config.after_initialize do
+    Configuration.site_url = 'http://krb.localhost:3000/'
+  end
+  
 end

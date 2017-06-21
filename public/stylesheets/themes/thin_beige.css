@@ -1,0 +1,36 @@
+body {background:#E0DBCA; font-size:15px;}
+
+a {color:red;}
+
+ul {list-style:none;}
+
+.section_wrapper {padding:20px 0}
+.header_tag {color:#888888; margin-bottom:20px;}
+
+#container {background:#CEC9B8; padding:3px; border:3px solid #DAD5C4; width:640px; margin:0 auto;}
+
+#personal_information {list-style:none;}
+#personal_information li {margin-bottom:10px;}
+
+#resume_sheet {margin:0; width:538px; padding:20px 50px;}
+
+#full_name {margin-bottom:2px;}
+
+#address {margin-bottom:2px;}
+
+.institution_name {margin-bottom:10px;}
+.education_degree {margin-bottom:10px; line-height:22px; font-style:oblique; color:#666;}
+
+#resume_skills {color:#666; font-style:oblique;}
+#resume_skills li {line-height:22px;}
+
+.position_title {margin:10px 0}
+.position_duration {margin:10px 0}
+.position_details {line-height:22px; font-style:oblique; color:#666;}
+.position_details li {margin-bottom:10px;}
+
+.reference_name { margin-bottom:5px; font-weight:bold; }
+.reference_title {margin-bottom:5px;}
+.reference_organization {margin-bottom:5px;}
+
+#field_works {color:#666; font-style:oblique; line-height:22px;}

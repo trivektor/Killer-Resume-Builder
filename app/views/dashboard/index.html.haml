@@ -1,0 +1,99 @@
+- @title_for_layout = "Dashboard"
+- @body_id = "dashboard"
+
+- if @missing.count > 0 && @profile.hide_profile_notification == false
+  #profile_complete_notice.result_success
+    %p 
+      Your profile is yet completed. In order to complete it, you need to fill in #{@missing.join(", ")}
+      %span#hide_profile_complete_notice Hide this notice |
+
+%h2#thoughtbox_header Share your thought
+
+#thoughtbox_wrapper.blue_region
+  = render :partial => "shared/user_image"
+  #thoughtbox
+    #thoughtbox_left
+      #thoughtbox_right
+        = text_field_tag "thoughtbox_message", "Type your thought here"
+    = image_tag "resume/gobutton.png", :id => "share_thought", :alt => "Share thought"
+  
+  .clearfloat
+  
+  #thoughts_chars_count_wrapper
+    %span#thoughts_chars_count 115
+    characters left
+  
+.clearfloat
+
+/ Left col starts
+.left_col
+
+  / Your resumes starts
+  %h2 Your resumes
+  #your_resumes.blue_region
+    %ul#resumes_list.item_list
+      - if @resumes.count > 0
+        - @resumes.each do |resume|
+          %li.white_region
+            .left
+              = link_to resume.title, edit_resume_path(resume)
+              %p.timestamp
+                Last updated #{resume.updated_at.strftime("%b %d, %Y %H:%M %p")}
+            .options
+              %a.delete{:title => "Delete", :href => "/resumes/#{resume.id}/delete"}
+              %a.view_live{:title => "View", :href => "#{resume.url}", :target => "_blank"}
+              = link_to "", edit_resume_path(resume), :class => :edit
+    = link_to(image_tag("resume/createAResume.png", :alt => "Create resume"), new_resume_path)
+  / Your resumes ends
+  
+  / Most viewed resumes start
+  %h2 Your most viewed resumes
+  #resume_statistics.blue_region
+    - if @popular_resumes.count > 0
+      %ul#popular_resumes.item_list
+        - @popular_resumes.each do |resume|
+          %li.white_region
+            .left
+              = link_to resume.title, edit_resume_path(resume)
+            .options
+              %a.analytic
+              %span
+                %strong
+                  = resume.views
+    - else
+      %p.white_region Statistics will appear here as your resumes being viewed
+  / Most viewed resumes end
+  
+  / Who's viewed your resumes starts
+  %h2 Who's viewed your resumes
+  #resume_viewers.blue_region
+    - if @resume_viewers.count > 0
+      - @resume_viewers.each do |user|
+        = link_to((image_tag user.gravatar_url, :class => :user_image), profile_path(user.username))
+      .clearfloat
+    - else
+      %p.white_region{:style => "float:none"} Statistics will appear here as people start viewing your resumes
+  / Who's viewed your resumes ends
+    
+/ Right col starts
+.right_col
+
+  / Your profile starts
+  %h2 Your profile
+  #your_profile.blue_region
+    = render :partial => "shared/user_image"
+    
+    %ul#your_profile_header.white_region
+      %li#your_profile_name
+        = @profile.first_name 
+        = @profile.last_name
+      %li
+        - if !@profile.job_title.blank?
+          = @profile.job_title
+        - else
+          %a.edit_profile_btn Edit your profile
+    .clearfloat
+  / Your profile ends
+
+.clearfloat
+

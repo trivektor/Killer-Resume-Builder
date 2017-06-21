@@ -1,0 +1,68 @@
+<% 
+@title_for_layout = "Edit #{@section_name}"
+@body_id = "resume_education"
+%>
+
+<%= render :partial => "shared/back_to_resume" %>
+
+<%= form_for @resume_education, :url => resume_resume_education_path(@resume) do |f| %>
+
+<div class="blue_region">
+  
+  <div class="box_top"></div>
+
+  <div class="box">
+    
+    <h2><%= @title_for_layout %></h2>
+    
+    <% if flash[:notice] %>
+      <div class="result_success"><%= flash[:notice] %></div>
+    <% end %>
+    
+    <% if @resume_education.errors.count > 0 %>
+      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+    <% end %>
+
+    <div class="form_row">
+    	<label>Institution</label>
+    	<%= f.text_field :institution, :class => :textbox %>
+    </div>
+
+    <div class="form_row">
+    	<label for="ResumeEducationBeginDate">Begin Date</label>
+    	<%= f.text_field :begin_date, :class => :textbox %>
+    </div>
+
+    <div class="form_row">
+    	<label for="ResumeEducationEndDate">End Date</label>
+    	<%= f.text_field :end_date, :class => :textbox  %>
+    </div>
+
+    <div class="form_row">
+    	<label for="ResumeEducationDegree">Degree</label>
+    	<%= f.text_field :degree, :class => :textbox %>
+    </div>
+
+    <div class="form_row">
+    	<label for="ResumeEducationFieldOfStudy">Field of Study</label>
+    	<%= f.text_field :field_of_study, :class => :textbox %>
+    </div>
+
+    <div class="form_row">
+    	<label for="ResumeEducationGpa">GPA</label>
+    	<%= f.text_field :gpa, :class => :textbox %>
+    </div>
+
+    <div class="form_row">
+    	<label for="ResumeEducationLocation">Location</label>
+    	<%= f.text_field :location, :class => :textbox %>
+    </div>
+
+    <input src="/images/resume/updateSectionBtn.png" alt="Update" type="image" />
+    
+  </div>
+  
+</div>
+
+
+<% end %>

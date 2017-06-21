@@ -1,0 +1,38 @@
+<% personal_info = @resume.resume_personal_information %>
+
+<div id="personal_info_wrapper">
+<div id="personal_info">
+	<h1 id="resume_name"><%= personal_info.full_name %></h1>
+	
+	<% if !@resume.resume_setting.hide_personal_info %>
+	
+		<ul>
+			<% if !personal_info.email.blank? %>
+				<li><strong>Email:</strong> <%= obfuscate_email personal_info.email %></li>
+			<% end %>
+			<% if !personal_info.website.blank? %>
+				<li><strong>Website:</strong> <a href="<%= personal_info.website %>" target="_blank"><%= personal_info.website %></a></li>
+			<% end %>
+			<% if !personal_info.phone_number.blank? %>
+				<li><strong>Phone:</strong> <a><%= personal_info.phone_number %></a></li>
+			<% end %>
+			<% if !personal_info.fax_number.blank? %>
+				<li><strong>Fax:</strong> <a><%= personal_info.fax_number %></a></li>
+			<% end %>
+		</ul>
+		
+		<% if !personal_info.bio.blank? %>
+		  <div id="personal_info_bio">
+			  <%= RDiscount.new(personal_info.bio).to_html.html_safe %>
+		  </div>
+		<% end %>
+	
+	
+	<% end %>
+	
+</div>
+
+<%= render :partial => "shared/resume_user_image" %>
+
+<div class="clearfloat"></div>
+</div>

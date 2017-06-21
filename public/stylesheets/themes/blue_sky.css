@@ -1,0 +1,56 @@
+@font-face {font-family:PetitLatin; src:url(../fonts/PetitLatin.ttf);}
+
+* {margin:0; padding:0}
+h2 {color:#55a1d5}
+img {border:0}
+a {outline-style:none; text-decoration:none; color:#55a1d5}
+a:hover {text-decoration:underline}
+
+/* Common classes used across the entire site */
+
+.list_without_bullet {list-style-type:none}
+.blue_link {color:#55a1d5}
+.section_header span {background:#ff6a06; padding:6px 12px; color:#ffffff; display:block; font-size:105%; text-align:center;}
+
+/* Common elements on each and every page */
+
+body {background:#b8e4ee url(../../img/themes/blue_sky/single_cloud_top_bg.jpg) no-repeat center 15px; font-family:PetitLatin,arial; font-size:78%; color:#464457}
+
+#master_wrapper {background:url(../../img/themes/blue_sky/balloons_clouds_bg.png) center 200px no-repeat}
+
+#header {text-align:center; width:780px; margin:50px auto 0}
+
+#header h1 {background:url(../../img/themes/blue_sky/header_band.jpg) no-repeat 65px 0; height:67px; text-align:center; color:#fff; font-size:20px;
+line-height:49px;}
+
+#middle_wrapper {background:url(../../img/themes/blue_sky/grass_bottom_bg.jpg) repeat-x left bottom; margin-top:40px; position:relative}
+
+#middle_content_top {width:568px; background:url(../../img/themes/blue_sky/writing_pad_top_bg.png) no-repeat; height:56px; margin:0 auto; position:relative}
+
+#middle_content_body {width:568px; margin:0 auto;  padding:1px 0; background:url(../../img/themes/blue_sky/writing_pad_body_bg.png) repeat-y center top;
+position:relative}
+
+#middle_content_detail {width:430px; margin:0 auto}
+
+#middle_content_bottom {width:918px; background:url(../../img/themes/blue_sky/writing_pad_bottom_bg.png) no-repeat -3px 0; height:152px; margin:0 auto} 
+
+ul li {margin:15px 0; list-style:none;}
+
+#person_name {margin-bottom:20px;}
+.section_wrapper {margin:20px 0;}
+.section_header {margin-bottom:20px;}
+
+#person_info li {margin:5px 0;}
+
+#resume_skills li {margin:5px 0;}
+
+.insitution_name, .organization_name {margin-bottom:5px; color:#ff6e00; font-weight:bold;}
+.degree {margin-bottom:5px;}
+.position_title {margin-bottom:5px;}
+
+#resume_work_experience .left {float:left; width:300px; margin-bottom:10px;}
+
+#references_list li {margin-bottom:15px;}
+
+#footer {background:#402a16; padding:10px; text-align:center}
+#footer #copyright_statement {color:#ffffff}

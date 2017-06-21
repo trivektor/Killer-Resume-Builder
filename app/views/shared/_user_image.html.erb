@@ -1,0 +1,4 @@
+<%# photo == "male.png" || photo == "female.png" ? image_tag("resume/#{photo}", :class => "user_image") : image_tag("upload/#{photo}", :class => :user_image) %>
+
+<%= image_tag current_user.gravatar_url, :class => "user_image" %>
+

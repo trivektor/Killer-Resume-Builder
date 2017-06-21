@@ -1,0 +1,16 @@
+<% 
+@title_for_layout = "Reset Password"
+@body_id = "password_reset"
+%>
+
+<h2><%= @title_for_layout %></h2>
+
+<%= render :partial => "shared/flash_notice" %>
+
+<% form_tag password_resets_path do %>
+  <div class="form_row">
+    <label>Please enter your email to receive password reset instructions</label>
+    <%= text_field_tag "email", nil, :class => :textbox %>
+  </div>
+  <%= submit_tag "Reset my password" %>
+<% end %>

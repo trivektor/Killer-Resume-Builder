@@ -1,0 +1,61 @@
+#profile_overlay_wrapper.account_overlay_wrapper{:style => 'display:none'}
+  .account_overlay_left
+    = render :partial => "shared/user_image"
+    = image_tag "resume/changePhotoBtn.png", :id => "change_photo_btn", :alt => "Change photo"
+  .account_overlay_right
+    .inner
+      #profile_image_cropper{:style => 'display:none; height:400px'}
+        #change_avatar
+          %p{:style => 'margin-top:10px'} We are using #{current_user.email}
+          %p{:style => 'margin:10px 0'} Your avatar change on gravatar.com might take a while to be updated by our system
+          %a#back_to_edit_profile Back to profile details
+      #profile_details_input
+        = form_for @profile, :html => { :id => :profile_form } do |profile_form|
+          %h2
+            = image_tag "resume/profileDetailsHeader.png", :alt => "Profile"
+          
+          #edit_profile_message{:style => 'display:none'}
+            
+          .form_row
+            %label First Name
+            = profile_form.text_field :first_name, :class => :textbox, :id => "profile_first_name"
+        
+          .form_row
+            %label Last Name
+            = profile_form.text_field :last_name, :class => :textbox, :id => "profile_last_name"
+        
+          .form_row
+            %label City
+            = profile_form.text_field :city, :class => :textbox, :id => "profile_city"
+          
+          .form_row
+            %label State/Province
+            = profile_form.text_field :state, :class => :textbox, :id => "profile_state"
+          
+          .form_row
+            %label Country
+            = profile_form.select :country, Carmen::country_names, :selected => @profile.country
+          
+          .form_row
+            %label Postal Code
+            = profile_form.text_field :postal_code, :class => :textbox, :id => "profile_postal_code"
+          
+          .form_row
+            %label Job Function
+            = profile_form.select "job_category_id", get_job_categories, :selected => @profile.job_category_id
+        
+          .form_row
+            %label Industry
+            = profile_form.select "job_industry_id", get_job_industries, :selected => @profile.job_industry_id
+        
+          .form_row
+            %label Job Title
+            = profile_form.text_field :job_title, :class => :textbox, :id => "profile_job_title"
+            
+          %input#profile_id{:type => 'hidden', :value => @profile.id}
+          
+          = image_tag "resume/updateProfileBtn.png", :alt => "Update", "class" => 'account_overlay_update_btn', :id => "update_profile_btn"
+          .clearfloat
+  = image_tag "resume/closeOverlay.png", :id => "close_profile_overlay", :class => "close_overlay"
+  
+.clearfloat

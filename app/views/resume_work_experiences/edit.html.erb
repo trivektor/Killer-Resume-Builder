@@ -1,0 +1,62 @@
+<% 
+@title_for_layout = "Edit #{@section_name}"
+@body_id = "resume_work_experience"
+%>
+
+<%= render :partial => "shared/back_to_resume" %>
+
+<%= form_for @resume_work_experience, :url => resume_resume_work_experience_path(@resume) do |f| %>
+
+<div class="blue_region">
+  
+  <div class="box_top"></div>
+  
+  <div class="box">
+    
+    <h2><%= @title_for_layout %></h2>
+    
+    <% if flash[:notice] %>
+    <div class="result_success"><%= flash[:notice] %></div>
+    <% end %>
+    
+    <% if @resume_work_experience.errors.count > 0 %>
+      <%= render :partial => "shared/form_errors", :locals => {:f => f} %>
+    <% end %>
+    
+    <div class="form_row">
+      <label>Organization Name</label>
+      <%= f.text_field :organization_name, :class => :textbox %>
+    </div>
+    
+    <div class="form_row">
+      <label>Begin Date</label>
+      <%= f.text_field :begin_date, :class => :textbox %>
+    </div>
+    
+    <div class="form_row">
+      <label>End Date</label>
+      <%= f.text_field :end_date, :class => :textbox %>
+    </div>
+    
+    <div class="form_row">
+      <label>Title</label>
+      <%= f.text_field :title, :class => :textbox %>
+    </div>
+    
+    <div class="form_row">
+      <label>Details</label>
+      <%= f.text_area :details, :class => :markitup %>
+      <%= render :partial => 'shared/formatting_tips' %>
+    </div>
+    
+    <input src="/images/resume/updateSectionBtn.png" alt="Update" type="image" />
+    
+  </div>
+  
+  <div class="box_bottom"></div>
+  
+</div>
+
+<% end %>
+
+<%= render :partial => 'shared/formatting_examples' %>
